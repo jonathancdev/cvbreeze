@@ -1,0 +1,6 @@
+Mon Sep 6
+created project
+build home page and create page routing and layouts
+added useeffects to update create layout info
+added photoinput component and built basics of photo section
+made form and preview layout components to be used in workexperience, education, skills

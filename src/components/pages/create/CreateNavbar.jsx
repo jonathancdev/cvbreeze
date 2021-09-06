@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 export default function CreateNavbar() {
   return (
     <>
-      <h1 className="nav__heading-primary">sections</h1>
+      <Link className="create__navlink" to="/create">
+        <h1 className="nav__heading-primary">create</h1>
+      </Link>
       <nav className="create__nav">
         <Link className="create__navlink" to="/create/photo">
           photo
@@ -14,7 +16,7 @@ export default function CreateNavbar() {
           profile
         </Link>
 
-        <Link className="create__navlink" to="/create/workexperience">
+        <Link className="create__navlink" to="/create/work-experience">
           work experience
         </Link>
 
