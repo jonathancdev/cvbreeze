@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import CreateNavbar from "./CreateNavbar";
 import { Route, Switch } from "react-router-dom";
 import {
@@ -8,43 +8,53 @@ import {
   Profile,
   Skills,
   WorkExperience,
+  View,
   CreateLayout,
 } from "./create-index";
-export default function Create(props) {
+export default function Create({ user }) {
+  const [allSectionsCompleted, setAllSectionsCompleted] = useState(false);
   const [layoutData, setLayoutData] = useState({});
 
-  const updateLayoutData = (obj) => {
-    setLayoutData(obj);
-  };
-  console.log(layoutData);
+  // useEffect(() => {
+  //   const completed = checkCompletedSections()
+  //   setAllSectionsCompleted(completed)
+  // });
+
+  const updateLayoutData = useCallback(
+    (obj) => {
+      setLayoutData(obj);
+    },
+    [setLayoutData]
+  );
+  //may not need to pass function to update completed because now
   return (
     <section className="create">
-      <CreateNavbar />
+      <CreateNavbar allSectionsCompleted={allSectionsCompleted} />
       <Route exact path="/create">
-        hello
+        create default page text
       </Route>
       <CreateLayout layoutData={layoutData}>
         <Switch>
           <Route path="/create/photo">
-            <Photo updateLayoutData={updateLayoutData} />
+            <Photo updateLayoutData={updateLayoutData} user={user} />
           </Route>
           <Route path="/create/profile">
-            <Profile updateLayoutData={updateLayoutData} />
+            <Profile updateLayoutData={updateLayoutData} user={user} />
           </Route>
           <Route path="/create/work-experience">
-            <WorkExperience updateLayoutData={updateLayoutData} />
+            <WorkExperience updateLayoutData={updateLayoutData} user={user} />
           </Route>
           <Route path="/create/education">
-            <Education updateLayoutData={updateLayoutData} />
+            <Education updateLayoutData={updateLayoutData} user={user} />
           </Route>
           <Route path="/create/skills">
-            <Skills updateLayoutData={updateLayoutData} />
+            <Skills updateLayoutData={updateLayoutData} user={user} />
           </Route>
           <Route path="/create/contact">
-            <Contact updateLayoutData={updateLayoutData} />
+            <Contact updateLayoutData={updateLayoutData} user={user} />
           </Route>
           <Route exact path="/create/view">
-            view
+            <View user={user} />
           </Route>
         </Switch>
       </CreateLayout>

@@ -1,4 +1,6 @@
-Mon Sep 6
+Tues Sep 7
+changed updateLayout in create to useCallback so dependency array can include fnc and not infinite loop
+started building out functions within components, passing props from app to create and create to sections
 created project
 build home page and create page routing and layouts
 added useeffects to update create layout info

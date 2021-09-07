@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import PhotoInput from "./PhotoInput";
 
-export default function Photo({ updateLayoutData }) {
+export default function Photo({ user, updateLayoutData }) {
   useEffect(() => {
     const layoutData = {
       section: "photo",
@@ -9,7 +9,13 @@ export default function Photo({ updateLayoutData }) {
       toolTip: "Photo tooltip yo lorem ipsum fuckus duckus",
     };
     updateLayoutData(layoutData);
-  }, []);
+  }, [updateLayoutData]);
+
+  // useEffect(() => {
+  //   const completed = checkCompletedSections()
+  //   setAllSectionsCompleted(completed)
+  // });
+
   return (
     <section className="create-section photo">
       <PhotoInput />

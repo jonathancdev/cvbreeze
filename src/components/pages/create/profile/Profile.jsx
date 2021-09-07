@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-export default function Profile({ updateLayoutData }) {
+export default function Profile({ user, updateLayoutData }) {
   useEffect(() => {
     const layoutData = {
       section: "profile",
@@ -8,7 +8,12 @@ export default function Profile({ updateLayoutData }) {
       toolTip: "Profile tooltip yo lorem ipsum fuckus duckus",
     };
     updateLayoutData(layoutData);
-  }, []);
+  }, [updateLayoutData]);
+
+  // useEffect(() => {
+  //   const completed = checkCompletedSections()
+  //   setAllSectionsCompleted(completed)
+  // });
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>

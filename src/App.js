@@ -1,34 +1,57 @@
-
+import { React, useState } from "react";
 import Layout from "./components/layout/Layout";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { Account, Create, Help, Home, Signin, Signup } from './components/pages'
+import { Account, Create, Help, Home, Print, Signin, Signup } from './components/pages'
+import objectStorage
+ from "./utilities/objectStorage";
 function App() {
+
+  const init = () => {
+    objectStorage();
+  }
+  init();
+
+  const [storageKeys, setStorageKeys] = useState(Object.keys(localStorage))
+  const [user, setUser] = useState(storageKeys.includes('currentUser') ? localStorage.getObject('currentUser') : null)
+
+  //user, authentication, and session functions
+  const logUserIn = (obj) => {
+    setUser(obj)
+    localStorage.setObject('currentUser', obj)
+  }
+  const logUserOut = () => {
+    setUser(null)
+  }
+
   return (
 <BrowserRouter>
     <div className="App">
-    <Layout>
-<Route exact path="/">
-              <Home/>
+    <Layout logUserOut={logUserOut} user={user}>
+        <Route exact path="/">
+              <Home user={user}/>
         </Route>
         <Switch> 
             <Route path="/create">
-              <Create/>
+              <Create user={user}/>
             </Route>
             <Route path="/signin">
-              <Signin />
+              <Signin logUserIn={logUserIn}/>
             </Route>
             <Route path="/signup">
-              <Signup />
+              <Signup logUserIn={logUserIn}/>
             </Route>
             <Route path="/account">
-              <Account />
+              <Account logUserOut={logUserOut}/>
             </Route>
             <Route path="/help">
               <Help />
             </Route>
-            <Route/>
+            <Route path="/print">
+              <Print />
+            </Route>
           </Switch>
     </Layout>
+    {/* RENDER PRINT PAGE OUTSIDE OF LAYOUT AND STATE TO HIDE OTHER ELEMENTS WON"T BE NECESSARY */}
     </div>
 </BrowserRouter>
   );

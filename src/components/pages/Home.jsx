@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function Home() {
+export default function Home({ user }) {
   return (
     <section className="home">
       <img src="" alt="" className="home__img" />

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
+import CreateSectionForm from "../CreateSectionForm";
+import CreateSectionPreview from "../CreateSectionPreview";
 
-export default function Education({ updateLayoutData }) {
+export default function Education({ user, updateLayoutData }) {
   useEffect(() => {
     const layoutData = {
       section: "education",
@@ -8,6 +10,19 @@ export default function Education({ updateLayoutData }) {
       toolTip: "Education tooltip yo lorem ipsum fuckus duckus",
     };
     updateLayoutData(layoutData);
-  }, []);
-  return <div>education</div>;
+  }, [updateLayoutData]);
+
+  // useEffect(() => {
+  //   const completed = checkCompletedSections()
+  //   setAllSectionsCompleted(completed)
+  // });
+
+  return (
+    <section className="create-section education">
+      <CreateSectionForm data={{ item: "new item", save: "item" }}>
+        inputbox, inputbox, inputbox, dates
+      </CreateSectionForm>
+      <CreateSectionPreview>map array with jsx?</CreateSectionPreview>
+    </section>
+  );
 }
