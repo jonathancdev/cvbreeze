@@ -5,11 +5,10 @@ import { Account, Create, Help, Home, Print, Signin, Signup } from './components
 import objectStorage
  from "./utilities/objectStorage";
 function App() {
-
   const init = () => {
     objectStorage();
   }
-  init();
+  init()
 
   const [storageKeys, setStorageKeys] = useState(Object.keys(localStorage))
   const [user, setUser] = useState(storageKeys.includes('currentUser') ? localStorage.getObject('currentUser') : null)
@@ -23,6 +22,14 @@ function App() {
     setUser(null)
   }
 
+
+        //temporary user
+    const tempUser = {
+      userId: 'tempUser'
+    }
+    if (!storageKeys.includes('currentUser')) {
+    logUserIn(tempUser)
+    }
   return (
 <BrowserRouter>
     <div className="App">

@@ -1,3 +1,5 @@
+Wed Sep 8
+
 Tues Sep 7
 changed updateLayout in create to useCallback so dependency array can include fnc and not infinite loop
 started building out functions within components, passing props from app to create and create to sections
