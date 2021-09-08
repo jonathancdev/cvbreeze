@@ -5,7 +5,6 @@ export default function PhotoInput({
   updateFilePath,
   updateUserPhoto,
 }) {
-  const pathDisplay = useRef();
   const fileInput = useRef();
 
   const getUserPhoto = (e) => {
@@ -30,7 +29,6 @@ export default function PhotoInput({
     <>
       <label htmlFor="" className="input__label"></label>
       <input
-        ref={pathDisplay}
         placeholder={filePath}
         type="text"
         className="input--standard"

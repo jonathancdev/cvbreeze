@@ -28,6 +28,7 @@ export default function Photo({ user, updateLayoutData }) {
   const [includeUserPhoto, setIncludeUsePhoto] = useState(true);
 
   useEffect(() => {
+    //checks if user wants to include photo, used to maintain checkbox checked or unchecked
     filePath === "photo disabled"
       ? setIncludeUsePhoto(false)
       : setIncludeUsePhoto(true);
@@ -63,7 +64,11 @@ export default function Photo({ user, updateLayoutData }) {
       setIncludeUsePhoto(true);
     }
   };
-
+  const handleDelete = () => {
+    localStorage.removeItem(userId + "_photoData");
+    setFilePath(null);
+    setUserPhoto(null);
+  };
   return (
     <section className="create-section photo">
       <PhotoInput
@@ -80,13 +85,15 @@ export default function Photo({ user, updateLayoutData }) {
         Check this box if you prefer not to include a photo
       </label>
       <input
-        onClick={handleCheckboxClick}
+        onChange={handleCheckboxClick}
         type="checkbox"
         className="photo__checkbox"
         id="photo__checkbox"
         checked={!includeUserPhoto}
       />
-      <button className="btn btn--delete">delete</button>
+      <button onClick={handleDelete} className="btn btn--delete">
+        delete
+      </button>
       <SaveSection
         message="message"
         storageKey={userId + "_photoData"}
