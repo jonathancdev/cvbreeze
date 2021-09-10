@@ -24,6 +24,7 @@ export default function Profile({ user, updateLayoutData }) {
   const [userProfile, setUserProfile] = useState(
     storage ? storage.profile : null
   );
+  const [updated, setUpdated] = useState(false);
   useEffect(() => {
     //persists profile value after leaving page but allows editing after save
     textareaRef.current.value = userProfile;
@@ -36,17 +37,24 @@ export default function Profile({ user, updateLayoutData }) {
   const updateTempProfile = (e) => {
     const value = e.target.value;
     setTempProfile(value);
+    setUpdated(true);
   };
   const saveUserProfile = () => {
     setUserProfile(tempProfile);
     setTempProfile(null);
+    setUpdated(false);
   };
   const handleDelete = () => {
-    localStorage.removeItem(userId + "_profileData");
-    setUserProfile(null);
+    const popup = window.confirm(
+      "are you sure you want to permanently delete this information?"
+    );
+    if (popup) {
+      localStorage.removeItem(userId + "_profileData");
+      setUserProfile(null);
+      setUpdated(true);
+    }
   };
-  console.log(tempProfile);
-  console.log(userProfile);
+
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>
@@ -63,11 +71,12 @@ export default function Profile({ user, updateLayoutData }) {
         delete
       </button>
       <SaveSection
-        message="message"
+        message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_profileData"}
         data={{ profile: tempProfile }}
         //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserProfile}
+        disableButton={!updated}
       />
     </section>
   );

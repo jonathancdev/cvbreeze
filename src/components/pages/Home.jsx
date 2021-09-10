@@ -13,7 +13,9 @@ export default function Home({ user }) {
       <p className="home__text">
         Save your information for quick access anytime, anywhere
       </p>
-      <Link className="btn btn--square-blue">try it free/go to cv</Link>
+      <Link to={user ? "/create" : "/signup"} className="btn btn--square-blue">
+        try it free/go to cv
+      </Link>
     </section>
   );
 }

@@ -9,7 +9,7 @@ export default function CreateSectionForm({ children, data, saveFunction }) {
     saveFunction();
     setChildrenHidden(true);
   };
-  console.log(children);
+
   return (
     <section className="create-section__form">
       <h1 className="create-section__header--primary">Add {data.item}</h1>

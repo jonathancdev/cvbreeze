@@ -33,7 +33,7 @@ export default function Create({ user }) {
       <Route exact path="/create">
         create default page text
       </Route>
-      <CreateLayout layoutData={layoutData}>
+      <CreateLayout layoutData={layoutData} user={user}>
         <Switch>
           <Route path="/create/photo">
             <Photo updateLayoutData={updateLayoutData} user={user} />

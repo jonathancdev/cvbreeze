@@ -41,7 +41,7 @@ export default function Skills({ user, updateLayoutData }) {
     setUserSkills(tempSkillArray);
     setTempSkill(null);
   };
-  console.log(tempSkill);
+
   return (
     <section className="create-section skills">
       <CreateSectionForm

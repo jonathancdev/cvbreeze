@@ -26,7 +26,7 @@ export default function Photo({ user, updateLayoutData }) {
   );
   const [filePath, setFilePath] = useState(storage ? storage.filePath : null);
   const [includeUserPhoto, setIncludeUsePhoto] = useState(true);
-
+  const [updated, setUpdated] = useState(false);
   useEffect(() => {
     //checks if user wants to include photo, used to maintain checkbox checked or unchecked
     filePath === "photo disabled"
@@ -42,32 +42,44 @@ export default function Photo({ user, updateLayoutData }) {
 
   const updateFilePath = (path) => {
     setFilePath(path);
+    setUpdated(true);
   };
   const updateTempPhoto = (file) => {
     setTempPhoto(file);
+    setUpdated(true);
   };
   const saveUserPhoto = () => {
     if (includeUserPhoto) {
       setUserPhoto(tempPhoto);
       setTempPhoto(null);
+      setUpdated(false);
     } else {
       setUserPhoto(null);
       setTempPhoto(null);
+      setUpdated(false);
     }
   };
   const handleCheckboxClick = (e) => {
     if (e.target.checked) {
       setFilePath("photo disabled");
       setIncludeUsePhoto(false);
+      setUpdated(true);
     } else {
       setFilePath("click to browse files");
       setIncludeUsePhoto(true);
+      setUpdated(true);
     }
   };
   const handleDelete = () => {
-    localStorage.removeItem(userId + "_photoData");
-    setFilePath(null);
-    setUserPhoto(null);
+    const popup = window.confirm(
+      "are you sure you want to permanently delete this information?"
+    );
+    if (popup) {
+      localStorage.removeItem(userId + "_photoData");
+      setFilePath(null);
+      setUserPhoto(null);
+      setUpdated(true);
+    }
   };
   return (
     <section className="create-section photo">
@@ -95,11 +107,12 @@ export default function Photo({ user, updateLayoutData }) {
         delete
       </button>
       <SaveSection
-        message="message"
+        message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_photoData"}
         data={{ filePath: filePath, userPhoto: tempPhoto }}
         //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserPhoto}
+        disableButton={!updated}
       />
     </section>
   );
