@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function WorkItem({ obj, data, updateParentState }) {
+export default function WorkItem({
+  obj,
+  data,
+  updateParentState,
+  childSetUpdated,
+}) {
   let workArray = data.workExperience;
   const handleDeleteWorkItem = (e) => {
     const popup = window.confirm(
@@ -9,7 +14,9 @@ export default function WorkItem({ obj, data, updateParentState }) {
     if (popup) {
       const toRemove = workArray.find((obj) => obj.id === e.target.id); //isolates that object
       const indexToRemove = workArray.indexOf(toRemove); //gets id of that object
-      updateParentState(workArray.splice(indexToRemove, 1)); //updated without deleted object
+      workArray.splice(indexToRemove, 1); //returns array with remaining objs
+      updateParentState(workArray);
+      childSetUpdated(true);
     }
   };
   return (

@@ -3,6 +3,8 @@ import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
+import EducationItem from "./EducationItem";
+import sortByDate from "../../../../utilities/sortByDate";
 
 export default function Education({ user, updateLayoutData }) {
   //variables from props  & storage
@@ -21,11 +23,13 @@ export default function Education({ user, updateLayoutData }) {
   }, [updateLayoutData]);
 
   const [tempEducationObject, setTempEducationObject] = useState(null); //updates as form updates, gets pushed to tempEducationArray
-  const [tempEducationArray, setTempEducationArray] = useState([]); //array to collect up to three Education Hisotry objects, passed to save section for storage and to update userEducationHisotry
+  const [tempEducationArray, setTempEducationArray] = useState(
+    storage ? storage.educationHistory : []
+  ); //array to collect up to three Education Hisotry objects, passed to save section for storage and to update userEducationHisotry
   const [userEducationHistory, setUserEducationHistory] = useState(
     storage ? storage.educationHistory : null
   );
-
+  const [updated, setUpdated] = useState(false);
   // useEffect(() => {
   //   const completed = checkCompletedSections()
   //   setAllSectionsCompleted(completed)
@@ -49,6 +53,12 @@ export default function Education({ user, updateLayoutData }) {
       return { ...prevState, description: value };
     });
   };
+  const setDate = (e) => {
+    const value = e.target.value;
+    setTempEducationObject((prevState) => {
+      return { ...prevState, date: value };
+    });
+  };
   const setGraduationMonth = (e) => {
     const value = e.target.value;
     setTempEducationObject((prevState) => {
@@ -62,13 +72,23 @@ export default function Education({ user, updateLayoutData }) {
     });
   };
   const updateTempEducationArray = () => {
+    const obj = tempEducationObject;
+    const id = obj.institution + obj.degree + obj.date;
     setTempEducationArray((prevState) => {
-      return [...prevState, tempEducationObject];
+      return [...prevState, { ...tempEducationObject, id }];
     });
+    setTempEducationObject(null);
+    setUpdated(true);
   };
   const saveUserEducationHistory = () => {
     setUserEducationHistory(tempEducationArray);
     setTempEducationObject(null);
+    setUpdated(false);
+  };
+  const childSetUpdated = (bool) => {
+    //to set updated from workItem, using in save also updates from save
+    //which enables the storage save button again
+    setUpdated(bool);
   };
 
   return (
@@ -97,6 +117,12 @@ export default function Education({ user, updateLayoutData }) {
         />
         <input
           placeholder="month"
+          type="date"
+          className="input--month"
+          onChange={setDate}
+        />
+        {/* <input
+          placeholder="month"
           type="text"
           className="input--month"
           onChange={setGraduationMonth}
@@ -106,20 +132,29 @@ export default function Education({ user, updateLayoutData }) {
           type="text"
           className="input--year"
           onChange={setGraduationYear}
-        />
+        /> */}
       </CreateSectionForm>
       <CreateSectionPreview>
         {userEducationHistory
-          ? userEducationHistory.map((obj, i) => {
-              return obj.institution;
+          ? userEducationHistory.map((obj) => {
+              return (
+                <EducationItem
+                  key={obj.id}
+                  obj={obj}
+                  data={{ educationHistory: sortByDate(tempEducationArray) }}
+                  updateParentState={saveUserEducationHistory}
+                  childSetUpdated={childSetUpdated}
+                />
+              );
             })
-          : "no work experience saved"}
+          : "no education history saved"}
       </CreateSectionPreview>
       <SaveSection
         message="message"
         storageKey={userId + "_educationHistoryData"}
         data={{ educationHistory: tempEducationArray }}
         updateParentState={saveUserEducationHistory}
+        disableButton={!updated}
       />
     </section>
   );

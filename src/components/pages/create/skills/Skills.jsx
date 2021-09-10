@@ -3,6 +3,7 @@ import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
+import SkillItem from "./SkillItem";
 
 export default function Skills({ user, updateLayoutData }) {
   //variables from props  & storage
@@ -21,8 +22,11 @@ export default function Skills({ user, updateLayoutData }) {
   }, [updateLayoutData]);
 
   const [tempSkill, setTempSkill] = useState(null);
-  const [tempSkillArray, setTempSkillArray] = useState([]);
+  const [tempSkillArray, setTempSkillArray] = useState(
+    storage ? storage.skills : []
+  );
   const [userSkills, setUserSkills] = useState(storage ? storage.skills : null);
+  const [updated, setUpdated] = useState(false);
 
   // useEffect(() => {
   //   const completed = checkCompletedSections()
@@ -30,18 +34,28 @@ export default function Skills({ user, updateLayoutData }) {
   // });
   const setSkill = (e) => {
     const value = e.target.value;
-    setTempSkill(value);
+    setTempSkill({ skill: value });
   };
   const updateTempSkillArray = () => {
+    let index = 0;
+    if (userSkills && userSkills.length > 0) {
+      index = userSkills.length;
+    }
+    const id = tempSkill.skill + index;
     setTempSkillArray((prevState) => {
-      return [...prevState, tempSkill];
+      return [...prevState, { ...tempSkill, id }];
     });
+    setTempSkill(null);
+    setUpdated(true);
   };
   const saveUserSkills = () => {
     setUserSkills(tempSkillArray);
     setTempSkill(null);
+    setUpdated(false);
   };
-
+  const childSetUpdated = (bool) => {
+    setUpdated(bool);
+  };
   return (
     <section className="create-section skills">
       <CreateSectionForm
@@ -59,8 +73,16 @@ export default function Skills({ user, updateLayoutData }) {
       </CreateSectionForm>
       <CreateSectionPreview>
         {userSkills
-          ? userSkills.map((skill, i) => {
-              return skill;
+          ? userSkills.map((obj) => {
+              return (
+                <SkillItem
+                  key={obj.id}
+                  obj={obj}
+                  data={{ skills: userSkills }}
+                  updateParentState={saveUserSkills}
+                  childSetUpdated={childSetUpdated}
+                />
+              );
             })
           : "no work experience saved"}
       </CreateSectionPreview>
@@ -69,6 +91,7 @@ export default function Skills({ user, updateLayoutData }) {
         storageKey={userId + "_skillsData"}
         data={{ skills: tempSkillArray }}
         updateParentState={saveUserSkills}
+        disableButton={!updated}
       />
     </section>
   );

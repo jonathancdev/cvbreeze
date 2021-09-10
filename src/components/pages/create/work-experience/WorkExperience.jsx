@@ -30,6 +30,7 @@ export default function WorkExperience({ user, updateLayoutData }) {
   const [userWorkExperience, setUserWorkExperience] = useState(
     storage ? storage.workExperience : null
   );
+  const [updated, setUpdated] = useState(false);
   // useEffect(() => {
   //   const completed = checkCompletedSections()
   //   setAllSectionsCompleted(completed)
@@ -97,19 +98,24 @@ export default function WorkExperience({ user, updateLayoutData }) {
     });
   };
   const updateTempWorkArray = () => {
-    //create unique id based on object data
-    let obj = tempWorkObject;
-    let tempObjectNoId = obj;
-    tempObjectNoId.id = obj.title + obj.companyName + obj.date;
-    //puts tempWork object with id into tempArray
+    const obj = tempWorkObject;
+    const id = obj.title + obj.companyName + obj.date;
+
     setTempWorkArray((prevState) => {
-      return [...prevState, tempWorkObject];
+      return [...prevState, { ...tempWorkObject, id }];
     });
     setTempWorkObject(null);
+    setUpdated(true);
   };
   const saveUserWorkExperience = (array) => {
     setUserWorkExperience([...array]);
     setTempWorkObject(null);
+    setUpdated(false);
+  };
+  const childSetUpdated = (bool) => {
+    //to set updated from workItem, using in save also updates from save
+    //which enables the storage save button again
+    setUpdated(bool);
   };
 
   return (
@@ -190,18 +196,20 @@ export default function WorkExperience({ user, updateLayoutData }) {
                   obj={obj}
                   data={{ workExperience: sortByDate(tempWorkArray) }}
                   updateParentState={saveUserWorkExperience}
+                  childSetUpdated={childSetUpdated}
                 />
               );
             })
           : "no work experience saved"}
       </CreateSectionPreview>
       <SaveSection
-        message="message"
+        message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_workExperienceData"}
         //sorts tempWorkArray objects by date descending which automatically
         //updates into state when saved to local storage
         data={{ workExperience: sortByDate(tempWorkArray) }}
         updateParentState={saveUserWorkExperience}
+        disableButton={!updated}
       />
     </section>
   );

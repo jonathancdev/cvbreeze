@@ -14,6 +14,9 @@ export default function SaveSection({
     //and allows updateParentState prop to be reused in other components
     updateParentState(data[Object.keys(data)[0]]);
     setSuccessMessage("changed saved successfully");
+    setTimeout(() => {
+      setSuccessMessage(null);
+    }, 3000);
   };
   return (
     <section className="save-section">
