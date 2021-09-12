@@ -37,16 +37,25 @@ export default function Skills({ user, updateLayoutData }) {
     setTempSkill({ skill: value });
   };
   const updateTempSkillArray = () => {
+    if (!tempSkill) {
+      alert("enter a valid skill");
+      return; //exit function if nothing entered in box
+    }
     let index = 0;
     if (userSkills && userSkills.length > 0) {
       index = userSkills.length;
     }
     const id = tempSkill.skill + index;
-    setTempSkillArray((prevState) => {
-      return [...prevState, { ...tempSkill, id }];
-    });
-    setTempSkill(null);
-    setUpdated(true);
+    //make sure skill doesn't repeat
+    if (tempSkillArray.some((obj) => obj.skill === tempSkill.skill)) {
+      alert("skill with that name already saved");
+    } else {
+      setTempSkillArray((prevState) => {
+        return [...prevState, { ...tempSkill, id }];
+      });
+      setTempSkill(null);
+      setUpdated(true);
+    }
   };
   const saveUserSkills = () => {
     setUserSkills(tempSkillArray);
@@ -61,6 +70,9 @@ export default function Skills({ user, updateLayoutData }) {
       <CreateSectionForm
         data={{ item: "skill", save: "skill" }}
         saveFunction={updateTempSkillArray}
+        items={tempSkillArray}
+        limit={8}
+        limitMessage="include up to 8 skills"
       >
         <input
           placeholder="enter skill"

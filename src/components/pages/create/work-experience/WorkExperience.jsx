@@ -98,9 +98,12 @@ export default function WorkExperience({ user, updateLayoutData }) {
     });
   };
   const updateTempWorkArray = () => {
+    if (!tempWorkObject) {
+      alert("invalid entry");
+      return; //exit function if nothing entered in box
+    }
     const obj = tempWorkObject;
     const id = obj.title + obj.companyName + obj.date;
-
     setTempWorkArray((prevState) => {
       return [...prevState, { ...tempWorkObject, id }];
     });
@@ -117,12 +120,15 @@ export default function WorkExperience({ user, updateLayoutData }) {
     //which enables the storage save button again
     setUpdated(bool);
   };
-
+  console.log(tempWorkArray.length);
   return (
     <section className="create-section work-experience">
       <CreateSectionForm
         data={{ item: "new experience", save: "experience" }}
         saveFunction={updateTempWorkArray}
+        items={tempWorkArray}
+        limit={3}
+        limitMessage="include your three most relevant positions"
       >
         <input
           placeholder="job title"

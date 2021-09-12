@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 
-export default function CreateSectionForm({ children, data, saveFunction }) {
+export default function CreateSectionForm({
+  children,
+  data,
+  items,
+  limit,
+  limitMessage,
+  saveFunction,
+}) {
   const [childrenHidden, setChildrenHidden] = useState(true);
 
   const handleAddClick = () => {
-    setChildrenHidden(!childrenHidden);
+    if (items.length >= limit) {
+      alert(limitMessage);
+    } else {
+      setChildrenHidden(!childrenHidden);
+    }
   };
   const handleSaveClick = () => {
     saveFunction();

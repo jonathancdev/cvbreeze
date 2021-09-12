@@ -72,6 +72,10 @@ export default function Education({ user, updateLayoutData }) {
     });
   };
   const updateTempEducationArray = () => {
+    if (!tempEducationObject) {
+      alert("invalid entry");
+      return; //exit function if nothing entered in box
+    }
     const obj = tempEducationObject;
     const id = obj.institution + obj.degree + obj.date;
     setTempEducationArray((prevState) => {
@@ -96,6 +100,9 @@ export default function Education({ user, updateLayoutData }) {
       <CreateSectionForm
         data={{ item: "new item", save: "item" }}
         saveFunction={updateTempEducationArray}
+        items={tempEducationArray}
+        limit={3}
+        limitMessage="include up to three items"
       >
         <input
           placeholder="institution"
