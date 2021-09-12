@@ -1,13 +1,20 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
 export default function SkillItem({
   obj,
   data,
+  userSkills,
   updateParentState,
   childSetUpdated,
 }) {
   let skillArray = data.skills;
-  const handleDeleteWorkItem = (e) => {
+
+  useEffect(() => {
+    if (userSkills) {
+      setObjInStorage(userSkills.includes(obj));
+    }
+  }, [userSkills]);
+  const [objInStorage, setObjInStorage] = useState(false);
+  const handleDeleteSkillItem = (e) => {
     const popup = window.confirm(
       "are you sure you want to permanently delete this information?"
     );
@@ -24,9 +31,13 @@ export default function SkillItem({
       <div>
         <span>{obj.skill}</span>
 
-        <button id={obj.id} onClick={handleDeleteWorkItem}>
-          delete
-        </button>
+        {objInStorage ? (
+          <button id={obj.id} onClick={handleDeleteSkillItem}>
+            delete
+          </button>
+        ) : (
+          "not saved"
+        )}
       </div>
     </div>
   );

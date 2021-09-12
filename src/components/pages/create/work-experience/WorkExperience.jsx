@@ -188,13 +188,14 @@ export default function WorkExperience({ user, updateLayoutData }) {
         />
       </CreateSectionForm>
       <CreateSectionPreview>
-        {userWorkExperience
-          ? userWorkExperience.map((obj) => {
+        {tempWorkArray.length > 0 // using tempWorkArray so unsaved items display, compare in workItem component to only add delete button if they are also in userWorkExperience
+          ? tempWorkArray.map((obj) => {
               return (
                 <WorkItem
                   key={obj.id}
                   obj={obj}
                   data={{ workExperience: sortByDate(tempWorkArray) }}
+                  userWorkExperience={userWorkExperience}
                   updateParentState={saveUserWorkExperience}
                   childSetUpdated={childSetUpdated}
                 />

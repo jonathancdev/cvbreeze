@@ -88,7 +88,6 @@ export default function Photo({ user, updateLayoutData }) {
         updateFilePath={updateFilePath}
         updateUserPhoto={updateTempPhoto}
       />
-      <i className="photo__icon">:)</i>
       <img
         src={includeUserPhoto ? userPhoto || tempPhoto || smile : smile}
         alt="user photo"

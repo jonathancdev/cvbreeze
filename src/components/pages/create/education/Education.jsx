@@ -135,13 +135,14 @@ export default function Education({ user, updateLayoutData }) {
         /> */}
       </CreateSectionForm>
       <CreateSectionPreview>
-        {userEducationHistory
-          ? userEducationHistory.map((obj) => {
+        {tempEducationArray.length > 0
+          ? tempEducationArray.map((obj) => {
               return (
                 <EducationItem
                   key={obj.id}
                   obj={obj}
                   data={{ educationHistory: sortByDate(tempEducationArray) }}
+                  userEducationHistory={userEducationHistory}
                   updateParentState={saveUserEducationHistory}
                   childSetUpdated={childSetUpdated}
                 />
@@ -150,7 +151,7 @@ export default function Education({ user, updateLayoutData }) {
           : "no education history saved"}
       </CreateSectionPreview>
       <SaveSection
-        message="message"
+        message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_educationHistoryData"}
         data={{ educationHistory: tempEducationArray }}
         updateParentState={saveUserEducationHistory}

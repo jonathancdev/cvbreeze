@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export default function CreateSectionForm({ children, data, saveFunction }) {
   const [childrenHidden, setChildrenHidden] = useState(true);
+
   const handleAddClick = () => {
     setChildrenHidden(!childrenHidden);
   };
@@ -16,15 +17,16 @@ export default function CreateSectionForm({ children, data, saveFunction }) {
       <button onClick={handleAddClick} className="btn--add-item">
         +
       </button>
-      <i className="create-section__icon">+</i>
-      {!childrenHidden
-        ? children.map((child, i) => {
+      {!childrenHidden ? (
+        <>
+          {children.map((child) => {
             return child;
-          })
-        : null}
-      <button onClick={handleSaveClick} className="btn btn--save">
-        Save {data.save}
-      </button>
+          })}
+          <button onClick={handleSaveClick} className="btn btn--save">
+            Save {data.save}
+          </button>
+        </>
+      ) : null}
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 
@@ -10,7 +11,7 @@ export default function Contact({ user, updateLayoutData }) {
   //refs???
   const inputTelephoneRef = useRef(null);
   const inputEmailRef = useRef(null);
-  const textareaAddressRef = useRef(null);
+  //address ref is in AutoTextArea component
   const inputWebsiteRef = useRef(null);
 
   //send section information to layout
@@ -24,16 +25,19 @@ export default function Contact({ user, updateLayoutData }) {
   }, [updateLayoutData]);
 
   //contact data state
-  const [tempContactObject, setTempContactObject] = useState(null);
+  const [tempContactObject, setTempContactObject] = useState(
+    storage ? storage.contact : null
+  );
   const [userContactInformation, setUserContactInformation] = useState(
     storage ? storage.contact : null
   );
+  const [updated, setUpdated] = useState(false);
   useEffect(() => {
     //persists profile value after leaving page but allows editing after save
     if (userContactInformation) {
       inputTelephoneRef.current.value = userContactInformation.telephone;
       inputEmailRef.current.value = userContactInformation.email;
-      textareaAddressRef.current.value = userContactInformation.address;
+      //textarea is in autotextarea component
       inputWebsiteRef.current.value = userContactInformation.website;
     }
   }, [userContactInformation]);
@@ -47,32 +51,36 @@ export default function Contact({ user, updateLayoutData }) {
     setTempContactObject((prevState) => {
       return { ...prevState, telephone: value };
     });
+    setUpdated(true);
   };
   const setEmail = (e) => {
     const value = e.target.value;
     setTempContactObject((prevState) => {
       return { ...prevState, email: value };
     });
+    setUpdated(true);
   };
-  const setAddress = (e) => {
-    const value = e.target.value;
+  const setAddress = (value) => {
     setTempContactObject((prevState) => {
       return { ...prevState, address: value };
     });
+    setUpdated(true);
   };
   const setWebsite = (e) => {
     const value = e.target.value;
     setTempContactObject((prevState) => {
       return { ...prevState, website: value };
     });
+    setUpdated(true);
   };
   const saveUserContactInformation = () => {
     setUserContactInformation(tempContactObject);
-    setTempContactObject(null);
+    setUpdated(false);
   };
   const handleDelete = () => {
     localStorage.removeItem(userId + "_contactData");
     setUserContactInformation(null);
+    setUpdated(true);
   };
   return (
     <section className="create-section contact">
@@ -93,7 +101,7 @@ export default function Contact({ user, updateLayoutData }) {
         onChange={setEmail}
       />
       <label htmlFor="contact__text-area" className="text-area__label"></label>
-      <textarea
+      {/* <textarea
         ref={textareaAddressRef}
         name="profile"
         cols="30"
@@ -101,7 +109,15 @@ export default function Contact({ user, updateLayoutData }) {
         className="profile__text-area"
         placeholder="click to edit profile"
         onChange={setAddress}
-      ></textarea>
+      ></textarea> */}
+      <AutoTextArea
+        className="profile__textarea"
+        placeholder="click to edit address"
+        update={setAddress}
+        userText={
+          userContactInformation ? userContactInformation.address : null
+        }
+      />
       <label htmlFor="" className="input__label"></label>
       <input
         placeholder="website"
@@ -114,11 +130,12 @@ export default function Contact({ user, updateLayoutData }) {
         delete
       </button>
       <SaveSection
-        message="message"
+        message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_contactData"}
         data={{ contact: tempContactObject }}
         //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserContactInformation}
+        disableButton={!updated}
       />
     </section>
   );

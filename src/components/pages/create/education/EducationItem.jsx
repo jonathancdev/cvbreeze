@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export default function EducationItem({
   obj,
   data,
+  userEducationHistory,
   updateParentState,
   childSetUpdated,
 }) {
   let educationArray = data.educationHistory;
+
+  useEffect(() => {
+    if (userEducationHistory) {
+      setObjInStorage(userEducationHistory.includes(obj));
+    }
+  }, [userEducationHistory]);
+  const [objInStorage, setObjInStorage] = useState(false);
   const handleDeleteEducationItem = (e) => {
     const popup = window.confirm(
       "are you sure you want to permanently delete this information?"
@@ -25,9 +33,13 @@ export default function EducationItem({
         <span>{obj.institution}</span>
         <span>{obj.degree}</span>
         <span>{obj.date}</span>
-        <button id={obj.id} onClick={handleDeleteEducationItem}>
-          delete
-        </button>
+        {objInStorage ? (
+          <button id={obj.id} onClick={handleDeleteEducationItem}>
+            delete
+          </button>
+        ) : (
+          "not saved"
+        )}
       </div>
     </div>
   );

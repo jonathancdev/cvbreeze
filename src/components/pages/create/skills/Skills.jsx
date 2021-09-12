@@ -68,26 +68,28 @@ export default function Skills({ user, updateLayoutData }) {
           className="input--standard"
           onChange={setSkill}
         />
-        {/* //empty element because sectionform sections wants to map an array */}
-        <></>
+        <>
+          {/* needs an empty element because component can't .map only one */}
+        </>
       </CreateSectionForm>
       <CreateSectionPreview>
-        {userSkills
-          ? userSkills.map((obj) => {
+        {tempSkillArray.length > 0
+          ? tempSkillArray.map((obj) => {
               return (
                 <SkillItem
                   key={obj.id}
                   obj={obj}
                   data={{ skills: userSkills }}
+                  userSkills={userSkills}
                   updateParentState={saveUserSkills}
                   childSetUpdated={childSetUpdated}
                 />
               );
             })
-          : "no work experience saved"}
+          : "no skills saved"}
       </CreateSectionPreview>
       <SaveSection
-        message="message"
+        message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_skillsData"}
         data={{ skills: tempSkillArray }}
         updateParentState={saveUserSkills}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 
@@ -7,8 +8,6 @@ export default function Profile({ user, updateLayoutData }) {
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_profileData");
 
-  //refs
-  const textareaRef = useRef(null);
   //send section information to layout
   useEffect(() => {
     const layoutData = {
@@ -25,17 +24,13 @@ export default function Profile({ user, updateLayoutData }) {
     storage ? storage.profile : null
   );
   const [updated, setUpdated] = useState(false);
-  useEffect(() => {
-    //persists profile value after leaving page but allows editing after save
-    textareaRef.current.value = userProfile;
-  }, [userProfile]);
+
   // useEffect(() => {
   //   const completed = checkCompletedSections()
   //   setAllSectionsCompleted(completed)
   // });
 
-  const updateTempProfile = (e) => {
-    const value = e.target.value;
+  const updateTempProfile = (value) => {
     setTempProfile(value);
     setUpdated(true);
   };
@@ -58,15 +53,12 @@ export default function Profile({ user, updateLayoutData }) {
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>
-      <textarea
-        ref={textareaRef}
-        name="profile"
-        cols="30"
-        rows="10"
-        className="profile__text-area"
+      <AutoTextArea
+        className="profile__textarea"
         placeholder="click to edit profile"
-        onChange={updateTempProfile}
-      ></textarea>
+        update={updateTempProfile}
+        userText={userProfile}
+      />
       <button onClick={handleDelete} className="btn btn--delete">
         delete
       </button>

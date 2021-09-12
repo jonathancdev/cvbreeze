@@ -1,10 +1,26 @@
-Wed Sep 8
+to do: make sure things can be clicked/refreshed/etc with no data present
+if thigns are null - sometimes need to hide things
 
-Tues Sep 7
-changed updateLayout in create to useCallback so dependency array can include fnc and not infinite loop
-started building out functions within components, passing props from app to create and create to sections
-created project
-build home page and create page routing and layouts
-added useeffects to update create layout info
-added photoinput component and built basics of photo section
-made form and preview layout components to be used in workexperience, education, skills
+//check if sections are completed
+//maybe can have each section check itself, and pass that back to the create component obj
+
+
+
+createParent {
+
+const [completedSections, setCompletedSections] = useState({
+    photo: false,
+    profile: false,
+    workexperience: false,
+    education: false,
+    skills: false,
+    contact: false
+})
+
+const updateCompletedSection = (key) => {
+    setCompletedSections((prevState) => {
+        return {...prevState, }
+    })
+}
+
+}
