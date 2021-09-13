@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import CreateNavbar from "./CreateNavbar";
+import checkCompletedSections from "../../../utilities/checkCompletedSections";
 import { Route, Switch } from "react-router-dom";
 import {
   Contact,
@@ -14,44 +15,74 @@ import {
 export default function Create({ user }) {
   const [allSectionsCompleted, setAllSectionsCompleted] = useState(false);
   const [layoutData, setLayoutData] = useState({});
+  const [completedSections, setCompletedSections] = useState({});
 
-  // useEffect(() => {
-  //   const completed = checkCompletedSections()
-  //   setAllSectionsCompleted(completed)
-  // });
+  useEffect(() => {
+    setCompletedSections(checkCompletedSections());
+  }, [checkCompletedSections]);
 
+  const updateCompletedSection = (obj) => {
+    //saveSection in each section checks all section storage meets reqs and
+    //passes obj back to update state here
+    setCompletedSections({ ...obj });
+  };
   const updateLayoutData = useCallback(
     (obj) => {
       setLayoutData(obj);
     },
     [setLayoutData]
   );
+  console.log(completedSections);
   //may not need to pass function to update completed because now
   return (
     <section className="create">
-      <CreateNavbar allSectionsCompleted={allSectionsCompleted} />
+      <CreateNavbar completedSections={completedSections} />
       <Route exact path="/create">
         create default page text
       </Route>
       <CreateLayout layoutData={layoutData} user={user}>
         <Switch>
           <Route path="/create/photo">
-            <Photo updateLayoutData={updateLayoutData} user={user} />
+            <Photo
+              updateLayoutData={updateLayoutData}
+              updateCompletedSection={updateCompletedSection}
+              user={user}
+            />
           </Route>
           <Route path="/create/profile">
-            <Profile updateLayoutData={updateLayoutData} user={user} />
+            <Profile
+              updateLayoutData={updateLayoutData}
+              updateCompletedSection={updateCompletedSection}
+              user={user}
+            />
           </Route>
           <Route path="/create/work-experience">
-            <WorkExperience updateLayoutData={updateLayoutData} user={user} />
+            <WorkExperience
+              updateLayoutData={updateLayoutData}
+              updateCompletedSection={updateCompletedSection}
+              user={user}
+            />
           </Route>
           <Route path="/create/education">
-            <Education updateLayoutData={updateLayoutData} user={user} />
+            <Education
+              updateLayoutData={updateLayoutData}
+              updateCompletedSection={updateCompletedSection}
+              user={user}
+            />
           </Route>
           <Route path="/create/skills">
-            <Skills updateLayoutData={updateLayoutData} user={user} />
+            <Skills
+              updateLayoutData={updateLayoutData}
+              updateCompletedSection={updateCompletedSection}
+              user={user}
+            />
           </Route>
           <Route path="/create/contact">
-            <Contact updateLayoutData={updateLayoutData} user={user} />
+            <Contact
+              updateLayoutData={updateLayoutData}
+              updateCompletedSection={updateCompletedSection}
+              user={user}
+            />
           </Route>
           <Route exact path="/create/view">
             <View user={user} />

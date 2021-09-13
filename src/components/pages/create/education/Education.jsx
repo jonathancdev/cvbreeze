@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import SaveSection from "../create-layout/SaveSection";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import EducationItem from "./EducationItem";
 import sortByDate from "../../../../utilities/sortByDate";
 
-export default function Education({ user, updateLayoutData }) {
+export default function Education({
+  user,
+  updateLayoutData,
+  updateCompletedSection,
+}) {
   //variables from props  & storage
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_educationHistoryData");
@@ -162,6 +165,7 @@ export default function Education({ user, updateLayoutData }) {
         storageKey={userId + "_educationHistoryData"}
         data={{ educationHistory: tempEducationArray }}
         updateParentState={saveUserEducationHistory}
+        updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
       />
     </section>

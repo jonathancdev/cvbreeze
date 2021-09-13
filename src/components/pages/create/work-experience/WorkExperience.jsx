@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import SaveSection from "../create-layout/SaveSection";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import WorkItem from "./WorkItem";
 import sortByDate from "../../../../utilities/sortByDate";
 
-export default function WorkExperience({ user, updateLayoutData }) {
+export default function WorkExperience({
+  user,
+  updateLayoutData,
+  updateCompletedSection,
+}) {
   //variables from props  & storage
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_workExperienceData");
@@ -120,7 +123,6 @@ export default function WorkExperience({ user, updateLayoutData }) {
     //which enables the storage save button again
     setUpdated(bool);
   };
-  console.log(tempWorkArray.length);
   return (
     <section className="create-section work-experience">
       <CreateSectionForm
@@ -216,6 +218,7 @@ export default function WorkExperience({ user, updateLayoutData }) {
         //updates into state when saved to local storage
         data={{ workExperience: sortByDate(tempWorkArray) }}
         updateParentState={saveUserWorkExperience}
+        updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
       />
     </section>

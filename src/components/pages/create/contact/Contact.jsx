@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 
-export default function Contact({ user, updateLayoutData }) {
+export default function Contact({
+  user,
+  updateLayoutData,
+  updateCompletedSection,
+}) {
   //variables from props  & storage
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_contactData");
@@ -135,6 +138,7 @@ export default function Contact({ user, updateLayoutData }) {
         data={{ contact: tempContactObject }}
         //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserContactInformation}
+        updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
       />
     </section>

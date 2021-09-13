@@ -1,33 +1,75 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function CreateNavbar() {
+export default function CreateNavbar({ completedSections }) {
   return (
     <>
       <Link className="create__navlink" to="/create">
         <h1 className="nav__heading-primary">create</h1>
       </Link>
       <nav className="create__nav">
-        <Link className="create__navlink" to="/create/photo">
+        <Link
+          className={
+            !completedSections.photo
+              ? "create__navlink"
+              : "create__navlink finished"
+          }
+          to="/create/photo"
+        >
           photo
         </Link>
 
-        <Link className="create__navlink" to="/create/profile">
+        <Link
+          className={
+            !completedSections.profile
+              ? "create__navlink"
+              : "create__navlink finished"
+          }
+          to="/create/profile"
+        >
           profile
         </Link>
 
-        <Link className="create__navlink" to="/create/work-experience">
+        <Link
+          className={
+            !completedSections.workExperience
+              ? "create__navlink"
+              : "create__navlink finished"
+          }
+          to="/create/work-experience"
+        >
           work experience
         </Link>
 
-        <Link className="create__navlink" to="/create/education">
+        <Link
+          className={
+            !completedSections.educationHistory
+              ? "create__navlink"
+              : "create__navlink finished"
+          }
+          to="/create/education"
+        >
           education
         </Link>
 
-        <Link className="create__navlink" to="/create/skills">
+        <Link
+          className={
+            !completedSections.skills
+              ? "create__navlink"
+              : "create__navlink finished"
+          }
+          to="/create/skills"
+        >
           skills
         </Link>
-        <Link className="create__navlink" to="/create/contact">
+        <Link
+          className={
+            !completedSections.contact
+              ? "create__navlink"
+              : "create__navlink finished"
+          }
+          to="/create/contact"
+        >
           contact
         </Link>
         <Link className="btn btn-square-blue" to="/create/view">

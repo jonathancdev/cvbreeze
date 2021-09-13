@@ -17,3 +17,11 @@ img {
   height: 40px;
   width: 40px;
 }
+a:link,
+a:visited {
+  text-decoration: none;
+  color: darkblue;
+}
+.create__navlink.finished {
+  color: red;
+}

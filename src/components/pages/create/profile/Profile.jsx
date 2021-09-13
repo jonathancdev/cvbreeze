@@ -1,9 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 
-export default function Profile({ user, updateLayoutData }) {
+export default function Profile({
+  user,
+  updateLayoutData,
+  updateCompletedSection,
+}) {
   //variables from props  & storage
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_profileData");
@@ -68,6 +71,7 @@ export default function Profile({ user, updateLayoutData }) {
         data={{ profile: tempProfile }}
         //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserProfile}
+        updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
       />
     </section>

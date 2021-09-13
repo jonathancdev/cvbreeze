@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import PhotoInput from "./PhotoInput";
 import SaveSection from "../create-layout/SaveSection";
 import smile from "../../../../img/smile-emoticon.png";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 
-export default function Photo({ user, updateLayoutData }) {
+export default function Photo({
+  user,
+  updateLayoutData,
+  updateCompletedSection,
+}) {
   //variables from props  & storage
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_photoData");
@@ -33,12 +36,6 @@ export default function Photo({ user, updateLayoutData }) {
       ? setIncludeUsePhoto(false)
       : setIncludeUsePhoto(true);
   });
-
-  // useEffect(() => {
-  //   console.log(checkCompletedSections(userId));
-  //   //const completed = checkCompletedSections()
-  //   //setAllSectionsCompleted(completed)
-  // }, [userPhoto, filePath]);
 
   const updateFilePath = (path) => {
     setFilePath(path);
@@ -111,6 +108,7 @@ export default function Photo({ user, updateLayoutData }) {
         data={{ filePath: filePath, userPhoto: tempPhoto }}
         //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserPhoto}
+        updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
       />
     </section>

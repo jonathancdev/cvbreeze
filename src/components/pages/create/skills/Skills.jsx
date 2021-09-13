@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import SaveSection from "../create-layout/SaveSection";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import SkillItem from "./SkillItem";
 
-export default function Skills({ user, updateLayoutData }) {
+export default function Skills({
+  user,
+  updateLayoutData,
+  updateCompletedSection,
+}) {
   //variables from props  & storage
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_skillsData");
@@ -105,6 +108,7 @@ export default function Skills({ user, updateLayoutData }) {
         storageKey={userId + "_skillsData"}
         data={{ skills: tempSkillArray }}
         updateParentState={saveUserSkills}
+        updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
       />
     </section>
