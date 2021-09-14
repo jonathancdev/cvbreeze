@@ -99,6 +99,10 @@ export default function WorkExperience({
     }
     const obj = tempWorkObject;
     const id = obj.title + obj.companyName + obj.date;
+    if (tempWorkArray.some((obj) => obj.id === id)) {
+      alert("duplicate item entered");
+      return;
+    }
     setTempWorkArray((prevState) => {
       return [...prevState, { ...tempWorkObject, id }];
     });

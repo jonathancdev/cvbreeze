@@ -78,6 +78,10 @@ export default function Education({
     }
     const obj = tempEducationObject;
     const id = obj.institution + obj.degree + obj.date;
+    if (tempEducationArray.some((obj) => obj.id === id)) {
+      alert("duplicate item entered");
+      return;
+    }
     setTempEducationArray((prevState) => {
       return [...prevState, { ...tempEducationObject, id }];
     });

@@ -8,13 +8,13 @@ let completedSections = {
 };
 const checkSwitch = (userId, section) => {
   const storage = localStorage.getObject(section);
-  console.log(section);
+
   switch (section) {
     case userId + "_photoData":
       if (
-        storage != null &&
+        storage !== null &&
         storage.filePath !== null &&
-        storage.filePath != "click to browse files"
+        storage.filePath !== "click to browse files"
       ) {
         completedSections.photo = true;
       } else {
@@ -50,13 +50,14 @@ const checkSwitch = (userId, section) => {
 };
 function checkCompletedSections() {
   const user = localStorage.getObject("currentUser").userId;
+
   const sections = Object.keys(localStorage).filter((key) =>
     key.includes(user + "_")
   );
   sections.forEach((section) => {
     checkSwitch(user, section);
   });
-  console.log(completedSections);
+
   return { ...completedSections };
 }
 

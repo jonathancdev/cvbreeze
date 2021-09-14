@@ -17,13 +17,12 @@ function App() {
   };
   init();
 
-  const [storageKeys, setStorageKeys] = useState(Object.keys(localStorage));
+  const storageKeys = Object.keys(localStorage);
   const [user, setUser] = useState(
     storageKeys.includes("currentUser")
       ? localStorage.getObject("currentUser")
       : null
   );
-  const [sessionActive, setSessionActive] = useState(user ? true : false);
 
   //user, authentication, and session functions
   const logUserIn = (obj) => {
@@ -34,13 +33,6 @@ function App() {
     setUser(null);
   };
 
-  //temporary user
-  const tempUser = {
-    userId: "tempUser",
-  };
-  if (!storageKeys.includes("currentUser")) {
-    logUserIn(tempUser);
-  }
   return (
     <BrowserRouter>
       <div className="App">

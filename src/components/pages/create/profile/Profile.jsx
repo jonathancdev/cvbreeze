@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
@@ -47,7 +47,7 @@ export default function Profile({
       updateCompletedSection(checkCompletedSections());
     }
   };
-
+  console.log(userId);
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>

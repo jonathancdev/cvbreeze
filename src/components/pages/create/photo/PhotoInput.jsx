@@ -4,6 +4,7 @@ export default function PhotoInput({
   filePath,
   updateFilePath,
   updateUserPhoto,
+  includeUserPhoto,
 }) {
   const fileInput = useRef();
 
@@ -40,6 +41,7 @@ export default function PhotoInput({
         type="file"
         accept="img/png, image/gif, image/jpeg"
         className="input--hidden-browse"
+        disabled={!includeUserPhoto}
       />
     </>
   );

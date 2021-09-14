@@ -96,7 +96,7 @@ export default function Contact({
       updateCompletedSection(checkCompletedSections());
     }
   };
-
+  console.log(storage);
   return (
     <section className="create-section contact">
       <label htmlFor="" className="input__label"></label>

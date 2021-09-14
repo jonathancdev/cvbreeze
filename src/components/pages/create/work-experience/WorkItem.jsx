@@ -13,7 +13,7 @@ export default function WorkItem({
     if (userWorkExperience) {
       setObjInStorage(userWorkExperience.includes(obj));
     }
-  }, [userWorkExperience]);
+  }, [userWorkExperience, obj]);
   const [objInStorage, setObjInStorage] = useState(false);
   const handleDeleteWorkItem = (e) => {
     const popup = window.confirm(

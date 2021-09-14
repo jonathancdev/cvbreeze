@@ -13,7 +13,6 @@ import {
   CreateLayout,
 } from "./create-index";
 export default function Create({ user }) {
-  const [allSectionsCompleted, setAllSectionsCompleted] = useState(false);
   const [layoutData, setLayoutData] = useState({});
   const [completedSections, setCompletedSections] = useState({});
 

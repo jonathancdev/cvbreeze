@@ -12,7 +12,7 @@ export default function SkillItem({
     if (userSkills) {
       setObjInStorage(userSkills.includes(obj));
     }
-  }, [userSkills]);
+  }, [userSkills, obj]);
   const [objInStorage, setObjInStorage] = useState(false);
   const handleDeleteSkillItem = (e) => {
     const popup = window.confirm(

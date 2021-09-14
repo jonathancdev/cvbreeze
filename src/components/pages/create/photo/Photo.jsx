@@ -3,6 +3,7 @@ import PhotoInput from "./PhotoInput";
 import SaveSection from "../create-layout/SaveSection";
 import smile from "../../../../img/smile-emoticon.png";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
+import testUserPhoto from "../../../../img/AI_photo.jpg";
 
 export default function Photo({
   user,
@@ -29,14 +30,14 @@ export default function Photo({
     storage ? storage.userPhoto : null
   );
   const [filePath, setFilePath] = useState(storage ? storage.filePath : null);
-  const [includeUserPhoto, setIncludeUsePhoto] = useState(true);
+  const [includeUserPhoto, setIncludeUserPhoto] = useState(true);
   const [updated, setUpdated] = useState(false);
   useEffect(() => {
     //CHECKS IF USER WANTS TO INCLUDE PHOTO, USED TO MAINTAIN CHECKBOX CHECKED OR UNCHECKED
     filePath === "photo disabled"
-      ? setIncludeUsePhoto(false)
-      : setIncludeUsePhoto(true);
-  });
+      ? setIncludeUserPhoto(false)
+      : setIncludeUserPhoto(true);
+  }, includeUserPhoto);
 
   const updateFilePath = (path) => {
     setFilePath(path);
@@ -60,11 +61,11 @@ export default function Photo({
   const handleCheckboxClick = (e) => {
     if (e.target.checked) {
       setFilePath("photo disabled");
-      setIncludeUsePhoto(false);
+      setIncludeUserPhoto(false);
       setUpdated(true);
     } else {
       setFilePath("click to browse files");
-      setIncludeUsePhoto(true);
+      setIncludeUserPhoto(true);
       setUpdated(true);
     }
   };
@@ -79,15 +80,23 @@ export default function Photo({
       setUserPhoto(null);
     }
   };
+  console.log(storage);
   return (
     <section className="create-section photo">
       <PhotoInput
         filePath={filePath || "click to browse files"}
         updateFilePath={updateFilePath}
         updateUserPhoto={updateTempPhoto}
+        includeUserPhoto={includeUserPhoto}
       />
       <img
-        src={includeUserPhoto ? userPhoto || tempPhoto || smile : smile}
+        src={
+          includeUserPhoto
+            ? userPhoto !== "test user"
+              ? userPhoto
+              : testUserPhoto || tempPhoto || smile
+            : smile
+        }
         alt="user photo"
       />
       <label className="photo__checkbox--label" htmlFor="photo__checkbox">
