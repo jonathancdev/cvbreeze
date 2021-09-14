@@ -30,10 +30,10 @@ export default function Contact({
 
   //CONTACT DATA STATE
   const [tempContactObject, setTempContactObject] = useState(
-    storage ? storage.contact : null
+    storage ? storage : null
   );
   const [userContactInformation, setUserContactInformation] = useState(
-    storage ? storage.contact : null
+    storage ? storage : null
   );
   //ACTIVATES SAVE BUTTON IN SAVE SECTION WHEN NEEDED
   const [updated, setUpdated] = useState(false);

@@ -23,10 +23,8 @@ export default function Skills({
   }, [updateLayoutData]);
 
   const [tempSkill, setTempSkill] = useState(null);
-  const [tempSkillArray, setTempSkillArray] = useState(
-    storage ? storage.skills : []
-  );
-  const [userSkills, setUserSkills] = useState(storage ? storage.skills : null);
+  const [tempSkillArray, setTempSkillArray] = useState(storage ? storage : []);
+  const [userSkills, setUserSkills] = useState(storage ? storage : null);
   const [updated, setUpdated] = useState(false);
   const setSkill = (e) => {
     const value = e.target.value;
@@ -53,14 +51,18 @@ export default function Skills({
       setUpdated(true);
     }
   };
+  const handleDeletedItem = (obj) => {
+    localStorage.setObject(userId + "_skillsData", obj);
+    const storage = localStorage.getObject(userId + "_skillsData");
+    setTempSkillArray(storage);
+    setUserSkills(storage);
+  };
   const saveUserSkills = () => {
     setUserSkills(tempSkillArray);
     setTempSkill(null);
     setUpdated(false);
   };
-  const childSetUpdated = (bool) => {
-    setUpdated(bool);
-  };
+
   return (
     <section className="create-section skills">
       <CreateSectionForm
@@ -87,10 +89,8 @@ export default function Skills({
                 <SkillItem
                   key={obj.id}
                   obj={obj}
-                  data={{ skills: userSkills }}
                   userSkills={userSkills}
-                  updateParentState={saveUserSkills}
-                  childSetUpdated={childSetUpdated}
+                  handleDeletedItem={handleDeletedItem}
                 />
               );
             })

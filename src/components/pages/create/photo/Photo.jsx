@@ -37,7 +37,7 @@ export default function Photo({
     filePath === "photo disabled"
       ? setIncludeUserPhoto(false)
       : setIncludeUserPhoto(true);
-  }, includeUserPhoto);
+  }, [includeUserPhoto, filePath]);
 
   const updateFilePath = (path) => {
     setFilePath(path);
@@ -97,7 +97,7 @@ export default function Photo({
               : testUserPhoto || tempPhoto || smile
             : smile
         }
-        alt="user photo"
+        alt="user"
       />
       <label className="photo__checkbox--label" htmlFor="photo__checkbox">
         Check this box if you prefer not to include a photo

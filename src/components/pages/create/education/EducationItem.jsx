@@ -2,20 +2,18 @@ import React, { useState, useEffect } from "react";
 
 export default function EducationItem({
   obj,
-  data,
   userEducationHistory,
-  updateParentState,
-  childSetUpdated,
+  handleDeletedItem,
 }) {
-  let educationArray = data.educationHistory;
+  let educationArray = userEducationHistory;
 
   useEffect(() => {
     if (userEducationHistory) {
       setObjInStorage(userEducationHistory.includes(obj));
     }
-  }, [userEducationHistory]);
+  }, [userEducationHistory, obj]);
   const [objInStorage, setObjInStorage] = useState(false);
-  const handleDeleteEducationItem = (e) => {
+  const handleDeletedEducationItem = (e) => {
     const popup = window.confirm(
       "are you sure you want to permanently delete this information?"
     );
@@ -23,8 +21,7 @@ export default function EducationItem({
       const toRemove = educationArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
       const indexToRemove = educationArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
       educationArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
-      updateParentState(educationArray);
-      childSetUpdated(true);
+      handleDeletedItem(educationArray);
     }
   };
   return (
@@ -34,7 +31,7 @@ export default function EducationItem({
         <span>{obj.degree}</span>
         <span>{obj.date}</span>
         {objInStorage ? (
-          <button id={obj.id} onClick={handleDeleteEducationItem}>
+          <button id={obj.id} onClick={handleDeletedEducationItem}>
             delete
           </button>
         ) : (

@@ -23,9 +23,7 @@ export default function Profile({
 
   //POFILEDATA STATE
   const [tempProfile, setTempProfile] = useState(null);
-  const [userProfile, setUserProfile] = useState(
-    storage ? storage.profile : null
-  );
+  const [userProfile, setUserProfile] = useState(storage ? storage : null);
   const [updated, setUpdated] = useState(false);
 
   const updateTempProfile = (value) => {

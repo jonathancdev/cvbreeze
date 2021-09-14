@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import { importTestUser } from "../../utilities/importTestUser";
 
 export default function Signup({ logUserIn }) {
-  const [userCount, setUserCount] = useState(
-    Object.keys(localStorage).filter((item) => item.includes("user_")).length
-  );
   const [userInfo, setUserInfo] = useState({
     firstName: "",
     lastName: "",
@@ -25,8 +22,10 @@ export default function Signup({ logUserIn }) {
     });
   };
   const handleFormSubmit = () => {
+    const userCount = Object.keys(localStorage).filter((item) =>
+      item.includes("user_")
+    ).length;
     const obj = userInfo;
-    let email = obj.email.split();
     const id =
       "breezeId_" +
       obj.firstName[0] +
@@ -68,8 +67,7 @@ export default function Signup({ logUserIn }) {
       return { ...prevState, password: value };
     });
   };
-  console.log(userCount);
-  console.log(userInfo);
+
   return (
     <section className="signup">
       <h1 className="heading--primary">Create your account</h1>

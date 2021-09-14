@@ -17,7 +17,6 @@ export default function SaveSection({
     };
   });
   const [successMessage, setSuccessMessage] = useState(null);
-  const [saving, setSaving] = useState(false);
   const timerRef = useRef();
 
   const handleClick = () => {

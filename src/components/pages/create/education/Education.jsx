@@ -27,10 +27,10 @@ export default function Education({
 
   const [tempEducationObject, setTempEducationObject] = useState(null); //UPDATES AS FORM UPDATES, GETS PUSHED TO TEMPEDUCATIONARRAY
   const [tempEducationArray, setTempEducationArray] = useState(
-    storage ? storage.educationHistory : []
+    storage ? storage : []
   ); //ARRAY TO COLLECT UP TO THREE EDUCATION HISOTRY OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USEREDUCATIONHISOTRY
   const [userEducationHistory, setUserEducationHistory] = useState(
-    storage ? storage.educationHistory : null
+    storage ? storage : null
   );
   const [updated, setUpdated] = useState(false);
 
@@ -59,18 +59,7 @@ export default function Education({
       return { ...prevState, date: value };
     });
   };
-  const setGraduationMonth = (e) => {
-    const value = e.target.value;
-    setTempEducationObject((prevState) => {
-      return { ...prevState, graduationMonth: value };
-    });
-  };
-  const setGraduationYear = (e) => {
-    const value = e.target.value;
-    setTempEducationObject((prevState) => {
-      return { ...prevState, graduationYear: value };
-    });
-  };
+
   const updateTempEducationArray = () => {
     if (!tempEducationObject) {
       alert("invalid entry");
@@ -88,15 +77,16 @@ export default function Education({
     setTempEducationObject(null);
     setUpdated(true);
   };
+  const handleDeletedItem = (obj) => {
+    localStorage.setObject(userId + "_educationHistoryData", obj);
+    const storage = localStorage.getObject(userId + "_educationHistoryData");
+    setTempEducationArray(storage);
+    setUserEducationHistory(storage);
+  };
   const saveUserEducationHistory = () => {
     setUserEducationHistory(tempEducationArray);
     setTempEducationObject(null);
     setUpdated(false);
-  };
-  const childSetUpdated = (bool) => {
-    //TO SET UPDATED FROM WORKITEM, USING IN SAVE ALSO UPDATES FROM SAVE
-    //WHICH ENABLES THE STORAGE SAVE BUTTON AGAIN
-    setUpdated(bool);
   };
 
   return (
@@ -152,10 +142,8 @@ export default function Education({
                 <EducationItem
                   key={obj.id}
                   obj={obj}
-                  data={{ educationHistory: sortByDate(tempEducationArray) }}
                   userEducationHistory={userEducationHistory}
-                  updateParentState={saveUserEducationHistory}
-                  childSetUpdated={childSetUpdated}
+                  handleDeletedItem={handleDeletedItem}
                 />
               );
             })

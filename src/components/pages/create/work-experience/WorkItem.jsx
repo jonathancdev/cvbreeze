@@ -4,10 +4,9 @@ export default function WorkItem({
   obj,
   data,
   userWorkExperience,
-  updateParentState,
-  childSetUpdated,
+  handleDeletedItem,
 }) {
-  let workArray = data.workExperience;
+  let workArray = userWorkExperience;
 
   useEffect(() => {
     if (userWorkExperience) {
@@ -15,7 +14,7 @@ export default function WorkItem({
     }
   }, [userWorkExperience, obj]);
   const [objInStorage, setObjInStorage] = useState(false);
-  const handleDeleteWorkItem = (e) => {
+  const handleDeletedWorkItem = (e) => {
     const popup = window.confirm(
       "are you sure you want to permanently delete this information?"
     );
@@ -23,8 +22,7 @@ export default function WorkItem({
       const toRemove = workArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
       const indexToRemove = workArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
       workArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
-      updateParentState(workArray);
-      childSetUpdated(true);
+      handleDeletedItem(workArray);
     }
   };
   return (
@@ -32,9 +30,9 @@ export default function WorkItem({
       <div>
         <span>{obj.companyName}</span>
         <span>{obj.title}</span>
-        <span>{obj.date}</span>
+        <span>{obj.startDate}</span>
         {objInStorage ? (
-          <button id={obj.id} onClick={handleDeleteWorkItem}>
+          <button id={obj.id} onClick={handleDeletedWorkItem}>
             delete
           </button>
         ) : (

@@ -17,8 +17,10 @@ export default function Create({ user }) {
   const [completedSections, setCompletedSections] = useState({});
 
   useEffect(() => {
-    setCompletedSections(checkCompletedSections());
-  }, [checkCompletedSections]);
+    if (user) {
+      updateCompletedSection(checkCompletedSections());
+    }
+  }, [user]);
 
   const updateCompletedSection = (obj) => {
     //SAVESECTION IN EACH SECTION CHECKS ALL SECTION STORAGE MEETS REQS AND

@@ -27,17 +27,17 @@ const checkSwitch = (userId, section) => {
         : (completedSections.profile = false);
       break;
     case userId + "_workExperienceData":
-      storage.workExperience.length > 0
+      storage.length > 0
         ? (completedSections.workExperience = true)
         : (completedSections.workExperience = false);
       break;
     case userId + "_educationHistoryData":
-      storage.educationHistory.length > 0
+      storage.length > 0
         ? (completedSections.educationHistory = true)
         : (completedSections.educationHistory = false);
       break;
     case userId + "_skillsData":
-      storage.skills.length > 0
+      storage.length > 0
         ? (completedSections.skills = true)
         : (completedSections.skills = false);
       break;
@@ -45,6 +45,8 @@ const checkSwitch = (userId, section) => {
       storage !== null
         ? (completedSections.contact = true)
         : (completedSections.contact = false);
+      break;
+    default:
       break;
   }
 };
@@ -60,5 +62,4 @@ function checkCompletedSections() {
 
   return { ...completedSections };
 }
-
 export default checkCompletedSections;

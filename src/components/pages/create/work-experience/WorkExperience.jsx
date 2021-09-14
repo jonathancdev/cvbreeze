@@ -25,11 +25,9 @@ export default function WorkExperience({
   //WORKEXPERIENCEDATA STATE
 
   const [tempWorkObject, setTempWorkObject] = useState(null); //UPDATES AS FORM UPDATES, GETS PUSHED TO TEMPWORKARRAY
-  const [tempWorkArray, setTempWorkArray] = useState(
-    storage ? storage.workExperience : []
-  ); //ARRAY TO COLLECT UP TO THREE WORK EXPERIENCE OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USERWORKEXPERIENCE
+  const [tempWorkArray, setTempWorkArray] = useState(storage ? storage : []); //ARRAY TO COLLECT UP TO THREE WORK EXPERIENCE OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USERWORKEXPERIENCE
   const [userWorkExperience, setUserWorkExperience] = useState(
-    storage ? storage.workExperience : null
+    storage ? storage : null
   );
   const [updated, setUpdated] = useState(false);
   const setTitle = (e) => {
@@ -44,36 +42,19 @@ export default function WorkExperience({
       return { ...prevState, companyName: value };
     });
   };
-  const setDate = (e) => {
+  const setStartDate = (e) => {
     const value = e.target.value;
     setTempWorkObject((prevState) => {
-      return { ...prevState, date: value };
+      return { ...prevState, startDate: value };
     });
   };
-  const setMonthOne = (e) => {
+  const setEndDate = (e) => {
     const value = e.target.value;
     setTempWorkObject((prevState) => {
-      return { ...prevState, monthOne: value };
+      return { ...prevState, endDate: value };
     });
   };
-  const setYearOne = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, yearOne: value };
-    });
-  };
-  const setMonthTwo = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, monthTwo: value };
-    });
-  };
-  const setYearTwo = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, yearTwo: value };
-    });
-  };
+
   const setDutyOne = (e) => {
     const value = e.target.value;
     setTempWorkObject((prevState) => {
@@ -109,15 +90,16 @@ export default function WorkExperience({
     setTempWorkObject(null);
     setUpdated(true);
   };
+  const handleDeletedItem = (obj) => {
+    localStorage.setObject(userId + "_workExperienceData", obj);
+    const storage = localStorage.getObject(userId + "_workExperienceData");
+    setTempWorkArray(storage);
+    setUserWorkExperience(storage);
+  };
   const saveUserWorkExperience = (array) => {
     setUserWorkExperience([...array]);
     setTempWorkObject(null);
     setUpdated(false);
-  };
-  const childSetUpdated = (bool) => {
-    //TO SET UPDATED FROM WORKITEM, USING IN SAVE ALSO UPDATES FROM SAVE
-    //WHICH ENABLES THE STORAGE SAVE BUTTON AGAIN
-    setUpdated(bool);
   };
   return (
     <section className="create-section work-experience">
@@ -131,47 +113,28 @@ export default function WorkExperience({
         <input
           placeholder="job title"
           type="text"
-          className="input--standard"
+          className="standard__input"
           onChange={setTitle}
         />
         <input
           placeholder="company name"
           type="text"
-          className="input--standard"
+          className="standard__input"
           onChange={setCompanyName}
         />
         from
         <input
           placeholder="month"
           type="date"
-          className="input--month"
-          onChange={setDate}
-        />
-        {/* <input
-          placeholder="month"
-          type="text"
-          className="input--month"
-          onChange={setMonthOne}
-        /> */}
-        {/* <input
-          placeholder="year"
-          type="text"
-          className="input--year"
-          onChange={setYearOne}
-        />
-        to
-        <input
-          placeholder="month"
-          type="text"
-          className="input--month"
-          onChange={setMonthTwo}
+          className="date__input"
+          onChange={setStartDate}
         />
         <input
-          placeholder="year"
-          type="text"
-          className="input--year"
-          onChange={setYearTwo}
-        /> */}
+          placeholder="month"
+          type="date"
+          className="date__input"
+          onChange={setEndDate}
+        />
         <input
           placeholder="click to add job duty"
           type="text"
@@ -198,10 +161,8 @@ export default function WorkExperience({
                 <WorkItem
                   key={obj.id}
                   obj={obj}
-                  data={{ workExperience: sortByDate(tempWorkArray) }}
                   userWorkExperience={userWorkExperience}
-                  updateParentState={saveUserWorkExperience}
-                  childSetUpdated={childSetUpdated}
+                  handleDeletedItem={handleDeletedItem}
                 />
               );
             })
