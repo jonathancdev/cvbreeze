@@ -45,4 +45,4 @@ export default function PhotoInput({
   );
 }
 
-//input--hidden-browse will have hidden attribute
+//INPUT--HIDDEN-BROWSE WILL HAVE HIDDEN ATTRIBUTE **********************************************************

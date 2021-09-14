@@ -9,11 +9,9 @@ export default function Skills({
   updateLayoutData,
   updateCompletedSection,
 }) {
-  //variables from props  & storage
+  //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_skillsData");
-
-  //refs ???
 
   useEffect(() => {
     const layoutData = {
@@ -30,11 +28,6 @@ export default function Skills({
   );
   const [userSkills, setUserSkills] = useState(storage ? storage.skills : null);
   const [updated, setUpdated] = useState(false);
-
-  // useEffect(() => {
-  //   const completed = checkCompletedSections()
-  //   setAllSectionsCompleted(completed)
-  // });
   const setSkill = (e) => {
     const value = e.target.value;
     setTempSkill({ skill: value });
@@ -42,14 +35,14 @@ export default function Skills({
   const updateTempSkillArray = () => {
     if (!tempSkill) {
       alert("enter a valid skill");
-      return; //exit function if nothing entered in box
+      return; //EXIT FUNCTION IF NOTHING ENTERED IN BOX
     }
     let index = 0;
     if (userSkills && userSkills.length > 0) {
       index = userSkills.length;
     }
     const id = tempSkill.skill + index;
-    //make sure skill doesn't repeat
+    //MAKE SURE SKILL DOESN'T REPEAT
     if (tempSkillArray.some((obj) => obj.skill === tempSkill.skill)) {
       alert("skill with that name already saved");
     } else {
@@ -84,7 +77,7 @@ export default function Skills({
           onChange={setSkill}
         />
         <>
-          {/* needs an empty element because component can't .map only one */}
+          {/* NEEDS AN EMPTY ELEMENT BECAUSE COMPONENT CAN'T .MAP ONLY ONE */}
         </>
       </CreateSectionForm>
       <CreateSectionPreview>

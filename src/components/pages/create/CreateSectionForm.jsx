@@ -41,5 +41,3 @@ export default function CreateSectionForm({
     </section>
   );
 }
-
-//layout to be used by work experience, education, and skills components

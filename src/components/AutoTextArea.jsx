@@ -12,11 +12,11 @@ export default function AutoTextArea({
   const [rows, setRows] = useState(2);
 
   useEffect(() => {
-    //persists profile value after leaving page but allows editing after save
+    //PERSISTS PROFILE VALUE AFTER LEAVING PAGE BUT ALLOWS EDITING AFTER SAVE
     textareaRef.current.value = userText;
-    //persists rowheight so textarea doesn't collapse when leave page
+    //PERSISTS ROWHEIGHT SO TEXTAREA DOESN'T COLLAPSE WHEN LEAVE PAGE
     setRows(textareaRef.current.scrollHeight / lineHeight);
-    //sets height back to normal if text deleted
+    //SETS HEIGHT BACK TO NORMAL IF TEXT DELETED
     if (!userText) {
       setRows(2);
     }

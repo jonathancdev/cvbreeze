@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import PhotoInput from "./PhotoInput";
 import SaveSection from "../create-layout/SaveSection";
 import smile from "../../../../img/smile-emoticon.png";
+import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 
 export default function Photo({
   user,
   updateLayoutData,
   updateCompletedSection,
 }) {
-  //variables from props  & storage
+  //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_photoData");
 
-  //send section information to layout
+  //SEND SECTION INFORMATION TO LAYOUT
   useEffect(() => {
     const layoutData = {
       section: "photo",
@@ -22,7 +23,7 @@ export default function Photo({
     updateLayoutData(layoutData);
   }, [updateLayoutData]);
 
-  //photoData state
+  //PHOTODATA STATE
   const [tempPhoto, setTempPhoto] = useState(null);
   const [userPhoto, setUserPhoto] = useState(
     storage ? storage.userPhoto : null
@@ -31,7 +32,7 @@ export default function Photo({
   const [includeUserPhoto, setIncludeUsePhoto] = useState(true);
   const [updated, setUpdated] = useState(false);
   useEffect(() => {
-    //checks if user wants to include photo, used to maintain checkbox checked or unchecked
+    //CHECKS IF USER WANTS TO INCLUDE PHOTO, USED TO MAINTAIN CHECKBOX CHECKED OR UNCHECKED
     filePath === "photo disabled"
       ? setIncludeUsePhoto(false)
       : setIncludeUsePhoto(true);
@@ -72,10 +73,10 @@ export default function Photo({
       "are you sure you want to permanently delete this information?"
     );
     if (popup) {
-      localStorage.removeItem(userId + "_photoData");
+      localStorage.setObject(userId + "_photoData", null);
+      updateCompletedSection(checkCompletedSections());
       setFilePath(null);
       setUserPhoto(null);
-      setUpdated(true);
     }
   };
   return (
@@ -106,7 +107,6 @@ export default function Photo({
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_photoData"}
         data={{ filePath: filePath, userPhoto: tempPhoto }}
-        //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserPhoto}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}

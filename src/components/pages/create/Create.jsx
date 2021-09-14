@@ -22,8 +22,9 @@ export default function Create({ user }) {
   }, [checkCompletedSections]);
 
   const updateCompletedSection = (obj) => {
-    //saveSection in each section checks all section storage meets reqs and
-    //passes obj back to update state here
+    //SAVESECTION IN EACH SECTION CHECKS ALL SECTION STORAGE MEETS REQS AND
+    //IN SOME COMPONENTS ALSO IN DELETE FUNCTION
+    //PASSES OBJ BACK TO UPDATE STATE HERE
     setCompletedSections({ ...obj });
   };
   const updateLayoutData = useCallback(
@@ -32,8 +33,7 @@ export default function Create({ user }) {
     },
     [setLayoutData]
   );
-  console.log(completedSections);
-  //may not need to pass function to update completed because now
+
   return (
     <section className="create">
       <CreateNavbar completedSections={completedSections} />

@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
-
+import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 export default function Profile({
   user,
   updateLayoutData,
   updateCompletedSection,
 }) {
-  //variables from props  & storage
+  //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_profileData");
 
-  //send section information to layout
+  //SEND SECTION INFORMATION TO LAYOUT
   useEffect(() => {
     const layoutData = {
       section: "profile",
@@ -21,17 +21,12 @@ export default function Profile({
     updateLayoutData(layoutData);
   }, [updateLayoutData]);
 
-  //pofileData state
+  //POFILEDATA STATE
   const [tempProfile, setTempProfile] = useState(null);
   const [userProfile, setUserProfile] = useState(
     storage ? storage.profile : null
   );
   const [updated, setUpdated] = useState(false);
-
-  // useEffect(() => {
-  //   const completed = checkCompletedSections()
-  //   setAllSectionsCompleted(completed)
-  // });
 
   const updateTempProfile = (value) => {
     setTempProfile(value);
@@ -47,9 +42,9 @@ export default function Profile({
       "are you sure you want to permanently delete this information?"
     );
     if (popup) {
-      localStorage.removeItem(userId + "_profileData");
+      localStorage.setObject(userId + "_profileData", null);
       setUserProfile(null);
-      setUpdated(true);
+      updateCompletedSection(checkCompletedSections());
     }
   };
 
@@ -69,7 +64,6 @@ export default function Profile({
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_profileData"}
         data={{ profile: tempProfile }}
-        //may not always be needed, but might be good to have temp setting for all data
         updateParentState={saveUserProfile}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
@@ -77,4 +71,3 @@ export default function Profile({
     </section>
   );
 }
-//make textarea increase/decrease depending on amount of input size

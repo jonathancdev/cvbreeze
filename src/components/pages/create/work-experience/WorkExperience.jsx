@@ -10,11 +10,9 @@ export default function WorkExperience({
   updateLayoutData,
   updateCompletedSection,
 }) {
-  //variables from props  & storage
+  //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_workExperienceData");
-
-  //refs???
 
   useEffect(() => {
     const layoutData = {
@@ -24,22 +22,16 @@ export default function WorkExperience({
     };
     updateLayoutData(layoutData);
   }, [updateLayoutData]);
-  //workExperienceData state
+  //WORKEXPERIENCEDATA STATE
 
-  const [tempWorkObject, setTempWorkObject] = useState(null); //updates as form updates, gets pushed to tempWorkArray
+  const [tempWorkObject, setTempWorkObject] = useState(null); //UPDATES AS FORM UPDATES, GETS PUSHED TO TEMPWORKARRAY
   const [tempWorkArray, setTempWorkArray] = useState(
     storage ? storage.workExperience : []
-  ); //array to collect up to three work experience objects, passed to save section for storage and to update userWorkExperience
+  ); //ARRAY TO COLLECT UP TO THREE WORK EXPERIENCE OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USERWORKEXPERIENCE
   const [userWorkExperience, setUserWorkExperience] = useState(
     storage ? storage.workExperience : null
   );
   const [updated, setUpdated] = useState(false);
-  // useEffect(() => {
-  //   const completed = checkCompletedSections()
-  //   setAllSectionsCompleted(completed)
-  // });
-  //functions to update TempWorkObject state
-
   const setTitle = (e) => {
     const value = e.target.value;
     setTempWorkObject((prevState) => {
@@ -103,7 +95,7 @@ export default function WorkExperience({
   const updateTempWorkArray = () => {
     if (!tempWorkObject) {
       alert("invalid entry");
-      return; //exit function if nothing entered in box
+      return; //EXIT FUNCTION IF NOTHING ENTERED IN BOX
     }
     const obj = tempWorkObject;
     const id = obj.title + obj.companyName + obj.date;
@@ -119,8 +111,8 @@ export default function WorkExperience({
     setUpdated(false);
   };
   const childSetUpdated = (bool) => {
-    //to set updated from workItem, using in save also updates from save
-    //which enables the storage save button again
+    //TO SET UPDATED FROM WORKITEM, USING IN SAVE ALSO UPDATES FROM SAVE
+    //WHICH ENABLES THE STORAGE SAVE BUTTON AGAIN
     setUpdated(bool);
   };
   return (
@@ -196,7 +188,7 @@ export default function WorkExperience({
         />
       </CreateSectionForm>
       <CreateSectionPreview>
-        {tempWorkArray.length > 0 // using tempWorkArray so unsaved items display, compare in workItem component to only add delete button if they are also in userWorkExperience
+        {tempWorkArray.length > 0 // USING TEMPWORKARRAY SO UNSAVED ITEMS DISPLAY, COMPARE IN WORKITEM COMPONENT TO ONLY ADD DELETE BUTTON IF THEY ARE ALSO IN USERWORKEXPERIENCE
           ? tempWorkArray.map((obj) => {
               return (
                 <WorkItem
@@ -214,8 +206,8 @@ export default function WorkExperience({
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_workExperienceData"}
-        //sorts tempWorkArray objects by date descending which automatically
-        //updates into state when saved to local storage
+        //SORTS TEMPWORKARRAY OBJECTS BY DATE DESCENDING WHICH AUTOMATICALLY
+        //UPDATES INTO STATE WHEN SAVED TO LOCAL STORAGE
         data={{ workExperience: sortByDate(tempWorkArray) }}
         updateParentState={saveUserWorkExperience}
         updateCompletedSection={updateCompletedSection}

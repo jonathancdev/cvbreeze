@@ -19,9 +19,9 @@ export default function SkillItem({
       "are you sure you want to permanently delete this information?"
     );
     if (popup) {
-      const toRemove = skillArray.find((obj) => obj.id === e.target.id); //isolates that object
-      const indexToRemove = skillArray.indexOf(toRemove); //gets id of that object
-      skillArray.splice(indexToRemove, 1); //returns array with remaining objs
+      const toRemove = skillArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
+      const indexToRemove = skillArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
+      skillArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
       updateParentState(skillArray);
       childSetUpdated(true);
     }

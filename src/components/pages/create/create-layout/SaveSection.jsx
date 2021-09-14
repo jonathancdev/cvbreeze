@@ -10,7 +10,7 @@ export default function SaveSection({
   updateCompletedSection,
 }) {
   useEffect(() => {
-    //clears save message timer if component unmounted before timer resolves
+    //CLEARS SAVE MESSAGE TIMER IF COMPONENT UNMOUNTED BEFORE TIMER RESOLVES
     const saveTimer = timerRef.current;
     return () => {
       clearTimeout(saveTimer);
@@ -22,11 +22,11 @@ export default function SaveSection({
 
   const handleClick = () => {
     localStorage.setObject(storageKey, data);
-    //should only be one object key per section, uses that to update correct data
-    //and allows updateParentState prop to be reused in other components
+    //SHOULD ONLY BE ONE OBJECT KEY PER SECTION, USES THAT TO UPDATE CORRECT DATA
+    //AND ALLOWS UPDATEPARENTSTATE PROP TO BE REUSED IN OTHER COMPONENTS
     updateParentState(data[Object.keys(data)[0]]);
     setSuccessMessage("changed saved successfully");
-    updateCompletedSection(checkCompletedSections(storageKey));
+    updateCompletedSection(checkCompletedSections());
     const saveTimer = setTimeout(() => {
       setSuccessMessage(null);
     }, 3000);

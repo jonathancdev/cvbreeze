@@ -20,9 +20,9 @@ export default function WorkItem({
       "are you sure you want to permanently delete this information?"
     );
     if (popup) {
-      const toRemove = workArray.find((obj) => obj.id === e.target.id); //isolates that object
-      const indexToRemove = workArray.indexOf(toRemove); //gets id of that object
-      workArray.splice(indexToRemove, 1); //returns array with remaining objs
+      const toRemove = workArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
+      const indexToRemove = workArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
+      workArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
       updateParentState(workArray);
       childSetUpdated(true);
     }

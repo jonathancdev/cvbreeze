@@ -1,80 +1,86 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function CreateNavbar({ completedSections }) {
   return (
     <>
-      <Link className="create__navlink" to="/create">
+      <NavLink className="create__navlink" to="/create">
         <h1 className="nav__heading-primary">create</h1>
-      </Link>
+      </NavLink>
       <nav className="create__nav">
-        <Link
+        <NavLink
           className={
             !completedSections.photo
-              ? "create__navlink"
+              ? "create__navlink "
               : "create__navlink finished"
           }
+          activeClassName="active"
           to="/create/photo"
         >
           photo
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           className={
             !completedSections.profile
               ? "create__navlink"
               : "create__navlink finished"
           }
+          activeClassName="active"
           to="/create/profile"
         >
           profile
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           className={
             !completedSections.workExperience
               ? "create__navlink"
               : "create__navlink finished"
           }
+          activeClassName="active"
           to="/create/work-experience"
         >
           work experience
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           className={
             !completedSections.educationHistory
               ? "create__navlink"
               : "create__navlink finished"
           }
+          activeClassName="active"
           to="/create/education"
         >
           education
-        </Link>
+        </NavLink>
 
-        <Link
+        <NavLink
           className={
             !completedSections.skills
               ? "create__navlink"
               : "create__navlink finished"
           }
+          activeClassName="active"
           to="/create/skills"
         >
           skills
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           className={
             !completedSections.contact
               ? "create__navlink"
               : "create__navlink finished"
           }
+          activeClassName="active"
           to="/create/contact"
         >
           contact
-        </Link>
-        <Link className="btn btn-square-blue" to="/create/view">
+        </NavLink>
+        <NavLink className="btn btn-square-blue" to="/create/view">
           view cv
-        </Link>
+        </NavLink>
       </nav>
     </>
   );

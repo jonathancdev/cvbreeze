@@ -10,11 +10,11 @@ export default function Education({
   updateLayoutData,
   updateCompletedSection,
 }) {
-  //variables from props  & storage
+  //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_educationHistoryData");
 
-  //refs???
+  //REFS???
 
   useEffect(() => {
     const layoutData = {
@@ -25,19 +25,16 @@ export default function Education({
     updateLayoutData(layoutData);
   }, [updateLayoutData]);
 
-  const [tempEducationObject, setTempEducationObject] = useState(null); //updates as form updates, gets pushed to tempEducationArray
+  const [tempEducationObject, setTempEducationObject] = useState(null); //UPDATES AS FORM UPDATES, GETS PUSHED TO TEMPEDUCATIONARRAY
   const [tempEducationArray, setTempEducationArray] = useState(
     storage ? storage.educationHistory : []
-  ); //array to collect up to three Education Hisotry objects, passed to save section for storage and to update userEducationHisotry
+  ); //ARRAY TO COLLECT UP TO THREE EDUCATION HISOTRY OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USEREDUCATIONHISOTRY
   const [userEducationHistory, setUserEducationHistory] = useState(
     storage ? storage.educationHistory : null
   );
   const [updated, setUpdated] = useState(false);
-  // useEffect(() => {
-  //   const completed = checkCompletedSections()
-  //   setAllSectionsCompleted(completed)
-  // });
-  //functions to update tempEducationObject state
+
+  //FUNCTIONS TO UPDATE TEMPEDUCATIONOBJECT STATE
   const setInstitution = (e) => {
     const value = e.target.value;
     setTempEducationObject((prevState) => {
@@ -77,7 +74,7 @@ export default function Education({
   const updateTempEducationArray = () => {
     if (!tempEducationObject) {
       alert("invalid entry");
-      return; //exit function if nothing entered in box
+      return; //EXIT FUNCTION IF NOTHING ENTERED IN BOX
     }
     const obj = tempEducationObject;
     const id = obj.institution + obj.degree + obj.date;
@@ -93,8 +90,8 @@ export default function Education({
     setUpdated(false);
   };
   const childSetUpdated = (bool) => {
-    //to set updated from workItem, using in save also updates from save
-    //which enables the storage save button again
+    //TO SET UPDATED FROM WORKITEM, USING IN SAVE ALSO UPDATES FROM SAVE
+    //WHICH ENABLES THE STORAGE SAVE BUTTON AGAIN
     setUpdated(bool);
   };
 

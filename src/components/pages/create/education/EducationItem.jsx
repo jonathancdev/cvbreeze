@@ -20,9 +20,9 @@ export default function EducationItem({
       "are you sure you want to permanently delete this information?"
     );
     if (popup) {
-      const toRemove = educationArray.find((obj) => obj.id === e.target.id); //isolates that object
-      const indexToRemove = educationArray.indexOf(toRemove); //gets id of that object
-      educationArray.splice(indexToRemove, 1); //returns array with remaining objs
+      const toRemove = educationArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
+      const indexToRemove = educationArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
+      educationArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
       updateParentState(educationArray);
       childSetUpdated(true);
     }
