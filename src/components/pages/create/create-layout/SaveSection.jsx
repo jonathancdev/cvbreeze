@@ -23,7 +23,7 @@ export default function SaveSection({
     localStorage.setObject(storageKey, data);
     //SHOULD ONLY BE ONE OBJECT KEY PER SECTION, USES THAT TO UPDATE CORRECT DATA
     //AND ALLOWS UPDATEPARENTSTATE PROP TO BE REUSED IN OTHER COMPONENTS
-    updateParentState(data[Object.keys(data)[0]]);
+    updateParentState();
     setSuccessMessage("changed saved successfully");
     updateCompletedSection(checkCompletedSections());
     const saveTimer = setTimeout(() => {

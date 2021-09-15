@@ -3,6 +3,7 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import SkillItem from "./SkillItem";
+import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 
 export default function Skills({
   user,
@@ -41,7 +42,10 @@ export default function Skills({
     }
     const id = tempSkill.skill + index;
     //MAKE SURE SKILL DOESN'T REPEAT
-    if (tempSkillArray.some((obj) => obj.skill === tempSkill.skill)) {
+    if (
+      tempSkillArray.length > 0 &&
+      tempSkillArray.some((obj) => obj.skill === tempSkill.skill)
+    ) {
       alert("skill with that name already saved");
     } else {
       setTempSkillArray((prevState) => {
@@ -56,6 +60,7 @@ export default function Skills({
     const storage = localStorage.getObject(userId + "_skillsData");
     setTempSkillArray(storage);
     setUserSkills(storage);
+    updateCompletedSection(checkCompletedSections());
   };
   const saveUserSkills = () => {
     setUserSkills(tempSkillArray);
@@ -99,7 +104,7 @@ export default function Skills({
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_skillsData"}
-        data={{ skills: tempSkillArray }}
+        data={tempSkillArray}
         updateParentState={saveUserSkills}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}

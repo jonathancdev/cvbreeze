@@ -3,6 +3,7 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import EducationItem from "./EducationItem";
+import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
 
 export default function Education({
@@ -82,10 +83,10 @@ export default function Education({
     const storage = localStorage.getObject(userId + "_educationHistoryData");
     setTempEducationArray(storage);
     setUserEducationHistory(storage);
+    updateCompletedSection(checkCompletedSections());
   };
   const saveUserEducationHistory = () => {
     setUserEducationHistory(tempEducationArray);
-    setTempEducationObject(null);
     setUpdated(false);
   };
 
@@ -152,7 +153,7 @@ export default function Education({
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_educationHistoryData"}
-        data={{ educationHistory: tempEducationArray }}
+        data={tempEducationArray}
         updateParentState={saveUserEducationHistory}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}

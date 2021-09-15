@@ -3,6 +3,7 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import WorkItem from "./WorkItem";
+import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
 
 export default function WorkExperience({
@@ -95,10 +96,11 @@ export default function WorkExperience({
     const storage = localStorage.getObject(userId + "_workExperienceData");
     setTempWorkArray(storage);
     setUserWorkExperience(storage);
+    updateCompletedSection(checkCompletedSections());
   };
-  const saveUserWorkExperience = (array) => {
-    setUserWorkExperience([...array]);
-    setTempWorkObject(null);
+  const saveUserWorkExperience = () => {
+    setUserWorkExperience(tempWorkArray);
+    //setTempWorkObject(null);
     setUpdated(false);
   };
   return (
@@ -173,7 +175,7 @@ export default function WorkExperience({
         storageKey={userId + "_workExperienceData"}
         //SORTS TEMPWORKARRAY OBJECTS BY DATE DESCENDING WHICH AUTOMATICALLY
         //UPDATES INTO STATE WHEN SAVED TO LOCAL STORAGE
-        data={{ workExperience: sortByDate(tempWorkArray) }}
+        data={tempWorkArray}
         updateParentState={saveUserWorkExperience}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}

@@ -28,7 +28,11 @@ export default function Profile({
 
   const updateTempProfile = (value) => {
     setTempProfile(value);
-    setUpdated(true);
+    if (value.match(/^\s*\S[^]*$/)) {
+      setUpdated(true);
+    } else {
+      setUpdated(false);
+    }
   };
   const saveUserProfile = () => {
     setUserProfile(tempProfile);

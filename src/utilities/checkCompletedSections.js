@@ -37,6 +37,7 @@ const checkSwitch = (userId, section) => {
         : (completedSections.educationHistory = false);
       break;
     case userId + "_skillsData":
+      console.log(storage);
       storage.length > 0
         ? (completedSections.skills = true)
         : (completedSections.skills = false);
