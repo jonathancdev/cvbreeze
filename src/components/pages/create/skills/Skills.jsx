@@ -26,7 +26,9 @@ export default function Skills({
   const [tempSkill, setTempSkill] = useState(null);
   const [tempSkillArray, setTempSkillArray] = useState(storage ? storage : []);
   const [userSkills, setUserSkills] = useState(storage ? storage : null);
+  //FORM AND BUTTON ATTRIBUTES
   const [updated, setUpdated] = useState(false);
+  const [formHidden, setFormHidden] = useState(true);
   const setSkill = (e) => {
     const value = e.target.value;
     setTempSkill({ skill: value });
@@ -67,7 +69,9 @@ export default function Skills({
     setTempSkill(null);
     setUpdated(false);
   };
-
+  const updateFormHidden = (bool) => {
+    setFormHidden(bool);
+  };
   return (
     <section className="create-section skills">
       <CreateSectionForm
@@ -76,6 +80,8 @@ export default function Skills({
         items={tempSkillArray}
         limit={8}
         limitMessage="include up to 8 skills"
+        formHidden={formHidden}
+        updateFormHidden={updateFormHidden}
       >
         <input
           placeholder="enter skill"

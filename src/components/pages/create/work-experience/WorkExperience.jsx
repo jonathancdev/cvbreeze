@@ -127,8 +127,12 @@ export default function WorkExperience({
       company: "",
     });
   };
-  const toggleForm = () => {
-    setFormHidden(!formHidden);
+  const updateFormHidden = (bool) => {
+    setFormHidden(bool);
+    reset({
+      title: "",
+      company: "",
+    });
   };
 
   return (
@@ -140,7 +144,7 @@ export default function WorkExperience({
         limitMessage="include your three most relevant positions"
         formId="work"
         formHidden={formHidden}
-        toggleForm={toggleForm}
+        updateFormHidden={updateFormHidden}
       >
         <form
           className="create__form"

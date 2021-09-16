@@ -5,12 +5,25 @@ import CreateSectionPreview from "../CreateSectionPreview";
 import EducationItem from "./EducationItem";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
+import { useForm, Controller } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+const { format } = require("date-fns");
 
 export default function Education({
   user,
   updateLayoutData,
   updateCompletedSection,
 }) {
+  //REACT HOOK FORM
+  const {
+    control,
+    reset,
+    handleSubmit,
+    //watch,
+    formState: { errors },
+  } = useForm();
+
   //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_educationHistoryData");
@@ -33,7 +46,9 @@ export default function Education({
   const [userEducationHistory, setUserEducationHistory] = useState(
     storage ? storage : null
   );
+  //FORM AND BUTTON ATTRIBUTES
   const [updated, setUpdated] = useState(false);
+  const [formHidden, setFormHidden] = useState(true);
 
   //FUNCTIONS TO UPDATE TEMPEDUCATIONOBJECT STATE
   const setInstitution = (e) => {
@@ -54,8 +69,8 @@ export default function Education({
       return { ...prevState, description: value };
     });
   };
-  const setDate = (e) => {
-    const value = e.target.value;
+  const setDate = (date) => {
+    const value = format(date, "yyyy-MM-dd");
     setTempEducationObject((prevState) => {
       return { ...prevState, date: value };
     });
@@ -89,7 +104,21 @@ export default function Education({
     setUserEducationHistory(tempEducationArray);
     setUpdated(false);
   };
-
+  const handleFormSubmit = () => {
+    updateTempEducationArray();
+    setFormHidden(true);
+    reset({
+      institution: "",
+      degree: "",
+    });
+  };
+  const updateFormHidden = (bool) => {
+    setFormHidden(bool);
+    reset({
+      institution: "",
+      degree: "",
+    });
+  };
   return (
     <section className="create-section education">
       <CreateSectionForm
@@ -98,43 +127,107 @@ export default function Education({
         items={tempEducationArray}
         limit={3}
         limitMessage="include up to three items"
+        formId="education"
+        formHidden={formHidden}
+        updateFormHidden={updateFormHidden}
       >
-        <input
-          placeholder="institution"
-          type="text"
-          className="input--standard"
-          onChange={setInstitution}
-        />
-        <input
-          placeholder="type of degree or certification"
-          type="text"
-          className="input--standard"
-          onChange={setDegree}
-        />
-        <input
-          placeholder="description"
-          type="text"
-          className="input--standard"
-          onChange={setDescription}
-        />
-        <input
-          placeholder="month"
-          type="date"
-          className="input--month"
-          onChange={setDate}
-        />
-        {/* <input
-          placeholder="month"
-          type="text"
-          className="input--month"
-          onChange={setGraduationMonth}
-        />
-        <input
-          placeholder="year"
-          type="text"
-          className="input--year"
-          onChange={setGraduationYear}
-        /> */}
+        <form
+          className="create__form"
+          id="education"
+          onSubmit={handleSubmit(handleFormSubmit)}
+        >
+          <Controller
+            defaultValue=""
+            control={control}
+            name="institution"
+            rules={{
+              required: "institution required",
+              maxLength: {
+                value: 50,
+                message: "maximum length 50 characters",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                {...field}
+                id="institution"
+                placeholder="institution"
+                className="input--standard"
+                onChange={(e) => {
+                  setInstitution(e);
+                  field.onChange(e);
+                }}
+              />
+            )}
+          />
+          <label htmlFor="institution">
+            {errors.institution ? null : "institution"}
+            {errors.institution && (
+              <p className="form__error">{errors.institution.message}</p>
+            )}
+          </label>
+          <Controller
+            defaultValue=""
+            control={control}
+            name="degree"
+            rules={{
+              required: "degree or certification required",
+              maxLength: {
+                value: 50,
+                message: "maximum length 50 characters",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                {...field}
+                id="degree"
+                placeholder="degree or certification"
+                className="input--standard"
+                onChange={(e) => {
+                  setDegree(e);
+                  field.onChange(e);
+                }}
+              />
+            )}
+          />
+          <label htmlFor="degree">
+            {errors.degree ? null : "degree"}
+            {errors.degree && (
+              <p className="form__error">{errors.degree.message}</p>
+            )}
+          </label>
+          <input
+            placeholder="description"
+            type="text"
+            className="input--standard"
+            onChange={setDescription}
+          />
+          <Controller
+            defaultValue=""
+            control={control}
+            name="date"
+            render={({ field }) => (
+              <DatePicker
+                id="date"
+                className="input--date"
+                value={tempEducationObject ? tempEducationObject.date : null}
+                placeholderText="enter completion date"
+                onSelect={(date) => {
+                  setDate(date);
+                  field.onChange(date);
+                }}
+              />
+            )}
+            rules={{
+              required: "completion date required",
+            }}
+          />
+          <label htmlFor="date">
+            {errors.date && (
+              <p className="form__error">{errors.date.message}</p>
+            )}
+          </label>
+        </form>
       </CreateSectionForm>
       <CreateSectionPreview>
         {tempEducationArray.length > 0

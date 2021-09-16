@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useRef } from "react";
+import useOutsideClickHandler from "../../../hooks/useOutsideClickHandler";
 
 export default function CreateSectionForm({
   children,
@@ -8,18 +9,20 @@ export default function CreateSectionForm({
   limitMessage,
   formId,
   formHidden,
-  toggleForm,
+  updateFormHidden,
 }) {
   const handleAddClick = () => {
     if (items.length >= limit) {
       alert(limitMessage);
     } else {
-      toggleForm();
+      updateFormHidden(false);
     }
   };
+  const clickArea = useRef(null);
+  useOutsideClickHandler(clickArea, () => updateFormHidden(true));
 
   return (
-    <section className="create-section__form">
+    <section className="create-section__form" ref={clickArea}>
       <h1 className="create-section__header--primary">Add {data.item}</h1>
       <button onClick={handleAddClick} className="btn--add-item">
         +
