@@ -5,12 +5,25 @@ import CreateSectionPreview from "../CreateSectionPreview";
 import WorkItem from "./WorkItem";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
+import { useForm, Controller } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+const { format } = require("date-fns");
 
 export default function WorkExperience({
   user,
   updateLayoutData,
   updateCompletedSection,
 }) {
+  //REACT HOOK FORM
+  const {
+    control,
+    reset,
+    handleSubmit,
+    //watch,
+    formState: { errors },
+  } = useForm();
+
   //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_workExperienceData");
@@ -30,32 +43,35 @@ export default function WorkExperience({
   const [userWorkExperience, setUserWorkExperience] = useState(
     storage ? storage : null
   );
+  //FORM AND BUTTON ATTRIBUTES
   const [updated, setUpdated] = useState(false);
+  const [formHidden, setFormHidden] = useState(true);
+
+  //SET OBJECT PROPERTIES ON INPUT CHANGE
   const setTitle = (e) => {
     const value = e.target.value;
     setTempWorkObject((prevState) => {
       return { ...prevState, title: value };
     });
   };
-  const setCompanyName = (e) => {
+  const setCompany = (e) => {
     const value = e.target.value;
     setTempWorkObject((prevState) => {
-      return { ...prevState, companyName: value };
+      return { ...prevState, company: value };
     });
   };
-  const setStartDate = (e) => {
-    const value = e.target.value;
+  const setStartDate = (date) => {
+    const value = format(date, "yyyy-MM-dd");
     setTempWorkObject((prevState) => {
       return { ...prevState, startDate: value };
     });
   };
-  const setEndDate = (e) => {
-    const value = e.target.value;
+  const setEndDate = (date) => {
+    const value = format(date, "yyyy-MM-dd");
     setTempWorkObject((prevState) => {
       return { ...prevState, endDate: value };
     });
   };
-
   const setDutyOne = (e) => {
     const value = e.target.value;
     setTempWorkObject((prevState) => {
@@ -75,12 +91,12 @@ export default function WorkExperience({
     });
   };
   const updateTempWorkArray = () => {
-    if (!tempWorkObject) {
-      alert("invalid entry");
-      return; //EXIT FUNCTION IF NOTHING ENTERED IN BOX
-    }
+    // if (!tempWorkObject) {
+    //   alert("invalid entry");
+    //   return; //EXIT FUNCTION IF NOTHING ENTERED IN BOX
+    // }
     const obj = tempWorkObject;
-    const id = obj.title + obj.companyName + obj.date;
+    const id = obj.title + obj.company + obj.startDate;
     if (tempWorkArray.some((obj) => obj.id === id)) {
       alert("duplicate item entered");
       return;
@@ -103,58 +119,164 @@ export default function WorkExperience({
     //setTempWorkObject(null);
     setUpdated(false);
   };
+  const handleFormSubmit = () => {
+    updateTempWorkArray();
+    setFormHidden(true);
+    reset({
+      title: "",
+      company: "",
+    });
+  };
+  const toggleForm = () => {
+    setFormHidden(!formHidden);
+  };
+
   return (
     <section className="create-section work-experience">
       <CreateSectionForm
         data={{ item: "new experience", save: "experience" }}
-        saveFunction={updateTempWorkArray}
         items={tempWorkArray}
         limit={3}
         limitMessage="include your three most relevant positions"
+        formId="work"
+        formHidden={formHidden}
+        toggleForm={toggleForm}
       >
-        <input
-          placeholder="job title"
-          type="text"
-          className="standard__input"
-          onChange={setTitle}
-        />
-        <input
-          placeholder="company name"
-          type="text"
-          className="standard__input"
-          onChange={setCompanyName}
-        />
-        from
-        <input
-          placeholder="month"
-          type="date"
-          className="date__input"
-          onChange={setStartDate}
-        />
-        <input
-          placeholder="month"
-          type="date"
-          className="date__input"
-          onChange={setEndDate}
-        />
-        <input
-          placeholder="click to add job duty"
-          type="text"
-          className="input--standard"
-          onChange={setDutyOne}
-        />
-        <input
-          placeholder="click to add job duty"
-          type="text"
-          className="input--standard"
-          onChange={setDutyTwo}
-        />
-        <input
-          placeholder="click to add job duty"
-          type="text"
-          className="input--standard"
-          onChange={setDutyThree}
-        />
+        <form
+          className="create__form"
+          id="work"
+          onSubmit={handleSubmit(handleFormSubmit)}
+        >
+          <Controller
+            defaultValue=""
+            control={control}
+            name="title"
+            rules={{
+              required: "job title required",
+              maxLength: {
+                value: 50,
+                message: "maximum length 50 characters",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                {...field}
+                id="title"
+                placeholder="job title"
+                className="input--standard"
+                onChange={(e) => {
+                  setTitle(e);
+                  field.onChange(e);
+                }}
+              />
+            )}
+          />
+          <label htmlFor="title">
+            {errors.title ? null : "title"}
+            {errors.title && (
+              <p className="form__error">{errors.title.message}</p>
+            )}
+          </label>
+          <Controller
+            defaultValue=""
+            control={control}
+            name="company"
+            rules={{
+              required: "company name required",
+              maxLength: {
+                value: 50,
+                message: "maximum length 50 characters",
+              },
+            }}
+            render={({ field }) => (
+              <input
+                {...field}
+                id="company"
+                placeholder="company name"
+                className="input--standard"
+                onChange={(e) => {
+                  setCompany(e);
+                  field.onChange(e);
+                }}
+              />
+            )}
+          />
+          <label htmlFor="company">
+            {errors.company ? null : "company"}
+            {errors.company && (
+              <p className="form__error">{errors.company.message}</p>
+            )}
+          </label>
+
+          <Controller
+            defaultValue=""
+            control={control}
+            name="startdate"
+            render={({ field }) => (
+              <DatePicker
+                id="startdate"
+                className="input--date"
+                value={tempWorkObject ? tempWorkObject.startDate : null}
+                placeholderText="enter start date"
+                onSelect={(date) => {
+                  setStartDate(date);
+                  field.onChange(date);
+                }}
+              />
+            )}
+            rules={{
+              required: "start date required",
+            }}
+          />
+          <label htmlFor="startdate">
+            {errors.startdate && (
+              <p className="form__error">{errors.startdate.message}</p>
+            )}
+          </label>
+          <Controller
+            defaultValue=""
+            control={control}
+            name="enddate"
+            render={({ field }) => (
+              <DatePicker
+                id="enddate"
+                className="input--date"
+                value={tempWorkObject ? tempWorkObject.endDate : null}
+                placeholderText="enter end date"
+                onSelect={(date) => {
+                  setEndDate(date);
+                  field.onChange(date);
+                }}
+              />
+            )}
+            rules={{
+              required: "end date required",
+            }}
+          />
+          <label htmlFor="enddate">
+            {errors.enddate && (
+              <p className="form__error">{errors.enddate.message}</p>
+            )}
+          </label>
+          <input
+            placeholder="click to add job duty"
+            type="text"
+            className="input--standard"
+            onChange={setDutyOne}
+          />
+          <input
+            placeholder="click to add job duty"
+            type="text"
+            className="input--standard"
+            onChange={setDutyTwo}
+          />
+          <input
+            placeholder="click to add job duty"
+            type="text"
+            className="input--standard"
+            onChange={setDutyThree}
+          />
+        </form>
       </CreateSectionForm>
       <CreateSectionPreview>
         {tempWorkArray.length > 0 // USING TEMPWORKARRAY SO UNSAVED ITEMS DISPLAY, COMPARE IN WORKITEM COMPONENT TO ONLY ADD DELETE BUTTON IF THEY ARE ALSO IN USERWORKEXPERIENCE
@@ -175,7 +297,7 @@ export default function WorkExperience({
         storageKey={userId + "_workExperienceData"}
         //SORTS TEMPWORKARRAY OBJECTS BY DATE DESCENDING WHICH AUTOMATICALLY
         //UPDATES INTO STATE WHEN SAVED TO LOCAL STORAGE
-        data={tempWorkArray}
+        data={sortByDate(tempWorkArray)}
         updateParentState={saveUserWorkExperience}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}

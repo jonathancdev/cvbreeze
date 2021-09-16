@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function CreateSectionForm({
   children,
@@ -6,20 +6,16 @@ export default function CreateSectionForm({
   items,
   limit,
   limitMessage,
-  saveFunction,
+  formId,
+  formHidden,
+  toggleForm,
 }) {
-  const [childrenHidden, setChildrenHidden] = useState(true);
-
   const handleAddClick = () => {
     if (items.length >= limit) {
       alert(limitMessage);
     } else {
-      setChildrenHidden(!childrenHidden);
+      toggleForm();
     }
-  };
-  const handleSaveClick = () => {
-    saveFunction();
-    setChildrenHidden(true);
   };
 
   return (
@@ -28,12 +24,18 @@ export default function CreateSectionForm({
       <button onClick={handleAddClick} className="btn--add-item">
         +
       </button>
-      {!childrenHidden ? (
+      {!formHidden ? (
         <>
-          {children.map((child) => {
+          {children}
+          {/* {children.map((child) => {
             return child;
-          })}
-          <button onClick={handleSaveClick} className="btn btn--save">
+          })} */}
+          <button
+            type="submit"
+            form={formId}
+            //onClick={handleSaveClick}
+            className="btn btn--save"
+          >
             Save {data.save}
           </button>
         </>

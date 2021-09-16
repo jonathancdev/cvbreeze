@@ -28,7 +28,7 @@ export default function WorkItem({
   return (
     <div>
       <div>
-        <span>{obj.companyName}</span>
+        <span>{obj.company}</span>
         <span>{obj.title}</span>
         <span>{obj.startDate}</span>
         {objInStorage ? (

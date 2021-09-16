@@ -54,7 +54,7 @@ export function importTestUser() {
   localStorage.setObject("BREEZEID_J4B6P12_workExperienceData", [
     {
       title: "Manager",
-      companyName: "Super Agency",
+      company: "Super Agency",
       startDate: "2017-03-01",
       endDate: "2021-07-04",
       dutyOne:

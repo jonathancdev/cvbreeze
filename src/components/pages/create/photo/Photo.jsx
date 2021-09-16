@@ -80,7 +80,7 @@ export default function Photo({
       setUserPhoto(null);
     }
   };
-  console.log(storage);
+
   return (
     <section className="create-section photo">
       <PhotoInput

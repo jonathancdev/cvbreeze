@@ -29,6 +29,7 @@ export default function Profile({
   const updateTempProfile = (value) => {
     setTempProfile(value);
     if (value.match(/^\s*\S[^]*$/)) {
+      //can't be all white space
       setUpdated(true);
     } else {
       setUpdated(false);
@@ -49,7 +50,7 @@ export default function Profile({
       updateCompletedSection(checkCompletedSections());
     }
   };
-  console.log(userId);
+
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>

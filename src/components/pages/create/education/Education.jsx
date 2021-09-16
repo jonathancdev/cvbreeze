@@ -153,7 +153,7 @@ export default function Education({
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_educationHistoryData"}
-        data={tempEducationArray}
+        data={sortByDate(tempEducationArray)}
         updateParentState={saveUserEducationHistory}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}
