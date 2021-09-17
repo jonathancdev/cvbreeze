@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { importTestUser } from "../../utilities/importTestUser";
 import { useForm, Controller } from "react-hook-form";
@@ -6,18 +6,11 @@ import { useForm, Controller } from "react-hook-form";
 export default function Signup({ logUserIn }) {
   const history = useHistory();
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors },
   } = useForm();
-  const [userInfo, setUserInfo] = useState({
-    firstName: "",
-    lastName: "",
-    profession: "",
-    password: "",
-    email: "",
-  });
+
   const loadTestUser = () => {
     importTestUser();
     logUserIn({
@@ -33,7 +26,13 @@ export default function Signup({ logUserIn }) {
     const userCount = Object.keys(localStorage).filter((item) =>
       item.includes("user_")
     ).length;
-    const obj = userInfo;
+    const obj = {
+      firstName: firstName.current.value,
+      lastName: lastName.current.value,
+      profession: profession.current.value,
+      email: email.current.value,
+      password: password.current.value,
+    };
     const id =
       "breezeId_" +
       obj.firstName[0] +
@@ -46,36 +45,11 @@ export default function Signup({ logUserIn }) {
     localStorage.setObject("user_" + (userCount + 1), obj);
     history.push("/create");
   };
-  const setFirstName = (e) => {
-    const value = e.target.value;
-    setUserInfo((prevState) => {
-      return { ...prevState, firstName: value };
-    });
-  };
-  const setLastName = (e) => {
-    const value = e.target.value;
-    setUserInfo((prevState) => {
-      return { ...prevState, lastName: value };
-    });
-  };
-  const setProfession = (e) => {
-    const value = e.target.value;
-    setUserInfo((prevState) => {
-      return { ...prevState, profession: value };
-    });
-  };
-  const setEmail = (e) => {
-    const value = e.target.value;
-    setUserInfo((prevState) => {
-      return { ...prevState, email: value };
-    });
-  };
-  const setPassword = (e) => {
-    const value = e.target.value;
-    setUserInfo((prevState) => {
-      return { ...prevState, password: value };
-    });
-  };
+  const firstName = useRef(null);
+  const lastName = useRef(null);
+  const profession = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
 
   return (
     <section className="signup">
@@ -89,41 +63,6 @@ export default function Signup({ logUserIn }) {
         className="signup__form"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
-        {/* <input
-          id="firstname"
-          placeholder="first name"
-          className="input--standard"
-          onChange={setFirstName}
-          {...register("firstname", {
-            required: "first name required",
-            pattern: {
-              value: /^[A-Za-z]+$/,
-              message: "enter a valid first name",
-            },
-          })}
-        />
-        <label htmlFor="firstname">
-          {errors.firstname ? null : "first name"}
-          {errors.firstname && (
-            <p className="form__error">{errors.firstname.message}</p>
-          )}
-        </label> */}
-        {/* <Controller
-          control={control}
-          name="firstname"
-          render={({ field }) => {
-            <input
-              {...field}
-              id="firstname"
-              placeholder="first name"
-              className="input--standard"
-              onChange={(e) => {
-                setFirstName(e);
-                field.onChange(e);
-              }}
-            />;
-          }}
-        /> */}
         <Controller
           defaultValue=""
           control={control}
@@ -138,11 +77,11 @@ export default function Signup({ logUserIn }) {
           render={({ field }) => (
             <input
               {...field}
+              ref={firstName}
               id="firstname"
               placeholder="first name"
               className="input--standard"
               onChange={(e) => {
-                setFirstName(e);
                 field.onChange(e);
               }}
             />
@@ -154,18 +93,30 @@ export default function Signup({ logUserIn }) {
             <p className="form__error">{errors.firstname.message}</p>
           )}
         </label>
-        <input
-          id="lastname"
-          placeholder="last name"
-          className="input--standard"
-          onChange={setLastName}
-          {...register("lastname", {
+
+        <Controller
+          defaultValue=""
+          control={control}
+          name="lastname"
+          rules={{
             required: "last name required",
             pattern: {
               value: /^[A-Za-z]+$/,
               message: "enter a valid last name",
             },
-          })}
+          }}
+          render={({ field }) => (
+            <input
+              {...field}
+              ref={lastName}
+              id="lastname"
+              placeholder="last name"
+              className="input--standard"
+              onChange={(e) => {
+                field.onChange(e);
+              }}
+            />
+          )}
         />
         <label htmlFor="lastname">
           {errors.lastname ? null : "last name"}
@@ -173,53 +124,88 @@ export default function Signup({ logUserIn }) {
             <p className="form__error">{errors.lastname.message}</p>
           )}
         </label>
-        <input
-          id="profession"
-          placeholder="profession"
-          className="input--standard"
-          onChange={setProfession}
-          {...register("profession", {
+        <Controller
+          defaultValue=""
+          control={control}
+          name="profession"
+          rules={{
             required: "profession required",
-          })}
+          }}
+          render={({ field }) => (
+            <input
+              {...field}
+              ref={profession}
+              id="profession"
+              placeholder="profession"
+              className="input--standard"
+              onChange={(e) => {
+                field.onChange(e);
+              }}
+            />
+          )}
         />
         <label htmlFor="profession">
-          {errors.profession ? null : "first name"}
+          {errors.profession ? null : "profession"}
           {errors.profession && (
             <p className="form__error">{errors.profession.message}</p>
           )}
         </label>
-        <input
-          id="email"
-          placeholder="email"
-          className="input--standard"
-          onChange={setEmail}
-          {...register("email", {
+
+        <Controller
+          defaultValue=""
+          control={control}
+          name="email"
+          rules={{
             required: "email required",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
               message: "Enter a valid e-mail address",
             },
-          })}
+          }}
+          render={({ field }) => (
+            <input
+              {...field}
+              ref={email}
+              id="email"
+              placeholder="email"
+              className="input--standard"
+              onChange={(e) => {
+                field.onChange(e);
+              }}
+            />
+          )}
         />
         <label htmlFor="email">
-          {errors.email ? null : "Email"}
+          {errors.email ? null : "email"}
           {errors.email && (
             <p className="form__error">{errors.email.message}</p>
           )}
         </label>
-        <input
-          id="password"
-          placeholder="password"
-          type="password"
-          className="input--standard"
-          onChange={setPassword}
-          {...register("password", {
+
+        <Controller
+          defaultValue=""
+          control={control}
+          name="password"
+          rules={{
             required: "password required",
             minLength: {
               value: 8,
               message: "password must be at least 8 characters",
             },
-          })}
+          }}
+          render={({ field }) => (
+            <input
+              {...field}
+              ref={password}
+              id="password"
+              type="password"
+              placeholder="password"
+              className="input--standard"
+              onChange={(e) => {
+                field.onChange(e);
+              }}
+            />
+          )}
         />
         <label htmlFor="password">
           {errors.password ? null : "Password"}

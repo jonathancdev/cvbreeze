@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
@@ -20,7 +20,6 @@ export default function WorkExperience({
     control,
     reset,
     handleSubmit,
-    //watch,
     formState: { errors },
   } = useForm();
 
@@ -36,9 +35,10 @@ export default function WorkExperience({
     };
     updateLayoutData(layoutData);
   }, [updateLayoutData]);
-  //WORKEXPERIENCEDATA STATE
-
-  const [tempWorkObject, setTempWorkObject] = useState(null); //UPDATES AS FORM UPDATES, GETS PUSHED TO TEMPWORKARRAY
+  //DATES FOR DATEPICKER INSTEAD OF REFS
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  //WORK EXPERIENCE STATE
   const [tempWorkArray, setTempWorkArray] = useState(storage ? storage : []); //ARRAY TO COLLECT UP TO THREE WORK EXPERIENCE OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USERWORKEXPERIENCE
   const [userWorkExperience, setUserWorkExperience] = useState(
     storage ? storage : null
@@ -47,64 +47,30 @@ export default function WorkExperience({
   const [updated, setUpdated] = useState(false);
   const [formHidden, setFormHidden] = useState(true);
 
-  //SET OBJECT PROPERTIES ON INPUT CHANGE
-  const setTitle = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, title: value };
-    });
-  };
-  const setCompany = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, company: value };
-    });
-  };
-  const setStartDate = (date) => {
-    const value = format(date, "yyyy-MM-dd");
-    setTempWorkObject((prevState) => {
-      return { ...prevState, startDate: value };
-    });
-  };
-  const setEndDate = (date) => {
-    const value = format(date, "yyyy-MM-dd");
-    setTempWorkObject((prevState) => {
-      return { ...prevState, endDate: value };
-    });
-  };
-  const setDutyOne = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, dutyOne: value };
-    });
-  };
-  const setDutyTwo = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, dutyTwo: value };
-    });
-  };
-  const setDutyThree = (e) => {
-    const value = e.target.value;
-    setTempWorkObject((prevState) => {
-      return { ...prevState, dutyThree: value };
-    });
-  };
+  //INPUT REFS
+  const title = useRef(null);
+  const company = useRef(null);
+  //dates held in useState
+  const duty1 = useRef(null);
+  const duty2 = useRef(null);
+  const duty3 = useRef(null);
+
   const updateTempWorkArray = () => {
-    // if (!tempWorkObject) {
-    //   alert("invalid entry");
-    //   return; //EXIT FUNCTION IF NOTHING ENTERED IN BOX
-    // }
-    const obj = tempWorkObject;
+    const obj = {
+      title: title.current.value,
+      company: company.current.value,
+      startDate: startDate,
+      endDate: endDate,
+      duties: [duty1.current.value, duty2.current.value, duty3.current.value],
+    };
     const id = obj.title + obj.company + obj.startDate;
     if (tempWorkArray.some((obj) => obj.id === id)) {
       alert("duplicate item entered");
       return;
     }
     setTempWorkArray((prevState) => {
-      return [...prevState, { ...tempWorkObject, id }];
+      return [...prevState, { ...obj, id }];
     });
-    setTempWorkObject(null);
     setUpdated(true);
   };
   const handleDeletedItem = (obj) => {
@@ -116,7 +82,6 @@ export default function WorkExperience({
   };
   const saveUserWorkExperience = () => {
     setUserWorkExperience(tempWorkArray);
-    //setTempWorkObject(null);
     setUpdated(false);
   };
   const handleFormSubmit = () => {
@@ -166,10 +131,10 @@ export default function WorkExperience({
               <input
                 {...field}
                 id="title"
+                ref={title}
                 placeholder="job title"
                 className="input--standard"
                 onChange={(e) => {
-                  setTitle(e);
                   field.onChange(e);
                 }}
               />
@@ -196,10 +161,10 @@ export default function WorkExperience({
               <input
                 {...field}
                 id="company"
+                ref={company}
                 placeholder="company name"
                 className="input--standard"
                 onChange={(e) => {
-                  setCompany(e);
                   field.onChange(e);
                 }}
               />
@@ -218,12 +183,17 @@ export default function WorkExperience({
             name="startdate"
             render={({ field }) => (
               <DatePicker
+                dateFormatCalendar="MMMM"
+                showYearDropdown
+                yearDropdownItemNumber={30}
+                scrollableYearDropdown
+                maxDate={new Date()}
                 id="startdate"
                 className="input--date"
-                value={tempWorkObject ? tempWorkObject.startDate : null}
+                value={startDate || null}
                 placeholderText="enter start date"
                 onSelect={(date) => {
-                  setStartDate(date);
+                  setStartDate(format(date, "yyyy-MM-dd"));
                   field.onChange(date);
                 }}
               />
@@ -243,12 +213,17 @@ export default function WorkExperience({
             name="enddate"
             render={({ field }) => (
               <DatePicker
+                dateFormatCalendar="MMMM"
+                showYearDropdown
+                yearDropdownItemNumber={30}
+                scrollableYearDropdown
+                maxDate={new Date()}
                 id="enddate"
                 className="input--date"
-                value={tempWorkObject ? tempWorkObject.endDate : null}
+                value={endDate || null}
                 placeholderText="enter end date"
                 onSelect={(date) => {
-                  setEndDate(date);
+                  setEndDate(format(date, "yyyy-MM-dd"));
                   field.onChange(date);
                 }}
               />
@@ -263,22 +238,22 @@ export default function WorkExperience({
             )}
           </label>
           <input
+            ref={duty1}
             placeholder="click to add job duty"
             type="text"
             className="input--standard"
-            onChange={setDutyOne}
           />
           <input
+            ref={duty2}
             placeholder="click to add job duty"
             type="text"
             className="input--standard"
-            onChange={setDutyTwo}
           />
           <input
+            ref={duty3}
             placeholder="click to add job duty"
             type="text"
             className="input--standard"
-            onChange={setDutyThree}
           />
         </form>
       </CreateSectionForm>

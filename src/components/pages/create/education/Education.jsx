@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
@@ -20,15 +20,12 @@ export default function Education({
     control,
     reset,
     handleSubmit,
-    //watch,
     formState: { errors },
   } = useForm();
 
   //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_educationHistoryData");
-
-  //REFS???
 
   useEffect(() => {
     const layoutData = {
@@ -38,8 +35,9 @@ export default function Education({
     };
     updateLayoutData(layoutData);
   }, [updateLayoutData]);
-
-  const [tempEducationObject, setTempEducationObject] = useState(null); //UPDATES AS FORM UPDATES, GETS PUSHED TO TEMPEDUCATIONARRAY
+  //DATES FOR DATEPICKER INSTEAD OF REFS
+  const [date, setDate] = useState(null);
+  //EDUCATION HISTORY STATE
   const [tempEducationArray, setTempEducationArray] = useState(
     storage ? storage : []
   ); //ARRAY TO COLLECT UP TO THREE EDUCATION HISOTRY OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USEREDUCATIONHISOTRY
@@ -50,47 +48,27 @@ export default function Education({
   const [updated, setUpdated] = useState(false);
   const [formHidden, setFormHidden] = useState(true);
 
-  //FUNCTIONS TO UPDATE TEMPEDUCATIONOBJECT STATE
-  const setInstitution = (e) => {
-    const value = e.target.value;
-    setTempEducationObject((prevState) => {
-      return { ...prevState, institution: value };
-    });
-  };
-  const setDegree = (e) => {
-    const value = e.target.value;
-    setTempEducationObject((prevState) => {
-      return { ...prevState, degree: value };
-    });
-  };
-  const setDescription = (e) => {
-    const value = e.target.value;
-    setTempEducationObject((prevState) => {
-      return { ...prevState, description: value };
-    });
-  };
-  const setDate = (date) => {
-    const value = format(date, "yyyy-MM-dd");
-    setTempEducationObject((prevState) => {
-      return { ...prevState, date: value };
-    });
-  };
+  //INPUT REFS
+  const institution = useRef(null);
+  const degree = useRef(null);
+  const description = useRef(null);
+  //date held in useState
 
   const updateTempEducationArray = () => {
-    if (!tempEducationObject) {
-      alert("invalid entry");
-      return; //EXIT FUNCTION IF NOTHING ENTERED IN BOX
-    }
-    const obj = tempEducationObject;
+    const obj = {
+      institution: institution.current.value,
+      degree: degree.current.value,
+      description: description.current.value,
+      date: date,
+    };
     const id = obj.institution + obj.degree + obj.date;
     if (tempEducationArray.some((obj) => obj.id === id)) {
       alert("duplicate item entered");
       return;
     }
     setTempEducationArray((prevState) => {
-      return [...prevState, { ...tempEducationObject, id }];
+      return [...prevState, { ...obj, id }];
     });
-    setTempEducationObject(null);
     setUpdated(true);
   };
   const handleDeletedItem = (obj) => {
@@ -151,10 +129,10 @@ export default function Education({
               <input
                 {...field}
                 id="institution"
+                ref={institution}
                 placeholder="institution"
                 className="input--standard"
                 onChange={(e) => {
-                  setInstitution(e);
                   field.onChange(e);
                 }}
               />
@@ -181,10 +159,10 @@ export default function Education({
               <input
                 {...field}
                 id="degree"
+                ref={degree}
                 placeholder="degree or certification"
                 className="input--standard"
                 onChange={(e) => {
-                  setDegree(e);
                   field.onChange(e);
                 }}
               />
@@ -197,10 +175,10 @@ export default function Education({
             )}
           </label>
           <input
+            ref={description}
             placeholder="description"
             type="text"
             className="input--standard"
-            onChange={setDescription}
           />
           <Controller
             defaultValue=""
@@ -208,12 +186,17 @@ export default function Education({
             name="date"
             render={({ field }) => (
               <DatePicker
+                dateFormatCalendar="MMMM"
+                showYearDropdown
+                yearDropdownItemNumber={50}
+                scrollableYearDropdown
+                maxDate={new Date()}
                 id="date"
                 className="input--date"
-                value={tempEducationObject ? tempEducationObject.date : null}
+                value={date || null}
                 placeholderText="enter completion date"
                 onSelect={(date) => {
-                  setDate(date);
+                  setDate(format(date, "yyyy-MM-dd"));
                   field.onChange(date);
                 }}
               />
