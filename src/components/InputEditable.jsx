@@ -54,7 +54,6 @@ export default function InputEditable({
   const handlePasswordToggle = () => {
     type === "password" ? setType("text") : setType("password");
   };
-  console.log(defaultValue);
   return (
     <div>
       <input

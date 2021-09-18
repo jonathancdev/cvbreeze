@@ -12,7 +12,6 @@ export default function Signin({ logUserIn }) {
   const email = useRef();
   const password = useRef();
   const handleFormSubmit = () => {
-    //history.push("/create");
     authenticate();
   };
 
@@ -28,11 +27,12 @@ export default function Signin({ logUserIn }) {
       ) {
         logUserIn(user);
         setAuthenticated(true);
+        history.push("/create");
       } else {
         setAuthenticated(false);
+        alert("sign in failed");
       }
     });
-    console.log(keys);
   };
   return (
     <section className="signin">

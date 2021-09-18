@@ -85,9 +85,6 @@ export function importTestUser() {
     },
   ]);
 
-  //userid
-  localStorage.setObject("userIdTest", "BREEZEID_J4B6P12");
-  //userInfo
   localStorage.setObject("user_test", {
     name: "Maria",
     surname: "Breeze",
@@ -95,5 +92,6 @@ export function importTestUser() {
     password: "password",
     email: "maria@cvbreeze.cv",
     userId: "BREEZEID_J4B6P12",
+    storageKey: "user_test",
   });
 }

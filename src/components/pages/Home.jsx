@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-export default function Home({ user }) {
+export default function Home({ sessionActive }) {
   return (
     <section className="home">
       <img src="" alt="" className="home__img" />
@@ -13,8 +13,11 @@ export default function Home({ user }) {
       <p className="home__text">
         Save your information for quick access anytime, anywhere
       </p>
-      <Link to={user ? "/create" : "/signup"} className="btn btn--square-blue">
-        try it free/go to cv
+      <Link
+        to={sessionActive ? "/create" : "/signup"}
+        className="btn btn--square-blue"
+      >
+        {sessionActive ? "go to CV" : "try it free!"}
       </Link>
     </section>
   );

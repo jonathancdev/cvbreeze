@@ -1,4 +1,7 @@
-account page - add ability to change name and profession, view cv, log out, delete account
+account page - add ability to change name and profession DONE,
+ view cv, DONE
+ log out, DONE
+ delete account DONE
 
 faq/contact page - create fake form
 

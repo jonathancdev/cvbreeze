@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import {
   Account,
   Create,
-  Help,
+  Contact,
   Home,
   Print,
   Signin,
@@ -23,22 +23,29 @@ function App() {
       ? localStorage.getObject("currentUser")
       : null
   );
+  const [sessionActive, setSessionActive] = useState(false);
 
   //user, authentication, and session functions
   const logUserIn = (obj) => {
     setUser(obj);
     localStorage.setObject("currentUser", obj);
+    setSessionActive(true);
   };
   const logUserOut = () => {
     setUser(null);
+    setSessionActive(false);
   };
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Layout logUserOut={logUserOut} user={user}>
+        <Layout
+          sessionActive={sessionActive}
+          logUserOut={logUserOut}
+          user={user}
+        >
           <Route exact path="/">
-            <Home user={user} />
+            <Home user={user} sessionActive={sessionActive} />
           </Route>
           <Switch>
             <Route path="/create">
@@ -52,13 +59,14 @@ function App() {
             </Route>
             <Route path="/account">
               <Account
+                sessionActive={sessionActive}
                 user={user}
                 logUserIn={logUserIn}
                 logUserOut={logUserOut}
               />
             </Route>
-            <Route path="/help">
-              <Help />
+            <Route path="/contact">
+              <Contact />
             </Route>
             <Route path="/print">
               <Print />

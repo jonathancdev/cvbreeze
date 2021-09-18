@@ -20,6 +20,7 @@ export default function Signup({ logUserIn }) {
       password: "password",
       email: "maria@cvbreeze.cv",
       userId: "BREEZEID_J4B6P12",
+      storageKey: "user_test",
     });
   };
   const handleFormSubmit = () => {
