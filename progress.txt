@@ -1,26 +1,7 @@
-to do: make sure things can be clicked/refreshed/etc with no data present
-if thigns are null - sometimes need to hide things
+account page - add ability to change name and profession, view cv, log out, delete account
 
-//check if sections are completed
-//maybe can have each section check itself, and pass that back to the create component obj
+faq/contact page - create fake form
 
+change links when signed in out (keep it simple because will prob change alot
+when styling)
 
-
-createParent {
-
-const [completedSections, setCompletedSections] = useState({
-    photo: false,
-    profile: false,
-    workexperience: false,
-    education: false,
-    skills: false,
-    contact: false
-})
-
-const updateCompletedSection = (key) => {
-    setCompletedSections((prevState) => {
-        return {...prevState, }
-    })
-}
-
-}

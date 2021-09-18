@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
+import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 export default function Profile({
   user,
   updateLayoutData,
@@ -12,14 +13,12 @@ export default function Profile({
   const storage = localStorage.getObject(userId + "_profileData");
 
   //SEND SECTION INFORMATION TO LAYOUT
-  useEffect(() => {
-    const layoutData = {
-      section: "profile",
-      headerText: "personal profile",
-      toolTip: "Profile tooltip yo lorem ipsum fuckus duckus",
-    };
-    updateLayoutData(layoutData);
-  }, [updateLayoutData]);
+  const layoutData = useRef({
+    section: "profile",
+    headerText: "Add personal profile",
+    toolTip: "Profile tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutUpdater(layoutData.current, updateLayoutData);
 
   //POFILEDATA STATE
   const [tempProfile, setTempProfile] = useState(null);

@@ -12,8 +12,13 @@ import {
   View,
   CreateLayout,
 } from "./create-index";
+import useLayoutUpdater from "../../../hooks/useLayoutUpdater";
 export default function Create({ user }) {
-  const [layoutData, setLayoutData] = useState({});
+  const [layoutData, setLayoutData] = useState({
+    section: "",
+    headerText: "",
+    toolTip: "",
+  });
   const [completedSections, setCompletedSections] = useState({});
 
   useEffect(() => {
@@ -35,12 +40,11 @@ export default function Create({ user }) {
     [setLayoutData]
   );
 
+  useLayoutUpdater(layoutData, updateLayoutData);
+
   return (
     <section className="create">
       <CreateNavbar completedSections={completedSections} />
-      <Route exact path="/create">
-        create default page text
-      </Route>
       <CreateLayout layoutData={layoutData} user={user}>
         <Switch>
           <Route path="/create/photo">

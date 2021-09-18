@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 export default function Signin({ logUserIn }) {
   const history = useHistory();
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
+  const [authenticated, setAuthenticated] = useState(false);
+  const email = useRef();
+  const password = useRef();
   const handleFormSubmit = () => {
-    history.push("/create");
+    //history.push("/create");
+    authenticate();
+  };
+
+  const authenticate = () => {
+    const keys = Object.keys(localStorage).filter((item) =>
+      item.includes("user_")
+    );
+    keys.forEach((key, i) => {
+      const user = localStorage.getObject(keys[i]);
+      if (
+        email.current.value === user.email &&
+        password.current.value === user.password
+      ) {
+        logUserIn(user);
+        setAuthenticated(true);
+      } else {
+        setAuthenticated(false);
+      }
+    });
+    console.log(keys);
   };
   return (
     <section className="signin">
@@ -21,39 +43,61 @@ export default function Signin({ logUserIn }) {
         className="signin__form"
         onSubmit={handleSubmit(handleFormSubmit)}
       >
-        <input
-          id="email"
-          placeholder="email"
-          className="input--standard"
-          {...register("email", {
+        <Controller
+          defaultValue=""
+          control={control}
+          name="email"
+          rules={{
             required: "email required",
             pattern: {
               value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
               message: "Enter a valid e-mail address",
             },
-          })}
-          // onChange={setFirstName}
+          }}
+          render={({ field }) => (
+            <input
+              {...field}
+              ref={email}
+              id="email"
+              placeholder="email"
+              className="input--standard"
+              onChange={(e) => {
+                field.onChange(e);
+              }}
+            />
+          )}
         />
-
         <label htmlFor="email">
-          {errors.email ? null : "Email"}
+          {errors.email ? null : "email"}
           {errors.email && (
             <p className="form__error">{errors.email.message}</p>
           )}
         </label>
-        <input
-          id="password"
-          placeholder="password"
-          type="password"
-          className="input--standard"
-          {...register("password", {
+
+        <Controller
+          defaultValue=""
+          control={control}
+          name="password"
+          rules={{
             required: "password required",
             minLength: {
               value: 8,
               message: "password must be at least 8 characters",
             },
-          })}
-          // onChange={setLastName}
+          }}
+          render={({ field }) => (
+            <input
+              {...field}
+              ref={password}
+              id="password"
+              type="password"
+              placeholder="password"
+              className="input--standard"
+              onChange={(e) => {
+                field.onChange(e);
+              }}
+            />
+          )}
         />
         <label htmlFor="password">
           {errors.password ? null : "Password"}

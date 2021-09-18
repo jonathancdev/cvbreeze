@@ -8,6 +8,7 @@ import sortByDate from "../../../../utilities/sortByDate";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 const { format } = require("date-fns");
 
 export default function WorkExperience({
@@ -27,14 +28,12 @@ export default function WorkExperience({
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_workExperienceData");
 
-  useEffect(() => {
-    const layoutData = {
-      section: "work experience",
-      headerText: "work experience",
-      toolTip: "Work experience tooltip yo lorem ipsum fuckus duckus",
-    };
-    updateLayoutData(layoutData);
-  }, [updateLayoutData]);
+  const layoutData = useRef({
+    section: "work experience",
+    headerText: "Add work experience",
+    toolTip: "Work experience tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutUpdater(layoutData.current, updateLayoutData);
   //DATES FOR DATEPICKER INSTEAD OF REFS
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);

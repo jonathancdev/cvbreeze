@@ -8,6 +8,7 @@ import sortByDate from "../../../../utilities/sortByDate";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 const { format } = require("date-fns");
 
 export default function Education({
@@ -27,14 +28,13 @@ export default function Education({
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_educationHistoryData");
 
-  useEffect(() => {
-    const layoutData = {
-      section: "education",
-      headerText: "education history",
-      toolTip: "Education tooltip yo lorem ipsum fuckus duckus",
-    };
-    updateLayoutData(layoutData);
-  }, [updateLayoutData]);
+  const layoutData = useRef({
+    section: "education",
+    headerText: "Add education history",
+    toolTip: "Education tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutUpdater(layoutData.current, updateLayoutData);
+
   //DATES FOR DATEPICKER INSTEAD OF REFS
   const [date, setDate] = useState(null);
   //EDUCATION HISTORY STATE

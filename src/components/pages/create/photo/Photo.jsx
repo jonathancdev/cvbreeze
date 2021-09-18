@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import PhotoInput from "./PhotoInput";
 import SaveSection from "../create-layout/SaveSection";
 import smile from "../../../../img/smile-emoticon.png";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import testUserPhoto from "../../../../img/AI_photo.jpg";
+import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 
 export default function Photo({
   user,
@@ -15,14 +16,12 @@ export default function Photo({
   const storage = localStorage.getObject(userId + "_photoData");
 
   //SEND SECTION INFORMATION TO LAYOUT
-  useEffect(() => {
-    const layoutData = {
-      section: "photo",
-      headerText: "photo",
-      toolTip: "Photo tooltip yo lorem ipsum fuckus duckus",
-    };
-    updateLayoutData(layoutData);
-  }, [updateLayoutData]);
+  const layoutData = useRef({
+    section: "photo",
+    headerText: "Add photo",
+    toolTip: "Photo tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutUpdater(layoutData.current, updateLayoutData);
 
   //PHOTODATA STATE
   const [tempPhoto, setTempPhoto] = useState(null);

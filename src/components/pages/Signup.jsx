@@ -26,12 +26,14 @@ export default function Signup({ logUserIn }) {
     const userCount = Object.keys(localStorage).filter((item) =>
       item.includes("user_")
     ).length;
+    const storageKey = "user_" + (userCount + 1);
     const obj = {
       firstName: firstName.current.value,
       lastName: lastName.current.value,
       profession: profession.current.value,
       email: email.current.value,
       password: password.current.value,
+      storageKey: storageKey,
     };
     const id =
       "breezeId_" +
@@ -42,7 +44,8 @@ export default function Signup({ logUserIn }) {
       obj.profession[0] +
       obj.profession.length;
     obj.userId = id.toUpperCase();
-    localStorage.setObject("user_" + (userCount + 1), obj);
+    localStorage.setObject(storageKey, obj);
+    logUserIn(localStorage.getObject(storageKey));
     history.push("/create");
   };
   const firstName = useRef(null);

@@ -51,7 +51,11 @@ function App() {
               <Signup logUserIn={logUserIn} />
             </Route>
             <Route path="/account">
-              <Account logUserOut={logUserOut} />
+              <Account
+                user={user}
+                logUserIn={logUserIn}
+                logUserOut={logUserOut}
+              />
             </Route>
             <Route path="/help">
               <Help />

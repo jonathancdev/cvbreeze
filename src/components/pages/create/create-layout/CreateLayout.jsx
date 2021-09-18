@@ -7,7 +7,7 @@ export default function CreateLayout({ children, layoutData, user }) {
         {user ? (
           <>
             <h1 className="create-body__header--primary">
-              Add {layoutData.headerText}
+              {layoutData.headerText}
             </h1>
             <section className="create-content">{children}</section>
           </>

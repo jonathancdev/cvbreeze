@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
+import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 
 export default function Contact({
   user,
@@ -19,14 +20,13 @@ export default function Contact({
   const inputWebsiteRef = useRef(null);
 
   //SEND SECTION INFORMATION TO LAYOUT
-  useEffect(() => {
-    const layoutData = {
-      section: "contact",
-      headerText: "contact information",
-      toolTip: "Contact tooltip yo lorem ipsum fuckus duckus",
-    };
-    updateLayoutData(layoutData);
-  }, [updateLayoutData]);
+
+  const layoutData = useRef({
+    section: "contact",
+    headerText: "Add contact information",
+    toolTip: "Contact tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutUpdater(layoutData.current, updateLayoutData);
 
   //CONTACT DATA STATE
   const [tempContactObject, setTempContactObject] = useState(

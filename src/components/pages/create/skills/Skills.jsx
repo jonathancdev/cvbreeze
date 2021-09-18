@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState, useRef } from "react";
 import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import SkillItem from "./SkillItem";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import { useForm, Controller } from "react-hook-form";
+import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 
 export default function Skills({
   user,
@@ -22,15 +23,13 @@ export default function Skills({
   //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_skillsData");
-
-  useEffect(() => {
-    const layoutData = {
-      section: "skills",
-      headerText: "relevant skills",
-      toolTip: "Skills tooltip yo lorem ipsum fuckus duckus",
-    };
-    updateLayoutData(layoutData);
-  }, [updateLayoutData]);
+  //useRef here stops useLayoutUpdater hook from causing infinite render
+  const layoutData = useRef({
+    section: "skills",
+    headerText: "Add relevant skills",
+    toolTip: "Skills tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutUpdater(layoutData.current, updateLayoutData);
 
   //const [tempSkill, setTempSkill] = useState(null);
   const [tempSkillArray, setTempSkillArray] = useState(storage ? storage : []);

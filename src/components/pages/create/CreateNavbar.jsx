@@ -7,6 +7,9 @@ export default function CreateNavbar({ completedSections }) {
       <NavLink className="create__navlink" to="/create">
         <h1 className="nav__heading-primary">create</h1>
       </NavLink>
+      <NavLink className="create__navlink" to="/account">
+        <h2 className="nav__heading-secondary">my account</h2>
+      </NavLink>
       <nav className="create__nav">
         <NavLink
           className={
