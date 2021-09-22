@@ -1,15 +1,15 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Header from "./Header";
 import Footer from "./Footer";
 export default function Layout({ children, user, sessionActive, logUserOut }) {
   return (
     <>
-      <Navbar
+      <Header
         user={user}
         sessionActive={sessionActive}
         logUserOut={logUserOut}
-      ></Navbar>
-      <main>{children}</main>
+      ></Header>
+      <main className="main">{children}</main>
       <Footer></Footer>
     </>
   );

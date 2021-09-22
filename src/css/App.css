@@ -1,0 +1,200 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  font-family: overpass;
+}
+
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-Black.ttf");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-ExtraBold.ttf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-Bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-SemiBold.ttf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-Regular.ttf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-Light.ttf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-ExtraLight.ttf");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "overpass";
+  src: url("../fonts/overpass/Overpass-Thin.ttf");
+  font-weight: 100;
+}
+.header {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+}
+.header__shape {
+  height: 100%;
+  width: 70%;
+  background-color: #829cd0;
+  border-radius: 0 0 0 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 4rem;
+  width: auto;
+}
+
+.main {
+  background-color: #fff;
+  padding: 0 2rem;
+  flex: 1;
+}
+
+.footer {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+}
+.footer__shape {
+  height: 100%;
+  width: 25%;
+  background-color: #829cd0;
+  border-radius: 5rem 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navigation__checkbox {
+  display: none;
+}
+.navigation__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5rem;
+  width: 5rem;
+  text-align: center;
+  z-index: 10;
+}
+.navigation__background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 7;
+  transition: all 0.7s ease-in-out;
+}
+.navigation__nav {
+  height: 100%;
+  width: 0;
+  opacity: 0;
+  background-color: #829cd0;
+  transition: all 0.4s cubic-bezier(0.64, 0, 0.78, 0);
+}
+.navigation__checkbox:checked ~ .navigation__background {
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #829cd0;
+  z-index: 8;
+}
+.navigation__checkbox:checked ~ .navigation__nav {
+  opacity: 1;
+  width: 100%;
+  z-index: 9;
+}
+.navigation__icon {
+  position: relative;
+}
+.navigation__icon, .navigation__icon::before, .navigation__icon::after {
+  width: 3.5rem;
+  height: 3px;
+  background-color: #fff;
+  display: inline-block;
+  transition: all 0.2s;
+}
+.navigation__icon::before, .navigation__icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+.navigation__icon::before {
+  top: -0.8rem;
+}
+.navigation__icon::after {
+  top: 0.8rem;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon {
+  background-color: transparent;
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::before {
+  top: 0;
+  transform: rotate(135deg);
+}
+.navigation__checkbox:checked + .navigation__button .navigation__icon::after {
+  top: 0;
+  transform: rotate(-135deg);
+}
+
+.home {
+  border: solid;
+  height: 100%;
+}
+.home__img {
+  height: 30rem;
+}
+
+/*# sourceMappingURL=App.css.map */

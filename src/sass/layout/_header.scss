@@ -1,0 +1,19 @@
+@use "../abstracts/" as a;
+
+.header {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  &__shape {
+    height: 100%;
+    width: 70%;
+    background-color: a.$color-blue;
+    border-radius: 0 0 0 5rem;
+    @include a.flexCenter;
+  }
+}
+
+.logo {
+  height: 4rem;
+  width: auto;
+}

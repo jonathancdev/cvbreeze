@@ -1,0 +1,82 @@
+@use "../abstracts/" as a;
+
+.navigation {
+  &__checkbox {
+    display: none;
+  }
+  &__button {
+    position: relative;
+    @include a.flexCenter;
+    height: 5rem;
+    width: 5rem;
+    text-align: center;
+    z-index: 10;
+  }
+  &__background {
+    @include a.flexCenter;
+    height: 2rem;
+    width: 2rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 7;
+    transition: all 0.7s ease-in-out;
+  }
+  &__nav {
+    height: 100%;
+    width: 0;
+    opacity: 0;
+    background-color: a.$color-blue;
+    transition: all 0.4s cubic-bezier(0.64, 0, 0.78, 0);
+  }
+  //functionality/animation
+  &__checkbox:checked ~ &__background {
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: a.$color-blue;
+    z-index: 8;
+  }
+  &__checkbox:checked ~ &__nav {
+    opacity: 1;
+    width: 100%;
+    z-index: 9;
+  }
+  //ICON
+  &__icon {
+    position: relative;
+    &,
+    &::before,
+    &::after {
+      width: 3.5rem;
+      height: 3px;
+      background-color: a.$color-white;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+    }
+    &::before {
+      top: -0.8rem;
+    }
+    &::after {
+      top: 0.8rem;
+    }
+  }
+  &__checkbox:checked + &__button &__icon {
+    background-color: transparent;
+  }
+  &__checkbox:checked + &__button &__icon::before {
+    top: 0;
+    transform: rotate(135deg);
+  }
+  &__checkbox:checked + &__button &__icon::after {
+    top: 0;
+    transform: rotate(-135deg);
+  }
+}

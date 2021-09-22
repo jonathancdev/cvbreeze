@@ -1,0 +1,6 @@
+@use "../abstracts/" as a;
+.main {
+  background-color: a.$color-white;
+  padding: a.$main-padding;
+  flex: 1;
+}

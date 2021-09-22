@@ -1,0 +1,11 @@
+@use "../abstracts/" as a;
+@use "../base/" as b;
+
+.home {
+  border: solid;
+  height: 100%;
+
+  &__img {
+    height: 30rem;
+  }
+}

@@ -1,7 +1,29 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
+  faCheckCircle,
+} from "@fortawesome/free-regular-svg-icons";
 
 export default function CreateNavbar({ completedSections }) {
+  const arrowLeftIcon = (
+    <FontAwesomeIcon
+      icon={faArrowAltCircleLeft}
+      className="arrow__icon--left"
+    />
+  );
+  const arrowRightIcon = (
+    <FontAwesomeIcon
+      icon={faArrowAltCircleRight}
+      className="arrow__icon--right"
+    />
+  );
+  const checkIcon = (
+    <FontAwesomeIcon icon={faCheckCircle} className="check__icon" />
+  );
+
   return (
     <>
       <NavLink className="create__navlink" to="/create">
@@ -11,6 +33,7 @@ export default function CreateNavbar({ completedSections }) {
         <h2 className="nav__heading-secondary">my account</h2>
       </NavLink>
       <nav className="create__nav">
+        <Link>{arrowLeftIcon}</Link>
         <NavLink
           className={
             !completedSections.photo
@@ -22,6 +45,7 @@ export default function CreateNavbar({ completedSections }) {
         >
           photo
         </NavLink>
+        {checkIcon}
 
         <NavLink
           className={
@@ -81,6 +105,7 @@ export default function CreateNavbar({ completedSections }) {
         >
           contact
         </NavLink>
+        <Link>{arrowRightIcon}</Link>
         <NavLink className="btn btn-square-blue" to="/create/view">
           view cv
         </NavLink>

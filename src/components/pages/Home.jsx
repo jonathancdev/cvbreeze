@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import homeIllustration from "../../img/home_illustration.png";
 export default function Home({ sessionActive }) {
   return (
     <section className="home">
-      <img src="" alt="" className="home__img" />
+      <img
+        src={homeIllustration}
+        alt="resume illustration"
+        className="home__img"
+      />
       <h1 className="home__heading--primary">
         An easy way to create an amazing CV
       </h1>

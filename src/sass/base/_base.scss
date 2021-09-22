@@ -1,0 +1,28 @@
+@use "../abstracts/" as a;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+html {
+  //defines 1rem
+  font-size: 62.5%;
+}
+body {
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+}
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

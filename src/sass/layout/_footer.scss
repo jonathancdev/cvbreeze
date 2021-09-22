@@ -1,0 +1,14 @@
+@use "../abstracts/" as a;
+
+.footer {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  &__shape {
+    height: 100%;
+    width: 25%;
+    background-color: a.$color-blue;
+    border-radius: 5rem 0 0 0;
+    @include a.flexCenter;
+  }
+}
