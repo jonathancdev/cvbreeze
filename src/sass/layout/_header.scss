@@ -1,19 +1,30 @@
 @use "../abstracts/" as a;
 
+//PRIMARY LAYOUT HEADER
 .header {
   height: 8rem;
   display: flex;
   justify-content: space-between;
   &__shape {
-    height: 100%;
+    height: 8rem;
     width: 70%;
     background-color: a.$color-blue;
     border-radius: 0 0 0 5rem;
-    @include a.flexCenter;
+    @include a.flexCenterRow;
   }
 }
 
 .logo {
   height: 4rem;
   width: auto;
+}
+
+//CREATE PAGE LAYOUT HEADER {
+.create-header {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: a.$color-blue;
+  padding: a.$main-padding;
 }

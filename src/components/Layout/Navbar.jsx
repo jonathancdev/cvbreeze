@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 export default function Navbar({ user, sessionActive, logUserOut }) {
   return (
-    <nav className="layout__nav navigation__nav">
+    <nav className="layout__nav">
       <Link className="layout__navlink" to="/#">
         logo
       </Link>

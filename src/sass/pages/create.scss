@@ -1,18 +1,15 @@
 @use "../abstracts/" as a;
 @use "../base/" as b;
 
-.home {
+.create {
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  &__img {
-    height: 30rem;
-    opacity: 0.75;
-  }
-  .text {
-    text-align: center;
-    padding: 0 1rem;
+  &-body {
+    height: 100%;
+    width: 100%;
+    border: solid;
   }
 }

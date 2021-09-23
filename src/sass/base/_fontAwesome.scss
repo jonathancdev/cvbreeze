@@ -1,0 +1,6 @@
+@use "../abstracts/" as a;
+
+.question__icon {
+  font-size: 4rem;
+  color: a.$color-blue-t50;
+}

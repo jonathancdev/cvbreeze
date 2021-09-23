@@ -40,40 +40,54 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Layout
-          sessionActive={sessionActive}
-          logUserOut={logUserOut}
-          user={user}
-        >
-          <Route exact path="/">
-            <Home user={user} sessionActive={sessionActive} />
+        <Route exact path="/">
+          <Home
+            user={user}
+            sessionActive={sessionActive}
+            logUserIn={logUserIn}
+            logUserOut={logUserOut}
+          />
+        </Route>
+        <Switch>
+          <Route path="/create">
+            <Create user={user} />
           </Route>
-          <Switch>
-            <Route path="/create">
-              <Create user={user} />
-            </Route>
-            <Route path="/signin">
-              <Signin logUserIn={logUserIn} />
-            </Route>
-            <Route path="/signup">
-              <Signup logUserIn={logUserIn} />
-            </Route>
-            <Route path="/account">
-              <Account
-                sessionActive={sessionActive}
-                user={user}
-                logUserIn={logUserIn}
-                logUserOut={logUserOut}
-              />
-            </Route>
-            <Route path="/contact">
-              <Contact />
-            </Route>
-            <Route path="/print">
-              <Print />
-            </Route>
-          </Switch>
-        </Layout>
+          <Route path="/signin">
+            <Signin
+              user={user}
+              sessionActive={sessionActive}
+              logUserIn={logUserIn}
+              logUserOut={logUserOut}
+            />
+          </Route>
+          <Route path="/signup">
+            <Signup
+              user={user}
+              sessionActive={sessionActive}
+              logUserIn={logUserIn}
+              logUserOut={logUserOut}
+            />
+          </Route>
+          <Route path="/account">
+            <Account
+              sessionActive={sessionActive}
+              user={user}
+              logUserIn={logUserIn}
+              logUserOut={logUserOut}
+            />
+          </Route>
+          <Route path="/contact">
+            <Contact
+              user={user}
+              sessionActive={sessionActive}
+              logUserIn={logUserIn}
+              logUserOut={logUserOut}
+            />
+          </Route>
+          <Route path="/print">
+            <Print />
+          </Route>
+        </Switch>
         {/* RENDER PRINT PAGE OUTSIDE OF LAYOUT AND STATE TO HIDE OTHER ELEMENTS WON"T BE NECESSARY */}
       </div>
     </BrowserRouter>

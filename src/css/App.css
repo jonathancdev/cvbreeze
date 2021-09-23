@@ -11,7 +11,6 @@ html {
 }
 
 body {
-  height: 100vh;
   box-sizing: border-box;
 }
 
@@ -28,6 +27,49 @@ a:visited {
 
 body {
   font-family: overpass;
+}
+
+.heading-primary {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 3rem;
+  color: #404756;
+}
+
+.heading-secondary {
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 3rem;
+  color: #404756;
+}
+
+.text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #404756;
+}
+
+.text-large {
+  font-size: 2.4rem;
+  color: rgba(64, 71, 86, 0.5);
+  font-weight: 100;
+}
+
+.margin-top-extra-small {
+  margin-top: 1.5rem;
+}
+
+.margin-top-small {
+  margin-top: 3rem;
+}
+
+.margin-top-medium {
+  margin-top: 4.5rem;
+}
+
+.question__icon {
+  font-size: 4rem;
+  color: rgba(129, 155, 207, 0.5);
 }
 
 @font-face {
@@ -70,13 +112,33 @@ body {
   src: url("../fonts/overpass/Overpass-Thin.ttf");
   font-weight: 100;
 }
+.btn, .btn:link, .btn:visited {
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.25rem;
+}
+.btn--square-blue {
+  background-color: #829cd0;
+  border-radius: 3px;
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+.btn--icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .header {
   height: 8rem;
   display: flex;
   justify-content: space-between;
 }
 .header__shape {
-  height: 100%;
+  height: 8rem;
   width: 70%;
   background-color: #829cd0;
   border-radius: 0 0 0 5rem;
@@ -90,6 +152,15 @@ body {
   width: auto;
 }
 
+.create-header {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #829cd0;
+  padding: 0 2rem;
+}
+
 .main {
   background-color: #fff;
   padding: 0 2rem;
@@ -100,15 +171,44 @@ body {
   height: 8rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .footer__shape {
-  height: 100%;
+  height: 8rem;
   width: 25%;
   background-color: #829cd0;
   border-radius: 5rem 0 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.footer .btn--icon-wrap {
+  margin-left: 3rem;
+  margin-top: 1rem;
+}
+
+.create-footer {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.create-footer__shape {
+  height: 8rem;
+  width: 40%;
+  background-color: #829cd0;
+  border-radius: 5rem 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.create-footer .heading-secondary {
+  color: #fff;
+  letter-spacing: 0.25rem;
+}
+.create-footer .btn--icon-wrap {
+  margin-left: 3rem;
+  margin-top: 1rem;
 }
 
 .navigation__checkbox {
@@ -122,46 +222,44 @@ body {
   height: 5rem;
   width: 5rem;
   text-align: center;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
   z-index: 10;
 }
 .navigation__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(90%, 90%);
+  z-index: 7;
+  transition: all 0.25s ease;
+}
+.navigation__nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 2rem;
-  width: 2rem;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 7;
-  transition: all 0.7s ease-in-out;
-}
-.navigation__nav {
-  height: 100%;
+  height: 0;
   width: 0;
   opacity: 0;
   background-color: #829cd0;
-  transition: all 0.4s cubic-bezier(0.64, 0, 0.78, 0);
 }
 .navigation__checkbox:checked ~ .navigation__background {
-  top: 0;
-  left: 0;
   height: 100vh;
   width: 100vw;
+  transform: translate(0%, 0%);
   background-color: #829cd0;
-  z-index: 8;
 }
-.navigation__checkbox:checked ~ .navigation__nav {
+.navigation__checkbox:checked ~ .navigation__background .navigation__nav {
   opacity: 1;
+  height: 100%;
   width: 100%;
-  z-index: 9;
 }
 .navigation__icon {
   position: relative;
 }
 .navigation__icon, .navigation__icon::before, .navigation__icon::after {
-  width: 3.5rem;
-  height: 3px;
+  width: 4rem;
+  height: 4px;
   background-color: #fff;
   display: inline-block;
   transition: all 0.2s;
@@ -172,10 +270,10 @@ body {
   left: 0;
 }
 .navigation__icon::before {
-  top: -0.8rem;
+  top: -1.2rem;
 }
 .navigation__icon::after {
-  top: 0.8rem;
+  top: 1.2rem;
 }
 .navigation__checkbox:checked + .navigation__button .navigation__icon {
   background-color: transparent;
@@ -190,11 +288,30 @@ body {
 }
 
 .home {
-  border: solid;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .home__img {
   height: 30rem;
+  opacity: 0.75;
+}
+.home .text {
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.create {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create-body {
+  height: 100%;
+  width: 100%;
+  border: solid;
 }
 
 /*# sourceMappingURL=App.css.map */

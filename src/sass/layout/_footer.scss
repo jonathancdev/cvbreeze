@@ -1,14 +1,44 @@
 @use "../abstracts/" as a;
 
+//PRIMARY LAYOUT FOOTER
 .footer {
   height: 8rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
   &__shape {
-    height: 100%;
+    height: 8rem;
     width: 25%;
     background-color: a.$color-blue;
     border-radius: 5rem 0 0 0;
-    @include a.flexCenter;
+    @include a.flexCenterRow;
+  }
+  .btn--icon-wrap {
+    margin-left: 3rem;
+    margin-top: 1rem;
+  }
+}
+//CREATE PAGE LAYOUT FOOTER
+.create-footer {
+  height: 8rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__shape {
+    height: 8rem;
+    width: 40%;
+    background-color: a.$color-blue;
+    border-radius: 5rem 0 0 0;
+    @include a.flexCenterRow;
+  }
+  .heading-secondary {
+    color: a.$color-white;
+    letter-spacing: a.$letter-spacing-small;
+  }
+  .btn--icon-wrap {
+    margin-left: 3rem;
+    margin-top: 1rem;
   }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+import MobileNav from "./MobileNav";
 
 export default function Navigation() {
   return (
@@ -9,7 +9,7 @@ export default function Navigation() {
         <span class="navigation__icon">&nbsp;</span>
       </label>
       <div class="navigation__background">
-        <Navbar />
+        <MobileNav />
       </div>
     </div>
   );

@@ -12,7 +12,10 @@ export default function Header({ user, sessionActive, logUserOut }) {
         logUserOut={logUserOut}
       ></Navbar>
       <div className="header__shape">
-        <img src={logo} alt="cvbreeze" className="logo" />
+        <Link to="/" className="btn--icon-wrap">
+          {" "}
+          <img src={logo} alt="cvbreeze" className="logo" />
+        </Link>
       </div>
     </section>
   );

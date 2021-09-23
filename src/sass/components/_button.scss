@@ -1,0 +1,24 @@
+@use "../abstracts/" as a;
+
+.btn {
+  &,
+  &:link,
+  &:visited {
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: a.$letter-spacing-small;
+  }
+  &--square-blue {
+    background-color: a.$color-blue;
+    border-radius: 3px;
+    color: a.$color-white;
+    padding: 1rem 1.5rem;
+  }
+  &--icon-wrap {
+    @include a.flexCenterRow;
+  }
+}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import CreateNavbar from "./CreateNavbar";
 import checkCompletedSections from "../../../utilities/checkCompletedSections";
+import CreatePageLayout from "../../layout/CreatePageLayout";
 import { Route, Switch } from "react-router-dom";
 import {
   Contact,
@@ -13,7 +14,7 @@ import {
   CreateLayout,
 } from "./create-index";
 import useLayoutUpdater from "../../../hooks/useLayoutUpdater";
-export default function Create({ user }) {
+export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
   const [layoutData, setLayoutData] = useState({
     section: "",
     headerText: "",
@@ -43,57 +44,72 @@ export default function Create({ user }) {
   useLayoutUpdater(layoutData, updateLayoutData);
 
   return (
-    <section className="create">
-      <CreateNavbar completedSections={completedSections} />
-      <CreateLayout layoutData={layoutData} user={user}>
-        <Switch>
-          <Route path="/create/photo">
-            <Photo
-              updateLayoutData={updateLayoutData}
-              updateCompletedSection={updateCompletedSection}
-              user={user}
-            />
-          </Route>
-          <Route path="/create/profile">
-            <Profile
-              updateLayoutData={updateLayoutData}
-              updateCompletedSection={updateCompletedSection}
-              user={user}
-            />
-          </Route>
-          <Route path="/create/work-experience">
-            <WorkExperience
-              updateLayoutData={updateLayoutData}
-              updateCompletedSection={updateCompletedSection}
-              user={user}
-            />
-          </Route>
-          <Route path="/create/education">
-            <Education
-              updateLayoutData={updateLayoutData}
-              updateCompletedSection={updateCompletedSection}
-              user={user}
-            />
-          </Route>
-          <Route path="/create/skills">
-            <Skills
-              updateLayoutData={updateLayoutData}
-              updateCompletedSection={updateCompletedSection}
-              user={user}
-            />
-          </Route>
-          <Route path="/create/contact">
-            <Contact
-              updateLayoutData={updateLayoutData}
-              updateCompletedSection={updateCompletedSection}
-              user={user}
-            />
-          </Route>
-          <Route exact path="/create/view">
-            <View user={user} />
-          </Route>
-        </Switch>
-      </CreateLayout>
-    </section>
+    <CreatePageLayout
+      sessionActive={sessionActive}
+      logUserOut={logUserOut}
+      user={user}
+    >
+      <section className="create">
+        <CreateLayout layoutData={layoutData} user={user}>
+          <Switch>
+            <Route exact path="/create">
+              <h1 className="heading-primary">Welcome!</h1>
+              <p className="text-large margin-top-extra-small">
+                Take a moment to explore our friend Maria's CV. See the finished
+                product by clicking 'view CV'. You can even make changes to see
+                how everything works. Sign out of her account when you are ready
+                to make an account. It's free!
+              </p>
+            </Route>
+            <Route path="/create/photo">
+              <Photo
+                updateLayoutData={updateLayoutData}
+                updateCompletedSection={updateCompletedSection}
+                user={user}
+              />
+            </Route>
+            <Route path="/create/profile">
+              <Profile
+                updateLayoutData={updateLayoutData}
+                updateCompletedSection={updateCompletedSection}
+                user={user}
+              />
+            </Route>
+            <Route path="/create/work-experience">
+              <WorkExperience
+                updateLayoutData={updateLayoutData}
+                updateCompletedSection={updateCompletedSection}
+                user={user}
+              />
+            </Route>
+            <Route path="/create/education">
+              <Education
+                updateLayoutData={updateLayoutData}
+                updateCompletedSection={updateCompletedSection}
+                user={user}
+              />
+            </Route>
+            <Route path="/create/skills">
+              <Skills
+                updateLayoutData={updateLayoutData}
+                updateCompletedSection={updateCompletedSection}
+                user={user}
+              />
+            </Route>
+            <Route path="/create/contact">
+              <Contact
+                updateLayoutData={updateLayoutData}
+                updateCompletedSection={updateCompletedSection}
+                user={user}
+              />
+            </Route>
+            <Route exact path="/create/view">
+              <View user={user} />
+            </Route>
+          </Switch>
+        </CreateLayout>
+        <CreateNavbar completedSections={completedSections} />
+      </section>
+    </CreatePageLayout>
   );
 }
