@@ -4,3 +4,32 @@
   font-size: 4rem;
   color: a.$color-blue-t50;
 }
+.icon-wrap--circle {
+  border: solid;
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  @include a.flexCenterCol;
+  color: a.$color-blue-t75;
+}
+.check__icon {
+  font-size: 1.4rem;
+}
+.carousel__navlink .icon-wrap--circle {
+  border: none;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: a.$color-light-grey;
+  height: 2.2rem;
+  width: 2.2rem;
+  color: a.$color-white;
+}
+.angle__icon--left,
+.angle__icon--right {
+  font-size: 4rem;
+  height: 75%;
+  width: 75%;
+  color: a.$color-blue-t75;
+}

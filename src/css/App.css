@@ -72,6 +72,42 @@ body {
   color: rgba(129, 155, 207, 0.5);
 }
 
+.icon-wrap--circle {
+  border: solid;
+  display: inline-block;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgba(129, 155, 207, 0.75);
+}
+
+.check__icon {
+  font-size: 1.4rem;
+}
+
+.carousel__navlink .icon-wrap--circle {
+  border: none;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  background-color: #a4abbd;
+  height: 2.2rem;
+  width: 2.2rem;
+  color: #fff;
+}
+
+.angle__icon--left,
+.angle__icon--right {
+  font-size: 4rem;
+  height: 75%;
+  width: 75%;
+  color: rgba(129, 155, 207, 0.75);
+}
+
 @font-face {
   font-family: "overpass";
   src: url("../fonts/overpass/Overpass-Black.ttf");
@@ -130,6 +166,22 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.btn--create-navlink {
+  border: solid;
+  border-width: 2.5px;
+  border-color: #829cd0;
+  border-radius: 3px;
+  color: #829cd0;
+  padding: 1rem 0.75rem;
+  margin: 0 0.25rem;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+.btn--create-navlink.active {
+  border: none;
+  background-color: rgba(129, 155, 207, 0.75);
+  color: #fff;
 }
 
 .header {
@@ -287,6 +339,48 @@ body {
   transform: rotate(-135deg);
 }
 
+.create-navbar {
+  height: 14rem;
+  width: 100%;
+}
+.create-navbar .heading-secondary {
+  color: rgba(129, 155, 207, 0.75);
+}
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.carousel__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+.carousel__gradient {
+  width: 100vw;
+  mask-image: linear-gradient(to left, transparent 0%, #fff 20%, #fff 80%, transparent 100%);
+}
+.carousel__nav {
+  padding: 1.5rem 2.5rem;
+  white-space: nowrap;
+  overflow: scroll;
+  scrollbar-width: none;
+}
+.carousel__nav::-webkit-scrollbar {
+  display: none;
+}
+.carousel__navlink {
+  position: relative;
+}
+
+.save-section {
+  border: solid;
+}
+
 .home {
   height: 100%;
   display: flex;
@@ -306,12 +400,14 @@ body {
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
 }
 .create-body {
   height: 100%;
   width: 100%;
   border: solid;
+  flex: 1;
 }
 
 /*# sourceMappingURL=App.css.map */

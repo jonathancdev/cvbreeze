@@ -50,7 +50,11 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
       user={user}
     >
       <section className="create">
-        <CreateLayout layoutData={layoutData} user={user}>
+        <CreateLayout
+          layoutData={layoutData}
+          user={user}
+          completedSections={completedSections}
+        >
           <Switch>
             <Route exact path="/create">
               <h1 className="heading-primary">Welcome!</h1>
@@ -108,7 +112,6 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
             </Route>
           </Switch>
         </CreateLayout>
-        <CreateNavbar completedSections={completedSections} />
       </section>
     </CreatePageLayout>
   );

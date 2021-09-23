@@ -1,0 +1,44 @@
+@use "../abstracts/" as a;
+.create-navbar {
+  height: 14rem;
+  width: 100%;
+
+  .heading-secondary {
+    color: a.$color-blue-t75;
+  }
+}
+
+.carousel {
+  @include a.flexCenterCol;
+  &__header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+  &__gradient {
+    width: 100vw;
+
+    mask-image: linear-gradient(
+      to left,
+      transparent 0%,
+      a.$color-white 20%,
+      a.$color-white 80%,
+      transparent 100%
+    );
+  }
+  &__nav {
+    padding: 1.5rem 2.5rem;
+    white-space: nowrap;
+    overflow: scroll;
+    scrollbar-width: none; //hide scrollbar firefox
+    //hide scrollbar chrome
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &__navlink {
+    position: relative;
+  }
+}
