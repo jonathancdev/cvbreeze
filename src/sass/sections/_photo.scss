@@ -1,5 +1,79 @@
+@use "../abstracts/" as a;
+
 .photo {
-  .user-photo {
-    height: 10rem;
+  flex: 1;
+  border: solid;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  .user-photo {
+    display: block;
+    height: 12rem;
+    border: solid;
+    border-width: 1rem;
+    border-radius: 50%;
+    border-color: a.$color-dark-grey;
+  }
+}
+.input {
+  &--standard {
+    background-color: a.$color-light-grey-t5;
+    width: 70%;
+    border-width: 1.5px;
+    border-color: a.$color-light-grey-t10;
+    font-weight: 400;
+    text-align: center;
+    &:disabled {
+      background-color: a.$color-light-grey-t10;
+    }
+  }
+  &__label {
+    display: inline-block;
+    position: relative;
+    margin-top: calc(#{a.$input-height} - (#{a.$input-height} * 2));
+    width: 70%;
+    height: a.$input-height;
+  }
+  &--hidden-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: a.$input-height;
+  }
+}
+.checkbox__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2.5rem;
+}
+.checkbox--custom {
+  @include a.flexCenterRow;
+  border: solid;
+  border-color: a.$color-dark-grey;
+  height: 3rem;
+  width: 3rem;
+  margin: 0.5rem;
+  border-radius: 50%;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 1.8rem;
+    width: 1.8rem;
+    background-color: a.$color-dark-grey;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+}
+.photo__checkbox:checked + .photo__checkbox--label .checkbox--custom::after {
+  opacity: 1;
 }

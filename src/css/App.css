@@ -49,6 +49,10 @@ body {
   color: #404756;
 }
 
+.hidden-label__text {
+  font-size: 1.8rem;
+}
+
 .text-large {
   font-size: 2.4rem;
   color: rgba(64, 71, 86, 0.5);
@@ -64,6 +68,22 @@ body {
 }
 
 .margin-top-medium {
+  margin-top: 4.5rem;
+}
+
+.margin-top-large {
+  margin-top: 6rem;
+}
+
+.margin-bottom-extra-small {
+  margin-bottom: 1.5rem;
+}
+
+.margin-bottom-small {
+  margin-bottom: 3rem;
+}
+
+.margin-bottom-medium {
   margin-top: 4.5rem;
 }
 
@@ -106,6 +126,26 @@ body {
   height: 75%;
   width: 75%;
   color: rgba(129, 155, 207, 0.75);
+}
+
+.icon-wrap--largecircle {
+  border: solid;
+  display: inline-block;
+  border-width: 1rem;
+  height: 12rem;
+  width: 12rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #829cd0;
+}
+
+.user_icon,
+.user_icon--disabled {
+  font-size: 8rem;
+  color: #829cd0;
 }
 
 @font-face {
@@ -179,9 +219,31 @@ body {
   font-weight: 400;
 }
 .btn--create-navlink.active {
+  padding: 1.5rem 0.75rem;
   border: none;
   background-color: rgba(129, 155, 207, 0.75);
   color: #fff;
+}
+.btn--delete {
+  border-color: #404756;
+  background-color: #fff;
+  border-radius: 3px;
+  color: #404756;
+  padding: 0.25rem 0.5rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.input--standard {
+  background-color: #fff;
+  height: 3.5rem;
+  width: 95%;
+  border-width: 1.5px;
+  border-color: rgba(164, 171, 189, 0.1);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: #a4abbd;
+  padding-left: 1rem;
 }
 
 .header {
@@ -340,7 +402,7 @@ body {
 }
 
 .create-navbar {
-  height: 14rem;
+  height: 12rem;
   width: 100%;
 }
 .create-navbar .heading-secondary {
@@ -362,10 +424,10 @@ body {
 }
 .carousel__gradient {
   width: 100vw;
-  mask-image: linear-gradient(to left, transparent 0%, #fff 20%, #fff 80%, transparent 100%);
+  mask-image: linear-gradient(to left, rgba(255, 255, 255, 0.301) 0%, #fff 20%, #fff 80%, rgba(255, 255, 255, 0.301) 100%);
 }
 .carousel__nav {
-  padding: 1.5rem 2.5rem;
+  padding: 2rem 2rem;
   white-space: nowrap;
   overflow: scroll;
   scrollbar-width: none;
@@ -375,10 +437,12 @@ body {
 }
 .carousel__navlink {
   position: relative;
+  scroll-snap-align: center;
 }
 
 .save-section {
   border: solid;
+  margin-top: 1rem;
 }
 
 .home {
@@ -397,17 +461,99 @@ body {
 }
 
 .create {
+  border: solid;
+  border-color: pink;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: center;
 }
 .create-body {
   height: 100%;
   width: 100%;
   border: solid;
+  border-color: blue;
   flex: 1;
+}
+
+.photo {
+  flex: 1;
+  border: solid;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.photo__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.photo .user-photo {
+  display: block;
+  height: 12rem;
+  border: solid;
+  border-width: 1rem;
+  border-radius: 50%;
+  border-color: #404756;
+}
+
+.input--standard {
+  background-color: rgba(164, 171, 189, 0.05);
+  width: 70%;
+  border-width: 1.5px;
+  border-color: rgba(164, 171, 189, 0.1);
+  font-weight: 400;
+  text-align: center;
+}
+.input--standard:disabled {
+  background-color: rgba(164, 171, 189, 0.1);
+}
+.input__label {
+  display: inline-block;
+  position: relative;
+  margin-top: calc(3.5rem - (3.5rem * 2));
+  width: 70%;
+  height: 3.5rem;
+}
+.input--hidden-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3.5rem;
+}
+
+.checkbox__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2.5rem;
+}
+
+.checkbox--custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid;
+  border-color: #404756;
+  height: 3rem;
+  width: 3rem;
+  margin: 0.5rem;
+  border-radius: 50%;
+}
+.checkbox--custom::after {
+  content: "";
+  display: block;
+  height: 1.8rem;
+  width: 1.8rem;
+  background-color: #404756;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.photo__checkbox:checked + .photo__checkbox--label .checkbox--custom::after {
+  opacity: 1;
 }
 
 /*# sourceMappingURL=App.css.map */

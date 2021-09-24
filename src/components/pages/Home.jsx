@@ -11,10 +11,10 @@ export default function Home({ user, sessionActive, logUserIn, logUserOut }) {
           alt="resume illustration"
           className="home__img margin-top-medium"
         />
-        <h1 className="heading-secondary margin-top-small">
+        <h2 className="heading-secondary margin-top-small">
           Build an incredible CV &mdash;
-        </h1>
-        <h1 className="heading-secondary">&mdash; incredibly fast</h1>
+        </h2>
+        <h2 className="heading-secondary">&mdash; incredibly fast</h2>
         <Link
           to={sessionActive ? "/create" : "/signup"}
           className="btn btn--square-blue margin-top-small"

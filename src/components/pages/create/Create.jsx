@@ -61,8 +61,8 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
               <p className="text-large margin-top-extra-small">
                 Take a moment to explore our friend Maria's CV. See the finished
                 product by clicking 'view CV'. You can even make changes to see
-                how everything works. Sign out of her account when you are ready
-                to make an account. It's free!
+                how everything works. Sign out when you are ready to make your
+                own account. It's free!
               </p>
             </Route>
             <Route path="/create/photo">
@@ -79,7 +79,7 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
                 user={user}
               />
             </Route>
-            <Route path="/create/work-experience">
+            <Route path="/create/workexperience">
               <WorkExperience
                 updateLayoutData={updateLayoutData}
                 updateCompletedSection={updateCompletedSection}

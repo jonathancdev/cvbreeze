@@ -1,0 +1,14 @@
+@use "../abstracts/" as a;
+.input {
+  &--standard {
+    background-color: a.$color-white;
+    height: a.$input-height;
+    width: 95%;
+    border-width: 1.5px;
+    border-color: a.$color-light-grey-t10;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: a.$color-light-grey;
+    padding-left: 1rem;
+  }
+}

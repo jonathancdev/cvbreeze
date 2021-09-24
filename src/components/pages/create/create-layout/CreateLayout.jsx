@@ -11,8 +11,12 @@ export default function CreateLayout({
     <>
       {user ? (
         <>
-          <h1 className="heading-secondary">{layoutData.headerText}</h1>
-          <section className="create-body margin-top-small">{children}</section>
+          <h2 className="heading-secondary margin-top-extra-small">
+            {layoutData.headerText}
+          </h2>
+          <section className="create-body margin-top-extra-small">
+            {children}
+          </section>
           <CreateNavbar completedSections={completedSections} />
         </>
       ) : (

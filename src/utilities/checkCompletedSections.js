@@ -14,7 +14,7 @@ const checkSwitch = (userId, section) => {
       if (
         storage !== null &&
         storage.filePath !== null &&
-        storage.filePath !== "click to browse files"
+        storage.filePath !== "click here to browse files"
       ) {
         completedSections.photo = true;
       } else {

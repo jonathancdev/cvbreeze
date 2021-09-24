@@ -13,7 +13,7 @@ export default function CreatePageFooter() {
         {questionIcon}
       </Link>
       <div className="create-footer__shape">
-        <h3 className="heading-secondary">view cv</h3>
+        <h2 className="heading-secondary">view cv</h2>
       </div>
     </footer>
   );

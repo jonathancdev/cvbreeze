@@ -11,7 +11,7 @@ $color-dark-grey-t50: rgba(64, 71, 86, 0.5);
 
 $color-light-grey: #a4abbd;
 $color-light-grey-t10: rgba(164, 171, 189, 0.1);
-$color-light-grey-t10: rgba(164, 171, 189, 0.05);
+$color-light-grey-t5: rgba(164, 171, 189, 0.05);
 
 $color-light-red: #d08896;
 $color-light-red-t50: rgba(208, 136, 150, 0.5);
@@ -23,3 +23,6 @@ $main-padding: 0 2rem;
 
 //letter spacing
 $letter-spacing-small: 0.25rem;
+
+//element heights
+$input-height: 3.5rem;

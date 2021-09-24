@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import PhotoInput from "./PhotoInput";
 import SaveSection from "../create-layout/SaveSection";
-import smile from "../../../../img/smile-emoticon.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserAlt, faUserAltSlash } from "@fortawesome/free-solid-svg-icons";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import testUserPhoto from "../../../../img/AI_photo.jpg";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
@@ -11,6 +12,11 @@ export default function Photo({
   updateLayoutData,
   updateCompletedSection,
 }) {
+  //FONTAWESOME
+  const userIcon = <FontAwesomeIcon icon={faUserAlt} className="user_icon" />;
+  const userIconDisabled = (
+    <FontAwesomeIcon icon={faUserAltSlash} className="user_icon--disabled" />
+  );
   //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
   const storage = localStorage.getObject(userId + "_photoData");
@@ -63,7 +69,7 @@ export default function Photo({
       setIncludeUserPhoto(false);
       setUpdated(true);
     } else {
-      setFilePath("click to browse files");
+      setFilePath("click here to browse files");
       setIncludeUserPhoto(true);
       setUpdated(true);
     }
@@ -77,40 +83,58 @@ export default function Photo({
       updateCompletedSection(checkCompletedSections());
       setFilePath(null);
       setUserPhoto(null);
+      setTempPhoto(null);
     }
   };
 
   return (
     <section className="create-section photo">
-      <PhotoInput
-        filePath={filePath || "click to browse files"}
-        updateFilePath={updateFilePath}
-        updateUserPhoto={updateTempPhoto}
-        includeUserPhoto={includeUserPhoto}
-      />
-      <img
-        src={
-          includeUserPhoto
-            ? userPhoto !== "test user"
-              ? userPhoto
-              : testUserPhoto || tempPhoto || smile
-            : smile
-        }
-        alt="user"
-      />
-      <label className="photo__checkbox--label" htmlFor="photo__checkbox">
-        Check this box if you prefer not to include a photo
-      </label>
-      <input
-        onChange={handleCheckboxClick}
-        type="checkbox"
-        className="photo__checkbox"
-        id="photo__checkbox"
-        checked={!includeUserPhoto}
-      />
-      <button onClick={handleDelete} className="btn btn--delete">
-        delete
-      </button>
+      <div className="photo__container margin-top-extra-small margin-bottom-extra-small">
+        {includeUserPhoto ? (
+          userPhoto || tempPhoto ? (
+            <img
+              className="user-photo"
+              src={
+                userPhoto === "test user"
+                  ? testUserPhoto
+                  : userPhoto || tempPhoto
+              }
+            />
+          ) : (
+            <div className="icon-wrap--largecircle">{userIcon}</div>
+          )
+        ) : (
+          <div className="icon-wrap--largecircle">{userIconDisabled}</div>
+        )}
+        <PhotoInput
+          filePath={filePath || "click here to browse files"}
+          updateFilePath={updateFilePath}
+          updateTempPhoto={updateTempPhoto}
+          includeUserPhoto={includeUserPhoto}
+          tempPhoto={tempPhoto}
+        />
+        <button
+          onClick={handleDelete}
+          className="btn btn--delete margin-top-extra-small"
+        >
+          delete
+        </button>
+      </div>
+
+      <div className="checkbox__container">
+        <input
+          hidden
+          onChange={handleCheckboxClick}
+          type="checkbox"
+          className="photo__checkbox"
+          id="photo__checkbox"
+          checked={!includeUserPhoto}
+        />
+        <label className="photo__checkbox--label" htmlFor="photo__checkbox">
+          <div className="checkbox--custom"></div>
+        </label>
+        <p className="hidden-label__text">continue without photo</p>
+      </div>
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_photoData"}
