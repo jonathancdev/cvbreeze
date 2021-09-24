@@ -22,14 +22,14 @@
 
     mask-image: linear-gradient(
       to left,
-      transparent 0%,
+      rgba(255, 255, 255, 0.301) 0%,
       a.$color-white 20%,
       a.$color-white 80%,
-      transparent 100%
+      rgba(255, 255, 255, 0.301) 100%
     );
   }
   &__nav {
-    padding: 1.5rem 2.5rem;
+    padding: 2rem 2rem;
     white-space: nowrap;
     overflow: scroll;
     scrollbar-width: none; //hide scrollbar firefox
@@ -37,8 +37,11 @@
     &::-webkit-scrollbar {
       display: none;
     }
+    //scroll-snap-type: x mandatory;
+    //scroll-padding: 50%;
   }
   &__navlink {
     position: relative;
+    scroll-snap-align: center;
   }
 }
