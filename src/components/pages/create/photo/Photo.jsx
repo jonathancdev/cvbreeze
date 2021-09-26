@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
 import PhotoInput from "./PhotoInput";
 import SaveSection from "../create-layout/SaveSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,9 +13,9 @@ export default function Photo({
   updateCompletedSection,
 }) {
   //FONTAWESOME
-  const userIcon = <FontAwesomeIcon icon={faUserAlt} className="user_icon" />;
+  const userIcon = <FontAwesomeIcon icon={faUserAlt} className="user__icon" />;
   const userIconDisabled = (
-    <FontAwesomeIcon icon={faUserAltSlash} className="user_icon--disabled" />
+    <FontAwesomeIcon icon={faUserAltSlash} className="user__icon--disabled" />
   );
   //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
@@ -24,8 +24,12 @@ export default function Photo({
   //SEND SECTION INFORMATION TO LAYOUT
   const layoutData = useRef({
     section: "photo",
-    headerText: "Add photo",
+    headerText: "Photo",
     toolTip: "Photo tooltip yo lorem ipsum fuckus duckus",
+  });
+
+  useLayoutEffect(() => {
+    updateLayoutData(layoutData.current);
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
 
@@ -113,12 +117,14 @@ export default function Photo({
           includeUserPhoto={includeUserPhoto}
           tempPhoto={tempPhoto}
         />
-        <button
-          onClick={handleDelete}
-          className="btn btn--delete margin-top-extra-small"
-        >
-          delete
-        </button>
+        {userPhoto ? (
+          <button
+            onClick={handleDelete}
+            className="btn btn--delete margin-top-extra-small"
+          >
+            delete
+          </button>
+        ) : null}
       </div>
 
       <div className="checkbox__container">

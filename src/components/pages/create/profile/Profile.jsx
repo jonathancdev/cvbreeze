@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useLayoutEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
@@ -15,8 +15,11 @@ export default function Profile({
   //SEND SECTION INFORMATION TO LAYOUT
   const layoutData = useRef({
     section: "profile",
-    headerText: "Add personal profile",
+    headerText: "Personal profile",
     toolTip: "Profile tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutEffect(() => {
+    updateLayoutData(layoutData.current);
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
 
@@ -30,7 +33,7 @@ export default function Profile({
     if (value.match(/^\s*\S[^]*$/)) {
       //can't be all white space
       setUpdated(true);
-    } else {
+    } else if (!value.match(/^\s*\S[^]*$/) && !userProfile) {
       setUpdated(false);
     }
   };
@@ -54,18 +57,23 @@ export default function Profile({
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>
       <AutoTextArea
-        className="profile__textarea"
-        placeholder="click to edit profile"
+        className="profile__textarea margin-bottom-small"
+        placeholder="click to add profile"
         update={updateTempProfile}
         userText={userProfile}
       />
-      <button onClick={handleDelete} className="btn btn--delete">
-        delete
-      </button>
+      {userProfile ? (
+        <button
+          onClick={handleDelete}
+          className="btn btn--delete margin-bottom-large"
+        >
+          delete
+        </button>
+      ) : null}
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_profileData"}
-        data={{ profile: tempProfile }}
+        data={tempProfile}
         updateParentState={saveUserProfile}
         updateCompletedSection={updateCompletedSection}
         disableButton={!updated}

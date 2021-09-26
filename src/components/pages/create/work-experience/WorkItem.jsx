@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import truncateString from "../../../../utilities/truncateString";
 
 export default function WorkItem({
   obj,
@@ -26,19 +27,31 @@ export default function WorkItem({
     }
   };
   return (
-    <div>
-      <div>
-        <span>{obj.company}</span>
-        <span>{obj.title}</span>
-        <span>{obj.startDate}</span>
-        {objInStorage ? (
-          <button id={obj.id} onClick={handleDeletedWorkItem}>
-            delete
-          </button>
-        ) : (
-          "not saved"
-        )}
+    <div className="work__item preview__item">
+      <div className="work__item--heading">
+        <p>{truncateString(obj.title, 15, "...")}&nbsp;</p>
+        <p>at {truncateString(obj.company, 15, "...")}</p>
       </div>
+      <div className="work__item--dates">
+        <p>from&nbsp;{obj.startDate}&nbsp;</p>
+        <p>to&nbsp;{obj.endDate}</p>
+      </div>
+      <ul className="duties__list">
+        <li className="duty">{truncateString(obj.dutyOne, 40, "...")}</li>
+        <li className="duty">{truncateString(obj.dutyTwo, 40, "...")}</li>
+        <li className="duty">{truncateString(obj.dutyThree, 40, "...")}</li>
+      </ul>
+      {objInStorage ? (
+        <button
+          className="btn btn--delete-item"
+          id={obj.id}
+          onClick={handleDeletedWorkItem}
+        >
+          delete
+        </button>
+      ) : (
+        <p className="save__warning">not saved</p>
+      )}
     </div>
   );
 }

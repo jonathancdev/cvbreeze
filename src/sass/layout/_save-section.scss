@@ -1,4 +1,13 @@
+@use "../abstracts/" as a;
+
 .save-section {
-  border: solid;
-  margin-top: 1rem;
+  margin-top: 2rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.save__text {
+  font-size: 1.4rem;
+  font-weight: 300;
 }

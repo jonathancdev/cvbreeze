@@ -37,7 +37,7 @@ export default function SaveSection({
       <button
         disabled={disableButton}
         onClick={handleClick}
-        className="save__btn btn--square"
+        className="btn--save-section btn"
       >
         save
       </button>

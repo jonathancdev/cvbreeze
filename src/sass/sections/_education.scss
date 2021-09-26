@@ -1,0 +1,11 @@
+@use "../abstracts/" as a;
+
+.education {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .input--date {
+    width: 45%;
+  }
+}

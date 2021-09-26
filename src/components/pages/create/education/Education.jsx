@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useLayoutEffect, useState, useRef } from "react";
 import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
@@ -30,8 +30,11 @@ export default function Education({
 
   const layoutData = useRef({
     section: "education",
-    headerText: "Add education history",
+    headerText: "Education history",
     toolTip: "Education tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutEffect(() => {
+    updateLayoutData(layoutData.current);
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
 
@@ -114,102 +117,116 @@ export default function Education({
           id="education"
           onSubmit={handleSubmit(handleFormSubmit)}
         >
-          <Controller
-            defaultValue=""
-            control={control}
-            name="institution"
-            rules={{
-              required: "institution required",
-              maxLength: {
-                value: 50,
-                message: "maximum length 50 characters",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                id="institution"
-                ref={institution}
-                placeholder="institution"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="institution">
-            {errors.institution ? null : "institution"}
-            {errors.institution && (
-              <p className="form__error">{errors.institution.message}</p>
-            )}
-          </label>
-          <Controller
-            defaultValue=""
-            control={control}
-            name="degree"
-            rules={{
-              required: "degree or certification required",
-              maxLength: {
-                value: 50,
-                message: "maximum length 50 characters",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                id="degree"
-                ref={degree}
-                placeholder="degree or certification"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="degree">
-            {errors.degree ? null : "degree"}
-            {errors.degree && (
-              <p className="form__error">{errors.degree.message}</p>
-            )}
-          </label>
-          <input
-            ref={description}
-            placeholder="description"
-            type="text"
-            className="input--standard"
-          />
-          <Controller
-            defaultValue=""
-            control={control}
-            name="date"
-            render={({ field }) => (
-              <DatePicker
-                dateFormatCalendar="MMMM"
-                showYearDropdown
-                yearDropdownItemNumber={50}
-                scrollableYearDropdown
-                maxDate={new Date()}
-                id="date"
-                className="input--date"
-                value={date || null}
-                placeholderText="enter completion date"
-                onSelect={(date) => {
-                  setDate(format(date, "yyyy-MM-dd"));
-                  field.onChange(date);
-                }}
-              />
-            )}
-            rules={{
-              required: "completion date required",
-            }}
-          />
-          <label htmlFor="date">
-            {errors.date && (
-              <p className="form__error">{errors.date.message}</p>
-            )}
-          </label>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="institution"
+              rules={{
+                required: "institution required",
+                maxLength: {
+                  value: 50,
+                  message: "maximum length 50 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="institution"
+                  ref={institution}
+                  placeholder="institution"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="institution" className="visuallyhidden">
+              institution
+            </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.institution ? errors.institution.message : ""}
+            </p>
+          </div>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="degree"
+              rules={{
+                required: "degree or certification required",
+                maxLength: {
+                  value: 50,
+                  message: "maximum length 50 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="degree"
+                  ref={degree}
+                  placeholder="degree or certification"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="degree" className="visuallyhidden">
+              degree
+            </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.degree ? errors.degree.message : ""}
+            </p>
+          </div>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="date"
+              render={({ field }) => (
+                <DatePicker
+                  dateFormatCalendar="MMMM"
+                  showYearDropdown
+                  yearDropdownItemNumber={50}
+                  scrollableYearDropdown
+                  maxDate={new Date()}
+                  id="date"
+                  className="input--date"
+                  value={date || null}
+                  placeholderText="date completed"
+                  onSelect={(date) => {
+                    setDate(format(date, "yyyy-MM-dd"));
+                    field.onChange(date);
+                  }}
+                />
+              )}
+              rules={{
+                required: "date required",
+              }}
+            />
+            <label htmlFor="date" className="visuallyhidden">
+              date
+            </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.date ? errors.date.message : ""}
+            </p>
+          </div>
+          <div className="form__element">
+            <input
+              ref={description}
+              placeholder="description"
+              type="text"
+              className="input--standard"
+              maxLength="150"
+            />
+            <p className="form__error">&nbsp;</p>
+          </div>
         </form>
       </CreateSectionForm>
       <CreateSectionPreview>

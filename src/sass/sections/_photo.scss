@@ -1,8 +1,6 @@
 @use "../abstracts/" as a;
 
 .photo {
-  flex: 1;
-  border: solid;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -20,34 +18,35 @@
     border-radius: 50%;
     border-color: a.$color-dark-grey;
   }
-}
-.input {
-  &--standard {
-    background-color: a.$color-light-grey-t5;
-    width: 70%;
-    border-width: 1.5px;
-    border-color: a.$color-light-grey-t10;
-    font-weight: 400;
-    text-align: center;
-    &:disabled {
-      background-color: a.$color-light-grey-t10;
+  .input {
+    &--standard {
+      background-color: a.$color-light-grey-t5;
+      width: 70%;
+      border-width: 1.5px;
+      border-color: a.$color-light-grey-t10;
+      font-weight: 400;
+      text-align: center;
+      &:disabled {
+        background-color: a.$color-light-grey-t10;
+      }
+    }
+    &__label {
+      display: inline-block;
+      position: relative;
+      margin-top: calc(#{a.$input-height} - (#{a.$input-height} * 2));
+      width: 70%;
+      height: a.$input-height;
+    }
+    &--hidden-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: a.$input-height;
     }
   }
-  &__label {
-    display: inline-block;
-    position: relative;
-    margin-top: calc(#{a.$input-height} - (#{a.$input-height} * 2));
-    width: 70%;
-    height: a.$input-height;
-  }
-  &--hidden-layer {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: a.$input-height;
-  }
 }
+
 .checkbox__container {
   display: flex;
   align-items: center;

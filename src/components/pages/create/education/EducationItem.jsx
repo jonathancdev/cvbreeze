@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import truncateString from "../../../../utilities/truncateString";
 
 export default function EducationItem({
   obj,
@@ -24,20 +25,32 @@ export default function EducationItem({
       handleDeletedItem(educationArray);
     }
   };
+  console.log(obj);
   return (
-    <div>
-      <div>
-        <span>{obj.institution}</span>
-        <span>{obj.degree}</span>
-        <span>{obj.date}</span>
-        {objInStorage ? (
-          <button id={obj.id} onClick={handleDeletedEducationItem}>
-            delete
-          </button>
-        ) : (
-          "not saved"
-        )}
+    <div className="education__item preview__item">
+      <div className="work__item--heading">
+        <p>
+          {truncateString(obj.degree + " from " + obj.institution, 35, "...")}
+          &nbsp;
+        </p>
       </div>
+      <div className="education__item--dates">
+        <p>completed&nbsp;{obj.date}</p>
+      </div>
+      <p className="description">
+        {truncateString(obj.description, 110, "...")}
+      </p>
+      {objInStorage ? (
+        <button
+          className="btn btn--delete-item"
+          id={obj.id}
+          onClick={handleDeletedEducationItem}
+        >
+          delete
+        </button>
+      ) : (
+        <p className="save__warning">not saved</p>
+      )}
     </div>
   );
 }

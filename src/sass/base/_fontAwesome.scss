@@ -44,12 +44,12 @@
   @include a.flexCenterCol;
   color: a.$color-blue;
 }
-.user_icon,
-.user_icon--disabled {
+.user__icon,
+.user__icon--disabled {
   font-size: 8rem;
   color: a.$color-blue;
 }
-.user_icon {
-  &--disabled {
-  }
+.plus__icon {
+  color: a.$color-dark-grey;
+  margin-left: 1rem;
 }

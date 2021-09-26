@@ -133,6 +133,9 @@ export default function CreateNavbar({ completedSections }) {
               to="/create/workexperience"
             >
               work experience
+              {completedSections.workExperience && (
+                <div className="icon-wrap--circle">{checkIcon}</div>
+              )}
             </NavLink>
 
             <NavLink
@@ -145,6 +148,9 @@ export default function CreateNavbar({ completedSections }) {
               to="/create/education"
             >
               education
+              {completedSections.educationHistory && (
+                <div className="icon-wrap--circle">{checkIcon}</div>
+              )}
             </NavLink>
 
             <NavLink
@@ -157,6 +163,9 @@ export default function CreateNavbar({ completedSections }) {
               to="/create/skills"
             >
               skills
+              {completedSections.skills && (
+                <div className="icon-wrap--circle">{checkIcon}</div>
+              )}
             </NavLink>
             <NavLink
               className={
@@ -168,6 +177,9 @@ export default function CreateNavbar({ completedSections }) {
               to="/create/contact"
             >
               contact
+              {completedSections.contact && (
+                <div className="icon-wrap--circle">{checkIcon}</div>
+              )}
             </NavLink>
           </div>
         </div>

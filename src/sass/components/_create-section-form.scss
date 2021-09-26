@@ -1,0 +1,67 @@
+@use "../abstracts/" as a;
+.create-section__form {
+  position: absolute;
+  bottom: 4rem;
+  width: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: a.$color-white;
+  overflow: scroll;
+  z-index: 2;
+  &.open {
+    width: 100%;
+    top: 0rem;
+    left: 0;
+    transform: translate(0);
+    background-color: a.$color-white;
+  }
+  .form__header {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: auto;
+  }
+  .heading-tertiary {
+    display: inline-block;
+    margin-right: 1rem;
+    margin-top: 3px;
+  }
+}
+
+//actual form is passed as children to this in each section
+.create__form {
+  @include a.flexCenterCol;
+  background-color: a.$color-white;
+}
+.form__dates {
+  width: 95%;
+  display: flex;
+  //   .enddate {
+  //     //move datepicker over to line up, not fighting package css
+  //     margin-left: 0%;
+  //   }
+}
+.input--date {
+  width: 90%;
+}
+.form__element {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.form__error {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  margin-left: 1.2rem;
+  font-size: 1.2rem;
+  color: a.$color-light-red;
+  //   &.startdate {
+  //     margin-left: 2.5rem;
+  //   }
+  //   &.enddate {
+  //     margin-left: 2.5rem;
+  //   }
+}

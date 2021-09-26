@@ -1,0 +1,22 @@
+@use "../abstracts/" as a;
+
+.education__item {
+  position: relative;
+  &--heading {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 200;
+    color: a.$color-dark-grey;
+  }
+  &--dates {
+    display: flex;
+    font-size: 1.4rem;
+    color: a.$color-dark-grey;
+    font-weight: 200;
+  }
+  .description {
+    width: 85%;
+    color: a.$color-dark-grey-t50;
+  }
+}

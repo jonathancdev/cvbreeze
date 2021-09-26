@@ -1,4 +1,16 @@
 @use "../abstracts/" as a;
+
+textarea {
+  border-radius: 3px;
+  border-width: 1.5px;
+  border-color: a.$color-light-grey-t10;
+  width: 95%;
+  font-family: overpass;
+  font-size: 1.6rem;
+  font-weight: 200;
+  color: a.$color-dark-grey;
+  padding: 0.5rem 1rem;
+}
 .input {
   &--standard {
     background-color: a.$color-white;
@@ -10,5 +22,19 @@
     font-weight: 300;
     color: a.$color-light-grey;
     padding-left: 1rem;
+  }
+  &--date {
+    background-color: a.$color-white;
+    height: a.$input-height;
+    width: 100%;
+    border-width: 1.5px;
+    border-color: a.$color-light-grey-t10;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: a.$color-light-grey;
+    padding-left: 1rem;
+  }
+  &--optional {
+    margin-bottom: 1.75rem;
   }
 }

@@ -2,8 +2,6 @@
 @use "../base/" as b;
 
 .create {
-  border: solid;
-  border-color: pink;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -11,8 +9,10 @@
   &-body {
     height: 100%;
     width: 100%;
-    border: solid;
-    border-color: blue;
+
     flex: 1;
   }
+}
+.create-section {
+  position: relative;
 }

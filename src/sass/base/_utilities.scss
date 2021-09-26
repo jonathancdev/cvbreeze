@@ -22,5 +22,21 @@
 }
 
 .margin-bottom-medium {
-  margin-top: 4.5rem;
+  margin-bottom: 4.5rem;
+}
+
+.margin-bottom-large {
+  margin-bottom: 6rem;
+}
+
+//hide things but keep screen reader accessability
+.visuallyhidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }

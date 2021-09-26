@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
@@ -23,8 +23,11 @@ export default function Contact({
 
   const layoutData = useRef({
     section: "contact",
-    headerText: "Add contact information",
+    headerText: "Contact information",
     toolTip: "Contact tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutEffect(() => {
+    updateLayoutData(layoutData.current);
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
 

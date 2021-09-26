@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useLayoutEffect, useState, useRef } from "react";
 import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
@@ -26,8 +26,11 @@ export default function Skills({
   //useRef here stops useLayoutUpdater hook from causing infinite render
   const layoutData = useRef({
     section: "skills",
-    headerText: "Add relevant skills",
+    headerText: "Relevant skills",
     toolTip: "Skills tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutEffect(() => {
+    updateLayoutData(layoutData.current);
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
 
@@ -92,7 +95,7 @@ export default function Skills({
   return (
     <section className="create-section skills">
       <CreateSectionForm
-        data={{ item: "skill", save: "skill" }}
+        data={{ item: "new skill", save: "skill" }}
         saveFunction={updateTempSkillArray}
         items={tempSkillArray}
         limit={8}
@@ -106,36 +109,39 @@ export default function Skills({
           id="skill"
           onSubmit={handleSubmit(handleFormSubmit)}
         >
-          <Controller
-            defaultValue=""
-            control={control}
-            name="skill"
-            rules={{
-              required: "enter skill",
-              maxLength: {
-                value: 50,
-                message: "maximum length 50 characters",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                id="skill"
-                ref={skill}
-                placeholder="enter skill"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="skill">
-            {errors.skill ? null : "skill"}
-            {errors.skill && (
-              <p className="form__error">{errors.skill.message}</p>
-            )}
-          </label>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="skill"
+              rules={{
+                required: "enter skill",
+                maxLength: {
+                  value: 50,
+                  message: "maximum length 50 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="skill"
+                  ref={skill}
+                  placeholder="enter skill"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="skill" className="visuallyhidden">
+              skill
+            </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.skill ? errors.skill.message : ""}
+            </p>
+          </div>
           <>
             {/* NEEDS AN EMPTY ELEMENT BECAUSE COMPONENT CAN'T .MAP ONLY ONE */}
           </>

@@ -20,18 +20,22 @@ export default function SkillItem({ obj, userSkills, handleDeletedItem }) {
     }
   };
   return (
-    <div>
-      <div>
-        <span>{obj.skill}</span>
-
-        {objInStorage ? (
-          <button id={obj.id} onClick={handleDeletedSkillItem}>
-            delete
-          </button>
-        ) : (
-          "not saved"
-        )}
+    <div className="skill__item preview__item">
+      <div className="skill__item--heading">
+        <p>{obj.skill}&nbsp;</p>
       </div>
+
+      {objInStorage ? (
+        <button
+          className="btn btn--delete-item"
+          id={obj.id}
+          onClick={handleDeletedSkillItem}
+        >
+          delete
+        </button>
+      ) : (
+        <p className="save__warning">not saved</p>
+      )}
     </div>
   );
 }

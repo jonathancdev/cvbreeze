@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useLayoutEffect, useState, useRef } from "react";
 import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
@@ -30,8 +30,11 @@ export default function WorkExperience({
 
   const layoutData = useRef({
     section: "work experience",
-    headerText: "Add work experience",
+    headerText: "Work experience",
     toolTip: "Work experience tooltip yo lorem ipsum fuckus duckus",
+  });
+  useLayoutEffect(() => {
+    updateLayoutData(layoutData.current);
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
   //DATES FOR DATEPICKER INSTEAD OF REFS
@@ -50,9 +53,9 @@ export default function WorkExperience({
   const title = useRef(null);
   const company = useRef(null);
   //dates held in useState
-  const duty1 = useRef(null);
-  const duty2 = useRef(null);
-  const duty3 = useRef(null);
+  const dutyOne = useRef(null);
+  const dutyTwo = useRef(null);
+  const dutyThree = useRef(null);
 
   const updateTempWorkArray = () => {
     const obj = {
@@ -60,7 +63,9 @@ export default function WorkExperience({
       company: company.current.value,
       startDate: startDate,
       endDate: endDate,
-      duties: [duty1.current.value, duty2.current.value, duty3.current.value],
+      dutyOne: dutyOne.current.value,
+      dutyTwo: dutyTwo.current.value,
+      dutyThree: dutyThree.current.value,
     };
     const id = obj.title + obj.company + obj.startDate;
     if (tempWorkArray.some((obj) => obj.id === id)) {
@@ -97,10 +102,12 @@ export default function WorkExperience({
       title: "",
       company: "",
     });
+    setStartDate(null);
+    setEndDate(null);
   };
 
   return (
-    <section className="create-section work-experience">
+    <section className="create-section workexperience">
       <CreateSectionForm
         data={{ item: "new experience", save: "experience" }}
         items={tempWorkArray}
@@ -115,145 +122,245 @@ export default function WorkExperience({
           id="work"
           onSubmit={handleSubmit(handleFormSubmit)}
         >
-          <Controller
-            defaultValue=""
-            control={control}
-            name="title"
-            rules={{
-              required: "job title required",
-              maxLength: {
-                value: 50,
-                message: "maximum length 50 characters",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                id="title"
-                ref={title}
-                placeholder="job title"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="title">
-            {errors.title ? null : "title"}
-            {errors.title && (
-              <p className="form__error">{errors.title.message}</p>
-            )}
-          </label>
-          <Controller
-            defaultValue=""
-            control={control}
-            name="company"
-            rules={{
-              required: "company name required",
-              maxLength: {
-                value: 50,
-                message: "maximum length 50 characters",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                id="company"
-                ref={company}
-                placeholder="company name"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="company">
-            {errors.company ? null : "company"}
-            {errors.company && (
-              <p className="form__error">{errors.company.message}</p>
-            )}
-          </label>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="title"
+              rules={{
+                required: "job title required",
+                maxLength: {
+                  value: 50,
+                  message: "maximum length 50 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="title"
+                  ref={title}
+                  placeholder="job title"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="title" className="visuallyhidden">
+              title
+            </label>
 
-          <Controller
-            defaultValue=""
-            control={control}
-            name="startdate"
-            render={({ field }) => (
-              <DatePicker
-                dateFormatCalendar="MMMM"
-                showYearDropdown
-                yearDropdownItemNumber={30}
-                scrollableYearDropdown
-                maxDate={new Date()}
-                id="startdate"
-                className="input--date"
-                value={startDate || null}
-                placeholderText="enter start date"
-                onSelect={(date) => {
-                  setStartDate(format(date, "yyyy-MM-dd"));
-                  field.onChange(date);
+            <p className="form__error">
+              &nbsp;
+              {errors.title ? errors.title.message : ""}
+            </p>
+          </div>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="company"
+              rules={{
+                required: "company name required",
+                maxLength: {
+                  value: 50,
+                  message: "maximum length 50 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  id="company"
+                  ref={company}
+                  placeholder="company name"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="company" className="visuallyhidden">
+              company
+            </label>
+
+            <p className="form__error">
+              &nbsp;
+              {errors.company ? errors.company.message : ""}
+            </p>
+          </div>
+          <div className="form__dates">
+            <div className="form__element">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="startdate"
+                render={({ field }) => (
+                  <DatePicker
+                    dateFormatCalendar="MMMM"
+                    showYearDropdown
+                    yearDropdownItemNumber={30}
+                    scrollableYearDropdown
+                    maxDate={new Date()}
+                    id="startdate"
+                    className="input--date startdate"
+                    value={startDate || null}
+                    placeholderText="start date"
+                    onSelect={(date) => {
+                      setStartDate(format(date, "yyyy-MM-dd"));
+                      field.onChange(date);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "start date required",
                 }}
               />
-            )}
-            rules={{
-              required: "start date required",
-            }}
-          />
-          <label htmlFor="startdate">
-            {errors.startdate && (
-              <p className="form__error">{errors.startdate.message}</p>
-            )}
-          </label>
-          <Controller
-            defaultValue=""
-            control={control}
-            name="enddate"
-            render={({ field }) => (
-              <DatePicker
-                dateFormatCalendar="MMMM"
-                showYearDropdown
-                yearDropdownItemNumber={30}
-                scrollableYearDropdown
-                maxDate={new Date()}
-                id="enddate"
-                className="input--date"
-                value={endDate || null}
-                placeholderText="enter end date"
-                onSelect={(date) => {
-                  setEndDate(format(date, "yyyy-MM-dd"));
-                  field.onChange(date);
+              <label htmlFor="startdate" className="visuallyhidden">
+                start date
+              </label>
+
+              <p className="form__error">
+                &nbsp;
+                {errors.startdate ? errors.startdate.message : ""}
+              </p>
+            </div>
+            <div className="form__element">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="enddate"
+                render={({ field }) => (
+                  <DatePicker
+                    dateFormatCalendar="MMMM"
+                    showYearDropdown
+                    yearDropdownItemNumber={30}
+                    scrollableYearDropdown
+                    maxDate={new Date()}
+                    id="enddate"
+                    className="input--date enddate"
+                    value={endDate || null}
+                    placeholderText="end date"
+                    onSelect={(date) => {
+                      setEndDate(format(date, "yyyy-MM-dd"));
+                      field.onChange(date);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "end date required",
                 }}
               />
-            )}
-            rules={{
-              required: "end date required",
-            }}
-          />
-          <label htmlFor="enddate">
-            {errors.enddate && (
-              <p className="form__error">{errors.enddate.message}</p>
-            )}
-          </label>
-          <input
-            ref={duty1}
-            placeholder="click to add job duty"
-            type="text"
-            className="input--standard"
-          />
-          <input
-            ref={duty2}
-            placeholder="click to add job duty"
-            type="text"
-            className="input--standard"
-          />
-          <input
-            ref={duty3}
-            placeholder="click to add job duty"
-            type="text"
-            className="input--standard"
-          />
+              <label htmlFor="enddate" className="visuallyhidden">
+                end date
+              </label>
+              <p className="form__error">
+                &nbsp;
+                {errors.enddate ? errors.enddate.message : ""}
+              </p>
+            </div>
+          </div>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="duty"
+              rules={{
+                required: "at least one duty required",
+                maxLength: {
+                  value: 75,
+                  message: "maximum length 75 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  id="duty"
+                  ref={dutyOne}
+                  placeholder="job duty"
+                  type="text"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="company" className="visuallyhidden">
+              duties
+            </label>
+
+            <p className="form__error">
+              &nbsp;
+              {errors.duty ? errors.duty.message : ""}
+            </p>
+          </div>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="dutyTwo"
+              rules={{
+                maxLength: {
+                  value: 75,
+                  message: "maximum length 75 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  id="dutyTwo"
+                  ref={dutyTwo}
+                  placeholder="job duty (optional)"
+                  type="text"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="company" className="visuallyhidden">
+              duties
+            </label>
+
+            <p className="form__error">
+              &nbsp;
+              {errors.dutyTwo ? errors.dutyTwo.message : ""}
+            </p>
+          </div>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="dutyThree"
+              rules={{
+                maxLength: {
+                  value: 75,
+                  message: "maximum length 75 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  id="dutyTrhee"
+                  ref={dutyThree}
+                  placeholder="job duty (optional)"
+                  type="text"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="company" className="visuallyhidden">
+              duties
+            </label>
+
+            <p className="form__error">
+              &nbsp;
+              {errors.dutyThree ? errors.dutyThree.message : ""}
+            </p>
+          </div>
         </form>
       </CreateSectionForm>
       <CreateSectionPreview>

@@ -1,5 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import useOutsideClickHandler from "../../../hooks/useOutsideClickHandler";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 
 export default function CreateSectionForm({
   children,
@@ -11,22 +13,37 @@ export default function CreateSectionForm({
   formHidden,
   updateFormHidden,
 }) {
+  const plusIcon = <FontAwesomeIcon icon={faPlus} className="plus__icon" />;
+  const minusIcon = <FontAwesomeIcon icon={faMinus} className="plus__icon" />;
+
   const handleAddClick = () => {
     if (items.length >= limit) {
       alert(limitMessage);
     } else {
-      updateFormHidden(false);
+      updateFormHidden(!formHidden);
+      //clickArea.current.classList.toggle("open");
+      console.log(clickArea.current.classList);
     }
   };
   const clickArea = useRef(null);
   useOutsideClickHandler(clickArea, () => updateFormHidden(true));
 
   return (
-    <section className="create-section__form" ref={clickArea}>
-      <h1 className="create-section__header--primary">Add {data.item}</h1>
-      <button onClick={handleAddClick} className="btn--add-item">
-        +
-      </button>
+    <section
+      className={
+        formHidden ? "create-section__form" : "create-section__form open"
+      }
+      ref={clickArea}
+    >
+      <div className="form__header">
+        <button
+          onClick={handleAddClick}
+          className="btn btn--add-item margin-bottom-extra-small"
+        >
+          {data.item}
+          {formHidden ? plusIcon : minusIcon}
+        </button>
+      </div>
       {!formHidden ? (
         <>
           {children}
@@ -37,9 +54,9 @@ export default function CreateSectionForm({
             type="submit"
             form={formId}
             //onClick={handleSaveClick}
-            className="btn btn--save"
+            className="btn btn--save-item"
           >
-            Save {data.save}
+            save {data.save}
           </button>
         </>
       ) : null}

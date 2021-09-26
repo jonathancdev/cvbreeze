@@ -1,0 +1,14 @@
+@use "../abstracts/" as a;
+
+.skill__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  &--heading {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: a.$color-dark-grey;
+  }
+}

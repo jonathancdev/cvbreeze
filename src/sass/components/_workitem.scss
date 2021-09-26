@@ -1,0 +1,25 @@
+@use "../abstracts/" as a;
+
+.work__item {
+  position: relative;
+  &--heading {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    font-weight: 200;
+    color: a.$color-dark-grey;
+  }
+  &--dates {
+    display: flex;
+    font-size: 1.4rem;
+    color: a.$color-dark-grey;
+    font-weight: 200;
+  }
+}
+.duties__list {
+  list-style: none;
+  color: a.$color-dark-grey-t50;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+}
