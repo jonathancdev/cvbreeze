@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import InputEditable from "../InputEditable";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function Account({
   user,

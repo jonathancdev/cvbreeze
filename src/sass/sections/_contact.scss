@@ -1,0 +1,13 @@
+@use "../abstracts/" as a;
+
+.contact {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  &__textarea {
+    width: 95%;
+    color: a.$color-dark-grey-t50;
+  }
+}

@@ -9,7 +9,7 @@ export default function AutoTextArea({
   const lineHeight = 16;
 
   const textareaRef = useRef(null);
-  const [rows, setRows] = useState(2);
+  const [rows, setRows] = useState(3);
 
   useEffect(() => {
     //PERSISTS PROFILE VALUE AFTER LEAVING PAGE BUT ALLOWS EDITING AFTER SAVE

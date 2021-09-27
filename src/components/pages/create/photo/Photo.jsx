@@ -98,6 +98,7 @@ export default function Photo({
           userPhoto || tempPhoto ? (
             <img
               className="user-photo"
+              alt="user"
               src={
                 userPhoto === "test user"
                   ? testUserPhoto

@@ -42,9 +42,11 @@ const checkSwitch = (userId, section) => {
         : (completedSections.skills = false);
       break;
     case userId + "_contactData":
-      storage !== null
-        ? (completedSections.contact = true)
-        : (completedSections.contact = false);
+      if (storage !== null && storage.telephone && storage.email) {
+        completedSections.contact = true;
+      } else {
+        completedSections.contact = false;
+      }
       break;
     default:
       break;

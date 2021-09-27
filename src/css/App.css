@@ -48,6 +48,11 @@ body {
   font-weight: 400;
   color: #404756;
 }
+.heading-tertiary--link {
+  color: #829cd0;
+  font-size: 1.8rem;
+  letter-spacing: 0.25rem;
+}
 
 .text {
   font-size: 1.5rem;
@@ -224,6 +229,7 @@ body {
 }
 .btn--square-blue {
   background-color: #829cd0;
+  border: none;
   border-radius: 3px;
   color: #fff;
   padding: 1rem 1.5rem;
@@ -748,6 +754,52 @@ textarea {
   position: relative;
 }
 
+.signup {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.signup__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.signup__text {
+  font-size: 1.4rem;
+  color: #404756;
+}
+.signup__text--link {
+  font-size: 1.6rem;
+  color: #829cd0;
+  letter-spacing: 0.25rem;
+}
+
+.signin {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.signin__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.signin__text {
+  font-size: 1.4rem;
+  color: #404756;
+}
+.signin__text--link {
+  font-size: 1.6rem;
+  color: #829cd0;
+  letter-spacing: 0.25rem;
+}
+
 .photo {
   height: 100%;
   display: flex;
@@ -859,6 +911,18 @@ textarea {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.contact {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+.contact__textarea {
+  width: 95%;
+  color: rgba(64, 71, 86, 0.5);
 }
 
 /*# sourceMappingURL=App.css.map */

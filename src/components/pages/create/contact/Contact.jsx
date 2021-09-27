@@ -38,6 +38,7 @@ export default function Contact({
   const [userContactInformation, setUserContactInformation] = useState(
     storage ? storage : null
   );
+  const [errors, setErrors] = useState({});
   //ACTIVATES SAVE BUTTON IN SAVE SECTION WHEN NEEDED
   const [updated, setUpdated] = useState(false);
   useEffect(() => {
@@ -57,16 +58,48 @@ export default function Contact({
   //TAKES INPUT VALUES FROM INPUTS AND PUTS IN TEMPCONTACTOBJECT
   const setTelephone = (e) => {
     const value = e.target.value;
-    setTempContactObject((prevState) => {
-      return { ...prevState, telephone: value };
-    });
+    if (value.length < 1) {
+      setErrors((prevState) => {
+        return { ...prevState, telephone: "telephone number required" };
+      });
+    } else if (value.match(/^([0-9\(\)\/\+ \-]*)$/)) {
+      setTempContactObject((prevState) => {
+        return { ...prevState, telephone: value };
+      });
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          telephone: "",
+        };
+      });
+    } else {
+      setErrors((prevState) => {
+        return { ...prevState, telephone: "enter valid telephone number" };
+      });
+    }
     setUpdated(true);
   };
   const setEmail = (e) => {
     const value = e.target.value;
-    setTempContactObject((prevState) => {
-      return { ...prevState, email: value };
-    });
+    if (value.length < 1) {
+      setErrors((prevState) => {
+        return { ...prevState, email: "email address required" };
+      });
+    } else if (value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)) {
+      setTempContactObject((prevState) => {
+        return { ...prevState, email: value };
+      });
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          email: "",
+        };
+      });
+    } else {
+      setErrors((prevState) => {
+        return { ...prevState, email: "enter valid email address" };
+      });
+    }
     setUpdated(true);
   };
   const setAddress = (value) => {
@@ -99,54 +132,101 @@ export default function Contact({
       updateCompletedSection(checkCompletedSections());
     }
   };
-
   return (
     <section className="create-section contact">
-      <label htmlFor="" className="input__label"></label>
-      <input
-        placeholder="telephone"
-        ref={inputTelephoneRef}
-        type="text"
-        className="input--standard"
-        onChange={setTelephone}
-      />
-      <label htmlFor="" className="input__label"></label>
-      <input
-        placeholder="email"
-        ref={inputEmailRef}
-        type="text"
-        className="input--standard"
-        onChange={setEmail}
-      />
+      <div className="form__element">
+        <input
+          placeholder="telephone"
+          ref={inputTelephoneRef}
+          type="text"
+          className="input--standard"
+          onChange={setTelephone}
+          id="telephone"
+        />
+        <label htmlFor="telephone" className="visuallyhidden">
+          telephone
+        </label>
+        <p className="form__error">
+          &nbsp;
+          {errors.telephone ? errors.telephone : ""}
+        </p>
+      </div>
+
+      <div className="form__element">
+        <input
+          placeholder="email"
+          ref={inputEmailRef}
+          type="text"
+          className="input--standard"
+          onChange={setEmail}
+          id="email"
+        />
+        <label htmlFor="email" className="visuallyhidden">
+          email
+        </label>
+        <p className="form__error">
+          &nbsp;
+          {errors.email ? errors.email : ""}
+        </p>
+      </div>
+
       <label htmlFor="contact__text-area" className="text-area__label"></label>
 
-      <AutoTextArea
-        className="profile__textarea"
-        placeholder="address"
-        update={setAddress}
-        userText={
-          userContactInformation ? userContactInformation.address : null
-        }
-      />
-      <label htmlFor="" className="input__label"></label>
-      <input
-        placeholder="website"
-        ref={inputWebsiteRef}
-        type="text"
-        className="input--standard"
-        onChange={setWebsite}
-      />
-      <button onClick={handleDelete} className="btn btn--delete">
+      <div className="form__element">
+        <AutoTextArea
+          className="contact__textarea"
+          placeholder="address"
+          update={setAddress}
+          id="address"
+          minRows="4"
+          userText={
+            userContactInformation.address
+              ? userContactInformation.address
+              : "address\ncity, state/province\npostal code\ncountry"
+          }
+        />
+        <label htmlFor="website" className="visuallyhidden">
+          address
+        </label>
+        <p className="form__error">&nbsp;</p>
+      </div>
+
+      <div className="form__element">
+        <input
+          placeholder="website"
+          ref={inputWebsiteRef}
+          type="text"
+          className="input--standard"
+          onChange={setWebsite}
+        />
+        <label htmlFor="website" className="visuallyhidden">
+          website
+        </label>
+        <p className="form__error">&nbsp;</p>
+      </div>
+
+      <button
+        onClick={handleDelete}
+        className="btn btn--delete margin-bottomo-large"
+      >
         delete
       </button>
-      <SaveSection
-        message={updated ? "do you want to save these changes?" : null}
-        storageKey={userId + "_contactData"}
-        data={{ contact: tempContactObject }}
-        updateParentState={saveUserContactInformation}
-        updateCompletedSection={updateCompletedSection}
-        disableButton={!updated}
-      />
+      {errors.email || errors.telephone ? (
+        <>
+          <p className="form__error">&nbsp;</p>
+          <p className="form__error">&nbsp;</p>
+          <p className="form__error">&nbsp;</p>
+        </>
+      ) : (
+        <SaveSection
+          message={updated ? "do you want to save these changes?" : null}
+          storageKey={userId + "_contactData"}
+          data={tempContactObject}
+          updateParentState={saveUserContactInformation}
+          updateCompletedSection={updateCompletedSection}
+          disableButton={!updated}
+        />
+      )}
     </section>
   );
 }

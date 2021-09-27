@@ -25,7 +25,7 @@ export default function EducationItem({
       handleDeletedItem(educationArray);
     }
   };
-  console.log(obj);
+
   return (
     <div className="education__item preview__item">
       <div className="work__item--heading">

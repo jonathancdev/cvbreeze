@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import useOutsideClickHandler from "../../../hooks/useOutsideClickHandler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -21,8 +21,6 @@ export default function CreateSectionForm({
       alert(limitMessage);
     } else {
       updateFormHidden(!formHidden);
-      //clickArea.current.classList.toggle("open");
-      console.log(clickArea.current.classList);
     }
   };
   const clickArea = useRef(null);

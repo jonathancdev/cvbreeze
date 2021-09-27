@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import CreateNavbar from "./CreateNavbar";
 import checkCompletedSections from "../../../utilities/checkCompletedSections";
 import CreatePageLayout from "../../layout/CreatePageLayout";
 import { Route, Switch } from "react-router-dom";

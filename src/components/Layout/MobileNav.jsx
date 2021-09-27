@@ -1,33 +1,34 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function MobileNav() {
   return (
     <div className="navigation__nav">
-      <ul class="navigation__list">
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">
+      <ul className="navigation__list">
+        <li className="navigation__item">
+          <Link to="/" className="navigation__link">
             home
-          </a>
+          </Link>
         </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">
+        <li className="navigation__item">
+          <Link to="/create" className="navigation__link">
             create cv
-          </a>
+          </Link>
         </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">
+        <li className="navigation__item">
+          <Link to="/signin" className="navigation__link">
             sign in
-          </a>
+          </Link>
         </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">
+        <li className="navigation__item">
+          <Link to="/signup" className="navigation__link">
             sign up
-          </a>
+          </Link>
         </li>
-        <li class="navigation__item">
-          <a href="#" class="navigation__link">
+        <li className="navigation__item">
+          <Link to="/contact" className="navigation__link">
             contact
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

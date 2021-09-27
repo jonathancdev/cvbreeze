@@ -38,83 +38,95 @@ export default function Signin({ user, sessionActive, logUserIn, logUserOut }) {
   return (
     <Layout sessionActive={sessionActive} logUserOut={logUserOut} user={user}>
       <section className="signin">
-        <h1 className="heading--primary">Sign in to your account</h1>
+        <h2 className="heading-secondary margin-top-extra-small margin-bottom-extra-small">
+          Sign in to your account
+        </h2>
 
         <form
           id="signin"
           className="signin__form"
           onSubmit={handleSubmit(handleFormSubmit)}
         >
-          <Controller
-            defaultValue=""
-            control={control}
-            name="email"
-            rules={{
-              required: "email required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Enter a valid e-mail address",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                ref={email}
-                id="email"
-                placeholder="email"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="email">
-            {errors.email ? null : "email"}
-            {errors.email && (
-              <p className="form__error">{errors.email.message}</p>
-            )}
-          </label>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="email"
+              rules={{
+                required: "email required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "enter a valid e-mail address",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  ref={email}
+                  id="email"
+                  placeholder="email"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="email" className="visuallyhidden">
+              email
+            </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.email ? errors.email.message : ""}
+            </p>
+          </div>
 
-          <Controller
-            defaultValue=""
-            control={control}
-            name="password"
-            rules={{
-              required: "password required",
-              minLength: {
-                value: 8,
-                message: "password must be at least 8 characters",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                ref={password}
-                id="password"
-                type="password"
-                placeholder="password"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="password">
-            {errors.password ? null : "Password"}
-            {errors.password && (
-              <p className="form__error">{errors.password.message}</p>
-            )}
-          </label>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="password"
+              rules={{
+                required: "password required",
+                minLength: {
+                  value: 8,
+                  message: "password must be at least 8 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  ref={password}
+                  id="password"
+                  type="password"
+                  placeholder="password"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="password" className="visuallyhidden">
+              password
+            </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.password ? errors.password.message : ""}
+            </p>
+          </div>
 
-          <button form="signin" type="submit" className="btn--square">
+          <button
+            form="signin"
+            type="submit"
+            className="btn btn--square-blue margin-top-extra-small margin-bottom-extra-small"
+          >
             sign in
           </button>
         </form>
-        <p className="signup__text">don't have an account?</p>
+        <p className="signin__text">don't have an account?</p>
         <Link to="/signup">
-          <p className="signin__text">sign up here</p>
+          <p className="signin__text--link">sign up here</p>
         </Link>
       </section>
     </Layout>

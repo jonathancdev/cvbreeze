@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -18,23 +18,8 @@ export default function CreateNavbar({ completedSections }) {
   const currentSection = window.location.pathname.substring(8);
   const [prevPath, setPrevPath] = useState("/create");
   const [nextPath, setNextPath] = useState("/create");
-  const [boolean, setBoolean] = useState(false);
-  const [scrollTo, setScrollTo] = useState(0);
   const scrollContainer = useRef(null);
-  const paths = [
-    // { photo: "/create/photo" },
-    // { profile: "/create/profile" },
-    // { workexperience: "/create/workexperience" },
-    // { education: "/create/education" },
-    // { skills: "/create/skills" },
-    // { contact: "/create/contact" },
-    "photo",
-    "profile",
-    "workexperience",
-    "education",
-    "skills",
-    "contact",
-  ];
+
   const scrollValues = {
     //in percent
     photo: 0.16,
@@ -53,6 +38,14 @@ export default function CreateNavbar({ completedSections }) {
     scrollContainer.current.scrollLeft = scrollAmount;
   });
   useLayoutEffect(() => {
+    const paths = [
+      "photo",
+      "profile",
+      "workexperience",
+      "education",
+      "skills",
+      "contact",
+    ];
     const index = paths.findIndex((item) => item === currentSection);
     const prevIndex = index - 1;
     const nextIndex = index + 1;
@@ -62,25 +55,7 @@ export default function CreateNavbar({ completedSections }) {
     nextIndex <= 5
       ? setNextPath("/create/" + paths[nextIndex])
       : setNextPath("/create/" + currentSection);
-  });
-  // useLayoutEffect(() => {
-  //   const width = parseInt(scrollContainer.current.scrollWidth);
-  //   const scroll = scrollContainer.current.scrollLeft + 1;
-  //   const percent = (scroll / width) * 100;
-  //   console.log(width);
-  //   console.log(scroll);
-  //   console.log(percent);
-  //   //scrollContainer.current.scrollLeft = 375 / 5.43;
-  // });
-
-  // useEffect(() => {
-  //   scrollContainer.current.scrollLeft = scrollTo;
-  //   console.log(scrollContainer.current.scrollLeft);
-  // }, []);
-
-  const forceRender = () => {
-    setBoolean((prevState) => !prevState);
-  };
+  }, [currentSection]);
 
   return (
     <section className="create-navbar">
@@ -89,9 +64,7 @@ export default function CreateNavbar({ completedSections }) {
           <Link to={prevPath}>
             <div className="icon-wrap--circle">{angleLeftIcon}</div>
           </Link>
-          <h2 onClick={forceRender} className="heading-secondary">
-            sections
-          </h2>
+          <h2 className="heading-secondary">sections</h2>
           <Link to={nextPath}>
             <div className="icon-wrap--circle">{angleRightIcon}</div>
           </Link>
