@@ -3,6 +3,7 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import WorkItem from "./WorkItem";
+import AlertModal from "../../../AlertModal";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
 import { useForm, Controller } from "react-hook-form";
@@ -15,6 +16,7 @@ export default function WorkExperience({
   user,
   updateLayoutData,
   updateCompletedSection,
+  openAlert,
 }) {
   //REACT HOOK FORM
   const {
@@ -69,7 +71,7 @@ export default function WorkExperience({
     };
     const id = obj.title + obj.company + obj.startDate;
     if (tempWorkArray.some((obj) => obj.id === id)) {
-      alert("duplicate item entered");
+      openAlert("identical item already saved");
       return;
     }
     setTempWorkArray((prevState) => {
@@ -112,10 +114,11 @@ export default function WorkExperience({
         data={{ item: "new experience", save: "experience" }}
         items={tempWorkArray}
         limit={3}
-        limitMessage="include your three most relevant positions"
+        limitMessage="up to three positions can be added"
         formId="work"
         formHidden={formHidden}
         updateFormHidden={updateFormHidden}
+        openAlert={openAlert}
       >
         <form
           className="create__form"

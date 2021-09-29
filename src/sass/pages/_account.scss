@@ -1,0 +1,20 @@
+@use "../abstracts/" as a;
+.account {
+  &__element {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input-pair {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__input-parent {
+    position: relative;
+    width: 70%;
+  }
+  .btn--create-navlink {
+    display: block;
+    margin: 2rem auto;
+    background-color: a.$color-white;
+  }
+}

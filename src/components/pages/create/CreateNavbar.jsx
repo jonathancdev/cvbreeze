@@ -56,7 +56,7 @@ export default function CreateNavbar({ completedSections }) {
       ? setNextPath("/create/" + paths[nextIndex])
       : setNextPath("/create/" + currentSection);
   }, [currentSection]);
-
+  console.log(completedSections);
   return (
     <section className="create-navbar">
       <div className="carousel">

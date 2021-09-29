@@ -35,7 +35,6 @@ export default function PhotoInput({
   return (
     <>
       <input
-        margin-top-medium
         placeholder={filePath}
         type="text"
         className="input--standard margin-top-extra-small"

@@ -2,7 +2,13 @@ import React, { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import Layout from "../layout/Layout";
-export default function Signin({ user, sessionActive, logUserIn, logUserOut }) {
+export default function Signin({
+  user,
+  sessionActive,
+  logUserIn,
+  logUserOut,
+  openAlert,
+}) {
   const history = useHistory();
   const {
     control,
@@ -31,7 +37,7 @@ export default function Signin({ user, sessionActive, logUserIn, logUserOut }) {
         history.push("/create");
       } else {
         setAuthenticated(false);
-        alert("sign in failed");
+        openAlert("sign in failed, check your username and password");
       }
     });
   };

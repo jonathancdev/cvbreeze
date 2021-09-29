@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/free-regular-svg-icons";
 import Navigation from "./Navigation";
 
-export default function Footer() {
+export default function Footer({ sessionActive }) {
   const questionIcon = (
     <FontAwesomeIcon icon={faQuestionCircle} className="question__icon" />
   );
@@ -14,7 +14,10 @@ export default function Footer() {
         {questionIcon}
       </Link>
       <div className="footer__shape">
-        <Navigation />
+        <Navigation
+          navigationType={"mobile-home"}
+          sessionActive={sessionActive}
+        />
       </div>
     </footer>
   );

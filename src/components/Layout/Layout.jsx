@@ -10,7 +10,7 @@ export default function Layout({ children, user, sessionActive, logUserOut }) {
         logUserOut={logUserOut}
       ></Header>
       <main className="main">{children}</main>
-      <Footer></Footer>
+      <Footer sessionActive={sessionActive}></Footer>
     </>
   );
 }

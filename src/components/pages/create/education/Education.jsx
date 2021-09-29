@@ -15,6 +15,7 @@ export default function Education({
   user,
   updateLayoutData,
   updateCompletedSection,
+  openAlert,
 }) {
   //REACT HOOK FORM
   const {
@@ -66,7 +67,7 @@ export default function Education({
     };
     const id = obj.institution + obj.degree + obj.date;
     if (tempEducationArray.some((obj) => obj.id === id)) {
-      alert("duplicate item entered");
+      openAlert("identical item already saved");
       return;
     }
     setTempEducationArray((prevState) => {
@@ -107,10 +108,11 @@ export default function Education({
         saveFunction={updateTempEducationArray}
         items={tempEducationArray}
         limit={3}
-        limitMessage="include up to three items"
+        limitMessage="up to 3 items can be added"
         formId="education"
         formHidden={formHidden}
         updateFormHidden={updateFormHidden}
+        openAlert={openAlert}
       >
         <form
           className="create__form"

@@ -99,10 +99,38 @@
     @include a.flexCenterRow;
     border: solid;
     border-width: 2px;
-    border-color: a.$color-dark-grey;
+    border-color: a.$color-dark-grey-t75;
     background-color: a.$color-white;
     border-radius: 3px;
     padding: 0.25rem 1.5rem;
-    color: a.$color-dark-grey;
+    color: a.$color-dark-grey-t75;
+  }
+  &--account-info {
+    border-color: a.$color-dark-grey-t75;
+    background-color: a.$color-white;
+    border-radius: 3px;
+    border-width: 1px;
+    color: a.$color-dark-grey-t75;
+    padding: 0rem 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 300;
+    width: 25%;
+  }
+  &--account-pw {
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    width: 20%;
+    height: 100%;
+    background-color: transparent;
+    color: a.$color-blue-t75;
+    padding: 0rem 0.5rem;
+    font-size: 1.6rem;
+    font-weight: 300;
+  }
+  &--alert {
+    background-color: transparent;
+    @include a.flexCenterCol;
   }
 }

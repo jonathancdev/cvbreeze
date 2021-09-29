@@ -1,6 +1,8 @@
 import { React, useState } from "react";
 import "./css/App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import AlertModal from "./components/AlertModal";
+import ConfirmModal from "./components/ConfirmModal";
 import {
   Account,
   Create,
@@ -25,6 +27,47 @@ function App() {
   );
   const [sessionActive, setSessionActive] = useState(false);
 
+  //modal state and update fncs
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertMessage, setAlertMessage] = useState(null);
+
+  const [confirmOpen, setConfirmOpen] = useState(false);
+  const [confirmMessage, setConfirmMessage] = useState(null);
+  const [confirmFunctionA, setConfirmFunctionA] = useState(null); //return true
+  const [confirmFunctionB, setConfirmFunctionB] = useState(null); //return false
+
+  const closeAlert = () => {
+    setAlertOpen(false);
+  };
+  const openAlert = (message) => {
+    setAlertOpen(true);
+    setAlertMessage(message);
+  };
+  const closeConfirm = () => {
+    setConfirmOpen(false);
+    setConfirmFunctionA(null);
+    setConfirmFunctionB(null);
+    setConfirmMessage(null);
+  };
+  const openConfirm = async (message, callbackA, callbackB) => {
+    setConfirmFunctionA(callbackA);
+    setConfirmFunctionB(callbackB);
+    setConfirmOpen(true);
+    setConfirmMessage(message);
+  };
+  const handleConfirm = (bool) => {
+    if (bool) {
+      confirmFunctionA();
+      setConfirmOpen(false);
+    } else {
+      confirmFunctionB();
+      setConfirmOpen(false);
+    }
+    setConfirmFunctionA(null);
+    setConfirmFunctionB(null);
+    setConfirmMessage(null);
+  };
+
   //user, authentication, and session functions
   const logUserIn = (obj) => {
     setUser(obj);
@@ -39,6 +82,16 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
+        {alertOpen ? (
+          <AlertModal message={alertMessage} closeAlert={closeAlert} />
+        ) : null}
+        {confirmOpen ? (
+          <ConfirmModal
+            message={confirmMessage}
+            closeConfirm={closeConfirm}
+            handleConfirm={handleConfirm}
+          />
+        ) : null}
         <Route exact path="/">
           <Home
             user={user}
@@ -49,7 +102,11 @@ function App() {
         </Route>
         <Switch>
           <Route path="/create">
-            <Create user={user} />
+            <Create
+              user={user}
+              sessionActive={sessionActive}
+              openAlert={openAlert}
+            />
           </Route>
           <Route path="/signin">
             <Signin
@@ -57,6 +114,7 @@ function App() {
               sessionActive={sessionActive}
               logUserIn={logUserIn}
               logUserOut={logUserOut}
+              openAlert={openAlert}
             />
           </Route>
           <Route path="/signup">
@@ -73,6 +131,8 @@ function App() {
               user={user}
               logUserIn={logUserIn}
               logUserOut={logUserOut}
+              openConfirm={openConfirm}
+              // updateConfirmFunction={updateConfirmFunction}
             />
           </Route>
           <Route path="/contact">
@@ -81,6 +141,7 @@ function App() {
               sessionActive={sessionActive}
               logUserIn={logUserIn}
               logUserOut={logUserOut}
+              openAlert={openAlert}
             />
           </Route>
           <Route path="/print">

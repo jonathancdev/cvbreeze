@@ -11,6 +11,7 @@ export default function Skills({
   user,
   updateLayoutData,
   updateCompletedSection,
+  openAlert,
 }) {
   //REACT HOOK FORM
   const {
@@ -58,7 +59,7 @@ export default function Skills({
       tempSkillArray.length > 0 &&
       tempSkillArray.some((obj) => obj.skill === skill.current.value)
     ) {
-      alert("skill with that name already saved");
+      openAlert("identical skill already saved");
     } else {
       setTempSkillArray((prevState) => {
         return [...prevState, { skill: skill.current.value, id }];
@@ -99,10 +100,11 @@ export default function Skills({
         saveFunction={updateTempSkillArray}
         items={tempSkillArray}
         limit={8}
-        limitMessage="include up to 8 skills"
+        limitMessage="up to 8 skills can be added"
         formId="skill"
         formHidden={formHidden}
         updateFormHidden={updateFormHidden}
+        openAlert={openAlert}
       >
         <form
           className="create__form"

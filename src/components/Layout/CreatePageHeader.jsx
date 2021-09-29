@@ -9,7 +9,10 @@ export default function Header({ user, sessionActive, logUserOut }) {
       <Link to="/" className="btn--icon-wrap">
         <img src={logo} alt="cvbreeze" className="logo" />
       </Link>
-      <Navigation />
+      <Navigation
+        navigationType="mobile-create"
+        sessionActive={sessionActive}
+      />
     </section>
   );
 }

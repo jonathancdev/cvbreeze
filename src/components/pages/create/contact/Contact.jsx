@@ -141,6 +141,7 @@ export default function Contact({
           type="text"
           className="input--standard"
           onChange={setTelephone}
+          onClick={() => inputTelephoneRef.current.select()}
           id="telephone"
         />
         <label htmlFor="telephone" className="visuallyhidden">
@@ -159,6 +160,7 @@ export default function Contact({
           type="text"
           className="input--standard"
           onChange={setEmail}
+          onClick={() => inputEmailRef.current.select()}
           id="email"
         />
         <label htmlFor="email" className="visuallyhidden">
@@ -178,14 +180,13 @@ export default function Contact({
           placeholder="address"
           update={setAddress}
           id="address"
-          minRows="4"
           userText={
             userContactInformation.address
               ? userContactInformation.address
               : "address\ncity, state/province\npostal code\ncountry"
           }
         />
-        <label htmlFor="website" className="visuallyhidden">
+        <label htmlFor="address" className="visuallyhidden">
           address
         </label>
         <p className="form__error">&nbsp;</p>
@@ -198,6 +199,7 @@ export default function Contact({
           type="text"
           className="input--standard"
           onChange={setWebsite}
+          onClick={() => inputWebsiteRef.current.select()}
         />
         <label htmlFor="website" className="visuallyhidden">
           website

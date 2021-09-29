@@ -13,7 +13,13 @@ import {
   CreateLayout,
 } from "./create-index";
 import useLayoutUpdater from "../../../hooks/useLayoutUpdater";
-export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
+export default function Create({
+  user,
+  sessionActive,
+  logUserIn,
+  logUserOut,
+  openAlert,
+}) {
   const [layoutData, setLayoutData] = useState({
     section: "",
     headerText: "",
@@ -23,9 +29,10 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
 
   useEffect(() => {
     if (user) {
+      console.log("check");
       updateCompletedSection(checkCompletedSections());
     }
-  }, [user]);
+  }, []);
 
   const updateCompletedSection = (obj) => {
     //SAVESECTION IN EACH SECTION CHECKS ALL SECTION STORAGE MEETS REQS AND
@@ -41,7 +48,7 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
   );
 
   useLayoutUpdater(layoutData, updateLayoutData);
-
+  console.log(user);
   return (
     <CreatePageLayout
       sessionActive={sessionActive}
@@ -83,6 +90,7 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
                 updateLayoutData={updateLayoutData}
                 updateCompletedSection={updateCompletedSection}
                 user={user}
+                openAlert={openAlert}
               />
             </Route>
             <Route path="/create/education">
@@ -90,6 +98,7 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
                 updateLayoutData={updateLayoutData}
                 updateCompletedSection={updateCompletedSection}
                 user={user}
+                openAlert={openAlert}
               />
             </Route>
             <Route path="/create/skills">
@@ -97,6 +106,7 @@ export default function Create({ user, sessionActive, logUserIn, logUserOut }) {
                 updateLayoutData={updateLayoutData}
                 updateCompletedSection={updateCompletedSection}
                 user={user}
+                openAlert={openAlert}
               />
             </Route>
             <Route path="/create/contact">

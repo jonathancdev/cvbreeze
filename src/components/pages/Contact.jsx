@@ -9,6 +9,7 @@ export default function Contact({
   sessionActive,
   logUserIn,
   logUserOut,
+  openAlert,
 }) {
   const history = useHistory();
   const {
@@ -23,7 +24,6 @@ export default function Contact({
 
   const name = useRef(null);
   const email = useRef(null);
-  const comment = useRef(commentValue);
 
   const updateCommentValue = (value) => {
     setCommentValue(value);
@@ -31,7 +31,7 @@ export default function Contact({
 
   const handleFormSubmit = () => {
     if (commentValue) {
-      alert("sent successfully");
+      openAlert("message sent!");
       reset({
         name: "",
         email: "",
@@ -43,12 +43,18 @@ export default function Contact({
       setInvalid(true);
     }
   };
-
+  const checkErrors = () => {
+    if (!commentValue) {
+      setInvalid(true);
+    }
+  };
   return (
     <Layout sessionActive={sessionActive} logUserOut={logUserOut} user={user}>
-      <section className="contact">
-        <h1 className="heading--primary">Questions or comments?</h1>
-        <h3 className="heading--tertiary">
+      <section className="contactform">
+        <h2 className="heading-secondary margin-top-small">
+          Questions or comments?
+        </h2>
+        <h3 className="heading-tertiary margin-bottom-extra-small">
           fill out the form and we'll get back to you!
         </h3>
 
@@ -57,85 +63,99 @@ export default function Contact({
           className="contact__form"
           onSubmit={handleSubmit(handleFormSubmit)}
         >
-          <Controller
-            defaultValue=""
-            control={control}
-            name="name"
-            rules={{
-              required: "name required",
-              pattern: {
-                value: /^[A-Za-z]+$/,
-                message: "enter a valid name",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                ref={name}
-                id="name"
-                placeholder="name"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="name">
-            {errors.name ? null : "name"}
-            {errors.name && (
-              <p className="form__error">{errors.name.message}</p>
-            )}
-          </label>
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="name"
+              rules={{
+                required: " name required",
+                pattern: {
+                  value: /^[A-Za-z\ ']+$/,
+                  message: "enter a valid  name",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  ref={name}
+                  id="name"
+                  placeholder="name"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="name" className="visuallyhidden">
+              name
+            </label>
 
-          <Controller
-            defaultValue=""
-            control={control}
-            name="email"
-            rules={{
-              required: "email required",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: "Enter a valid e-mail address",
-              },
-            }}
-            render={({ field }) => (
-              <input
-                {...field}
-                ref={email}
-                id="email"
-                placeholder="email"
-                className="input--standard"
-                onChange={(e) => {
-                  field.onChange(e);
-                }}
-              />
-            )}
-          />
-          <label htmlFor="email">
-            {errors.email ? null : "email"}
-            {errors.email && (
-              <p className="form__error">{errors.email.message}</p>
-            )}
-          </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.name ? errors.name.message : ""}
+            </p>
+          </div>
 
-          <AutoTextArea
-            ref={comment}
-            userText={commentValue}
-            id="comment"
-            update={updateCommentValue}
-            className="profile__textarea"
-            placeholder="click to write your questions or comments"
-          />
+          <div className="form__element">
+            <Controller
+              defaultValue=""
+              control={control}
+              name="email"
+              rules={{
+                required: "email required",
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                  message: "enter a valid e-mail address",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  {...field}
+                  ref={email}
+                  id="email"
+                  placeholder="email"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
+            />
+            <label htmlFor="email" className="visuallyhidden">
+              email
+            </label>
+            <p className="form__error">
+              &nbsp;
+              {errors.email ? errors.email.message : ""}
+            </p>
+          </div>
 
-          <label htmlFor="comment">
-            {invalid ? null : "comment"}
-            {invalid ? (
-              <p className="form__error">enter questions or comments</p>
-            ) : null}
-          </label>
+          <div className="form__element">
+            {" "}
+            <AutoTextArea
+              userText={commentValue}
+              id="comment"
+              update={updateCommentValue}
+              className="contactform__textarea"
+              placeholder="questions or comments"
+              required
+            />
+            <label htmlFor="comment" className="visuallyhidden">
+              comments
+            </label>
+            <p className="form__error">
+              {invalid ? "enter questions or comments" : " "}
+            </p>
+          </div>
 
-          <button form="contact" type="submit" className="btn--square">
+          <button
+            form="contact"
+            type="submit"
+            className="btn btn--square-blue margin-top-extra-small margin-bottom-extra-small"
+            onClick={checkErrors}
+          >
             send
           </button>
         </form>

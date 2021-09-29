@@ -1,0 +1,34 @@
+@use "../abstracts/" as a;
+
+.alert-modal {
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: a.$color-blue-t85;
+  z-index: 11;
+
+  &__box {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-color: white;
+    height: 25%;
+    width: 80%;
+    border-radius: 3px;
+    @include a.flexCenterCol;
+  }
+  &__text {
+    font-size: 1.6rem;
+    font-weight: 200;
+    color: a.$color-dark-grey-t75;
+    padding: 3rem;
+    text-align: center;
+  }
+  .icon-wrap--circle {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}

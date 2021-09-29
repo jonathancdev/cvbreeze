@@ -1,34 +1,81 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { history, NavLink } from "react-router-dom";
 
-export default function MobileNav() {
+export default function MobileNav({ sessionActive, uncheck }) {
   return (
-    <div className="navigation__nav">
-      <ul className="navigation__list">
-        <li className="navigation__item">
-          <Link to="/" className="navigation__link">
+    <div className="mobilenav">
+      <ul className="mobilenav__list">
+        <li className="mobilenav__item">
+          <NavLink
+            exact
+            to="/"
+            className="mobilenav__link"
+            activeClassName="active-link"
+            onClick={uncheck}
+          >
             home
-          </Link>
+          </NavLink>
         </li>
-        <li className="navigation__item">
-          <Link to="/create" className="navigation__link">
-            create cv
-          </Link>
-        </li>
-        <li className="navigation__item">
-          <Link to="/signin" className="navigation__link">
-            sign in
-          </Link>
-        </li>
-        <li className="navigation__item">
-          <Link to="/signup" className="navigation__link">
-            sign up
-          </Link>
-        </li>
-        <li className="navigation__item">
-          <Link to="/contact" className="navigation__link">
+
+        {sessionActive ? (
+          <li className="mobilenav__item">
+            <NavLink
+              exact
+              to="/create"
+              className="mobilenav__link"
+              activeClassName="active-link"
+              onClick={uncheck}
+            >
+              edit CV
+            </NavLink>
+          </li>
+        ) : null}
+
+        {!sessionActive ? (
+          <li className="mobilenav__item">
+            <NavLink
+              to="/signin"
+              className="mobilenav__link"
+              activeClassName="active-link"
+              onClick={uncheck}
+            >
+              sign in
+            </NavLink>
+          </li>
+        ) : null}
+        {!sessionActive ? (
+          <li className="mobilenav__item">
+            <NavLink
+              to="/signup"
+              className="mobilenav__link"
+              activeClassName="active-link"
+              onClick={uncheck}
+            >
+              sign up
+            </NavLink>
+          </li>
+        ) : null}
+        {sessionActive ? (
+          <li className="mobilenav__item">
+            <NavLink
+              to="/account"
+              className="mobilenav__link"
+              activeClassName="active-link"
+              onClick={uncheck}
+            >
+              account
+            </NavLink>
+          </li>
+        ) : null}
+        <li className="mobilenav__item">
+          <NavLink
+            to="/contact"
+            className="mobilenav__link"
+            activeClassName="active-link"
+            onClick={uncheck}
+          >
             contact
-          </Link>
+          </NavLink>
         </li>
       </ul>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useLayoutEffect } from "react";
 
 export default function AutoTextArea({
   className,
@@ -6,21 +6,14 @@ export default function AutoTextArea({
   placeholder,
   update,
 }) {
-  const lineHeight = 16;
-
+  const lineHeight = 18; //set a little below actual line height set in css to pad bottom a bit
   const textareaRef = useRef(null);
-  const [rows, setRows] = useState(3);
+  const [rows, setRows] = useState(null);
 
-  useEffect(() => {
-    //PERSISTS PROFILE VALUE AFTER LEAVING PAGE BUT ALLOWS EDITING AFTER SAVE
-    textareaRef.current.value = userText;
-    //PERSISTS ROWHEIGHT SO TEXTAREA DOESN'T COLLAPSE WHEN LEAVE PAGE
-    setRows(textareaRef.current.scrollHeight / lineHeight);
-    //SETS HEIGHT BACK TO NORMAL IF TEXT DELETED
-    if (!userText) {
-      setRows(2);
-    }
-  }, [userText]);
+  useLayoutEffect(() => {
+    const newRows = Math.trunc(textareaRef.current.scrollHeight / lineHeight);
+    setRows(newRows);
+  }, []);
 
   const handleChange = (e) => {
     update(e.target.value);
@@ -32,13 +25,16 @@ export default function AutoTextArea({
     }
     setRows(newRows);
   };
+
   return (
     <textarea
+      defaultValue={userText}
       className={className}
       placeholder={placeholder}
       onChange={handleChange}
       ref={textareaRef}
       rows={rows}
+      onClick={() => textareaRef.current.select()}
     ></textarea>
   );
 }

@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 export default function InputEditable({
   inputType,
@@ -8,7 +10,15 @@ export default function InputEditable({
   rules,
   errorMessage,
   updateUserInformation,
+  openConfirm,
 }) {
+  //fontawesomeicons
+  const passwordIconShow = (
+    <FontAwesomeIcon icon={faEye} className="passwordIcon" />
+  );
+  const passwordIconHide = (
+    <FontAwesomeIcon icon={faEyeSlash} className="passwordIcon" />
+  );
   const inputRef = useRef(null);
   const [value, setValue] = useState(defaultValue);
   const [editing, setEditing] = useState(false);
@@ -16,6 +26,7 @@ export default function InputEditable({
   const [type, setType] = useState(inputType);
   const handleEdit = () => {
     setEditing(true);
+    setTimeout(() => inputRef.current.select(), 300);
   };
   const validate = (string, rulesObj) => {
     if (rulesObj) {
@@ -35,11 +46,11 @@ export default function InputEditable({
         setError(true);
         return;
       } else {
-        alert(`change ${userInfo} to ${newValue}?`);
-        updateUserInformation(userKey, newValue);
-        setEditing(false);
-        setError(false);
-        setType(inputType);
+        openConfirm(
+          `change ${userInfo} to ${newValue}?`,
+          () => confirmChange,
+          () => denyChange
+        );
       }
     } else {
       setEditing(false);
@@ -54,24 +65,47 @@ export default function InputEditable({
   const handlePasswordToggle = () => {
     type === "password" ? setType("text") : setType("password");
   };
+  const confirmChange = () => {
+    const newValue = inputRef.current.value;
+    updateUserInformation(userKey, newValue);
+    setEditing(false);
+    setError(false);
+    setType(inputType);
+  };
+  const denyChange = () => {
+    setValue(defaultValue);
+    setEditing(false);
+  };
   return (
-    <div>
-      <input
-        type={type}
-        onChange={handleChange}
-        ref={inputRef}
-        value={value}
-        disabled={!editing}
-      />
-      <button onClick={!editing ? handleEdit : handleSave}>
-        {!editing ? `edit ${userInfo}` : "save"}
-      </button>
-      {inputType === "password" ? (
-        <button onClick={handlePasswordToggle}>
-          {type === "password" ? "show password" : "hide password"}
+    <div className="account__element margin-top-extra-small margin-bottom-extra-small">
+      <div className="account__input-pair">
+        <div className="account__input-parent">
+          <input
+            className="input--standard"
+            type={type}
+            onChange={handleChange}
+            ref={inputRef}
+            value={value}
+            disabled={!editing}
+          />
+          {inputType === "password" ? (
+            <button
+              onClick={handlePasswordToggle}
+              className="btn btn--account-pw"
+            >
+              {type === "password" ? passwordIconShow : passwordIconHide}
+            </button>
+          ) : null}
+        </div>
+
+        <button
+          className="btn btn--account-info"
+          onClick={!editing ? handleEdit : handleSave}
+        >
+          {!editing ? "change" : "save"}
         </button>
-      ) : null}
-      {error && editing ? <p>{errorMessage}</p> : null}
+      </div>
+      {error && editing ? <p className="form__error">{errorMessage}</p> : null}
     </div>
   );
 }
