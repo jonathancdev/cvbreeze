@@ -5,6 +5,7 @@ export default function EducationItem({
   obj,
   userEducationHistory,
   handleDeletedItem,
+  openConfirm,
 }) {
   let educationArray = userEducationHistory;
 
@@ -14,18 +15,22 @@ export default function EducationItem({
     }
   }, [userEducationHistory, obj]);
   const [objInStorage, setObjInStorage] = useState(false);
+  const [toRemove, setToRemove] = useState(null);
   const handleDeletedEducationItem = (e) => {
-    const popup = window.confirm(
-      "are you sure you want to permanently delete this information?"
+    setToRemove(educationArray.find((obj) => obj.id === e.target.id)); //sets object in state so can be accessed from callback in openConfirm
+    openConfirm(
+      "are you sure you want to permanently delete this information?",
+      () => confirmDelete,
+      () => noop
     );
-    if (popup) {
-      const toRemove = educationArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
-      const indexToRemove = educationArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
-      educationArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
-      handleDeletedItem(educationArray);
-    }
+  };
+  const confirmDelete = () => {
+    const indexToRemove = educationArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
+    educationArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
+    handleDeletedItem(educationArray);
   };
 
+  const noop = () => {};
   return (
     <div className="education__item preview__item">
       <div className="work__item--heading">

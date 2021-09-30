@@ -8,6 +8,7 @@ export default function Contact({
   user,
   updateLayoutData,
   updateCompletedSection,
+  openConfirm,
 }) {
   //VARIABLES FROM PROPS AND STORAGE
   const userId = user.userId;
@@ -122,16 +123,19 @@ export default function Contact({
     setTempContactObject(null);
   };
   const handleDelete = () => {
-    const popup = window.confirm(
-      "are you sure you want to permanently delete this information?"
+    openConfirm(
+      "are you sure you want to permanently delete this information?",
+      () => confirmDelete,
+      () => noop
     );
-    if (popup) {
-      setTempContactObject(null);
-      setUserContactInformation(null);
-      localStorage.setObject(userId + "_contactData", null);
-      updateCompletedSection(checkCompletedSections());
-    }
   };
+  const confirmDelete = () => {
+    setTempContactObject(null);
+    setUserContactInformation(null);
+    localStorage.setObject(userId + "_contactData", null);
+    updateCompletedSection(checkCompletedSections());
+  };
+  const noop = () => {};
   return (
     <section className="create-section contact">
       <div className="form__element">
@@ -181,7 +185,7 @@ export default function Contact({
           update={setAddress}
           id="address"
           userText={
-            userContactInformation.address
+            userContactInformation
               ? userContactInformation.address
               : "address\ncity, state/province\npostal code\ncountry"
           }

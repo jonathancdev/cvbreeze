@@ -12,6 +12,7 @@ export default function Skills({
   updateLayoutData,
   updateCompletedSection,
   openAlert,
+  openConfirm,
 }) {
   //REACT HOOK FORM
   const {
@@ -158,6 +159,7 @@ export default function Skills({
                   obj={obj}
                   userSkills={userSkills}
                   handleDeletedItem={handleDeletedItem}
+                  openConfirm={openConfirm}
                 />
               );
             })

@@ -16,6 +16,7 @@ export default function Education({
   updateLayoutData,
   updateCompletedSection,
   openAlert,
+  openConfirm,
 }) {
   //REACT HOOK FORM
   const {
@@ -240,6 +241,7 @@ export default function Education({
                   obj={obj}
                   userEducationHistory={userEducationHistory}
                   handleDeletedItem={handleDeletedItem}
+                  openConfirm={openConfirm}
                 />
               );
             })

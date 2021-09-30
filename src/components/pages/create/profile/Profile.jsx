@@ -7,6 +7,7 @@ export default function Profile({
   user,
   updateLayoutData,
   updateCompletedSection,
+  openConfirm,
 }) {
   //VARIABLES FROM PROPS  & STORAGE
   const userId = user.userId;
@@ -23,7 +24,7 @@ export default function Profile({
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
 
-  //POFILEDATA STATE
+  //PROFILEDATA STATE
   const [tempProfile, setTempProfile] = useState(null);
   const [userProfile, setUserProfile] = useState(storage ? storage : null);
   const [updated, setUpdated] = useState(false);
@@ -43,16 +44,19 @@ export default function Profile({
     setUpdated(false);
   };
   const handleDelete = () => {
-    const popup = window.confirm(
-      "are you sure you want to permanently delete this information?"
+    openConfirm(
+      "are you sure you want to permanently delete this information?",
+      () => confirmDelete,
+      () => noop
     );
-    if (popup) {
-      localStorage.setObject(userId + "_profileData", null);
-      setUserProfile(null);
-      updateCompletedSection(checkCompletedSections());
-    }
   };
-
+  const confirmDelete = () => {
+    localStorage.setObject(userId + "_profileData", null);
+    setUserProfile(null);
+    updateCompletedSection(checkCompletedSections());
+  };
+  const noop = () => {};
+  console.log("render profile");
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>

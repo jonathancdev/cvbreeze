@@ -3,9 +3,9 @@ import truncateString from "../../../../utilities/truncateString";
 
 export default function WorkItem({
   obj,
-  data,
   userWorkExperience,
   handleDeletedItem,
+  openConfirm,
 }) {
   let workArray = userWorkExperience;
 
@@ -15,17 +15,22 @@ export default function WorkItem({
     }
   }, [userWorkExperience, obj]);
   const [objInStorage, setObjInStorage] = useState(false);
+  const [toRemove, setToRemove] = useState(null);
   const handleDeletedWorkItem = (e) => {
-    const popup = window.confirm(
-      "are you sure you want to permanently delete this information?"
+    setToRemove(workArray.find((obj) => obj.id === e.target.id));
+    openConfirm(
+      "are you sure you want to permanently delete this information?",
+      () => confirmDelete,
+      () => noop
     );
-    if (popup) {
-      const toRemove = workArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
-      const indexToRemove = workArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
-      workArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
-      handleDeletedItem(workArray);
-    }
   };
+  const confirmDelete = () => {
+    const indexToRemove = workArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
+    workArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
+    handleDeletedItem(workArray);
+  };
+
+  const noop = () => {};
   return (
     <div className="work__item preview__item">
       <div className="work__item--heading">

@@ -11,6 +11,7 @@ export default function Photo({
   user,
   updateLayoutData,
   updateCompletedSection,
+  openConfirm,
 }) {
   //FONTAWESOME
   const userIcon = <FontAwesomeIcon icon={faUserAlt} className="user__icon" />;
@@ -79,18 +80,20 @@ export default function Photo({
     }
   };
   const handleDelete = () => {
-    const popup = window.confirm(
-      "are you sure you want to permanently delete this information?"
+    openConfirm(
+      "are you sure you want to permanently delete this photo?",
+      () => confirmDelete,
+      () => noop
     );
-    if (popup) {
-      localStorage.setObject(userId + "_photoData", null);
-      updateCompletedSection(checkCompletedSections());
-      setFilePath(null);
-      setUserPhoto(null);
-      setTempPhoto(null);
-    }
   };
-
+  const confirmDelete = () => {
+    localStorage.setObject(userId + "_photoData", null);
+    updateCompletedSection(checkCompletedSections());
+    setFilePath(null);
+    setUserPhoto(null);
+    setTempPhoto(null);
+  };
+  const noop = () => {};
   return (
     <section className="create-section photo">
       <div className="photo__container margin-top-extra-small margin-bottom-extra-small">

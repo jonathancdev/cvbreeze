@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-export default function SkillItem({ obj, userSkills, handleDeletedItem }) {
+export default function SkillItem({
+  obj,
+  userSkills,
+  handleDeletedItem,
+  openConfirm,
+}) {
   let skillArray = userSkills;
 
   useEffect(() => {
@@ -8,17 +13,22 @@ export default function SkillItem({ obj, userSkills, handleDeletedItem }) {
     }
   }, [userSkills, obj]);
   const [objInStorage, setObjInStorage] = useState(false);
+  const [toRemove, setToRemove] = useState(null);
   const handleDeletedSkillItem = (e) => {
-    const popup = window.confirm(
-      "are you sure you want to permanently delete this information?"
+    setToRemove(skillArray.find((obj) => obj.id === e.target.id)); //sets object in state so can be accessed from callback in openConfirm
+    openConfirm(
+      "are you sure you want to permanently delete this information?",
+      () => confirmDelete,
+      () => noop
     );
-    if (popup) {
-      const toRemove = skillArray.find((obj) => obj.id === e.target.id); //ISOLATES THAT OBJECT
-      const indexToRemove = skillArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
-      skillArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
-      handleDeletedItem(skillArray);
-    }
   };
+  const confirmDelete = () => {
+    const indexToRemove = skillArray.indexOf(toRemove); //GETS ID OF THAT OBJECT
+    skillArray.splice(indexToRemove, 1); //RETURNS ARRAY WITH REMAINING OBJS
+    handleDeletedItem(skillArray);
+  };
+
+  const noop = () => {};
   return (
     <div className="skill__item preview__item">
       <div className="skill__item--heading">

@@ -19,6 +19,7 @@ export default function Create({
   logUserIn,
   logUserOut,
   openAlert,
+  openConfirm,
 }) {
   const [layoutData, setLayoutData] = useState({
     section: "",
@@ -29,7 +30,6 @@ export default function Create({
 
   useEffect(() => {
     if (user) {
-      console.log("check");
       updateCompletedSection(checkCompletedSections());
     }
   }, []);
@@ -48,7 +48,7 @@ export default function Create({
   );
 
   useLayoutUpdater(layoutData, updateLayoutData);
-  console.log(user);
+
   return (
     <CreatePageLayout
       sessionActive={sessionActive}
@@ -76,6 +76,7 @@ export default function Create({
                 updateLayoutData={updateLayoutData}
                 updateCompletedSection={updateCompletedSection}
                 user={user}
+                openConfirm={openConfirm}
               />
             </Route>
             <Route path="/create/profile">
@@ -83,6 +84,7 @@ export default function Create({
                 updateLayoutData={updateLayoutData}
                 updateCompletedSection={updateCompletedSection}
                 user={user}
+                openConfirm={openConfirm}
               />
             </Route>
             <Route path="/create/workexperience">
@@ -91,6 +93,7 @@ export default function Create({
                 updateCompletedSection={updateCompletedSection}
                 user={user}
                 openAlert={openAlert}
+                openConfirm={openConfirm}
               />
             </Route>
             <Route path="/create/education">
@@ -99,6 +102,7 @@ export default function Create({
                 updateCompletedSection={updateCompletedSection}
                 user={user}
                 openAlert={openAlert}
+                openConfirm={openConfirm}
               />
             </Route>
             <Route path="/create/skills">
@@ -107,6 +111,7 @@ export default function Create({
                 updateCompletedSection={updateCompletedSection}
                 user={user}
                 openAlert={openAlert}
+                openConfirm={openConfirm}
               />
             </Route>
             <Route path="/create/contact">
@@ -114,6 +119,7 @@ export default function Create({
                 updateLayoutData={updateLayoutData}
                 updateCompletedSection={updateCompletedSection}
                 user={user}
+                openConfirm={openConfirm}
               />
             </Route>
             <Route exact path="/create/view">

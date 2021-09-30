@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
 
 export default function AutoTextArea({
   className,
@@ -14,7 +14,11 @@ export default function AutoTextArea({
     const newRows = Math.trunc(textareaRef.current.scrollHeight / lineHeight);
     setRows(newRows);
   }, []);
-
+  useEffect(() => {
+    if (textareaRef.current.value !== userText) {
+      textareaRef.current.value = userText;
+    }
+  }, [userText]);
   const handleChange = (e) => {
     update(e.target.value);
     const oldRows = e.target.rows;
@@ -25,6 +29,7 @@ export default function AutoTextArea({
     }
     setRows(newRows);
   };
+  console.log("render textarea");
 
   return (
     <textarea

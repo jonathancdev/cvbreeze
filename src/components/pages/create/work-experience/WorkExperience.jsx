@@ -3,7 +3,6 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import WorkItem from "./WorkItem";
-import AlertModal from "../../../AlertModal";
 import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
 import { useForm, Controller } from "react-hook-form";
@@ -17,6 +16,7 @@ export default function WorkExperience({
   updateLayoutData,
   updateCompletedSection,
   openAlert,
+  openConfirm,
 }) {
   //REACT HOOK FORM
   const {
@@ -375,6 +375,7 @@ export default function WorkExperience({
                   obj={obj}
                   userWorkExperience={userWorkExperience}
                   handleDeletedItem={handleDeletedItem}
+                  openConfirm={openConfirm}
                 />
               );
             })

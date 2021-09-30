@@ -106,6 +106,7 @@ function App() {
               user={user}
               sessionActive={sessionActive}
               openAlert={openAlert}
+              openConfirm={openConfirm}
             />
           </Route>
           <Route path="/signin">
@@ -132,7 +133,6 @@ function App() {
               logUserIn={logUserIn}
               logUserOut={logUserOut}
               openConfirm={openConfirm}
-              // updateConfirmFunction={updateConfirmFunction}
             />
           </Route>
           <Route path="/contact">
