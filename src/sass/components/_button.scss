@@ -80,13 +80,15 @@
     }
   }
   &--save-section {
-    border-color: a.$color-dark-grey;
+    border: solid;
+    border-color: a.$color-dark-grey-t75;
     background-color: a.$color-white;
+    border-width: 3px;
     border-radius: 3px;
-    color: a.$color-dark-grey;
+    color: a.$color-dark-grey-t75;
     padding: 0.25rem 1.5rem;
-    font-size: 1.4rem;
-    font-weight: 500;
+    font-size: 1.8rem;
+    font-weight: 600;
     transition: opacity 0.1s ease-in-out;
     &:disabled {
       opacity: 0;

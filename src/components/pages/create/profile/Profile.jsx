@@ -6,7 +6,7 @@ import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 export default function Profile({
   user,
   updateLayoutData,
-  updateCompletedSection,
+  updateCompletedSections,
   openConfirm,
 }) {
   //VARIABLES FROM PROPS  & STORAGE
@@ -53,10 +53,10 @@ export default function Profile({
   const confirmDelete = () => {
     localStorage.setObject(userId + "_profileData", null);
     setUserProfile(null);
-    updateCompletedSection(checkCompletedSections());
+    updateCompletedSections();
   };
   const noop = () => {};
-  console.log("render profile");
+
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>
@@ -79,7 +79,7 @@ export default function Profile({
         storageKey={userId + "_profileData"}
         data={tempProfile}
         updateParentState={saveUserProfile}
-        updateCompletedSection={updateCompletedSection}
+        updateCompletedSections={updateCompletedSections}
         disableButton={!updated}
       />
     </section>

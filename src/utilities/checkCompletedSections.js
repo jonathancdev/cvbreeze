@@ -54,7 +54,6 @@ const checkSwitch = (userId, section) => {
 };
 function checkCompletedSections() {
   const user = localStorage.getObject("currentUser").userId;
-
   const sections = Object.keys(localStorage).filter((key) =>
     key.includes(user + "_")
   );

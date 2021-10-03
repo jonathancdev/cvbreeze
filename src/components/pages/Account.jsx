@@ -26,7 +26,7 @@ export default function Account({
   };
   const handleDeleteAccount = () => {
     openConfirm(
-      "are you sure you want to permanently delete your account?",
+      "are you sure you want to permanently delete this account?",
       () => confirmDelete,
       () => noop
     );
@@ -127,7 +127,9 @@ export default function Account({
             </button>
           </div>
         ) : (
-          "sign in to access your account information"
+          <div className="empty-preview-warning">
+            sign in to access your account information
+          </div>
         )}
       </section>
     </Layout>

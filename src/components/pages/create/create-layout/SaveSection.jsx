@@ -7,7 +7,7 @@ export default function SaveSection({
   data,
   disableButton,
   updateParentState,
-  updateCompletedSection,
+  updateCompletedSections,
 }) {
   useEffect(() => {
     //CLEARS SAVE MESSAGE TIMER IF COMPONENT UNMOUNTED BEFORE TIMER RESOLVES
@@ -24,8 +24,8 @@ export default function SaveSection({
     //SHOULD ONLY BE ONE OBJECT KEY PER SECTION, USES THAT TO UPDATE CORRECT DATA
     //AND ALLOWS UPDATEPARENTSTATE PROP TO BE REUSED IN OTHER COMPONENTS
     updateParentState();
-    setSuccessMessage("changed saved successfully");
-    updateCompletedSection(checkCompletedSections());
+    setSuccessMessage("changed saved successfully!");
+    updateCompletedSections();
     const saveTimer = setTimeout(() => {
       setSuccessMessage(null);
     }, 3000);

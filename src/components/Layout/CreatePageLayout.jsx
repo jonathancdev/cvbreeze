@@ -15,7 +15,7 @@ export default function CreatePageLayout({
         logUserOut={logUserOut}
       ></CreatePageHeader>
       <main className="main">{children}</main>
-      <CreatePageFooter />
+      <CreatePageFooter user={user} />
     </>
   );
 }

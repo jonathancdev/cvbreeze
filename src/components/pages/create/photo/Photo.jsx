@@ -10,7 +10,7 @@ import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 export default function Photo({
   user,
   updateLayoutData,
-  updateCompletedSection,
+  updateCompletedSections,
   openConfirm,
 }) {
   //FONTAWESOME
@@ -88,7 +88,7 @@ export default function Photo({
   };
   const confirmDelete = () => {
     localStorage.setObject(userId + "_photoData", null);
-    updateCompletedSection(checkCompletedSections());
+    updateCompletedSections();
     setFilePath(null);
     setUserPhoto(null);
     setTempPhoto(null);
@@ -150,7 +150,7 @@ export default function Photo({
         storageKey={userId + "_photoData"}
         data={{ filePath: filePath, userPhoto: tempPhoto }}
         updateParentState={saveUserPhoto}
-        updateCompletedSection={updateCompletedSection}
+        updateCompletedSections={updateCompletedSections}
         disableButton={!updated}
       />
     </section>

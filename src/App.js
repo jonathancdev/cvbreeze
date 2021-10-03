@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import "./css/App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import checkCompletedSections from "./utilities/checkCompletedSections";
 import AlertModal from "./components/AlertModal";
 import ConfirmModal from "./components/ConfirmModal";
 import {
@@ -25,7 +26,9 @@ function App() {
       ? localStorage.getObject("currentUser")
       : null
   );
-  const [sessionActive, setSessionActive] = useState(false);
+  const [sessionActive, setSessionActive] = useState(
+    storageKeys.includes("currentUser")
+  );
 
   //modal state and update fncs
   const [alertOpen, setAlertOpen] = useState(false);
@@ -69,14 +72,36 @@ function App() {
   };
 
   //user, authentication, and session functions
+  const [completedSections, setCompletedSections] = useState({});
+
+  const updateCompletedSections = () => {
+    //SAVESECTION IN EACH SECTION CHECKS ALL SECTION STORAGE MEETS REQS AND
+    //IN SOME COMPONENTS ALSO IN DELETE FUNCTION
+    //PASSES OBJ BACK TO UPDATE STATE HERE
+    const obj = checkCompletedSections();
+    setCompletedSections({ ...obj });
+  };
+  const resetCompletedSections = () => {
+    setCompletedSections({
+      photo: false,
+      profile: false,
+      workExperience: false,
+      educationHistory: false,
+      skills: false,
+      contact: false,
+    });
+  };
+
   const logUserIn = (obj) => {
-    setUser(obj);
+    setUser({ ...obj });
     localStorage.setObject("currentUser", obj);
     setSessionActive(true);
   };
   const logUserOut = () => {
+    resetCompletedSections();
     setUser(null);
     setSessionActive(false);
+    localStorage.removeItem("currentUser");
   };
 
   return (
@@ -107,6 +132,8 @@ function App() {
               sessionActive={sessionActive}
               openAlert={openAlert}
               openConfirm={openConfirm}
+              completedSections={completedSections}
+              updateCompletedSections={updateCompletedSections}
             />
           </Route>
           <Route path="/signin">

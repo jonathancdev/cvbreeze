@@ -14,7 +14,7 @@ const { format } = require("date-fns");
 export default function WorkExperience({
   user,
   updateLayoutData,
-  updateCompletedSection,
+  updateCompletedSections,
   openAlert,
   openConfirm,
 }) {
@@ -84,7 +84,7 @@ export default function WorkExperience({
     const storage = localStorage.getObject(userId + "_workExperienceData");
     setTempWorkArray(storage);
     setUserWorkExperience(storage);
-    updateCompletedSection(checkCompletedSections());
+    updateCompletedSections();
   };
   const saveUserWorkExperience = () => {
     setUserWorkExperience(tempWorkArray);
@@ -367,19 +367,21 @@ export default function WorkExperience({
         </form>
       </CreateSectionForm>
       <CreateSectionPreview>
-        {tempWorkArray.length > 0 // USING TEMPWORKARRAY SO UNSAVED ITEMS DISPLAY, COMPARE IN WORKITEM COMPONENT TO ONLY ADD DELETE BUTTON IF THEY ARE ALSO IN USERWORKEXPERIENCE
-          ? tempWorkArray.map((obj) => {
-              return (
-                <WorkItem
-                  key={obj.id}
-                  obj={obj}
-                  userWorkExperience={userWorkExperience}
-                  handleDeletedItem={handleDeletedItem}
-                  openConfirm={openConfirm}
-                />
-              );
-            })
-          : "no work experience saved"}
+        {tempWorkArray.length > 0 ? ( // USING TEMPWORKARRAY SO UNSAVED ITEMS DISPLAY, COMPARE IN WORKITEM COMPONENT TO ONLY ADD DELETE BUTTON IF THEY ARE ALSO IN USERWORKEXPERIENCE
+          tempWorkArray.map((obj) => {
+            return (
+              <WorkItem
+                key={obj.id}
+                obj={obj}
+                userWorkExperience={userWorkExperience}
+                handleDeletedItem={handleDeletedItem}
+                openConfirm={openConfirm}
+              />
+            );
+          })
+        ) : (
+          <div className="empty-preview-warning">no work experience saved</div>
+        )}
       </CreateSectionPreview>
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
@@ -388,7 +390,7 @@ export default function WorkExperience({
         //UPDATES INTO STATE WHEN SAVED TO LOCAL STORAGE
         data={sortByDate(tempWorkArray)}
         updateParentState={saveUserWorkExperience}
-        updateCompletedSection={updateCompletedSection}
+        updateCompletedSections={updateCompletedSections}
         disableButton={!updated}
       />
     </section>

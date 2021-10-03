@@ -14,7 +14,7 @@ const { format } = require("date-fns");
 export default function Education({
   user,
   updateLayoutData,
-  updateCompletedSection,
+  updateCompletedSections,
   openAlert,
   openConfirm,
 }) {
@@ -81,7 +81,7 @@ export default function Education({
     const storage = localStorage.getObject(userId + "_educationHistoryData");
     setTempEducationArray(storage);
     setUserEducationHistory(storage);
-    updateCompletedSection(checkCompletedSections());
+    updateCompletedSections();
   };
   const saveUserEducationHistory = () => {
     setUserEducationHistory(tempEducationArray);
@@ -233,26 +233,30 @@ export default function Education({
         </form>
       </CreateSectionForm>
       <CreateSectionPreview>
-        {tempEducationArray.length > 0
-          ? tempEducationArray.map((obj) => {
-              return (
-                <EducationItem
-                  key={obj.id}
-                  obj={obj}
-                  userEducationHistory={userEducationHistory}
-                  handleDeletedItem={handleDeletedItem}
-                  openConfirm={openConfirm}
-                />
-              );
-            })
-          : "no education history saved"}
+        {tempEducationArray.length > 0 ? (
+          tempEducationArray.map((obj) => {
+            return (
+              <EducationItem
+                key={obj.id}
+                obj={obj}
+                userEducationHistory={userEducationHistory}
+                handleDeletedItem={handleDeletedItem}
+                openConfirm={openConfirm}
+              />
+            );
+          })
+        ) : (
+          <div className="empty-preview-warning">
+            no education history saved
+          </div>
+        )}
       </CreateSectionPreview>
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_educationHistoryData"}
         data={sortByDate(tempEducationArray)}
         updateParentState={saveUserEducationHistory}
-        updateCompletedSection={updateCompletedSection}
+        updateCompletedSections={updateCompletedSections}
         disableButton={!updated}
       />
     </section>

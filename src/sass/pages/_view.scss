@@ -1,0 +1,87 @@
+@use "../abstracts/" as a;
+
+.view-container {
+  overflow: scroll;
+  height: 100%;
+  width: 100vw;
+  @include a.flexCenterCol;
+}
+.view {
+  transform: scale(0.75);
+  position: relative;
+  margin-top: 200px;
+  min-height: 1053px;
+  max-height: 1053px;
+  min-width: 788px;
+  max-width: 788px;
+  &__top,
+  &__bottom {
+    position: absolute;
+    height: 15px;
+    width: 100%;
+    background-color: a.$color-blue;
+  }
+  &__top {
+    top: 0;
+  }
+  &__bottom {
+    bottom: 0;
+  }
+  &__photo {
+    position: absolute;
+    height: a.$photo-height;
+    width: a.$photo-width;
+    top: calc(#{a.$top-height} - 5px);
+    left: 0;
+    overflow: hidden;
+    &--shape {
+      position: absolute;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: a.$color-blue;
+      border-radius: 0 0 50% 0%;
+      @include a.flexCenterCol;
+    }
+    &--file {
+      height: calc((#{a.$photo-height} * 0.95));
+      width: calc((#{a.$photo-width} * 0.95));
+      border: solid;
+      border-width: 10px;
+      border-radius: 50%;
+      border-color: a.$color-blue;
+    }
+  }
+  &__sidebar {
+    position: absolute;
+    height: calc(100% - (#{a.$photo-height} + #{a.$top-height}));
+    width: a.$photo-width;
+    bottom: 0;
+    left: 0;
+    border: solid;
+    border-color: a.$color-black;
+  }
+  &__header {
+    position: absolute;
+    height: a.$header-height;
+    width: calc(100% - #{a.$photo-width});
+    top: 15px;
+    right: 0;
+    padding: 0 10px;
+  }
+  &__main {
+    position: absolute;
+    height: calc(100% - (#{a.$header-height} + #{a.$top-height} * 2));
+    width: calc(100% - #{a.$photo-width});
+    bottom: 15px;
+    right: 0;
+
+    padding: 0 10px;
+    .heading-primary {
+      font-size: a.$main-heading-height;
+      font-weight: 400;
+      color: a.$color-blue;
+      text-transform: uppercase;
+    }
+  }
+}

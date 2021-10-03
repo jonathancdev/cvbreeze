@@ -1,0 +1,4 @@
+on sign in page, if click on input box in wrong place itw ill redirect ot contact/help page
+
+on sign in authentication, its workign except state is taking too long to update so it checks the last email/password, 
+not most recent

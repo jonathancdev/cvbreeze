@@ -39,3 +39,12 @@ body {
   color: a.$color-dark-grey-t50;
   font-weight: 100;
 }
+
+//CV VIEW TYPOGRAPHY
+.view {
+  &__heading-primary {
+    text-transform: uppercase;
+    font-size: 80px;
+    font-weight: 800;
+  }
+}

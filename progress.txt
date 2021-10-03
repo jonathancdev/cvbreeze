@@ -1,10 +1,16 @@
-account page - add ability to change name and profession DONE,
- view cv, DONE
- log out, DONE
- delete account DONE
+view size
+old size: 
+1170 x 827 px
+875 x 650
+make font size and or line height increase/decrease based on number of items in section
 
-faq/contact page - create fake form
+profile: character count cutoff points (if p.length < 50 font-size is 16, if <80 font-size is 14 , etc)
 
-change links when signed in out (keep it simple because will prob change alot
-when styling)
+work experience/education:
+    different classes for each sections
+    title
+    dates
+    duties 
+    all grow/shrinkn depending on length of array (1, 2, or 3)
 
+    start with maximum charlengths in form and all duties to get outer limit and work backwords

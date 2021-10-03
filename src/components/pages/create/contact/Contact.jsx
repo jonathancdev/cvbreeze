@@ -7,7 +7,7 @@ import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 export default function Contact({
   user,
   updateLayoutData,
-  updateCompletedSection,
+  updateCompletedSections,
   openConfirm,
 }) {
   //VARIABLES FROM PROPS AND STORAGE
@@ -18,6 +18,7 @@ export default function Contact({
   const inputTelephoneRef = useRef(null);
   const inputEmailRef = useRef(null);
   //ADDRESS REF IS IN AUTOTEXTAREA COMPONENT
+  const inputAddressRef = useRef(null);
   const inputWebsiteRef = useRef(null);
 
   //SEND SECTION INFORMATION TO LAYOUT
@@ -43,17 +44,18 @@ export default function Contact({
   //ACTIVATES SAVE BUTTON IN SAVE SECTION WHEN NEEDED
   const [updated, setUpdated] = useState(false);
   useEffect(() => {
-    //PERSISTS PROFILE VALUE AFTER LEAVING PAGE BUT ALLOWS EDITING AFTER SAVE
+    //PERSISTS VALUES AFTER LEAVING PAGE BUT ALLOWS EDITING AFTER SAVE
+
     if (userContactInformation) {
-      inputTelephoneRef.current.value = userContactInformation.telephone;
-      inputEmailRef.current.value = userContactInformation.email;
+      inputTelephoneRef.current.value = userContactInformation.telephone || "";
+      inputEmailRef.current.value = userContactInformation.email || "";
       //TEXTAREA IS IN AUTOTEXTAREA COMPONENT
-      inputWebsiteRef.current.value = userContactInformation.website;
+      inputWebsiteRef.current.value = userContactInformation.website || "";
     } else {
       inputTelephoneRef.current.value = null;
       inputEmailRef.current.value = null;
       //TEXTAREA IS IN AUTOTEXTAREA COMPONENT
-      inputWebsiteRef.current.value = null;
+      inputWebsiteRef.current.value = "";
     }
   }, [userContactInformation]);
   //TAKES INPUT VALUES FROM INPUTS AND PUTS IN TEMPCONTACTOBJECT
@@ -133,9 +135,10 @@ export default function Contact({
     setTempContactObject(null);
     setUserContactInformation(null);
     localStorage.setObject(userId + "_contactData", null);
-    updateCompletedSection(checkCompletedSections());
+    updateCompletedSections();
   };
   const noop = () => {};
+
   return (
     <section className="create-section contact">
       <div className="form__element">
@@ -187,6 +190,8 @@ export default function Contact({
           userText={
             userContactInformation
               ? userContactInformation.address
+                ? userContactInformation.address
+                : "address\ncity, state/province\npostal code\ncountry"
               : "address\ncity, state/province\npostal code\ncountry"
           }
         />
@@ -229,7 +234,7 @@ export default function Contact({
           storageKey={userId + "_contactData"}
           data={tempContactObject}
           updateParentState={saveUserContactInformation}
-          updateCompletedSection={updateCompletedSection}
+          updateCompletedSections={updateCompletedSections}
           disableButton={!updated}
         />
       )}

@@ -29,7 +29,6 @@ export default function AutoTextArea({
     }
     setRows(newRows);
   };
-  console.log("render textarea");
 
   return (
     <textarea

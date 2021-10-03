@@ -11,7 +11,26 @@ export default function Signup({ user, sessionActive, logUserIn, logUserOut }) {
     control,
     formState: { errors },
   } = useForm();
-
+  const createStorageMap = (id) => {
+    const keyArray = [
+      ["_photoData", null],
+      ["_workExperienceData", []],
+      ["_profileData", null],
+      ["_contactData", null],
+      ["_skillsData", []],
+      ["_educationHistoryData", []],
+    ];
+    const storageKeys = keyArray.map((item) => {
+      const obj = {
+        key: id + item[0],
+        value: item[1],
+      };
+      return obj;
+    });
+    storageKeys.forEach((item) => {
+      localStorage.setObject(item.key, item.value);
+    });
+  };
   const loadTestUser = () => {
     importTestUser();
     logUserIn({
@@ -20,7 +39,7 @@ export default function Signup({ user, sessionActive, logUserIn, logUserOut }) {
       profession: "Managing Partner",
       password: "password",
       email: "maria@cvbreeze.cv",
-      userId: "BREEZEID_J4B6P12",
+      userId: "BREEZEID_M5B6M16",
       storageKey: "user_test",
     });
   };
@@ -38,7 +57,7 @@ export default function Signup({ user, sessionActive, logUserIn, logUserOut }) {
       storageKey: storageKey,
     };
     const id =
-      "breezeId_" +
+      "BREEZEID_" +
       obj.firstName[0] +
       obj.firstName.length +
       obj.lastName[0] +
@@ -47,6 +66,7 @@ export default function Signup({ user, sessionActive, logUserIn, logUserOut }) {
       obj.profession.length;
     obj.userId = id.toUpperCase();
     localStorage.setObject(storageKey, obj);
+    createStorageMap(id.toUpperCase());
     logUserIn(localStorage.getObject(storageKey));
     history.push("/create");
   };

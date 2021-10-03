@@ -40,3 +40,9 @@
   padding: 0;
   border: 0;
 }
+
+.space-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

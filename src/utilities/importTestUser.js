@@ -1,17 +1,17 @@
 export function importTestUser() {
-  localStorage.setObject("BREEZEID_J4B6P12_photoData", {
+  localStorage.setObject("BREEZEID_M5B6M16_photoData", {
     userPhoto: "test user",
     filePath: "breezeJ_cv.jpg",
   });
   //contact
-  localStorage.setObject("BREEZEID_J4B6P12_contactData", {
+  localStorage.setObject("BREEZEID_M5B6M16_contactData", {
     telephone: "555-555-5555",
     email: "maria@cvbreeze.breeze",
     address: "510 Carrington Lane\nAdelaide\nSA 5000\nAustralia",
     website: "janebmgmt.breeze",
   });
   //education
-  localStorage.setObject("BREEZEID_J4B6P12_educationHistoryData", [
+  localStorage.setObject("BREEZEID_M5B6M16_educationHistoryData", [
     {
       institution: "International Biz University",
       degree: "MBA",
@@ -29,12 +29,12 @@ export function importTestUser() {
   ]);
   //profile
   localStorage.setObject(
-    "BREEZEID_J4B6P12_profileData",
+    "BREEZEID_M5B6M16_profileData",
 
     "Aliquet eget sit amet tellus. Sit amet mauris commodo quis imperdiet. A lacus vestibulum sed arcu non. Netus et malesuada fames ac. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Nisi vitae suscipit tellus mauris a diam maecenas sed. Ut pharetra sit amet aliquam id. Varius sit amet mattis vulputate enim nulla."
   );
   //skills
-  localStorage.setObject("BREEZEID_J4B6P12_skillsData", [
+  localStorage.setObject("BREEZEID_M5B6M16_skillsData", [
     { skill: "Project Management", id: "Project Management1" },
     { skill: "Performance Management", id: "Performance Management2" },
     {
@@ -51,7 +51,7 @@ export function importTestUser() {
     { skill: "Continuous Improvement", id: "Continuous Improvement8" },
   ]);
   //work
-  localStorage.setObject("BREEZEID_J4B6P12_workExperienceData", [
+  localStorage.setObject("BREEZEID_M5B6M16_workExperienceData", [
     {
       title: "Manager",
       company: "Super Agency",
@@ -91,7 +91,7 @@ export function importTestUser() {
     profession: "Managing Partner",
     password: "password",
     email: "maria@cvbreeze.cv",
-    userId: "BREEZEID_J4B6P12",
+    userId: "BREEZEID_M5B6M16",
     storageKey: "user_test",
   });
 }

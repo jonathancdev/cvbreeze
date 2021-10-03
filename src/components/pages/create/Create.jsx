@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from "react";
-import checkCompletedSections from "../../../utilities/checkCompletedSections";
 import CreatePageLayout from "../../layout/CreatePageLayout";
 import { Route, Switch } from "react-router-dom";
 import {
@@ -16,30 +15,23 @@ import useLayoutUpdater from "../../../hooks/useLayoutUpdater";
 export default function Create({
   user,
   sessionActive,
-  logUserIn,
   logUserOut,
   openAlert,
   openConfirm,
+  completedSections,
+  updateCompletedSections,
 }) {
   const [layoutData, setLayoutData] = useState({
     section: "",
     headerText: "",
     toolTip: "",
   });
-  const [completedSections, setCompletedSections] = useState({});
-
   useEffect(() => {
     if (user) {
-      updateCompletedSection(checkCompletedSections());
+      updateCompletedSections();
     }
-  }, []);
+  }, [user]);
 
-  const updateCompletedSection = (obj) => {
-    //SAVESECTION IN EACH SECTION CHECKS ALL SECTION STORAGE MEETS REQS AND
-    //IN SOME COMPONENTS ALSO IN DELETE FUNCTION
-    //PASSES OBJ BACK TO UPDATE STATE HERE
-    setCompletedSections({ ...obj });
-  };
   const updateLayoutData = useCallback(
     (obj) => {
       setLayoutData(obj);
@@ -48,86 +40,107 @@ export default function Create({
   );
 
   useLayoutUpdater(layoutData, updateLayoutData);
-
   return (
     <CreatePageLayout
       sessionActive={sessionActive}
       logUserOut={logUserOut}
-      user={user}
+      user={user || null}
     >
-      <section className="create">
-        <CreateLayout
-          layoutData={layoutData}
-          user={user}
-          completedSections={completedSections}
-        >
+      {user ? (
+        <section className="create">
           <Switch>
-            <Route exact path="/create">
-              <h1 className="heading-primary">Welcome!</h1>
-              <p className="text-large margin-top-extra-small">
-                Take a moment to explore our friend Maria's CV. See the finished
-                product by clicking 'view CV'. You can even make changes to see
-                how everything works. Sign out when you are ready to make your
-                own account. It's free!
-              </p>
-            </Route>
-            <Route path="/create/photo">
-              <Photo
-                updateLayoutData={updateLayoutData}
-                updateCompletedSection={updateCompletedSection}
-                user={user}
-                openConfirm={openConfirm}
-              />
-            </Route>
-            <Route path="/create/profile">
-              <Profile
-                updateLayoutData={updateLayoutData}
-                updateCompletedSection={updateCompletedSection}
-                user={user}
-                openConfirm={openConfirm}
-              />
-            </Route>
-            <Route path="/create/workexperience">
-              <WorkExperience
-                updateLayoutData={updateLayoutData}
-                updateCompletedSection={updateCompletedSection}
-                user={user}
-                openAlert={openAlert}
-                openConfirm={openConfirm}
-              />
-            </Route>
-            <Route path="/create/education">
-              <Education
-                updateLayoutData={updateLayoutData}
-                updateCompletedSection={updateCompletedSection}
-                user={user}
-                openAlert={openAlert}
-                openConfirm={openConfirm}
-              />
-            </Route>
-            <Route path="/create/skills">
-              <Skills
-                updateLayoutData={updateLayoutData}
-                updateCompletedSection={updateCompletedSection}
-                user={user}
-                openAlert={openAlert}
-                openConfirm={openConfirm}
-              />
-            </Route>
-            <Route path="/create/contact">
-              <Contact
-                updateLayoutData={updateLayoutData}
-                updateCompletedSection={updateCompletedSection}
-                user={user}
-                openConfirm={openConfirm}
-              />
-            </Route>
             <Route exact path="/create/view">
               <View user={user} />
             </Route>
+            <CreateLayout
+              layoutData={layoutData}
+              user={user}
+              completedSections={completedSections}
+            >
+              <Route exact path="/create">
+                {user.userId === "BREEZEID_M5B6M16" ? (
+                  <>
+                    <h1 className="heading-primary">Welcome!</h1>
+                    <p className="text-large margin-top-extra-small">
+                      Take a moment to explore our friend Maria's CV. See the
+                      finished product by clicking 'view CV'. You can even make
+                      changes to see how everything works. Sign out when you are
+                      ready to make your own account. It's free!
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h1 className="heading-primary">
+                      Hello, {user.firstName}!
+                    </h1>
+                    <p className="text-large margin-top-extra-small">
+                      Add your information to each cv section. Save all of the
+                      changes before you move on! When all sections have been
+                      been completed you can preview the final document. Return
+                      as needed to edit or update your cv!
+                    </p>
+                  </>
+                )}
+              </Route>
+              <Route path="/create/photo">
+                <Photo
+                  updateLayoutData={updateLayoutData}
+                  updateCompletedSections={updateCompletedSections}
+                  user={user}
+                  openConfirm={openConfirm}
+                />
+              </Route>
+              <Route path="/create/profile">
+                <Profile
+                  updateLayoutData={updateLayoutData}
+                  updateCompletedSections={updateCompletedSections}
+                  user={user}
+                  openConfirm={openConfirm}
+                />
+              </Route>
+              <Route path="/create/workexperience">
+                <WorkExperience
+                  updateLayoutData={updateLayoutData}
+                  updateCompletedSections={updateCompletedSections}
+                  user={user}
+                  openAlert={openAlert}
+                  openConfirm={openConfirm}
+                />
+              </Route>
+              <Route path="/create/education">
+                <Education
+                  updateLayoutData={updateLayoutData}
+                  updateCompletedSections={updateCompletedSections}
+                  user={user}
+                  openAlert={openAlert}
+                  openConfirm={openConfirm}
+                />
+              </Route>
+              <Route path="/create/skills">
+                <Skills
+                  updateLayoutData={updateLayoutData}
+                  updateCompletedSections={updateCompletedSections}
+                  user={user}
+                  openAlert={openAlert}
+                  openConfirm={openConfirm}
+                />
+              </Route>
+              <Route path="/create/contact">
+                <Contact
+                  updateLayoutData={updateLayoutData}
+                  updateCompletedSections={updateCompletedSections}
+                  user={user}
+                  openConfirm={openConfirm}
+                />
+              </Route>
+            </CreateLayout>
           </Switch>
-        </CreateLayout>
-      </section>
+        </section>
+      ) : (
+        <div className="empty-preview-warning">
+          sign up or sign in to create your cv
+        </div>
+      )}
     </CreatePageLayout>
   );
 }

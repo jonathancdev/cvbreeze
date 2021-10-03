@@ -10,7 +10,7 @@ import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 export default function Skills({
   user,
   updateLayoutData,
-  updateCompletedSection,
+  updateCompletedSections,
   openAlert,
   openConfirm,
 }) {
@@ -74,7 +74,7 @@ export default function Skills({
     const storage = localStorage.getObject(userId + "_skillsData");
     setTempSkillArray(storage);
     setUserSkills(storage);
-    updateCompletedSection(checkCompletedSections());
+    updateCompletedSections();
   };
   const saveUserSkills = () => {
     setUserSkills(tempSkillArray);
@@ -151,26 +151,28 @@ export default function Skills({
         </form>
       </CreateSectionForm>
       <CreateSectionPreview>
-        {tempSkillArray.length > 0
-          ? tempSkillArray.map((obj) => {
-              return (
-                <SkillItem
-                  key={obj.id}
-                  obj={obj}
-                  userSkills={userSkills}
-                  handleDeletedItem={handleDeletedItem}
-                  openConfirm={openConfirm}
-                />
-              );
-            })
-          : "no skills saved"}
+        {tempSkillArray.length > 0 ? (
+          tempSkillArray.map((obj) => {
+            return (
+              <SkillItem
+                key={obj.id}
+                obj={obj}
+                userSkills={userSkills}
+                handleDeletedItem={handleDeletedItem}
+                openConfirm={openConfirm}
+              />
+            );
+          })
+        ) : (
+          <div className="empty-preview-warning">no skills saved</div>
+        )}
       </CreateSectionPreview>
       <SaveSection
         message={updated ? "do you want to save these changes?" : null}
         storageKey={userId + "_skillsData"}
         data={tempSkillArray}
         updateParentState={saveUserSkills}
-        updateCompletedSection={updateCompletedSection}
+        updateCompletedSections={updateCompletedSections}
         disableButton={!updated}
       />
     </section>

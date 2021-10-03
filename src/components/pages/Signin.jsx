@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import Layout from "../layout/Layout";
@@ -18,29 +18,43 @@ export default function Signin({
   const [authenticated, setAuthenticated] = useState(false);
   const email = useRef();
   const password = useRef();
+
   const handleFormSubmit = () => {
     authenticate();
   };
 
-  const authenticate = () => {
+  const authenticate = async () => {
+    //get all users in local storage
     const keys = Object.keys(localStorage).filter((item) =>
       item.includes("user_")
     );
-    keys.forEach((key, i) => {
-      const user = localStorage.getObject(keys[i]);
-      if (
-        email.current.value === user.email &&
-        password.current.value === user.password
-      ) {
-        logUserIn(user);
+    //create array of objects with each user info
+    const userArray = keys.map((key) => {
+      return localStorage.getObject(key);
+    });
+    //match user signing in with user info in storage
+    const userSigningIn = findUserEmail(userArray, email.current.value);
+
+    //if an email matches
+    if (userSigningIn) {
+      //check if password matches
+      if (userSigningIn.password === password.current.value) {
+        logUserIn(userSigningIn);
         setAuthenticated(true);
         history.push("/create");
       } else {
-        setAuthenticated(false);
-        openAlert("sign in failed, check your username and password");
+        //setAuthenticated(false);
+        openAlert("incorrect password");
       }
-    });
+    } else {
+      openAlert("no user registered with this email address");
+    }
   };
+
+  const findUserEmail = (userArray, email) => {
+    return userArray.find((obj) => obj.email === email);
+  };
+
   return (
     <Layout sessionActive={sessionActive} logUserOut={logUserOut} user={user}>
       <section className="signin">

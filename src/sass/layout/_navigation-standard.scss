@@ -30,6 +30,7 @@
     transition: transform 0.2s, opacity 0.2s;
   }
   .mobilenav {
+    visibility: hidden;
     @include a.flexCenterRow;
     height: 0;
     width: 0;
@@ -75,6 +76,7 @@
     opacity: 1;
   }
   &__checkbox:checked ~ &__background .mobilenav {
+    visibility: visible;
     margin-bottom: 15rem;
     opacity: 1;
     height: 40%;
