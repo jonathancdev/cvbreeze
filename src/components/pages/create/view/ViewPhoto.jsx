@@ -15,7 +15,6 @@ export default function ViewPhoto({ user, section }) {
       setPhoto(null);
     }
   });
-  console.log(typeof userPhoto);
   return (
     <section className="view__photo">
       <div className="view__photo--shape">

@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function ViewWorkItem({ obj }) {
-  console.log(obj);
   const {
     company,
     dutyOne,
@@ -23,9 +22,11 @@ export default function ViewWorkItem({ obj }) {
 
       <h2 className="work__heading-secondary">{company}</h2>
 
-      <p className="work__text">{dutyOne}</p>
-      <p className="work__text">{dutyTwo}</p>
-      <p className="work__text">{dutyThree}</p>
+      <ul className="work__list">
+        <li className="work__text">{dutyOne}</li>
+        {dutyTwo ? <li className="work__text">{dutyTwo}</li> : null}
+        {dutyThree ? <li className="work__text">{dutyThree}</li> : null}
+      </ul>
     </div>
   );
 }

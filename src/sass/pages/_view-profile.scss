@@ -1,10 +1,11 @@
 @use "../abstracts/" as a;
 
 .view__profile {
-  padding: 0 7px;
+  padding: a.$main-view-side-padding;
   display: flex;
   flex-direction: column;
   min-height: 100px;
   max-height: a.$profile-height;
   width: 100%;
+  background-color: a.$color-light-grey-t5;
 }

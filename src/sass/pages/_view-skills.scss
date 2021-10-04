@@ -1,0 +1,53 @@
+@use "../abstracts/" as a;
+
+.view__skills {
+  min-height: 250px;
+  max-height: 350px;
+  padding: a.$sidebar-view-side-padding;
+  .skill__text:nth-child(even) {
+    background-color: a.$color-light-grey-t5;
+  }
+  .skill {
+    &__list {
+      min-height: 200px;
+      max-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      list-style-type: none;
+      list-style-position: outside;
+      margin-left: 2px;
+      padding: 2px 0;
+    }
+    &__text {
+      font-size: 18px;
+      color: a.$color-dark-grey-t75;
+      font-weight: 200;
+      line-height: 20px;
+      text-transform: uppercase;
+      padding: 5px 0;
+    }
+  }
+}
+//4-6 skills
+.view__skills.six-skills {
+  .skill {
+    &__list {
+      padding: 6px 0;
+    }
+    &__text {
+      padding: 8px 0;
+    }
+  }
+}
+//1-3 skills
+.view__skills.three-skills {
+  .skill {
+    &__list {
+      padding: 10px 0;
+    }
+    &__text {
+      padding: 12px 0;
+    }
+  }
+}

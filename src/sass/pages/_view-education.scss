@@ -1,0 +1,62 @@
+@use "../abstracts/" as a;
+
+.view__education {
+  padding: 2px;
+  height: 225px;
+  .education {
+    &__heading-primary {
+      font-size: 22px;
+      color: a.$color-dark-grey;
+      font-weight: 500;
+      line-height: 28px;
+    }
+    &__heading-secondary {
+      font-size: 18px;
+      color: a.$color-dark-grey;
+      font-weight: 300;
+      line-height: 28px;
+    }
+    &__heading-tertiary {
+      font-size: 16px;
+      color: a.$color-dark-grey;
+      font-weight: 300;
+    }
+    &__text {
+      font-size: 18px;
+      color: a.$color-dark-grey-t75;
+      font-weight: 200;
+      line-height: 22px;
+    }
+  }
+}
+//if only one education item
+.view__education.one-education-item {
+  .education {
+    &__heading-primary {
+      font-size: 24px;
+      line-height: 32px;
+    }
+    &__heading-secondary {
+      font-size: 20px;
+      line-height: 32px;
+    }
+    &__heading-tertiary {
+      font-size: 16px;
+    }
+    &__text {
+      font-size: 18px;
+      line-height: 32px;
+    }
+    &__item {
+      padding: a.$main-view-side-padding;
+      padding-top: 5px;
+    }
+  }
+}
+.education__item {
+  padding: a.$main-view-side-padding;
+  padding-bottom: 10px;
+}
+.education__item:nth-child(even) {
+  background-color: a.$color-light-grey-t5;
+}

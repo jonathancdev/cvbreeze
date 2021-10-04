@@ -1,4 +1,5 @@
-on sign in page, if click on input box in wrong place itw ill redirect ot contact/help page
+photo add error, if you delete a photo and try to add same photo, it doesn't workign
 
-on sign in authentication, its workign except state is taking too long to update so it checks the last email/password, 
-not most recent
+change contact fields to autofitter
+
+create test cases to check min/max values for profile, duties, edu description, and skills

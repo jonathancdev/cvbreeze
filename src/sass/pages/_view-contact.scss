@@ -1,0 +1,15 @@
+@use "../abstracts/" as a;
+
+.view__contact {
+  padding: a.$sidebar-view-side-padding;
+  .contact {
+    &__text {
+      font-size: 18px;
+      color: a.$color-dark-grey-t75;
+      font-weight: 400;
+      line-height: 20px;
+      text-transform: uppercase;
+      padding: 5px 0;
+    }
+  }
+}

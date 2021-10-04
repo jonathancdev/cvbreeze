@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ViewContact from "./ViewContact";
 import ViewEducation from "./ViewEducation";
 import ViewPhoto from "./ViewPhoto";
@@ -16,7 +16,21 @@ export default function View({ user }) {
     skills: "_skillsData",
     work: "_workExperienceData",
   };
-  console.log(user);
+  //array lengths to set classes
+  const [workClass, setWorkClass] = useState(null);
+  const [educationClass, setEducationClass] = useState(null);
+  const [skillsClass, setSkillsClass] = useState(null);
+
+  const updateWorkClass = (str) => {
+    setWorkClass(str);
+  };
+  const updateEducationClass = (str) => {
+    setEducationClass(str);
+  };
+  const updateSkillsClass = (str) => {
+    setSkillsClass(str);
+  };
+  console.log(workClass, educationClass, skillsClass);
   return (
     <section className="view-container">
       <section className="view">
@@ -24,7 +38,7 @@ export default function View({ user }) {
         <ViewPhoto user={user} section={storageSections.photo} />
         <div className="view__header">
           <AutoTextFitter
-            className="fitter__name margin-top-extra-small"
+            className="fitter__name"
             type="single"
             min={20}
             max={60}
@@ -38,14 +52,34 @@ export default function View({ user }) {
             input={user.profession.toUpperCase()}
           ></AutoTextFitter>
         </div>
-        <div className="view__sidebar"></div>
-        <div className="view__main">
+        <div className="view__sidebar">
+          <h1 className="heading-primary margin-top-medium">Skills</h1>
+          <ViewSkills
+            user={user}
+            section={storageSections.skills}
+            skillsClass={skillsClass}
+            updateSkillsClass={updateSkillsClass}
+          />
+          <h1 className="heading-primary margin-top-medium">Contact</h1>
+          <ViewContact user={user} section={storageSections.contact} />
+        </div>
+        <div className={"view__main " + workClass}>
           <h1 className="heading-primary">Profile</h1>
           <ViewProfile user={user} section={storageSections.profile} />
           <h1 className="heading-primary">Work Experience</h1>
-          <ViewWork user={user} section={storageSections.work} />
+          <ViewWork
+            user={user}
+            section={storageSections.work}
+            workClass={workClass}
+            updateWorkClass={updateWorkClass}
+          />
           <h1 className="heading-primary">Education</h1>
-          <ViewEducation />
+          <ViewEducation
+            user={user}
+            section={storageSections.education}
+            educationClass={educationClass}
+            updateEducationClass={updateEducationClass}
+          />
         </div>
         <div className="view__bottom"></div>
       </section>

@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: flex-start;
   color: a.$color-dark-grey;
+  line-height: 1.2; //normalize across browsers
   &__name {
     height: inherit;
     width: inherit;

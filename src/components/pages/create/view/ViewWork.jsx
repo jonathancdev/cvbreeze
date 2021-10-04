@@ -1,8 +1,13 @@
 import React, { useState, useLayoutEffect } from "react";
 import ViewWorkItem from "./ViewWorkItem";
-export default function ViewWork({ user, section }) {
+export default function ViewWork({
+  user,
+  section,
+  workClass,
+  updateWorkClass,
+}) {
   const workArray = localStorage.getObject(user.userId + section);
-  const [lengthClass, setLengthClass] = useState("");
+
   useLayoutEffect(() => {
     let length = "";
     switch (workArray.length) {
@@ -18,26 +23,16 @@ export default function ViewWork({ user, section }) {
       default:
         break;
     }
-    setLengthClass(length);
+    updateWorkClass(length);
   });
-  console.log(lengthClass);
-  console.log(workArray);
 
   return (
-    <section className="view__work work margin-bottom-extra-small">
+    <section
+      className={"view__work work margin-bottom-extra-small " + workClass}
+    >
       {workArray.map((obj) => (
         <ViewWorkItem obj={obj} />
       ))}
     </section>
   );
-}
-//   <h1 className="work__heading-primary">Plumber at Plumbing Company</h1>;
-{
-  /* <AutoTextFitter
-          className="fitter__profile"
-          type="multi"
-          min={10}
-          max={24}
-          input={profile}
-        ></AutoTextFitter> */
 }

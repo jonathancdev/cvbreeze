@@ -1,5 +1,34 @@
-import React from "react";
+import React, { useState, useLayoutEffect } from "react";
+import ViewEducationItem from "./ViewEducationItem";
+export default function ViewEducation({
+  user,
+  section,
+  educationClass,
+  updateEducationClass,
+}) {
+  const educationArray = localStorage.getObject(user.userId + section);
+  useLayoutEffect(() => {
+    let length = "";
+    switch (educationArray.length) {
+      case 1:
+        length = "one-education-item";
+        break;
+      case 2:
+        length = "two-education-item";
+        break;
+      default:
+        break;
+    }
+    updateEducationClass(length);
+  });
 
-export default function ViewEducation() {
-  return <div>view edu</div>;
+  return (
+    <section
+      className={"view__education margin-bottom-extra-small " + educationClass}
+    >
+      {educationArray.map((obj) => (
+        <ViewEducationItem obj={obj} />
+      ))}
+    </section>
+  );
 }

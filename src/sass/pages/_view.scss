@@ -7,7 +7,7 @@
   @include a.flexCenterCol;
 }
 .view {
-  transform: scale(0.75);
+  transform: scale(1);
   position: relative;
   margin-top: 200px;
   min-height: 1053px;
@@ -58,8 +58,15 @@
     width: a.$photo-width;
     bottom: 0;
     left: 0;
-    border: solid;
-    border-color: a.$color-black;
+
+    .heading-primary {
+      font-size: a.$sidebar-heading-height;
+      font-weight: 400;
+      color: a.$color-blue;
+      text-transform: uppercase;
+      padding: a.$sidebar-view-side-padding;
+      letter-spacing: a.$letter-spacing-small;
+    }
   }
   &__header {
     position: absolute;
@@ -67,6 +74,7 @@
     width: calc(100% - #{a.$photo-width});
     top: 15px;
     right: 0;
+    margin-top: 35px;
     padding: 0 10px;
   }
   &__main {
@@ -82,6 +90,14 @@
       font-weight: 400;
       color: a.$color-blue;
       text-transform: uppercase;
+      padding: a.$main-view-side-padding;
+      letter-spacing: a.$letter-spacing-small;
+    }
+  }
+  &__main.one-work-item {
+    bottom: -10px;
+    .heading-primary {
+      line-height: 60px;
     }
   }
 }
