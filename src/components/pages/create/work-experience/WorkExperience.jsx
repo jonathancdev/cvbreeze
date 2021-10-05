@@ -132,6 +132,10 @@ export default function WorkExperience({
               name="title"
               rules={{
                 required: "job title required",
+                minLength: {
+                  value: 2,
+                  message: "minimum length 2 characters",
+                },
                 maxLength: {
                   value: 50,
                   message: "maximum length 50 characters",
@@ -166,6 +170,10 @@ export default function WorkExperience({
               name="company"
               rules={{
                 required: "company name required",
+                minLength: {
+                  value: 2,
+                  message: "minimum length 2 characters",
+                },
                 maxLength: {
                   value: 50,
                   message: "maximum length 50 characters",
@@ -271,9 +279,13 @@ export default function WorkExperience({
               name="duty"
               rules={{
                 required: "at least one duty required",
+                minLength: {
+                  value: 5,
+                  message: "minimum length 5 characters",
+                },
                 maxLength: {
-                  value: 75,
-                  message: "maximum length 75 characters",
+                  value: 100,
+                  message: "maximum length 100 characters",
                 },
               }}
               render={({ field }) => (
@@ -289,7 +301,7 @@ export default function WorkExperience({
                 />
               )}
             />
-            <label htmlFor="company" className="visuallyhidden">
+            <label htmlFor="duty" className="visuallyhidden">
               duties
             </label>
 
@@ -304,9 +316,13 @@ export default function WorkExperience({
               control={control}
               name="dutyTwo"
               rules={{
+                minLength: {
+                  value: 5,
+                  message: "minimum length 5 characters",
+                },
                 maxLength: {
-                  value: 75,
-                  message: "maximum length 75 characters",
+                  value: 100,
+                  message: "maximum length 100 characters",
                 },
               }}
               render={({ field }) => (
@@ -322,7 +338,7 @@ export default function WorkExperience({
                 />
               )}
             />
-            <label htmlFor="company" className="visuallyhidden">
+            <label htmlFor="dutyTwo" className="visuallyhidden">
               duties
             </label>
 
@@ -337,9 +353,13 @@ export default function WorkExperience({
               control={control}
               name="dutyThree"
               rules={{
+                minLength: {
+                  value: 5,
+                  message: "minimum length 5 characters",
+                },
                 maxLength: {
-                  value: 75,
-                  message: "maximum length 75 characters",
+                  value: 100,
+                  message: "maximum length 100 characters",
                 },
               }}
               render={({ field }) => (
@@ -355,7 +375,7 @@ export default function WorkExperience({
                 />
               )}
             />
-            <label htmlFor="company" className="visuallyhidden">
+            <label htmlFor="dutyThree" className="visuallyhidden">
               duties
             </label>
 

@@ -127,6 +127,10 @@ export default function Education({
               name="institution"
               rules={{
                 required: "institution required",
+                minLength: {
+                  value: 2,
+                  message: "minimum length 2 characters",
+                },
                 maxLength: {
                   value: 50,
                   message: "maximum length 50 characters",
@@ -160,6 +164,10 @@ export default function Education({
               name="degree"
               rules={{
                 required: "degree or certification required",
+                minLength: {
+                  value: 2,
+                  message: "minimum length 2 characters",
+                },
                 maxLength: {
                   value: 50,
                   message: "maximum length 50 characters",
@@ -220,15 +228,43 @@ export default function Education({
               {errors.date ? errors.date.message : ""}
             </p>
           </div>
+
           <div className="form__element">
-            <input
-              ref={description}
-              placeholder="description"
-              type="text"
-              className="input--standard"
-              maxLength="150"
+            <Controller
+              defaultValue=""
+              control={control}
+              name="description"
+              rules={{
+                minLength: {
+                  value: 5,
+                  message: "minimum length 5 characters",
+                },
+                maxLength: {
+                  value: 100,
+                  message: "maximum length 100 characters",
+                },
+              }}
+              render={({ field }) => (
+                <input
+                  id="description"
+                  ref={description}
+                  placeholder="description"
+                  type="text"
+                  className="input--standard"
+                  onChange={(e) => {
+                    field.onChange(e);
+                  }}
+                />
+              )}
             />
-            <p className="form__error">&nbsp;</p>
+            <label htmlFor="description" className="visuallyhidden">
+              description
+            </label>
+
+            <p className="form__error">
+              &nbsp;
+              {errors.description ? errors.description.message : ""}
+            </p>
           </div>
         </form>
       </CreateSectionForm>
