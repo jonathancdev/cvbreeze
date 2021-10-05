@@ -28,14 +28,30 @@ export default function Profile({
   const [tempProfile, setTempProfile] = useState(null);
   const [userProfile, setUserProfile] = useState(storage ? storage : null);
   const [updated, setUpdated] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const updateTempProfile = (value) => {
+    checkMinLength(value);
     setTempProfile(value);
-    if (value.match(/^\s*\S[^]*$/)) {
+    if (
+      value.match(/^\s*\S[^]*$/) &&
+      value.length >= 150 &&
+      value.length <= 600
+    ) {
       //can't be all white space
       setUpdated(true);
     } else if (!value.match(/^\s*\S[^]*$/) && !userProfile) {
       setUpdated(false);
+    }
+  };
+  const checkMinLength = (str) => {
+    if (str.length < 150) {
+      const x = 150 - str.length;
+      setErrorMessage(str.length + "/150 characters to minimum length");
+    } else if (str.length >= 600) {
+      setErrorMessage("600 characters maximium");
+    } else {
+      setErrorMessage("");
     }
   };
   const saveUserProfile = () => {
@@ -56,7 +72,7 @@ export default function Profile({
     updateCompletedSections();
   };
   const noop = () => {};
-
+  console.log(errorMessage);
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>
@@ -65,6 +81,9 @@ export default function Profile({
         placeholder="click to add profile"
         update={updateTempProfile}
         userText={userProfile}
+        minLength={150}
+        maxLength={600}
+        errorMessage={errorMessage}
       />
       {userProfile ? (
         <button

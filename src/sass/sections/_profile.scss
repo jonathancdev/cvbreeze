@@ -8,5 +8,10 @@
   justify-content: flex-end;
   &__textarea {
     width: 80%;
+    margin: 5rem auto;
+  }
+  .form__error {
+    margin: 0 auto;
+    margin-bottom: 1rem;
   }
 }

@@ -5,6 +5,8 @@ export default function AutoTextArea({
   userText,
   placeholder,
   update,
+  maxLength,
+  errorMessage,
 }) {
   const lineHeight = 18; //set a little below actual line height set in css to pad bottom a bit
   const textareaRef = useRef(null);
@@ -31,14 +33,24 @@ export default function AutoTextArea({
   };
 
   return (
-    <textarea
-      defaultValue={userText}
-      className={className}
-      placeholder={placeholder}
-      onChange={handleChange}
-      ref={textareaRef}
-      rows={rows}
-      onClick={() => textareaRef.current.select()}
-    ></textarea>
+    <div className="form__element">
+      <textarea
+        defaultValue={userText}
+        className={className}
+        placeholder={placeholder}
+        maxLength={maxLength}
+        onChange={handleChange}
+        ref={textareaRef}
+        rows={rows}
+        id="autotextarea"
+      ></textarea>
+      <label htmlFor="autotextarea" className="visuallyhidden">
+        profile
+      </label>
+      <p className="form__error">
+        &nbsp;
+        {errorMessage}
+      </p>
+    </div>
   );
 }
