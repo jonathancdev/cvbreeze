@@ -12,6 +12,22 @@
 html {
   //defines 1rem
   font-size: 62.5%;
+
+  @include a.respond(iphone5) {
+    font-size: 45%;
+  }
+  @include a.respond(iphone6) {
+    font-size: 55%;
+  }
+  @include a.respond(smalltab) {
+    font-size: 60%;
+  }
+  @include a.respond(tabport) {
+    font-size: 70%;
+  }
+  @include a.respond(tabland) {
+    font-size: 55%;
+  }
 }
 body {
   box-sizing: border-box;

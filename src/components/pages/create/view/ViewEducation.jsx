@@ -23,9 +23,8 @@ export default function ViewEducation({
   });
 
   return (
-    <section
-      className={"view__education margin-bottom-extra-small " + educationClass}
-    >
+    <section className={"view__education " + educationClass}>
+      <h1 className="heading-primary">Education</h1>
       {educationArray.map((obj) => (
         <ViewEducationItem obj={obj} />
       ))}

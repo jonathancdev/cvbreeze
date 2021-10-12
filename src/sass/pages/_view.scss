@@ -1,19 +1,57 @@
 @use "../abstracts/" as a;
-
+.view * {
+  line-height: 1.2;
+}
 .view-container {
+  position: relative;
   overflow: scroll;
   height: 100%;
-  width: 100vw;
-  @include a.flexCenterCol;
+  width: 100%;
 }
 .view {
-  transform: scale(1);
-  position: relative;
-  margin-top: 200px;
+  transform: scale(0.45);
+  position: absolute;
+  top: -290px;
+  left: -218px;
   min-height: 1053px;
   max-height: 1053px;
   min-width: 788px;
   max-width: 788px;
+  @include a.respond(iphone6) {
+    transform: scale(0.435);
+    top: -300px;
+    left: -218px;
+  }
+  @include a.respond(iphone5) {
+    transform: scale(0.37);
+    top: -330px;
+    left: -245px;
+  }
+  @include a.respond(widephone) {
+    transform: scale(0.475);
+    top: -270px;
+    left: -190px;
+  }
+  @include a.respond(smalltab) {
+    transform: scale(0.52);
+    top: -255px;
+    left: -140px;
+  }
+  @include a.respond(tabport) {
+    transform: scale(0.75);
+    top: -100px;
+    left: -20px;
+  }
+  @include a.respond(tabland) {
+    transform: scale(0.55);
+    top: -225px;
+    left: 100px;
+  }
+  @include a.respond(tablandwide) {
+    transform: scale(0.55);
+    top: -225px;
+    left: 160px;
+  }
   &__top,
   &__bottom {
     position: absolute;
@@ -29,16 +67,16 @@
   }
   &__photo {
     position: absolute;
-    height: a.$photo-height;
-    width: a.$photo-width;
+    height: a.$shape-height;
+    width: a.$shape-width;
     top: calc(#{a.$top-height} - 5px);
     left: 0;
     overflow: hidden;
     &--shape {
       position: absolute;
       left: 0;
-      height: 100%;
-      width: 100%;
+      height: a.$shape-height;
+      width: a.$shape-width;
       background-color: a.$color-blue;
       border-radius: 0 0 50% 0%;
       @include a.flexCenterCol;
@@ -50,54 +88,57 @@
       border-width: 10px;
       border-radius: 50%;
       border-color: a.$color-blue;
+      margin-top: -10px;
     }
   }
   &__sidebar {
-    position: absolute;
-    height: calc(100% - (#{a.$photo-height} + #{a.$top-height}));
-    width: a.$photo-width;
-    bottom: 0;
-    left: 0;
-
-    .heading-primary {
-      font-size: a.$sidebar-heading-height;
-      font-weight: 400;
-      color: a.$color-blue;
-      text-transform: uppercase;
-      padding: a.$sidebar-view-side-padding;
-      letter-spacing: a.$letter-spacing-small;
-    }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 200px;
+    max-height: 250px;
+    width: 100%;
   }
   &__header {
+    text-align: center;
     position: absolute;
     height: a.$header-height;
-    width: calc(100% - #{a.$photo-width});
+    width: calc(100% - #{a.$shape-width});
     top: 15px;
     right: 0;
-    margin-top: 35px;
+    margin-top: 20px;
     padding: 0 10px;
   }
   &__main {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
     position: absolute;
-    height: calc(100% - (#{a.$header-height} + #{a.$top-height} * 2));
-    width: calc(100% - #{a.$photo-width});
+    height: a.$main-height;
+    width: 100% !important;
     bottom: 15px;
     right: 0;
-
-    padding: 0 10px;
-    .heading-primary {
-      font-size: a.$main-heading-height;
-      font-weight: 400;
-      color: a.$color-blue;
-      text-transform: uppercase;
-      padding: a.$main-view-side-padding;
-      letter-spacing: a.$letter-spacing-small;
-    }
+    padding: a.$main-padding;
   }
-  &__main.one-work-item {
-    bottom: -10px;
-    .heading-primary {
-      line-height: 60px;
-    }
+  &__initials {
+    font-size: 60px;
+    color: a.$color-white;
+  }
+  .heading-primary {
+    font-size: 24px;
+    font-weight: 400;
+    color: a.$color-blue;
+    text-transform: uppercase;
+    letter-spacing: a.$letter-spacing-small;
+    margin-bottom: 0px;
+  }
+  .viewdate {
+    margin-right: 15px;
+    border: solid;
+    border-radius: 3px;
+    border-width: 1px;
+    border-color: a.$color-blue-t75;
+    padding: 0 10px;
+    padding-top: 2px;
   }
 }

@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import "./css/App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import checkCompletedSections from "./utilities/checkCompletedSections";
@@ -73,7 +73,7 @@ function App() {
 
   //user, authentication, and session functions
   const [completedSections, setCompletedSections] = useState({});
-
+  const [incomplete, setIncomplete] = useState(true);
   const updateCompletedSections = () => {
     //SAVESECTION IN EACH SECTION CHECKS ALL SECTION STORAGE MEETS REQS AND
     //IN SOME COMPONENTS ALSO IN DELETE FUNCTION
@@ -103,7 +103,13 @@ function App() {
     setSessionActive(false);
     localStorage.removeItem("currentUser");
   };
+  useEffect(() => {
+    setIncomplete(
+      Object.keys(completedSections).some((key) => !completedSections[key])
+    );
+  }, [completedSections]);
 
+  console.log(incomplete);
   return (
     <BrowserRouter>
       <div className="App">
@@ -134,6 +140,7 @@ function App() {
               openConfirm={openConfirm}
               completedSections={completedSections}
               updateCompletedSections={updateCompletedSections}
+              incomplete={incomplete}
             />
           </Route>
           <Route path="/signin">

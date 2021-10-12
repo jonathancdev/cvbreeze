@@ -1,12 +1,35 @@
 @use "../abstracts/" as a;
 
 .view__contact {
-  padding: a.$sidebar-view-side-padding;
+  width: 100%;
   .contact {
+    // &__cont {
+    //   display: flex;
+    //   flex-wrap: wrap;
+    // }
+    &__firstline {
+      display: flex;
+      .contact__text {
+        font-size: 18px;
+        font-weight: 200;
+      }
+    }
+    &__firstline div:not(:last-child) div div {
+      //targets autofitter nested divs
+      margin-right: 25px;
+    }
+    &__secondline {
+      display: flex;
+    }
+    &__secondline div:not(:last-child) div div {
+      //targets autofitter nested divs
+      margin-right: 25px;
+    }
     &__text {
-      font-size: 18px;
+      display: inline;
+      font-size: 16px;
       color: a.$color-dark-grey-t75;
-      font-weight: 400;
+      font-weight: 200;
       line-height: 20px;
       text-transform: uppercase;
       padding: 5px 0;

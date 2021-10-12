@@ -8,6 +8,7 @@
   &__shape {
     height: 8rem;
     width: 70%;
+    max-width: 450px;
     background-color: a.$color-blue;
     border-radius: 0 0 0 5rem;
     @include a.flexCenterRow;
@@ -27,4 +28,10 @@
   align-items: center;
   background-color: a.$color-blue;
   padding: a.$main-padding;
+  @include a.respond(alltabs) {
+    height: 10rem;
+    max-width: 400px;
+    border-radius: 0 0 5rem 0;
+    justify-content: space-evenly;
+  }
 }

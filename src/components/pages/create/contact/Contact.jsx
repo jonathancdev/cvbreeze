@@ -17,8 +17,9 @@ export default function Contact({
   //REFS???
   const inputTelephoneRef = useRef(null);
   const inputEmailRef = useRef(null);
-  //ADDRESS REF IS IN AUTOTEXTAREA COMPONENT
-  const inputAddressRef = useRef(null);
+  const inputCityRef = useRef(null);
+  const inputStateRef = useRef(null);
+  const inputCountryRef = useRef(null);
   const inputWebsiteRef = useRef(null);
 
   //SEND SECTION INFORMATION TO LAYOUT
@@ -49,12 +50,16 @@ export default function Contact({
     if (userContactInformation) {
       inputTelephoneRef.current.value = userContactInformation.telephone || "";
       inputEmailRef.current.value = userContactInformation.email || "";
-      //TEXTAREA IS IN AUTOTEXTAREA COMPONENT
+      inputCityRef.current.value = userContactInformation.city || "";
+      inputStateRef.current.value = userContactInformation.state || "";
+      inputCountryRef.current.value = userContactInformation.country || "";
       inputWebsiteRef.current.value = userContactInformation.website || "";
     } else {
       inputTelephoneRef.current.value = null;
       inputEmailRef.current.value = null;
-      //TEXTAREA IS IN AUTOTEXTAREA COMPONENT
+      inputCityRef.current.value = "";
+      inputStateRef.current.value = "";
+      inputCountryRef.current.value = "";
       inputWebsiteRef.current.value = "";
     }
   }, [userContactInformation]);
@@ -64,6 +69,20 @@ export default function Contact({
     if (value.length < 1) {
       setErrors((prevState) => {
         return { ...prevState, telephone: "telephone number required" };
+      });
+    } else if (value.length < 7) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          telephone: "telephone number must be at least 7 characters",
+        };
+      });
+    } else if (value.length > 20) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          telephone: "telephone number must not exceed 20 characters",
+        };
       });
     } else if (value.match(/^([0-9\(\)\/\+ \-]*)$/)) {
       setTempContactObject((prevState) => {
@@ -88,6 +107,20 @@ export default function Contact({
       setErrors((prevState) => {
         return { ...prevState, email: "email address required" };
       });
+    } else if (value.length < 5) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          email: "email must be at least 5 characters",
+        };
+      });
+    } else if (value.length > 30) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          email: "email must not exceed 30 characters",
+        };
+      });
     } else if (value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)) {
       setTempContactObject((prevState) => {
         return { ...prevState, email: value };
@@ -105,20 +138,135 @@ export default function Contact({
     }
     setUpdated(true);
   };
-  const setAddress = (value) => {
-    setTempContactObject((prevState) => {
-      return { ...prevState, address: value };
-    });
-    setUpdated(true);
-  };
-  const setWebsite = (e) => {
+
+  const setCity = (e) => {
     const value = e.target.value;
-    setTempContactObject((prevState) => {
-      return { ...prevState, website: value };
-    });
-    setUpdated(true);
+    if (value.length > 0 && value.length < 2) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          city: "city must be at least 2 characters",
+        };
+      });
+      setUpdated(false);
+    } else if (value.length > 30) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          city: "city must not exceed 30 characters",
+        };
+      });
+      setUpdated(false);
+    } else {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          city: "",
+        };
+      });
+      setTempContactObject((prevState) => {
+        return { ...prevState, city: value };
+      });
+      setUpdated(true);
+    }
   };
 
+  const setState = (e) => {
+    const value = e.target.value;
+    if (value.length > 0 && value.length < 2) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          state: "state must be at least 2 characters",
+        };
+      });
+      setUpdated(false);
+    } else if (value.length > 30) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          state: "state must not exceed 30 characters",
+        };
+      });
+      setUpdated(false);
+    } else {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          state: "",
+        };
+      });
+      setTempContactObject((prevState) => {
+        return { ...prevState, state: value };
+      });
+      setUpdated(true);
+    }
+  };
+
+  const setCountry = (e) => {
+    const value = e.target.value;
+    if (value.length > 0 && value.length < 2) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          country: "country must be at least 2 characters",
+        };
+      });
+      setUpdated(false);
+    } else if (value.length > 30) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          country: "country must not exceed 30 characters",
+        };
+      });
+      setUpdated(false);
+    } else {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          country: "",
+        };
+      });
+      setTempContactObject((prevState) => {
+        return { ...prevState, country: value };
+      });
+      setUpdated(true);
+    }
+  };
+
+  const setWebsite = (e) => {
+    const value = e.target.value;
+    console.log(value.length);
+    if (value.length > 0 && value.length < 5) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          website: "website must be at least 5 characters",
+        };
+      });
+      setUpdated(false);
+    } else if (value.length > 30) {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          website: "website must not exceed 30 characters",
+        };
+      });
+      setUpdated(false);
+    } else {
+      setErrors((prevState) => {
+        return {
+          ...prevState,
+          website: "",
+        };
+      });
+      setTempContactObject((prevState) => {
+        return { ...prevState, website: value };
+      });
+      setUpdated(true);
+    }
+  };
   const saveUserContactInformation = () => {
     setUserContactInformation(tempContactObject);
     setUpdated(false);
@@ -148,7 +296,7 @@ export default function Contact({
           type="text"
           className="input--standard"
           onChange={setTelephone}
-          onClick={() => inputTelephoneRef.current.select()}
+          //onClick={() => inputTelephoneRef.current.select()}
           id="telephone"
         />
         <label htmlFor="telephone" className="visuallyhidden">
@@ -167,7 +315,7 @@ export default function Contact({
           type="text"
           className="input--standard"
           onChange={setEmail}
-          onClick={() => inputEmailRef.current.select()}
+          //onClick={() => inputEmailRef.current.select()}
           id="email"
         />
         <label htmlFor="email" className="visuallyhidden">
@@ -179,14 +327,13 @@ export default function Contact({
         </p>
       </div>
 
-      <label htmlFor="contact__text-area" className="text-area__label"></label>
-
-      <div className="form__element">
+      {/* <div className="form__element">
         <AutoTextArea
           className="contact__textarea"
           placeholder="address"
           update={setAddress}
           id="address"
+          maxHRows={6}
           userText={
             userContactInformation
               ? userContactInformation.address
@@ -199,21 +346,75 @@ export default function Contact({
           address
         </label>
         <p className="form__error">&nbsp;</p>
+      </div> */}
+
+      <div className="form__element">
+        <input
+          placeholder="city (optional)"
+          ref={inputCityRef}
+          type="text"
+          className="input--standard"
+          onChange={setCity}
+          //onClick={() => inputCityRef.current.select()}
+        />
+        <label htmlFor="city" className="visuallyhidden">
+          city
+        </label>
+        <p className="form__error"> &nbsp; {errors.city ? errors.city : ""}</p>
       </div>
 
       <div className="form__element">
         <input
-          placeholder="website"
+          placeholder="state (optional)"
+          ref={inputStateRef}
+          type="text"
+          className="input--standard"
+          onChange={setState}
+          //onClick={() => inputStateRef.current.select()}
+        />
+        <label htmlFor="state" className="visuallyhidden">
+          state
+        </label>
+        <p className="form__error">
+          {" "}
+          &nbsp; {errors.state ? errors.state : ""}
+        </p>
+      </div>
+
+      <div className="form__element">
+        <input
+          placeholder="country (optional)"
+          ref={inputCountryRef}
+          type="text"
+          className="input--standard"
+          onChange={setCountry}
+          //onClick={() => inputCountryRef.current.select()}
+        />
+        <label htmlFor="country" className="visuallyhidden">
+          country
+        </label>
+        <p className="form__error">
+          {" "}
+          &nbsp; {errors.country ? errors.country : ""}
+        </p>
+      </div>
+
+      <div className="form__element">
+        <input
+          placeholder="website (optional)"
           ref={inputWebsiteRef}
           type="text"
           className="input--standard"
           onChange={setWebsite}
-          onClick={() => inputWebsiteRef.current.select()}
+          //onClick={() => inputWebsiteRef.current.select()}
         />
         <label htmlFor="website" className="visuallyhidden">
           website
         </label>
-        <p className="form__error">&nbsp;</p>
+        <p className="form__error">
+          {" "}
+          &nbsp; {errors.website ? errors.website : ""}
+        </p>
       </div>
 
       <button

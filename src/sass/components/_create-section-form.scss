@@ -8,6 +8,9 @@
   background-color: a.$color-white;
   overflow: scroll;
   z-index: 2;
+  @include a.respond(iphone5) {
+    bottom: 1rem;
+  }
   &.open {
     width: 100%;
     top: 0rem;

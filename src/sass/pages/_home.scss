@@ -10,6 +10,13 @@
   &__img {
     height: 30rem;
     opacity: 0.75;
+
+    @include a.respond(iphone6) {
+      height: 25rem;
+    }
+    @include a.respond(iphone5) {
+      height: 16rem;
+    }
   }
   .text {
     text-align: center;

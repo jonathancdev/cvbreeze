@@ -140,14 +140,12 @@ export default function Contact({
               update={updateCommentValue}
               className="contactform__textarea"
               placeholder="questions or comments"
+              errorMessage={invalid ? "enter questions or comments" : ""}
               required
             />
             <label htmlFor="comment" className="visuallyhidden">
               comments
             </label>
-            <p className="form__error">
-              {invalid ? "enter questions or comments" : " "}
-            </p>
           </div>
 
           <button

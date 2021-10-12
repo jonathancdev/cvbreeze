@@ -10,6 +10,7 @@
   &__shape {
     height: 8rem;
     width: 25%;
+    max-width: 200px;
     background-color: a.$color-blue;
     border-radius: 5rem 0 0 0;
     @include a.flexCenterRow;
@@ -37,8 +38,27 @@
     color: a.$color-white;
     letter-spacing: a.$letter-spacing-small;
   }
+
   .btn--icon-wrap {
     margin-left: 3rem;
     margin-top: 1rem;
+  }
+  .view__error {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    height: 3.5rem;
+    width: 100vw;
+    bottom: 0;
+    background-color: a.$color-light-red-t75;
+    color: a.$color-white;
+    font-size: 18px;
+    letter-spacing: a.$letter-spacing-small;
+    @include a.flexCenterCol;
+    transition: opacity 0.3s ease-in;
+    &.active {
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }

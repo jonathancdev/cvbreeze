@@ -1,5 +1,9 @@
+@use "../abstracts/" as a;
 .margin-top-extra-small {
   margin-top: 1.5rem;
+  @include a.respond(iphone6) {
+    margin-top: 0;
+  }
 }
 
 .margin-top-small {
@@ -27,6 +31,9 @@
 
 .margin-bottom-large {
   margin-bottom: 6rem;
+  @include a.respond(iphone6) {
+    margin-bottom: 0;
+  }
 }
 
 //hide things but keep screen reader accessability

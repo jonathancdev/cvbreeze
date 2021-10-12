@@ -6,6 +6,9 @@ export default function CreatePageLayout({
   user,
   sessionActive,
   logUserOut,
+  viewing,
+  updateViewing,
+  incomplete,
 }) {
   return (
     <>
@@ -15,7 +18,12 @@ export default function CreatePageLayout({
         logUserOut={logUserOut}
       ></CreatePageHeader>
       <main className="main">{children}</main>
-      <CreatePageFooter user={user} />
+      <CreatePageFooter
+        user={user}
+        viewing={viewing}
+        updateViewing={updateViewing}
+        incomplete={incomplete}
+      />
     </>
   );
 }

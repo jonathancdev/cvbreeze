@@ -2,61 +2,58 @@
 
 .view__education {
   padding: 2px;
-  height: 225px;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   .education {
     &__heading-primary {
-      font-size: 22px;
+      font-size: 16px;
       color: a.$color-dark-grey;
       font-weight: 500;
-      line-height: 28px;
+      letter-spacing: a.$letter-spacing-small;
     }
     &__heading-secondary {
-      font-size: 18px;
-      color: a.$color-dark-grey;
-      font-weight: 300;
-      line-height: 28px;
-    }
-    &__heading-tertiary {
       font-size: 16px;
       color: a.$color-dark-grey;
       font-weight: 300;
+      letter-spacing: a.$letter-spacing-small;
+    }
+    &__heading-tertiary {
+      font-size: 14px;
+      color: a.$color-blue-t75;
+      font-weight: 200;
     }
     &__text {
-      font-size: 18px;
+      font-size: 14px;
       color: a.$color-dark-grey-t75;
       font-weight: 200;
-      line-height: 22px;
     }
+  }
+  .education__item {
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
   }
 }
 //if only one education item
 .view__education.one-education-item {
+  margin-top: 20px;
   .education {
     &__heading-primary {
-      font-size: 24px;
-      line-height: 32px;
+      font-size: 20px;
     }
     &__heading-secondary {
       font-size: 20px;
-      line-height: 32px;
-    }
-    &__heading-tertiary {
-      font-size: 16px;
     }
     &__text {
       font-size: 18px;
-      line-height: 32px;
     }
     &__item {
-      padding: a.$main-view-side-padding;
-      padding-top: 5px;
+      min-height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
     }
   }
-}
-.education__item {
-  padding: a.$main-view-side-padding;
-  padding-bottom: 10px;
-}
-.education__item:nth-child(even) {
-  background-color: a.$color-light-grey-t5;
 }

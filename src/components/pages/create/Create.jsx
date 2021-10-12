@@ -1,4 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
+} from "react";
 import CreatePageLayout from "../../layout/CreatePageLayout";
 import { Route, Switch } from "react-router-dom";
 import {
@@ -20,12 +25,15 @@ export default function Create({
   openConfirm,
   completedSections,
   updateCompletedSections,
+  incomplete,
 }) {
   const [layoutData, setLayoutData] = useState({
     section: "",
     headerText: "",
     toolTip: "",
   });
+  const [viewing, setViewing] = useState(false);
+
   useEffect(() => {
     if (user) {
       updateCompletedSections();
@@ -39,18 +47,25 @@ export default function Create({
     [setLayoutData]
   );
 
+  const updateViewing = (bool) => {
+    setViewing(bool);
+  };
+
   useLayoutUpdater(layoutData, updateLayoutData);
   return (
     <CreatePageLayout
       sessionActive={sessionActive}
       logUserOut={logUserOut}
       user={user || null}
+      viewing={viewing}
+      updateViewing={updateViewing}
+      incomplete={incomplete}
     >
       {user ? (
         <section className="create">
           <Switch>
             <Route exact path="/create/view">
-              <View user={user} />
+              <View user={user} updateViewing={updateViewing} />
             </Route>
             <CreateLayout
               layoutData={layoutData}

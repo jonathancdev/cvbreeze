@@ -8,7 +8,11 @@
   justify-content: flex-end;
   &__textarea {
     width: 80%;
-    margin: 5rem auto;
+    margin: 0rem auto;
+    @include a.respond(iphone6) {
+      width: 100%;
+      font-size: 1.3rem;
+    }
   }
   .form__error {
     margin: 0 auto;

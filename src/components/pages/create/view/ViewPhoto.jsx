@@ -15,10 +15,17 @@ export default function ViewPhoto({ user, section }) {
       setPhoto(null);
     }
   });
+  console.log(photo);
   return (
     <section className="view__photo">
       <div className="view__photo--shape">
-        <img src={photo} alt="cv user photo" className="view__photo--file" />
+        {photo ? (
+          <img src={photo} alt="cv user photo" className="view__photo--file" />
+        ) : (
+          <div className="view__initials">
+            {user.firstName[0] + user.lastName[0]}
+          </div>
+        )}
       </div>
     </section>
   );

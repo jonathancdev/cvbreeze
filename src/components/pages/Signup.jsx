@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { importTestUser } from "../../utilities/importTestUser";
+import { importTestUserMax } from "../../utilities/importTestUserMax";
 import { useForm, Controller } from "react-hook-form";
 import Layout from "../layout/Layout";
 

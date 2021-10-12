@@ -27,9 +27,8 @@ export default function ViewWork({
   });
 
   return (
-    <section
-      className={"view__work work margin-bottom-extra-small " + workClass}
-    >
+    <section className={"view__work work " + workClass}>
+      <h1 className="heading-primary">Work Experience</h1>
       {workArray.map((obj) => (
         <ViewWorkItem obj={obj} />
       ))}

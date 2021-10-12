@@ -2,6 +2,7 @@
 @use "../base/" as b;
 
 .create {
+  position: relative;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -13,4 +14,12 @@
 }
 .create-section {
   position: relative;
+}
+//limit width of create section for bigger devices
+.create {
+  @include a.respond(alltabs) {
+    height: 95%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
 }

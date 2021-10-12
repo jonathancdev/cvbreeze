@@ -27,4 +27,10 @@
     color: a.$color-dark-grey;
     line-height: a.$profile-line-height;
   }
+  &__contact {
+    min-height: 25px;
+    height: 30px;
+    max-height: 50px;
+    width: 200px;
+  }
 }

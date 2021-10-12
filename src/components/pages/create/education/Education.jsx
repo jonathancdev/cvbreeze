@@ -248,7 +248,7 @@ export default function Education({
                 <input
                   id="description"
                   ref={description}
-                  placeholder="description"
+                  placeholder="description (optional)"
                   type="text"
                   className="input--standard"
                   onChange={(e) => {

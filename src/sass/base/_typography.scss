@@ -30,6 +30,9 @@ body {
   font-size: 1.5rem;
   font-weight: 300;
   color: a.$color-dark-grey;
+  @include a.respond(smalltab) {
+    font-size: 2rem;
+  }
 }
 .hidden-label__text {
   font-size: 1.8rem;

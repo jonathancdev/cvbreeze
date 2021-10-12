@@ -48,8 +48,8 @@ export default function Profile({
     if (str.length < 150) {
       const x = 150 - str.length;
       setErrorMessage(str.length + "/150 characters to minimum length");
-    } else if (str.length >= 600) {
-      setErrorMessage("600 characters maximium");
+    } else if (str.length >= 450) {
+      setErrorMessage("450 characters maximium");
     } else {
       setErrorMessage("");
     }

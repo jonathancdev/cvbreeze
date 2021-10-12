@@ -4,6 +4,9 @@
   margin-top: 2rem;
   padding: 1.5rem 0 0 0;
   @include a.flexCenterCol;
+  @include a.respond(iphone6) {
+    margin-top: 0;
+  }
 }
 .save__text {
   font-size: 1.6rem;

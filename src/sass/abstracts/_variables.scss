@@ -17,6 +17,8 @@ $color-light-grey-t10: rgba(164, 171, 189, 0.1);
 $color-light-grey-t5: rgba(164, 171, 189, 0.05);
 
 $color-light-red: #d08896;
+$color-light-red-t75: rgba(208, 136, 150, 0.75);
+
 $color-light-red-t50: rgba(208, 136, 150, 0.5);
 
 $color-dark-red: #985563;
@@ -34,17 +36,24 @@ $input-height: 3.5rem;
 $top-height: 15px;
 $bottom-height: 15px;
 
-$photo-width: 225px;
-$photo-height: 225px;
-
-$header-height: 190px;
+//first iteration
+$photo-width: 175px;
+$photo-height: 175px;
+$shape-width: 190px;
+$shape-height: 175px;
+$header-height: 175px;
 
 $main-heading-height: 28px;
 $sidebar-heading-height: 28px;
-
 $profile-height: 150px;
-
 $profile-line-height: 24px;
-
 $main-view-side-padding: 0 10px;
 $sidebar-view-side-padding: 0 10px;
+
+//main content
+$main-padding: 10px 10px;
+$main-height: calc(100% - ($header-height + $top-height * 2));
+
+//scaling variables
+//375 x 812
+$scale-x: 0.4;

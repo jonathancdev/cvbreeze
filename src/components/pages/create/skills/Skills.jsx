@@ -119,9 +119,13 @@ export default function Skills({
               name="skill"
               rules={{
                 required: "enter skill",
+                minLength: {
+                  value: 2,
+                  message: "minimum length 2 characters",
+                },
                 maxLength: {
-                  value: 50,
-                  message: "maximum length 50 characters",
+                  value: 30,
+                  message: "maximum length 30 characters",
                 },
               }}
               render={({ field }) => (

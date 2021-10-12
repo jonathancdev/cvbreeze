@@ -20,11 +20,13 @@ export default function ViewSkills({
   });
   return (
     <section className={"view__skills " + skillsClass}>
-      <ul className="skill__list">
-        {skillsArray.map((obj) => (
-          <li className="skill__text">{obj.skill}</li>
-        ))}
-      </ul>
+      <h1 className="heading-primary">Skills</h1>
+      {skillsArray.map((obj) => (
+        <div className="skill__cont">
+          <p className="skill__text">{obj.skill}</p>
+          <p className="html__icon">&bull;</p>
+        </div>
+      ))}
     </section>
   );
 }

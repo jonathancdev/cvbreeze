@@ -9,3 +9,84 @@
   align-items: center;
   justify-content: center;
 }
+
+// MEDIA QUERY MANAGER
+/*** height
+0-568 - iphone 5
+568-731 - iphone 678 / pixel 2
+
+/*** width
+0-600px: phone
+600-900px: tablet portrait
+900-1200px: tablet landscape
+1200-1800 (normal styles)
+1800px +: large desktops
+***/
+
+/***
+$breakpoint arguments:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+ORDER: base + typography > gen. layout + grid, specific page layout > components
+
+***/
+@mixin respond($breakpoint) {
+  @if $breakpoint == iphone5 {
+    @media (max-height: 35.5em) {
+      //568px height
+      @content;
+    }
+  }
+  @if $breakpoint == iphone6 {
+    @media (max-height: 46em) and (max-width: 33.75em) {
+      //731px height
+      @content;
+    }
+  }
+  @if $breakpoint == widephone {
+    @media (min-width: 25.625em) and (max-width: 30em) {
+      //410px to 475 width
+      @content;
+    }
+  }
+
+  //from here up need to change section selector
+  @if $breakpoint == smalltab {
+    @media (min-width: 33.75em) and (max-width: 37.5em) {
+      //540px to 600 width
+      @content;
+    }
+  }
+  @if $breakpoint == alltabs {
+    @media (min-width: 37.5em) {
+      @content;
+    }
+  }
+  @if $breakpoint == tabport {
+    @media (min-width: 37.5em) and (max-width: 56.25em) and (min-height: 45.0625em) {
+      //900px and min height 721px
+      @content;
+    }
+  }
+  @if $breakpoint == tabland {
+    @media (min-width: 37.5em) and (max-width: 75em) and (max-height: 48em) {
+      //1200px
+      @content;
+    }
+  }
+  @if $breakpoint == tablandwide {
+    @media (min-width: 37.5em) and (max-width: 70em) and (max-height: 60em) {
+      //1200px
+      @content;
+    }
+  }
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em) {
+      //1800px
+      @content;
+    }
+  }
+}
