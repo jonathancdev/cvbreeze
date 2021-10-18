@@ -37,7 +37,7 @@ export default function SkillItem({
 
       {objInStorage ? (
         <button
-          className="btn btn--delete-item"
+          className="btn btn--delete-item delete-skill"
           id={obj.id}
           onClick={handleDeletedSkillItem}
         >

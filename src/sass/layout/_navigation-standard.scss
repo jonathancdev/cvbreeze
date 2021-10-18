@@ -44,6 +44,12 @@
       list-style: none;
       width: 100%;
       @include a.flexCenterCol;
+      @include a.respond(alltabs) {
+        max-width: 250px;
+      }
+      @include a.respond(sevenhundred) {
+        max-width: 250px;
+      }
     }
     &__item {
       display: inline-block;
@@ -53,9 +59,6 @@
       text-align: center;
       border-radius: 3px;
       width: 95%;
-      @include a.respond(alltabs) {
-        max-width: 250px;
-      }
     }
     &__link {
       font-size: 2.5rem;

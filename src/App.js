@@ -109,7 +109,8 @@ function App() {
     );
   }, [completedSections]);
 
-  console.log(incomplete);
+  console.log(window.innerHeight);
+  console.log(window.innerWidth);
   return (
     <BrowserRouter>
       <div className="App">

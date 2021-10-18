@@ -19,6 +19,9 @@
     padding-top: 0.5rem;
     padding-bottom: 0;
   }
+  @include a.respond(sevenhundred) {
+    padding: 0.25rem 1.5rem;
+  }
 }
 .save__warning {
   position: absolute;

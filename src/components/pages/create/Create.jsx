@@ -27,6 +27,24 @@ export default function Create({
   updateCompletedSections,
   incomplete,
 }) {
+  //viewport layout effects
+  const [layout, setLayout] = useState(1);
+  useLayoutEffect(() => {
+    updateLayout();
+  });
+  useEffect(() => {
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
+  });
+  const updateLayout = () => {
+    let width = window.innerWidth;
+    if (width >= 700) {
+      setLayout(2);
+    } else if (width < 700) {
+      setLayout(1);
+    }
+    console.log(layout);
+  };
   const [layoutData, setLayoutData] = useState({
     section: "",
     headerText: "",
@@ -71,6 +89,7 @@ export default function Create({
               layoutData={layoutData}
               user={user}
               completedSections={completedSections}
+              layout={layout}
             >
               <Route exact path="/create">
                 {user.userId === "BREEZEID_M5B6M16" ? (
@@ -120,6 +139,7 @@ export default function Create({
                   user={user}
                   openAlert={openAlert}
                   openConfirm={openConfirm}
+                  layout={layout}
                 />
               </Route>
               <Route path="/create/education">
@@ -129,6 +149,7 @@ export default function Create({
                   user={user}
                   openAlert={openAlert}
                   openConfirm={openConfirm}
+                  layout={layout}
                 />
               </Route>
               <Route path="/create/skills">

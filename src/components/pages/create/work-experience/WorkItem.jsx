@@ -6,6 +6,7 @@ export default function WorkItem({
   userWorkExperience,
   handleDeletedItem,
   openConfirm,
+  layout,
 }) {
   let workArray = userWorkExperience;
 
@@ -34,17 +35,31 @@ export default function WorkItem({
   return (
     <div className="work__item preview__item">
       <div className="work__item--heading">
-        <p>{truncateString(obj.title, 15, "...")}&nbsp;</p>
-        <p>at {truncateString(obj.company, 15, "...")}</p>
+        <p>
+          {layout === 2 ? obj.title : truncateString(obj.title, 15, "...")}
+          &nbsp;
+        </p>
+        <p>
+          at{" "}
+          {layout === 2 ? obj.company : truncateString(obj.company, 15, "...")}
+        </p>
       </div>
       <div className="work__item--dates">
         <p>from&nbsp;{obj.startDate}&nbsp;</p>
         <p>to&nbsp;{obj.endDate}</p>
       </div>
       <ul className="duties__list">
-        <li className="duty">{truncateString(obj.dutyOne, 40, "...")}</li>
-        <li className="duty">{truncateString(obj.dutyTwo, 40, "...")}</li>
-        <li className="duty">{truncateString(obj.dutyThree, 40, "...")}</li>
+        <li className="duty">
+          {layout === 2 ? obj.dutyOne : truncateString(obj.dutyOne, 40, "...")}
+        </li>
+        <li className="duty">
+          {layout === 2 ? obj.dutyTwo : truncateString(obj.dutyTwo, 40, "...")}
+        </li>
+        <li className="duty">
+          {layout === 2
+            ? obj.dutyThree
+            : truncateString(obj.dutyThree, 40, "...")}
+        </li>
       </ul>
       {objInStorage ? (
         <button

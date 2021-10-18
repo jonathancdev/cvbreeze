@@ -6,6 +6,7 @@ export default function EducationItem({
   userEducationHistory,
   handleDeletedItem,
   openConfirm,
+  layout,
 }) {
   let educationArray = userEducationHistory;
 
@@ -35,7 +36,13 @@ export default function EducationItem({
     <div className="education__item preview__item">
       <div className="work__item--heading">
         <p>
-          {truncateString(obj.degree + " from " + obj.institution, 35, "...")}
+          {layout === 2
+            ? obj.degree + " from " + obj.institution
+            : truncateString(
+                obj.degree + " from " + obj.institution,
+                35,
+                "..."
+              )}
           &nbsp;
         </p>
       </div>
@@ -43,7 +50,9 @@ export default function EducationItem({
         <p>completed&nbsp;{obj.date}</p>
       </div>
       <p className="description">
-        {truncateString(obj.description, 110, "...")}
+        {layout === 2
+          ? obj.description
+          : truncateString(obj.description, 110, "...")}
       </p>
       {objInStorage ? (
         <button

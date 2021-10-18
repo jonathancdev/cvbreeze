@@ -2,7 +2,9 @@
 .create-navbar {
   height: 12rem;
   width: 100%;
-
+  @include a.respond(sevenhundred) {
+    width: 700px;
+  }
   .heading-secondary {
     color: a.$color-blue-t75;
   }
@@ -16,6 +18,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem;
+    @include a.respond(alltabs) {
+      justify-content: center;
+    }
+    @include a.respond(sevenhundred) {
+      width: 300px;
+      height: 50px;
+      justify-content: center;
+      padding: 0;
+    }
   }
   &__gradient {
     width: 100vw;
@@ -50,12 +61,22 @@
   .carousel__header a {
     @include a.respond(alltabs) {
       visibility: hidden;
+      display: none;
+    }
+    @include a.respond(sevenhundred) {
+      visibility: hidden;
+      display: none;
     }
   }
   .carousel__gradient {
     @include a.respond(alltabs) {
       mask-image: none;
-      max-width: 700px;
+
+      max-width: 600px;
+    }
+    @include a.respond(sevenhundred) {
+      mask-image: none;
+      width: 100%;
     }
   }
   .carousel__nav {
@@ -63,13 +84,20 @@
       display: flex;
       justify-content: space-between;
     }
+    @include a.respond(sevenhundred) {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding-top: 0;
+    }
   }
   .btn--create-navlink {
-    @include a.respond(alltabs) {
-      padding: 1.25rem 1.75rem;
-    }
-    @include a.respond(tablandwide) {
-      padding: 1.25rem 2.25rem;
+    @include a.respond(sevenhundred) {
+      width: 50%;
+      font-size: 2rem;
+      text-align: center;
+      padding: 0.5rem 0.5rem;
+      margin: 0.5rem 0.5rem;
     }
   }
 }

@@ -5,6 +5,10 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  @include a.respond(sevenhundred) {
+    justify-content: flex-start;
+    margin-top: 0rem;
+  }
   &__container {
     display: flex;
     flex-direction: column;
@@ -17,6 +21,10 @@
     border-width: 1rem;
     border-radius: 50%;
     border-color: a.$color-dark-grey;
+    margin-bottom: 1.5rem;
+  }
+  .icon-wrap--largecircle {
+    margin-bottom: 1.5rem;
   }
   .input {
     &--standard {
@@ -26,6 +34,7 @@
       border-color: a.$color-light-grey-t10;
       font-weight: 400;
       text-align: center;
+
       &:disabled {
         background-color: a.$color-light-grey-t10;
       }

@@ -21,6 +21,10 @@
     @include a.respond(iphone6) {
       width: 90%;
     }
+    @include a.respond(sevenhundred) {
+      width: 50%;
+      top: 40%;
+    }
   }
   &__text {
     font-size: 1.8rem;

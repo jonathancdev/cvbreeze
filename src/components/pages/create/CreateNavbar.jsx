@@ -60,7 +60,7 @@ export default function CreateNavbar({ completedSections }) {
   return (
     <section className="create-navbar">
       <div className="carousel">
-        <div className="carousel__header margin-top-extra-small">
+        <div className="carousel__header">
           <Link to={prevPath}>
             <div className="icon-wrap--circle">{angleLeftIcon}</div>
           </Link>

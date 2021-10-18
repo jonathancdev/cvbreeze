@@ -3,4 +3,8 @@
   background-color: a.$color-white;
   padding: a.$main-padding;
   height: 100%;
+  @include a.respond(sevenhundred) {
+    width: 800px;
+    margin: 0 auto;
+  }
 }

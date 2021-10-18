@@ -17,6 +17,7 @@ export default function WorkExperience({
   updateCompletedSections,
   openAlert,
   openConfirm,
+  layout,
 }) {
   //REACT HOOK FORM
   const {
@@ -396,6 +397,7 @@ export default function WorkExperience({
                 userWorkExperience={userWorkExperience}
                 handleDeletedItem={handleDeletedItem}
                 openConfirm={openConfirm}
+                layout={layout}
               />
             );
           })

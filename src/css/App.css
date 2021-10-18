@@ -30,14 +30,14 @@ ORDER: base + typography > gen. layout + grid, specific page layout > components
 html {
   font-size: 62.5%;
 }
-@media (max-height: 35.5em) {
-  html {
-    font-size: 45%;
-  }
-}
 @media (max-height: 46em) and (max-width: 33.75em) {
   html {
     font-size: 55%;
+  }
+}
+@media (max-height: 35.5em) {
+  html {
+    font-size: 45%;
   }
 }
 @media (min-width: 33.75em) and (max-width: 37.5em) {
@@ -45,14 +45,9 @@ html {
     font-size: 60%;
   }
 }
-@media (min-width: 37.5em) and (max-width: 56.25em) and (min-height: 45.0625em) {
+@media (min-width: 43.75em) {
   html {
-    font-size: 70%;
-  }
-}
-@media (min-width: 37.5em) and (max-width: 75em) and (max-height: 48em) {
-  html {
-    font-size: 55%;
+    font-size: 60%;
   }
 }
 
@@ -438,6 +433,12 @@ body {
   justify-content: center;
 }
 
+@media (min-width: 43.75em) {
+  .delete-skill {
+    bottom: 0.5rem;
+  }
+}
+
 textarea {
   border-radius: 3px;
   border-width: 1.5px;
@@ -483,13 +484,18 @@ textarea {
   width: 80%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #fff;
+  background-color: transparent;
   overflow: scroll;
   z-index: 2;
 }
 @media (max-height: 35.5em) {
   .create-section__form {
-    bottom: 1rem;
+    bottom: 10rem;
+  }
+}
+@media (min-width: 43.75em) {
+  .create-section__form {
+    bottom: 16rem;
   }
 }
 .create-section__form.open {
@@ -566,6 +572,11 @@ textarea {
   .preview__item {
     padding-top: 0.5rem;
     padding-bottom: 0;
+  }
+}
+@media (min-width: 43.75em) {
+  .preview__item {
+    padding: 0.25rem 1.5rem;
   }
 }
 
@@ -677,6 +688,17 @@ textarea {
   align-items: center;
   justify-content: center;
 }
+@media (max-height: 46em) and (max-width: 33.75em) {
+  .alert-modal__box {
+    width: 90%;
+  }
+}
+@media (min-width: 43.75em) {
+  .alert-modal__box {
+    width: 50%;
+    top: 40%;
+  }
+}
 .alert-modal__text {
   font-size: 1.6rem;
   font-weight: 200;
@@ -715,6 +737,12 @@ textarea {
 @media (max-height: 46em) and (max-width: 33.75em) {
   .confirm-modal__box {
     width: 90%;
+  }
+}
+@media (min-width: 43.75em) {
+  .confirm-modal__box {
+    width: 50%;
+    top: 40%;
   }
 }
 .confirm-modal__text {
@@ -809,7 +837,7 @@ textarea {
   background-color: #829cd0;
   padding: 10px 10px;
 }
-@media (min-width: 37.5em) {
+@media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-header {
     height: 10rem;
     max-width: 400px;
@@ -822,6 +850,12 @@ textarea {
   background-color: #fff;
   padding: 10px 10px;
   height: 100%;
+}
+@media (min-width: 43.75em) {
+  .main {
+    width: 800px;
+    margin: 0 auto;
+  }
 }
 
 .footer {
@@ -912,7 +946,7 @@ textarea {
   height: 8rem;
   top: 0;
   left: 0;
-  transform: translate(0%, -100%);
+  transform: translate(0%, -300%);
   z-index: 7;
   opacity: 0;
   transition: transform 0.2s, opacity 0.2s;
@@ -937,6 +971,16 @@ textarea {
   align-items: center;
   justify-content: center;
 }
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .mobile-create .mobilenav__list {
+    max-width: 250px;
+  }
+}
+@media (min-width: 43.75em) {
+  .mobile-create .mobilenav__list {
+    max-width: 250px;
+  }
+}
 .mobile-create .mobilenav__item {
   display: inline-block;
   background-color: #fff;
@@ -945,11 +989,6 @@ textarea {
   text-align: center;
   border-radius: 3px;
   width: 95%;
-}
-@media (min-width: 37.5em) {
-  .mobile-create .mobilenav__item {
-    max-width: 250px;
-  }
 }
 .mobile-create .mobilenav__link {
   font-size: 2.5rem;
@@ -1057,6 +1096,16 @@ textarea {
   align-items: center;
   justify-content: center;
 }
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .mobile-home .mobilenav__list {
+    max-width: 250px;
+  }
+}
+@media (min-width: 43.75em) {
+  .mobile-home .mobilenav__list {
+    max-width: 250px;
+  }
+}
 .mobile-home .mobilenav__item {
   display: inline-block;
   background-color: #fff;
@@ -1065,11 +1114,6 @@ textarea {
   text-align: center;
   border-radius: 3px;
   width: 95%;
-}
-@media (min-width: 37.5em) {
-  .mobile-home .mobilenav__item {
-    max-width: 250px;
-  }
 }
 .mobile-home .mobilenav__link {
   font-size: 2.5rem;
@@ -1133,6 +1177,11 @@ textarea {
   height: 12rem;
   width: 100%;
 }
+@media (min-width: 43.75em) {
+  .create-navbar {
+    width: 700px;
+  }
+}
 .create-navbar .heading-secondary {
   color: rgba(129, 155, 207, 0.75);
 }
@@ -1149,6 +1198,19 @@ textarea {
   align-items: center;
   justify-content: space-between;
   padding: 0 1rem;
+}
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .carousel__header {
+    justify-content: center;
+  }
+}
+@media (min-width: 43.75em) {
+  .carousel__header {
+    width: 300px;
+    height: 50px;
+    justify-content: center;
+    padding: 0;
+  }
 }
 .carousel__gradient {
   width: 100vw;
@@ -1168,31 +1230,51 @@ textarea {
   scroll-snap-align: center;
 }
 
-@media (min-width: 37.5em) {
+@media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-navbar .carousel__header a {
     visibility: hidden;
+    display: none;
   }
 }
-@media (min-width: 37.5em) {
+@media (min-width: 43.75em) {
+  .create-navbar .carousel__header a {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-navbar .carousel__gradient {
     mask-image: none;
-    max-width: 700px;
+    max-width: 600px;
   }
 }
-@media (min-width: 37.5em) {
+@media (min-width: 43.75em) {
+  .create-navbar .carousel__gradient {
+    mask-image: none;
+    width: 100%;
+  }
+}
+@media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-navbar .carousel__nav {
     display: flex;
     justify-content: space-between;
   }
 }
-@media (min-width: 37.5em) {
-  .create-navbar .btn--create-navlink {
-    padding: 1.25rem 1.75rem;
+@media (min-width: 43.75em) {
+  .create-navbar .carousel__nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 0;
   }
 }
-@media (min-width: 37.5em) and (max-width: 70em) and (max-height: 60em) {
+@media (min-width: 43.75em) {
   .create-navbar .btn--create-navlink {
-    padding: 1.25rem 2.25rem;
+    width: 50%;
+    font-size: 2rem;
+    text-align: center;
+    padding: 0.5rem 0.5rem;
+    margin: 0.5rem 0.5rem;
   }
 }
 
@@ -1254,7 +1336,7 @@ textarea {
   align-items: center;
 }
 .home__img {
-  height: 30rem;
+  height: 26rem;
   opacity: 0.75;
 }
 @media (max-height: 46em) and (max-width: 33.75em) {
@@ -1267,6 +1349,11 @@ textarea {
     height: 16rem;
   }
 }
+@media (min-width: 43.75em) and (max-height: 42em) {
+  .home__img {
+    height: 18rem;
+  }
+}
 .home .text {
   text-align: center;
   padding: 0 1rem;
@@ -1277,22 +1364,34 @@ textarea {
   height: 100%;
   display: flex;
   flex-direction: column;
+  overflow-x: scroll;
+}
+@media (min-width: 43.75em) {
+  .create {
+    align-items: center;
+  }
 }
 .create-body {
   height: 100%;
   width: 100%;
 }
+@media (min-width: 43.75em) {
+  .create-body {
+    width: 650px;
+    margin: 0 auto;
+  }
+}
+.create .create-heading {
+  margin-top: 1rem;
+}
+@media (min-width: 43.75em) {
+  .create .create-heading {
+    visibility: hidden;
+  }
+}
 
 .create-section {
   position: relative;
-}
-
-@media (min-width: 37.5em) {
-  .create {
-    height: 95%;
-    max-width: 700px;
-    margin: 0 auto;
-  }
 }
 
 .signup {
@@ -1402,12 +1501,13 @@ textarea {
   max-height: 1053px;
   min-width: 788px;
   max-width: 788px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
 @media (max-height: 46em) and (max-width: 33.75em) {
   .view {
     transform: scale(0.435);
     top: -300px;
-    left: -218px;
+    left: -225px;
   }
 }
 @media (max-height: 35.5em) {
@@ -1421,35 +1521,49 @@ textarea {
   .view {
     transform: scale(0.475);
     top: -270px;
-    left: -190px;
+    left: -200px;
   }
 }
 @media (min-width: 33.75em) and (max-width: 37.5em) {
   .view {
-    transform: scale(0.52);
-    top: -255px;
+    transform: scale(0.48);
+    top: -260px;
+    left: -170px;
+  }
+}
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .view {
+    transform: scale(0.6);
+    top: -200px;
     left: -140px;
   }
 }
-@media (min-width: 37.5em) and (max-width: 56.25em) and (min-height: 45.0625em) {
+@media (min-width: 56.25em) and (max-width: 75em) {
+  .view {
+    transform: scale(0.55);
+    top: -250px;
+    left: -175px;
+  }
+}
+@media (min-width: 56.25em) and (max-width: 75em) and (min-height: 75em) {
+  .view {
+    transform: scale(1);
+    top: 25px;
+    left: 25px;
+  }
+}
+@media (min-width: 75em) and (max-width: 112.5em) {
+  .view {
+    transform: scale(0.65);
+    top: -180px;
+    left: -130px;
+  }
+}
+@media (min-width: 112.5em) {
   .view {
     transform: scale(0.75);
-    top: -100px;
-    left: -20px;
-  }
-}
-@media (min-width: 37.5em) and (max-width: 75em) and (max-height: 48em) {
-  .view {
-    transform: scale(0.55);
-    top: -225px;
-    left: 100px;
-  }
-}
-@media (min-width: 37.5em) and (max-width: 70em) and (max-height: 60em) {
-  .view {
-    transform: scale(0.55);
-    top: -225px;
-    left: 160px;
+    top: -120px;
+    left: -85px;
   }
 }
 .view__top, .view__bottom {
@@ -1761,6 +1875,12 @@ textarea {
   flex-direction: column;
   justify-content: flex-end;
 }
+@media (min-width: 43.75em) {
+  .photo {
+    justify-content: flex-start;
+    margin-top: 0rem;
+  }
+}
 .photo__container {
   display: flex;
   flex-direction: column;
@@ -1773,6 +1893,10 @@ textarea {
   border-width: 1rem;
   border-radius: 50%;
   border-color: #404756;
+  margin-bottom: 1.5rem;
+}
+.photo .icon-wrap--largecircle {
+  margin-bottom: 1.5rem;
 }
 .photo .input--standard {
   background-color: rgba(164, 171, 189, 0.05);
@@ -1840,6 +1964,12 @@ textarea {
   align-items: center;
   justify-content: flex-end;
 }
+@media (min-width: 43.75em) {
+  .profile {
+    justify-content: flex-start;
+    margin-top: 3rem;
+  }
+}
 .profile__textarea {
   width: 80%;
   margin: 0rem auto;
@@ -1861,12 +1991,22 @@ textarea {
   flex-direction: column;
   justify-content: space-between;
 }
+@media (min-width: 43.75em) {
+  .workexperience {
+    margin: 0 1.4rem;
+  }
+}
 
 .education {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media (min-width: 56.25em) and (max-width: 75em) {
+  .education {
+    margin: 0 1.4rem;
+  }
 }
 .education .input--date {
   width: 45%;
@@ -1878,6 +2018,11 @@ textarea {
   flex-direction: column;
   justify-content: space-between;
 }
+@media (min-width: 43.75em) {
+  .skills {
+    margin: 0 1.4rem;
+  }
+}
 
 .contact {
   height: 100%;
@@ -1885,6 +2030,12 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+}
+@media (min-width: 43.75em) {
+  .contact {
+    justify-content: flex-start;
+    margin-top: 0rem;
+  }
 }
 .contact__textarea {
   width: 95%;

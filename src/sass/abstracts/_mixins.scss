@@ -33,6 +33,7 @@ $breakpoint arguments:
 ORDER: base + typography > gen. layout + grid, specific page layout > components
 
 ***/
+//PHONES
 @mixin respond($breakpoint) {
   @if $breakpoint == iphone5 {
     @media (max-height: 35.5em) {
@@ -52,7 +53,7 @@ ORDER: base + typography > gen. layout + grid, specific page layout > components
       @content;
     }
   }
-
+  //SMALL TABLETS
   //from here up need to change section selector
   @if $breakpoint == smalltab {
     @media (min-width: 33.75em) and (max-width: 37.5em) {
@@ -60,30 +61,71 @@ ORDER: base + typography > gen. layout + grid, specific page layout > components
       @content;
     }
   }
+  // //MEDIUM TABS
   @if $breakpoint == alltabs {
-    @media (min-width: 37.5em) {
+    @media (min-width: 32.75em) and (max-width: 56.25em) {
+      //525 to 900px width
       @content;
     }
   }
-  @if $breakpoint == tabport {
-    @media (min-width: 37.5em) and (max-width: 56.25em) and (min-height: 45.0625em) {
-      //900px and min height 721px
+  //700+ for create section nav change
+  @if $breakpoint == sevenhundred {
+    @media (min-width: 43.75em) {
+      //from 700+
       @content;
     }
   }
-  @if $breakpoint == tabland {
-    @media (min-width: 37.5em) and (max-width: 75em) and (max-height: 48em) {
-      //1200px
+  //700 and when short
+  @if $breakpoint == sevenhundredshort {
+    @media (min-width: 43.75em) and (max-height: 42em) {
+      //from 700+
       @content;
     }
   }
-  @if $breakpoint == tablandwide {
-    @media (min-width: 37.5em) and (max-width: 70em) and (max-height: 60em) {
-      //1200px
+  //900+ px
+  @if $breakpoint == laptop {
+    @media (min-width: 56.25em) and (max-width: 75em) {
+      //900 to 1200px width
       @content;
     }
   }
-  @if $breakpoint == big-desktop {
+  @if $breakpoint == ipadpro {
+    @media (min-width: 56.25em) and (max-width: 75em) and (min-height: 75em) {
+      //900 to 1200px width
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: 75em) and (max-width: 112.5em) {
+      //1200 to 1800px width
+      @content;
+    }
+  }
+  // @if $breakpoint == tabport {
+  //   @media (min-width: 37.5em) and (max-width: 56.25em) and (min-height: 45.0625em) {
+  //     //900px and min height 721px
+  //     @content;
+  //   }
+  // }
+  // @if $breakpoint == tabland {
+  //   @media (min-width: 37.5em) and (max-width: 75em) and (max-height: 48em) {
+  //     //1200px
+  //     @content;
+  //   }
+  // }
+  // @if $breakpoint == tablandwide {
+  //   @media (min-width: 37.5em) and (max-width: 74.9em) and (max-height: 60em) {
+  //     //600px to 1120 max heiht 960
+  //     @content;
+  //   }
+  // }
+  // @if $breakpoint == laptop {
+  //   @media (min-width: 75em) {
+  //     //1200px
+  //     @content;
+  //   }
+  // }
+  @if $breakpoint == bigdesktop {
     @media (min-width: 112.5em) {
       //1800px
       @content;

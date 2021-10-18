@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useRef } from "react";
 import { history, NavLink } from "react-router-dom";
+import useOutsideClickHandler from "../../hooks/useOutsideClickHandler";
 
 export default function MobileNav({ sessionActive, uncheck }) {
+  const clickArea = useRef(null);
+  useOutsideClickHandler(clickArea, () => closeMenu());
+  const closeMenu = () => {
+    uncheck();
+  };
   return (
     <div className="mobilenav">
-      <ul className="mobilenav__list">
+      <ul className="mobilenav__list" ref={clickArea}>
         <li className="mobilenav__item">
           <NavLink
             exact
