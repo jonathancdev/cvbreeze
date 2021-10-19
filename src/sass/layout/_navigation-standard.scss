@@ -45,10 +45,10 @@
       width: 100%;
       @include a.flexCenterCol;
       @include a.respond(alltabs) {
-        max-width: 250px;
+        max-width: 25rem;
       }
       @include a.respond(sevenhundred) {
-        max-width: 250px;
+        max-width: 25rem;
       }
     }
     &__item {
@@ -125,5 +125,9 @@
   &__checkbox:checked + &__button &__icon::after {
     top: 0;
     transform: rotate(-135deg);
+  }
+  //disable checkbox close because useOutsideClick hook already closes menu
+  &__checkbox:checked + &__button {
+    pointer-events: none;
   }
 }

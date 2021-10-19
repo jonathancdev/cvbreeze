@@ -25,6 +25,9 @@ html {
   @include a.respond(sevenhundred) {
     font-size: 60%;
   }
+  @include a.respond(ipadpro) {
+    font-size: 80%;
+  }
 }
 body {
   box-sizing: border-box;

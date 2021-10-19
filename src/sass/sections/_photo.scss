@@ -17,11 +17,12 @@
   .user-photo {
     display: block;
     height: 12rem;
-    border: solid;
-    border-width: 1rem;
+    // border: solid;
+    // border-width: 1rem;
     border-radius: 50%;
-    border-color: a.$color-dark-grey;
+    // border-color: a.$color-dark-grey;
     margin-bottom: 1.5rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
   .icon-wrap--largecircle {
     margin-bottom: 1.5rem;

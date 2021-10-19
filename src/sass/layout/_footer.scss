@@ -10,7 +10,7 @@
   &__shape {
     height: 8rem;
     width: 25%;
-    max-width: 200px;
+    max-width: 20rem;
     background-color: a.$color-blue;
     border-radius: 5rem 0 0 0;
     @include a.flexCenterRow;
@@ -52,7 +52,7 @@
     bottom: 0;
     background-color: a.$color-light-red-t75;
     color: a.$color-white;
-    font-size: 18px;
+    font-size: 1.8rem;
     letter-spacing: a.$letter-spacing-small;
     @include a.flexCenterCol;
     transition: opacity 0.3s ease-in;

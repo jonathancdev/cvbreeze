@@ -3,7 +3,7 @@
   height: 12rem;
   width: 100%;
   @include a.respond(sevenhundred) {
-    width: 700px;
+    width: 70rem;
   }
   .heading-secondary {
     color: a.$color-blue-t75;
@@ -11,6 +11,7 @@
 }
 
 .carousel {
+  overflow-x: hidden;
   @include a.flexCenterCol;
   &__header {
     width: 100%;
@@ -22,8 +23,8 @@
       justify-content: center;
     }
     @include a.respond(sevenhundred) {
-      width: 300px;
-      height: 50px;
+      width: 30rem;
+      height: 5rem;
       justify-content: center;
       padding: 0;
     }
@@ -72,7 +73,7 @@
     @include a.respond(alltabs) {
       mask-image: none;
 
-      max-width: 600px;
+      max-width: 60rem;
     }
     @include a.respond(sevenhundred) {
       mask-image: none;

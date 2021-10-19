@@ -50,6 +50,11 @@ html {
     font-size: 60%;
   }
 }
+@media (min-width: 56.25em) and (max-width: 75em) and (min-height: 75em) {
+  html {
+    font-size: 80%;
+  }
+}
 
 body {
   box-sizing: border-box;
@@ -449,7 +454,7 @@ textarea {
   font-weight: 200;
   color: #404756;
   padding: 0.5rem 1rem;
-  line-height: 20px;
+  line-height: 2rem;
 }
 
 .input--standard {
@@ -816,7 +821,7 @@ textarea {
 .header__shape {
   height: 8rem;
   width: 70%;
-  max-width: 450px;
+  max-width: 45rem;
   background-color: #829cd0;
   border-radius: 0 0 0 5rem;
   display: flex;
@@ -840,7 +845,7 @@ textarea {
 @media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-header {
     height: 10rem;
-    max-width: 400px;
+    max-width: 40rem;
     border-radius: 0 0 5rem 0;
     justify-content: space-evenly;
   }
@@ -850,12 +855,6 @@ textarea {
   background-color: #fff;
   padding: 10px 10px;
   height: 100%;
-}
-@media (min-width: 43.75em) {
-  .main {
-    width: 800px;
-    margin: 0 auto;
-  }
 }
 
 .footer {
@@ -867,7 +866,7 @@ textarea {
 .footer__shape {
   height: 8rem;
   width: 25%;
-  max-width: 200px;
+  max-width: 20rem;
   background-color: #829cd0;
   border-radius: 5rem 0 0 0;
   display: flex;
@@ -911,7 +910,7 @@ textarea {
   bottom: 0;
   background-color: rgba(208, 136, 150, 0.75);
   color: #fff;
-  font-size: 18px;
+  font-size: 1.8rem;
   letter-spacing: 0.25rem;
   display: flex;
   flex-direction: column;
@@ -973,12 +972,12 @@ textarea {
 }
 @media (min-width: 32.75em) and (max-width: 56.25em) {
   .mobile-create .mobilenav__list {
-    max-width: 250px;
+    max-width: 25rem;
   }
 }
 @media (min-width: 43.75em) {
   .mobile-create .mobilenav__list {
-    max-width: 250px;
+    max-width: 25rem;
   }
 }
 .mobile-create .mobilenav__item {
@@ -1046,6 +1045,9 @@ textarea {
   top: 0;
   transform: rotate(-135deg);
 }
+.mobile-create__checkbox:checked + .mobile-create__button {
+  pointer-events: none;
+}
 
 .mobile-home__checkbox {
   display: none;
@@ -1098,12 +1100,12 @@ textarea {
 }
 @media (min-width: 32.75em) and (max-width: 56.25em) {
   .mobile-home .mobilenav__list {
-    max-width: 250px;
+    max-width: 25rem;
   }
 }
 @media (min-width: 43.75em) {
   .mobile-home .mobilenav__list {
-    max-width: 250px;
+    max-width: 25rem;
   }
 }
 .mobile-home .mobilenav__item {
@@ -1172,6 +1174,9 @@ textarea {
   top: 0;
   transform: rotate(-135deg);
 }
+.mobile-home__checkbox:checked + .mobile-home__button {
+  pointer-events: none;
+}
 
 .create-navbar {
   height: 12rem;
@@ -1179,7 +1184,7 @@ textarea {
 }
 @media (min-width: 43.75em) {
   .create-navbar {
-    width: 700px;
+    width: 70rem;
   }
 }
 .create-navbar .heading-secondary {
@@ -1187,6 +1192,7 @@ textarea {
 }
 
 .carousel {
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1206,8 +1212,8 @@ textarea {
 }
 @media (min-width: 43.75em) {
   .carousel__header {
-    width: 300px;
-    height: 50px;
+    width: 30rem;
+    height: 5rem;
     justify-content: center;
     padding: 0;
   }
@@ -1245,7 +1251,7 @@ textarea {
 @media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-navbar .carousel__gradient {
     mask-image: none;
-    max-width: 600px;
+    max-width: 60rem;
   }
 }
 @media (min-width: 43.75em) {
@@ -1377,7 +1383,7 @@ textarea {
 }
 @media (min-width: 43.75em) {
   .create-body {
-    width: 650px;
+    width: 65rem;
     margin: 0 auto;
   }
 }
@@ -1400,6 +1406,12 @@ textarea {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+@media (min-width: 43.75em) {
+  .signup {
+    width: 50rem;
+    margin: 0 auto;
+  }
 }
 .signup__form {
   display: flex;
@@ -1424,6 +1436,12 @@ textarea {
   align-items: center;
   justify-content: center;
 }
+@media (min-width: 43.75em) {
+  .signin {
+    width: 35rem;
+    margin: 0 auto;
+  }
+}
 .signin__form {
   display: flex;
   flex-direction: column;
@@ -1447,6 +1465,12 @@ textarea {
   align-items: center;
   justify-content: center;
 }
+@media (min-width: 43.75em) {
+  .contactform {
+    width: 50rem;
+    margin: 0 auto;
+  }
+}
 .contactform .contact__form {
   display: flex;
   flex-direction: column;
@@ -1463,6 +1487,12 @@ textarea {
   letter-spacing: 0.25rem;
 }
 
+@media (min-width: 43.75em) {
+  .account {
+    width: 50rem;
+    margin: 0 auto;
+  }
+}
 .account__element {
   display: flex;
   flex-direction: column;
@@ -1501,7 +1531,7 @@ textarea {
   max-height: 1053px;
   min-width: 788px;
   max-width: 788px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
 }
 @media (max-height: 46em) and (max-width: 33.75em) {
   .view {
@@ -1889,11 +1919,9 @@ textarea {
 .photo .user-photo {
   display: block;
   height: 12rem;
-  border: solid;
-  border-width: 1rem;
   border-radius: 50%;
-  border-color: #404756;
   margin-bottom: 1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .photo .icon-wrap--largecircle {
   margin-bottom: 1.5rem;

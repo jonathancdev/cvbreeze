@@ -15,7 +15,7 @@
     height: 100%;
     width: 100%;
     @include a.respond(sevenhundred) {
-      width: 650px;
+      width: 65rem;
       margin: 0 auto;
     }
   }

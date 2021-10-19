@@ -3,6 +3,10 @@
 .contactform {
   height: auto;
   @include a.flexCenterCol;
+  @include a.respond(sevenhundred) {
+    width: 50rem;
+    margin: 0 auto;
+  }
 
   .contact__form {
     display: flex;

@@ -3,6 +3,10 @@
 .signin {
   height: auto;
   @include a.flexCenterCol;
+  @include a.respond(sevenhundred) {
+    width: 35rem;
+    margin: 0 auto;
+  }
 
   &__form {
     display: flex;

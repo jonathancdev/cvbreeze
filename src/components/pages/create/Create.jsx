@@ -95,7 +95,7 @@ export default function Create({
                 {user.userId === "BREEZEID_M5B6M16" ? (
                   <>
                     <h1 className="heading-primary">Welcome!</h1>
-                    <p className="text-large margin-top-extra-small">
+                    <p className="text-large margin-top-small">
                       Take a moment to explore our friend Maria's CV. See the
                       finished product by clicking 'view CV'. You can even make
                       changes to see how everything works. Sign out when you are

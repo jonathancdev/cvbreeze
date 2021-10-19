@@ -17,9 +17,9 @@
   max-height: 1053px;
   min-width: 788px;
   max-width: 788px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
-    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em,
+    rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em,
+    rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
   @include a.respond(iphone6) {
     transform: scale(0.435);
     top: -300px;
@@ -46,6 +46,7 @@
     top: -200px;
     left: -140px;
   }
+
   @include a.respond(laptop) {
     transform: scale(0.55);
     top: -250px;
@@ -66,26 +67,7 @@
     top: -120px;
     left: -85px;
   }
-  // @include a.respond(tabport) {
-  //   transform: scale(0.75);
-  //   top: -100px;
-  //   left: -20px;
-  // }
-  // @include a.respond(tabland) {
-  //   transform: scale(0.55);
-  //   top: -225px;
-  //   left: 100px;
-  // }
-  // @include a.respond(tablandwide) {
-  //   transform: scale(0.5);
-  //   top: -250px;
-  //   left: -50px;
-  // }
-  // @include a.respond(laptop) {
-  //   transform: scale(0.65);
-  //   top: -170px;
-  //   left: -50px;
-  // }
+
   &__top,
   &__bottom {
     position: absolute;

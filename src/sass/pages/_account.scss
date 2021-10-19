@@ -1,5 +1,9 @@
 @use "../abstracts/" as a;
 .account {
+  @include a.respond(sevenhundred) {
+    width: 50rem;
+    margin: 0 auto;
+  }
   &__element {
     display: flex;
     flex-direction: column;

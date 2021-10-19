@@ -3,7 +3,10 @@
 .signup {
   height: auto;
   @include a.flexCenterCol;
-
+  @include a.respond(sevenhundred) {
+    width: 50rem;
+    margin: 0 auto;
+  }
   &__form {
     display: flex;
     flex-direction: column;

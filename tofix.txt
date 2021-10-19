@@ -1,21 +1,8 @@
 
-box shadow or something on view to make it pop
-app height fucked up in big version when resized
-
-weird photo border
-
-fix media query to work with wide tablets and laptop
-
-menu on side in desktop/laptop
-reduce width of input boxes/forms on laptop/desktop
-
 photo add error, if you delete a photo and try to add same photo, it doesn't workign
 
 might be a problem with saving contact info and wiping address
 
-change contact fields to autofitter
-update profile autofitter minfont size
-constrain address field
 
 create test cases to check min/max values for profile, duties, edu description, and skills
 
