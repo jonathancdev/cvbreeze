@@ -27,7 +27,7 @@ textarea {
   &--date {
     background-color: a.$color-white;
     height: a.$input-height;
-    width: 100%;
+    width: inherit;
     border-width: 1.5px;
     border-color: a.$color-light-grey-t10;
     font-size: 1.4rem;

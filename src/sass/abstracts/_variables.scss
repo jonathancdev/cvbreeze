@@ -37,11 +37,11 @@ $top-height: 15px;
 $bottom-height: 15px;
 
 //first iteration
-$photo-width: 175px;
-$photo-height: 175px;
-$shape-width: 190px;
-$shape-height: 175px;
-$header-height: 175px;
+$photo-width: 210px;
+$photo-height: 210px;
+$shape-width: 200px;
+$shape-height: 200px;
+$header-height: 200px;
 
 $main-heading-height: 28px;
 $sidebar-heading-height: 28px;
@@ -51,7 +51,7 @@ $main-view-side-padding: 0 10px;
 $sidebar-view-side-padding: 0 10px;
 
 //main content
-$main-padding: 10px 10px;
+$main-padding: 20px 30px;
 $main-height: calc(100% - ($header-height + $top-height * 2));
 
 //scaling variables

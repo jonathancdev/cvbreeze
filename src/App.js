@@ -179,9 +179,11 @@ function App() {
               openAlert={openAlert}
             />
           </Route>
-          <Route path="/print">
-            <Print />
-          </Route>
+          {sessionActive ? (
+            <Route path={"/" + user.userId + "/print"}>
+              <Print user={user} />
+            </Route>
+          ) : null}
         </Switch>
         {/* RENDER PRINT PAGE OUTSIDE OF LAYOUT AND STATE TO HIDE OTHER ELEMENTS WON"T BE NECESSARY */}
       </div>

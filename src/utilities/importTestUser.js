@@ -1,98 +1,89 @@
 export function importTestUser() {
   localStorage.setObject("BREEZEID_M5B6M16_photoData", {
     userPhoto: "test user",
-    filePath: "breezeJ_cv.jpg",
+    filePath: "breezeM_cv.jpg",
   });
   //contact
   localStorage.setObject("BREEZEID_M5B6M16_contactData", {
-    telephone: "555-555-5555",
-    email: "maria@cvbreeze.breeze",
-    city: "Adelaide",
-    state: "South Australia",
-    country: "Australia",
-    website: "janebmgmt.breeze",
+    telephone: "555-123-1829",
+    email: "maria@mariabgraphics.io",
+    city: "Boston",
+    state: "Massachusetts",
+    country: "USA",
+    website: "mariabgraphics.io",
   });
   //education
   localStorage.setObject("BREEZEID_M5B6M16_educationHistoryData", [
     {
-      institution: "International Biz University",
-      degree: "MBA",
-      description: "Management concentration",
-      date: "2016-05-12",
-      id: "International Biz UniversityMBA2016-05-12",
+      institution: "New England Institute of Technology",
+      degree: "B.A. Fine Arts",
+      description:
+        "Graphic design concentration with focus on digital marketing and new media",
+      date: "2012-06-08",
+      id: "New England Institute of TechnologyB.A. Fine Arts2012-06-08",
     },
     {
-      institution: "Happy University",
-      degree: "BA Marketing and Strategy",
+      institution: "New England Institute of Technology",
+      degree: "Modern Web Design Certification",
       description: "",
-      date: "2013-06-18",
-      id: "Happy UniversityBA Marketing and Strategy2013-06-18",
+      date: "2010-06-11",
+      id: "New England Institute of TechnologyModern Web Design Certification2010-06-11",
     },
   ]);
   //profile
   localStorage.setObject(
     "BREEZEID_M5B6M16_profileData",
 
-    "Aliquet eget sit amet tellus. Sit amet mauris commodo quis imperdiet. A lacus vestibulum sed arcu non. Netus et malesuada fames ac. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Nisi vitae suscipit tellus mauris a diam maecenas sed. Ut pharetra sit amet aliquam id. Varius sit amet mattis vulputate enim nulla."
+    "Senior graphic designer with more than 5 years of experience managing the design process from concept to completion. Skilled in interdepartmental communication and coordination. Proficient in all industry leading design suites and experienced with web design applications and integration."
   );
   //skills
   localStorage.setObject("BREEZEID_M5B6M16_skillsData", [
-    { skill: "Project Management", id: "Project Management1" },
-    { skill: "Performance Management", id: "Performance Management2" },
+    { skill: "Adobe Creative Suite", id: "Adobe Creative Suite0" },
+    { skill: "Microsoft Office Suite", id: "Microsoft Office Suite1" },
     {
-      skill: "Staff Recruitment and Training",
-      id: "Staff Recruitment and Training3",
+      skill: "HTML / CSS",
+      id: "HTML / CSS2",
     },
-    { skill: "Marketing and Promotions", id: "Marketing and Promotions4" },
-    { skill: "Auditing", id: "Auditing5" },
-    { skill: "Quality Assurance", id: "Quality Assurance6" },
-    {
-      skill: "Revenue and Trend Analysis",
-      id: "Revenue and Trend Analysis7",
-    },
-    { skill: "Continuous Improvement", id: "Continuous Improvement8" },
+    { skill: "Typography", id: "Typography3" },
+    { skill: "Time Management", id: "Time Management4" },
+    { skill: "Communication", id: "Communication5" },
   ]);
   //work
   localStorage.setObject("BREEZEID_M5B6M16_workExperienceData", [
     {
-      title: "Manager",
-      company: "Super Agency",
-      startDate: "2017-03-01",
-      endDate: "2021-07-04",
+      title: "Senior Graphic Designer",
+      company: "Impulse Design",
+      startDate: "2016-08-08",
+      endDate: "2021-10-19",
       dutyOne:
-        "Adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum",
-      dutyTwo: "At risus viverra adipiscing at in",
-      dutyThree: "Ante metus dictum at tempor commodo",
-      id: "ManagerSuper Agency2017-03-01",
+        "Lead the design, development, and production of communication materials",
+      dutyTwo:
+        "Oversaw seven-member design team and provided mentorship to junior designers",
+      dutyThree:
+        "Supervised the quality assessment of all graphic materials to ensure company standards",
+      id: "Senior Graphic DesignerImpulse Design2016-08-08",
     },
     {
-      title: "Supervisor",
-      company: "Wonder Corp.",
-      startDate: "2015-03-10",
-      endDate: "2017-02-14",
-      dutyOne: "Faucibus purus in massa tempor",
-      dutyTwo: "Neque ornare aenean euismod elementum",
-      dutyThree: "Diam maecenas sed enim ut",
-      id: "SupervisorWonder Corp.2015-03-10",
-    },
-    {
-      title: "Coordinator",
-      company: "The Great Foundation",
-      startDate: "2012-06-20",
-      endDate: "2015-01-31",
-      dutyOne: "Laoreet sit amet cursus sit amet",
-      dutyTwo: "Elementum integer enim neque volutpat",
-      dutyThree: "Molestie at elementum eu facilisis sed odio",
-      id: "CoordintaorThe Great Foundation2012-06-20",
+      title: "Lead Graphic Design Specialist",
+      company: "Creative Agency",
+      startDate: "2012-12-06",
+      endDate: "2016-07-04",
+      dutyOne:
+        "Developed marketing campaign materials including logos, brochures, newsletters, and more",
+      dutyTwo:
+        "Managed several simultaneous projects and campaigns successfully within deadlines",
+      dutyThree:
+        "Advised and consulted with clients to coordinate design options based on budgets and goals",
+      id: "Lead Graphic Design SpecialistCreative Agency2012-12-06",
     },
   ]);
 
   localStorage.setObject("user_test", {
-    name: "Maria",
-    surname: "Breeze",
-    profession: "Managing Partner",
-    password: "password",
-    email: "maria@cvbreeze.cv",
+    firstName: "Maria",
+    lastName: "Breeze",
+    profession: "Graphic Designer",
+    password: "a83kfad2211",
+    email: "maria@mariabgraphics.io",
     userId: "BREEZEID_M5B6M16",
     storageKey: "user_test",
   });

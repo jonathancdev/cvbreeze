@@ -12,7 +12,8 @@
     bottom: 10rem;
   }
   @include a.respond(sevenhundred) {
-    bottom: 16rem;
+    //bottom: 16rem;
+    scrollbar-color: black;
   }
   &.open {
     width: 100%;
@@ -56,6 +57,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  &--date {
+    position: relative;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .react-datepicker {
+      transform: scale(1.5) translateY(0.7);
+    }
+  }
 }
 .form__error {
   margin-top: 0.25rem;

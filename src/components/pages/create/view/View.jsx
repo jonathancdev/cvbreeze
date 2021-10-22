@@ -6,8 +6,9 @@ import ViewProfile from "./ViewProfile";
 import ViewSkills from "./ViewSkills";
 import ViewWork from "./ViewWork";
 import AutoTextFitter from "../../../AutoTextFitter";
+import { Link } from "react-router-dom";
 
-export default function View({ user, updateViewing }) {
+export default function View({ user, updateViewing, mode }) {
   const storageSections = {
     contact: "_contactData",
     education: "_educationHistoryData",
@@ -36,8 +37,15 @@ export default function View({ user, updateViewing }) {
   const updateSkillsClass = (str) => {
     setSkillsClass(str);
   };
+  console.log(mode);
   return (
-    <section className="view-container">
+    <section className={"view-container " + mode}>
+      <Link
+        className="view__print-link"
+        to={mode === "preview" ? "/" + user.userId + "/print" : "/create/view"}
+      >
+        {mode === "preview" ? "print cv" : "go back"}
+      </Link>
       <section className="view">
         <div className="view__top"></div>
         <ViewPhoto user={user} section={storageSections.photo} />

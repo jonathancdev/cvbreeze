@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { importTestUser } from "../../utilities/importTestUser";
-import { importTestUserMax } from "../../utilities/importTestUserMax";
 import { useForm, Controller } from "react-hook-form";
 import Layout from "../layout/Layout";
 
@@ -37,9 +36,9 @@ export default function Signup({ user, sessionActive, logUserIn, logUserOut }) {
     logUserIn({
       firstName: "Maria",
       lastName: "Breeze",
-      profession: "Managing Partner",
-      password: "password",
-      email: "maria@cvbreeze.cv",
+      profession: "Graphic Designer",
+      password: "a83kfad2211",
+      email: "maria@mariabgraphics.io",
       userId: "BREEZEID_M5B6M16",
       storageKey: "user_test",
     });

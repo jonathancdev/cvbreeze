@@ -210,6 +210,7 @@ export default function WorkExperience({
                 name="startdate"
                 render={({ field }) => (
                   <DatePicker
+                    wrapperClassName="datePicker"
                     dateFormatCalendar="MMMM"
                     showYearDropdown
                     yearDropdownItemNumber={30}
@@ -238,7 +239,7 @@ export default function WorkExperience({
                 {errors.startdate ? errors.startdate.message : ""}
               </p>
             </div>
-            <div className="form__element">
+            <div className="form__element--date">
               <Controller
                 defaultValue=""
                 control={control}
