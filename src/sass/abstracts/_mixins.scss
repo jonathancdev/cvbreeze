@@ -61,6 +61,14 @@ ORDER: base + typography > gen. layout + grid, specific page layout > components
       @content;
     }
   }
+  //WEIRD ZONE for add new experience button
+  //from here up need to change section selector
+  @if $breakpoint == weirdzone {
+    @media (min-width: 37.5em) and (max-width: 43.75em) {
+      //600 to 700 width
+      @content;
+    }
+  }
   // //MEDIUM TABS
   @if $breakpoint == alltabs {
     @media (min-width: 32.75em) and (max-width: 56.25em) {

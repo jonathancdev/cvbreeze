@@ -442,12 +442,17 @@ body {
   color: #fff;
   border-radius: 3px;
   padding: 3px 0.5rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
   background-color: #a4abbd;
   margin-left: 30px;
 }
 
+@media (max-height: 46em) and (max-width: 33.75em) {
+  .delete-skill {
+    bottom: 0.5rem;
+  }
+}
 @media (min-width: 43.75em) {
   .delete-skill {
     bottom: 0.5rem;
@@ -495,7 +500,7 @@ textarea {
 
 .create-section__form {
   position: absolute;
-  bottom: 6rem;
+  bottom: 3rem;
   width: 80%;
   left: 50%;
   transform: translateX(-50%);
@@ -503,14 +508,49 @@ textarea {
   overflow: scroll;
   z-index: 2;
 }
-@media (max-height: 35.5em) {
+@media (max-height: 46em) and (max-width: 33.75em) {
   .create-section__form {
-    bottom: 10rem;
+    bottom: 1.4rem;
   }
 }
-@media (min-width: 43.75em) {
+@media (max-height: 35.5em) {
   .create-section__form {
-    scrollbar-color: black;
+    bottom: 6rem;
+  }
+}
+@media (min-width: 25.625em) and (max-width: 30em) {
+  .create-section__form {
+    bottom: 6rem;
+  }
+}
+@media (min-width: 33.75em) and (max-width: 37.5em) {
+  .create-section__form {
+    bottom: 0rem;
+  }
+}
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .create-section__form {
+    bottom: 25rem;
+  }
+}
+@media (min-width: 56.25em) and (max-width: 75em) and (min-height: 75em) {
+  .create-section__form {
+    bottom: 40rem;
+  }
+}
+@media (min-width: 33.75em) and (max-width: 37.5em) {
+  .create-section__form {
+    bottom: 0rem;
+  }
+}
+@media (min-width: 37.5em) and (max-width: 43.75em) {
+  .create-section__form {
+    bottom: 0rem;
+  }
+}
+@media (min-width: 43.75em) and (max-height: 42em) {
+  .create-section__form {
+    bottom: 0rem;
   }
 }
 .create-section__form.open {
@@ -1550,7 +1590,7 @@ textarea {
   border-width: 1px;
   border-radius: 3px;
   padding: 1px 0.5rem;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
 }
 
@@ -1610,7 +1650,7 @@ textarea {
 @media (min-width: 56.25em) and (max-width: 75em) and (min-height: 75em) {
   .view {
     transform: scale(1);
-    top: 20px;
+    top: 40px;
     left: 0px;
   }
 }

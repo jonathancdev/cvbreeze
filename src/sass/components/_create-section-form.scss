@@ -1,20 +1,41 @@
 @use "../abstracts/" as a;
 .create-section__form {
   position: absolute;
-  bottom: 6rem;
+  bottom: 3rem;
   width: 80%;
   left: 50%;
   transform: translateX(-50%);
   background-color: transparent;
   overflow: scroll;
   z-index: 2;
+  @include a.respond(iphone6) {
+    bottom: 1.4rem;
+  }
   @include a.respond(iphone5) {
-    bottom: 10rem;
+    bottom: 6rem;
   }
-  @include a.respond(sevenhundred) {
-    //bottom: 16rem;
-    scrollbar-color: black;
+  @include a.respond(widephone) {
+    bottom: 6rem;
   }
+  @include a.respond(smalltab) {
+    bottom: 0rem;
+  }
+  @include a.respond(alltabs) {
+    bottom: 25rem;
+  }
+  @include a.respond(ipadpro) {
+    bottom: 40rem;
+  }
+  @include a.respond(smalltab) {
+    bottom: 0rem;
+  }
+  @include a.respond(weirdzone) {
+    bottom: 0rem;
+  }
+  @include a.respond(sevenhundredshort) {
+    bottom: 0rem;
+  }
+
   &.open {
     width: 100%;
     top: 0rem;

@@ -143,13 +143,16 @@
     color: a.$color-white;
     border-radius: 3px;
     padding: 3px 0.5rem;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 400;
     background-color: a.$color-light-grey;
     margin-left: 30px;
   }
 }
 .delete-skill {
+  @include a.respond(iphone6) {
+    bottom: 0.5rem;
+  }
   @include a.respond(sevenhundred) {
     bottom: 0.5rem;
   }
