@@ -181,7 +181,7 @@ function App() {
           </Route>
           {sessionActive ? (
             <Route path={"/" + user.userId + "/print"}>
-              <Print user={user} />
+              <Print user={user} openAlert={openAlert} />
             </Route>
           ) : null}
         </Switch>

@@ -83,7 +83,12 @@ export default function Create({
         <section className="create">
           <Switch>
             <Route exact path="/create/view">
-              <View user={user} updateViewing={updateViewing} mode="preview" />
+              <View
+                user={user}
+                updateViewing={updateViewing}
+                mode="preview"
+                openAlert={openAlert}
+              />
             </Route>
             <CreateLayout
               layoutData={layoutData}

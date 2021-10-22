@@ -8,7 +8,7 @@ import ViewWork from "./ViewWork";
 import AutoTextFitter from "../../../AutoTextFitter";
 import { Link } from "react-router-dom";
 
-export default function View({ user, updateViewing, mode }) {
+export default function View({ user, updateViewing, mode, openAlert }) {
   const storageSections = {
     contact: "_contactData",
     education: "_educationHistoryData",
@@ -37,15 +37,27 @@ export default function View({ user, updateViewing, mode }) {
   const updateSkillsClass = (str) => {
     setSkillsClass(str);
   };
+  const printHelp = () => {
+    openAlert(
+      "in your browser's printer settings, choose 'A4' as the paper size and select the 'background graphics' or 'print backgrounds' option for best results"
+    );
+  };
   console.log(mode);
   return (
     <section className={"view-container " + mode}>
-      <Link
-        className="view__print-link"
-        to={mode === "preview" ? "/" + user.userId + "/print" : "/create/view"}
-      >
-        {mode === "preview" ? "print cv" : "go back"}
-      </Link>
+      <div>
+        <Link
+          className="view__print-link"
+          to={
+            mode === "preview" ? "/" + user.userId + "/print" : "/create/view"
+          }
+        >
+          {mode === "preview" ? "print cv" : "go back"}
+        </Link>
+        <button className="btn__print-help btn" onClick={printHelp}>
+          print display problems?
+        </button>
+      </div>
       <section className="view">
         <div className="view__top"></div>
         <ViewPhoto user={user} section={storageSections.photo} />

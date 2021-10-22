@@ -437,6 +437,16 @@ body {
   align-items: center;
   justify-content: center;
 }
+.btn__print-help {
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  padding: 3px 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 400;
+  background-color: #a4abbd;
+  margin-left: 30px;
+}
 
 @media (min-width: 43.75em) {
   .delete-skill {
@@ -1534,10 +1544,14 @@ textarea {
 
 .view__print-link:link,
 .view__print-link:visited {
-  color: #0000ee;
-  font-size: 1.8rem;
-  font-weight: 200;
-  text-decoration: underline;
+  color: #829cd0;
+  letter-spacing: 0.25rem;
+  border: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  padding: 1px 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 400;
 }
 
 .view {
@@ -1726,6 +1740,10 @@ textarea {
     margin: 0;
   }
   .view__print-link {
+    display: none;
+  }
+
+  .btn__print-help {
     display: none;
   }
 

@@ -138,6 +138,16 @@
     background-color: transparent;
     @include a.flexCenterCol;
   }
+  &__print-help {
+    border: none;
+    color: a.$color-white;
+    border-radius: 3px;
+    padding: 3px 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 400;
+    background-color: a.$color-light-grey;
+    margin-left: 30px;
+  }
 }
 .delete-skill {
   @include a.respond(sevenhundred) {

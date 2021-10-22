@@ -10,11 +10,16 @@
 }
 .view__print-link:link,
 .view__print-link:visited {
-  color: #0000ee;
-  font-size: 1.8rem;
-  font-weight: 200;
-  text-decoration: underline;
+  color: a.$color-blue;
+  letter-spacing: a.$letter-spacing-small;
+  border: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  padding: 1px 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 400;
 }
+
 .view {
   transform: scale(0.395);
   position: absolute;
@@ -184,6 +189,9 @@
     margin: 0;
   }
   .view__print-link {
+    display: none;
+  }
+  .btn__print-help {
     display: none;
   }
   html,
