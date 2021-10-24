@@ -42,7 +42,6 @@ export default function View({ user, updateViewing, mode, openAlert }) {
       "in your browser's printer settings, choose 'A4' as the paper size and select the 'background graphics' or 'print backgrounds' option for best results"
     );
   };
-  console.log(mode);
   return (
     <section className={"view-container " + mode}>
       <div>

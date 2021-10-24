@@ -47,7 +47,7 @@ export default function EducationItem({
         </p>
       </div>
       <div className="education__item--dates">
-        <p>completed&nbsp;{obj.date}</p>
+        <p>completed&nbsp;{obj.month + " " + obj.year}</p>
       </div>
       <p className="description">
         {layout === 2

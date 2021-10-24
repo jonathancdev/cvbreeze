@@ -237,7 +237,6 @@ export default function Contact({
 
   const setWebsite = (e) => {
     const value = e.target.value;
-    console.log(value.length);
     if (value.length > 0 && value.length < 5) {
       setErrors((prevState) => {
         return {

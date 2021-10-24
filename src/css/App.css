@@ -85,7 +85,7 @@ body {
 .heading-secondary {
   font-size: 2.8rem;
   font-weight: 600;
-  line-height: 3rem;
+  line-height: 4rem;
   color: #404756;
 }
 
@@ -500,7 +500,7 @@ textarea {
 
 .create-section__form {
   position: absolute;
-  bottom: 3rem;
+  bottom: 6rem;
   width: 80%;
   left: 50%;
   transform: translateX(-50%);
@@ -510,7 +510,7 @@ textarea {
 }
 @media (max-height: 46em) and (max-width: 33.75em) {
   .create-section__form {
-    bottom: 1.4rem;
+    bottom: 6.4rem;
   }
 }
 @media (max-height: 35.5em) {
@@ -525,22 +525,17 @@ textarea {
 }
 @media (min-width: 33.75em) and (max-width: 37.5em) {
   .create-section__form {
-    bottom: 0rem;
+    bottom: 5rem;
   }
 }
 @media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-section__form {
-    bottom: 25rem;
+    bottom: 5rem;
   }
 }
 @media (min-width: 56.25em) and (max-width: 75em) and (min-height: 75em) {
   .create-section__form {
     bottom: 40rem;
-  }
-}
-@media (min-width: 33.75em) and (max-width: 37.5em) {
-  .create-section__form {
-    bottom: 0rem;
   }
 }
 @media (min-width: 37.5em) and (max-width: 43.75em) {
@@ -551,6 +546,11 @@ textarea {
 @media (min-width: 43.75em) and (max-height: 42em) {
   .create-section__form {
     bottom: 0rem;
+  }
+}
+@media (min-width: 43.75em) {
+  .create-section__form {
+    bottom: 5rem;
   }
 }
 .create-section__form.open {
@@ -585,6 +585,16 @@ textarea {
   width: 95%;
   display: flex;
 }
+.form__dates .text {
+  margin-top: 5px;
+}
+.form__dates .date-dash {
+  width: 5.5rem;
+  font-size: 1.5rem;
+}
+.form__dates .date-text {
+  padding: 0 1rem;
+}
 
 .input--date {
   width: 90%;
@@ -599,12 +609,6 @@ textarea {
 .form__element--date {
   position: relative;
   width: 95%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-.form__element--date .react-datepicker {
-  transform: scale(1.5) translateY(0.7);
 }
 
 .form__error {
@@ -873,6 +877,112 @@ textarea {
   width: 200px;
 }
 
+.month-picker {
+  width: 95%;
+  position: relative;
+  display: flex;
+}
+.month-picker__input {
+  width: 100%;
+  text-align: center;
+  cursor: none;
+}
+.month-picker__button {
+  display: inline-block;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.month-picker__list {
+  width: 100%;
+  position: absolute;
+  top: 3rem;
+  list-style: none;
+  padding: 1.2rem 0;
+  background-color: rgba(129, 155, 207, 0.75);
+  max-height: 15rem;
+  overflow: scroll;
+}
+.month-picker__li {
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 0.25rem;
+  text-align: center;
+  padding: 2px 0;
+  cursor: pointer;
+  user-select: none;
+}
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .month-picker__li {
+    padding-left: 10px;
+  }
+}
+@media (min-width: 43.75em) {
+  .month-picker__li {
+    padding-left: 10px;
+  }
+}
+.month-picker__li:hover {
+  background-color: #fff;
+  color: rgba(129, 155, 207, 0.75);
+}
+
+.year-picker {
+  width: 95%;
+  position: relative;
+  display: flex;
+}
+.year-picker__input {
+  width: 100%;
+  text-align: center;
+  cursor: none;
+}
+.year-picker__button {
+  display: inline-block;
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.year-picker__list {
+  width: 100%;
+  position: absolute;
+  top: 3rem;
+  list-style: none;
+  padding: 1.2rem 0;
+  background-color: rgba(129, 155, 207, 0.75);
+  max-height: 15rem;
+  overflow: scroll;
+}
+.year-picker__li {
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 400;
+  letter-spacing: 0.25rem;
+  text-align: center;
+  padding: 2px 0;
+  cursor: pointer;
+  user-select: none;
+}
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .year-picker__li {
+    padding-left: 10px;
+  }
+}
+@media (min-width: 43.75em) {
+  .year-picker__li {
+    padding-left: 10px;
+  }
+}
+.year-picker__li:hover {
+  background-color: #fff;
+  color: rgba(129, 155, 207, 0.75);
+}
+
 .header {
   height: 8rem;
   display: flex;
@@ -900,7 +1010,7 @@ textarea {
   justify-content: space-between;
   align-items: center;
   background-color: #829cd0;
-  padding: 20px 30px;
+  padding: 20px 10px;
 }
 @media (min-width: 32.75em) and (max-width: 56.25em) {
   .create-header {
@@ -913,7 +1023,7 @@ textarea {
 
 .main {
   background-color: #fff;
-  padding: 20px 30px;
+  padding: 20px 10px;
   height: 100%;
 }
 
@@ -1334,10 +1444,15 @@ textarea {
     padding-top: 0;
   }
 }
+@media (min-width: 32.75em) and (max-width: 56.25em) {
+  .create-navbar .btn--create-navlink {
+    font-size: 1.7rem;
+  }
+}
 @media (min-width: 43.75em) {
   .create-navbar .btn--create-navlink {
     width: 50%;
-    font-size: 2rem;
+    font-size: 1.8rem;
     text-align: center;
     padding: 0.5rem 0.5rem;
     margin: 0.5rem 0.5rem;
@@ -1415,14 +1530,61 @@ textarea {
     height: 16rem;
   }
 }
+@media (min-width: 43.75em) {
+  .home__img {
+    height: 25rem;
+  }
+}
 @media (min-width: 43.75em) and (max-height: 42em) {
   .home__img {
     height: 18rem;
   }
 }
-.home .text {
+@media (min-width: 75em) and (max-width: 112.5em) {
+  .home__img {
+    height: 40rem;
+  }
+}
+.home .text,
+.home .heading-secondary {
   text-align: center;
   padding: 0 1rem;
+  font-size: 2rem;
+}
+@media (min-width: 37.5em) and (max-width: 43.75em) {
+  .home .text,
+.home .heading-secondary {
+    width: 75%;
+    font-size: 2.5rem;
+  }
+}
+@media (min-width: 43.75em) {
+  .home .text,
+.home .heading-secondary {
+    width: 75%;
+    font-size: 2.5rem;
+  }
+}
+@media (min-width: 43.75em) {
+  .home .text,
+.home .heading-secondary {
+    width: 75%;
+    font-size: 2.5rem;
+  }
+}
+@media (min-width: 56.25em) and (max-width: 75em) {
+  .home .text,
+.home .heading-secondary {
+    width: 75%;
+    font-size: 4rem;
+  }
+}
+@media (min-width: 75em) and (max-width: 112.5em) {
+  .home .text,
+.home .heading-secondary {
+    width: 75%;
+    font-size: 4rem;
+  }
 }
 
 .create {
@@ -1609,28 +1771,28 @@ textarea {
   .view {
     transform: scale(0.375);
     top: -320px;
-    left: -250px;
+    left: -230px;
   }
 }
 @media (max-height: 35.5em) {
   .view {
     transform: scale(0.315);
     top: -360px;
-    left: -270px;
+    left: -250px;
   }
 }
 @media (min-width: 25.625em) and (max-width: 30em) {
   .view {
     transform: scale(0.44);
     top: -285px;
-    left: -222px;
+    left: -202px;
   }
 }
 @media (min-width: 33.75em) and (max-width: 37.5em) {
   .view {
     transform: scale(0.48);
     top: -260px;
-    left: -170px;
+    left: -150px;
   }
 }
 @media (min-width: 32.75em) and (max-width: 56.25em) {
@@ -1701,8 +1863,8 @@ textarea {
   justify-content: center;
 }
 .view__photo--file {
-  height: calc(210px * 0.95);
-  width: calc(210px * 0.95);
+  height: calc(200px * 0.95);
+  width: calc(200px * 0.95);
   border: solid;
   border-width: 10px;
   border-radius: 50%;
@@ -1736,7 +1898,7 @@ textarea {
   width: 100% !important;
   bottom: 15px;
   right: 0;
-  padding: 20px 30px;
+  padding: 20px 10px;
 }
 .view__initials {
   font-size: 60px;
@@ -2146,9 +2308,6 @@ main,
   .education {
     margin: 0 1.4rem;
   }
-}
-.education .input--date {
-  width: 45%;
 }
 
 .skills {

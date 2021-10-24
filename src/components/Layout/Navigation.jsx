@@ -4,10 +4,6 @@ import MobileNav from "./MobileNav";
 export default function Navigation({ navigationType, sessionActive }) {
   const checkboxRef = useRef(null);
 
-  useEffect(() => {
-    console.log(checkboxRef.current.checked);
-  });
-
   const uncheck = () => {
     checkboxRef.current.checked = false;
   };

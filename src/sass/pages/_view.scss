@@ -35,23 +35,23 @@
   @include a.respond(iphone6) {
     transform: scale(0.375);
     top: -320px;
-    left: -250px;
+    left: -230px;
   }
 
   @include a.respond(iphone5) {
     transform: scale(0.315);
     top: -360px;
-    left: -270px;
+    left: -250px;
   }
   @include a.respond(widephone) {
     transform: scale(0.44);
     top: -285px;
-    left: -222px;
+    left: -202px;
   }
   @include a.respond(smalltab) {
     transform: scale(0.48);
     top: -260px;
-    left: -170px;
+    left: -150px;
   }
   @include a.respond(alltabs) {
     transform: scale(0.6);

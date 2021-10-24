@@ -43,7 +43,6 @@ export default function Create({
     } else if (width < 700) {
       setLayout(1);
     }
-    console.log(layout);
   };
   const [layoutData, setLayoutData] = useState({
     section: "",

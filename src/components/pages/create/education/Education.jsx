@@ -7,6 +7,8 @@ import checkCompletedSections from "../../../../utilities/checkCompletedSections
 import sortByDate from "../../../../utilities/sortByDate";
 import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
+import MonthPicker from "../../../MonthPicker";
+import YearPicker from "../../../YearPicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 const { format } = require("date-fns");
@@ -41,8 +43,9 @@ export default function Education({
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
 
-  //DATES FOR DATEPICKER INSTEAD OF REFS
-  const [date, setDate] = useState(null);
+  const [month, setMonth] = useState(null);
+  const [year, setYear] = useState(null);
+
   //EDUCATION HISTORY STATE
   const [tempEducationArray, setTempEducationArray] = useState(
     storage ? storage : []
@@ -65,7 +68,8 @@ export default function Education({
       institution: institution.current.value,
       degree: degree.current.value,
       description: description.current.value,
-      date: date,
+      month: month,
+      year: year,
     };
     const id = obj.institution + obj.degree + obj.date;
     if (tempEducationArray.some((obj) => obj.id === id)) {
@@ -102,6 +106,12 @@ export default function Education({
       institution: "",
       degree: "",
     });
+  };
+  const updateMonth = (str) => {
+    setMonth(str);
+  };
+  const updateYear = (str) => {
+    setYear(str);
   };
   return (
     <section className="create-section education">
@@ -195,41 +205,69 @@ export default function Education({
               {errors.degree ? errors.degree.message : ""}
             </p>
           </div>
-          <div className="form__element">
-            <Controller
-              defaultValue=""
-              control={control}
-              name="date"
-              render={({ field }) => (
-                <DatePicker
-                  dateFormatCalendar="MMMM"
-                  showYearDropdown
-                  yearDropdownItemNumber={50}
-                  scrollableYearDropdown
-                  maxDate={new Date()}
-                  id="date"
-                  className="input--date"
-                  value={date || null}
-                  placeholderText="date completed"
-                  onSelect={(date) => {
-                    setDate(format(date, "yyyy-MM-dd"));
-                    field.onChange(date);
-                  }}
-                />
-              )}
-              rules={{
-                required: "date required",
-              }}
-            />
-            <label htmlFor="date" className="visuallyhidden">
-              date
-            </label>
-            <p className="form__error">
-              &nbsp;
-              {errors.date ? errors.date.message : ""}
-            </p>
+          <div className="form__dates">
+            <p className="text date-text">completed</p>
+            <div className="form__element--date">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="month"
+                render={({ field }) => (
+                  <MonthPicker
+                    id="month"
+                    className="input--date month"
+                    value={month || ""}
+                    placeholder="month"
+                    updateParent={updateMonth}
+                    onSelect={(value) => {
+                      // setMonthStart(format(date, "yyyy-MM-dd"));
+                      field.onChange(value);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "month required",
+                }}
+              />
+              <label htmlFor="month" className="visuallyhidden">
+                month
+              </label>
+              <p className="form__error">
+                &nbsp;
+                {errors.month ? errors.month.message : ""}
+              </p>
+            </div>
+            <div className="form__element--date">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="year"
+                render={({ field }) => (
+                  <YearPicker
+                    id="year"
+                    className="input--date year"
+                    value={year || ""}
+                    placeholder="year"
+                    updateParent={updateYear}
+                    maxYears={50}
+                    onSelect={(value) => {
+                      field.onChange(value);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "year required",
+                }}
+              />
+              <label htmlFor="year" className="visuallyhidden">
+                start year
+              </label>
+              <p className="form__error">
+                &nbsp;
+                {errors.year ? errors.year.message : ""}
+              </p>
+            </div>
           </div>
-
           <div className="form__element">
             <Controller
               defaultValue=""

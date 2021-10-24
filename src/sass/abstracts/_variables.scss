@@ -37,8 +37,8 @@ $top-height: 15px;
 $bottom-height: 15px;
 
 //first iteration
-$photo-width: 210px;
-$photo-height: 210px;
+$photo-width: 200px;
+$photo-height: 200px;
 $shape-width: 200px;
 $shape-height: 200px;
 $header-height: 200px;
@@ -51,7 +51,7 @@ $main-view-side-padding: 0 10px;
 $sidebar-view-side-padding: 0 10px;
 
 //main content
-$main-padding: 20px 30px;
+$main-padding: 20px 10px;
 $main-height: calc(100% - ($header-height + $top-height * 2));
 
 //scaling variables

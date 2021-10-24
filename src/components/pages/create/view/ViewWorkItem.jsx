@@ -6,9 +6,11 @@ export default function ViewWorkItem({ obj }) {
     dutyOne,
     dutyThree,
     dutyTwo,
-    endDate,
+    monthStart,
+    monthEnd,
+    yearStart,
+    yearEnd,
     id,
-    startDate,
     title,
   } = obj;
   return (
@@ -17,7 +19,7 @@ export default function ViewWorkItem({ obj }) {
         <h1 className="work__heading-primary">{title.toUpperCase()}</h1>
         <div className="viewdate">
           <h3 className="work__heading-tertiary">
-            {startDate} - {endDate}
+            {monthStart + " " + yearStart} - {monthEnd + " " + yearEnd}
           </h3>
         </div>
       </div>

@@ -1,0 +1,51 @@
+@use "../abstracts/" as a;
+.month-picker {
+  width: 95%;
+  position: relative;
+  display: flex;
+
+  &__input {
+    width: 100%;
+    text-align: center;
+    cursor: none;
+  }
+  &__button {
+    display: inline-block;
+    position: absolute;
+    top: 1px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  &__list {
+    width: 100%;
+    position: absolute;
+    top: 3rem;
+    list-style: none;
+    padding: 1.2rem 0;
+    background-color: a.$color-blue-t75;
+
+    max-height: 15rem;
+    overflow: scroll;
+  }
+  &__li {
+    font-size: 1.4rem;
+    color: a.$color-white;
+    font-weight: 400;
+    letter-spacing: a.$letter-spacing-small;
+    text-align: center;
+    padding: 2px 0;
+    cursor: pointer;
+    @include a.respond(alltabs) {
+      padding-left: 10px;
+    }
+    @include a.respond(sevenhundred) {
+      padding-left: 10px;
+    }
+    &:hover {
+      background-color: a.$color-white;
+      color: a.$color-blue-t75;
+    }
+    user-select: none;
+  }
+}

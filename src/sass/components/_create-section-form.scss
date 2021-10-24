@@ -1,7 +1,7 @@
 @use "../abstracts/" as a;
 .create-section__form {
   position: absolute;
-  bottom: 3rem;
+  bottom: 6rem;
   width: 80%;
   left: 50%;
   transform: translateX(-50%);
@@ -9,7 +9,7 @@
   overflow: scroll;
   z-index: 2;
   @include a.respond(iphone6) {
-    bottom: 1.4rem;
+    bottom: 6.4rem;
   }
   @include a.respond(iphone5) {
     bottom: 6rem;
@@ -18,22 +18,23 @@
     bottom: 6rem;
   }
   @include a.respond(smalltab) {
-    bottom: 0rem;
+    bottom: 5rem;
   }
   @include a.respond(alltabs) {
-    bottom: 25rem;
+    bottom: 5rem;
   }
   @include a.respond(ipadpro) {
     bottom: 40rem;
   }
-  @include a.respond(smalltab) {
-    bottom: 0rem;
-  }
+
   @include a.respond(weirdzone) {
     bottom: 0rem;
   }
   @include a.respond(sevenhundredshort) {
     bottom: 0rem;
+  }
+  @include a.respond(sevenhundred) {
+    bottom: 5rem;
   }
 
   &.open {
@@ -65,10 +66,16 @@
 .form__dates {
   width: 95%;
   display: flex;
-  //   .enddate {
-  //     //move datepicker over to line up, not fighting package css
-  //     margin-left: 0%;
-  //   }
+  .text {
+    margin-top: 5px;
+  }
+  .date-dash {
+    width: 5.5rem;
+    font-size: 1.5rem;
+  }
+  .date-text {
+    padding: 0 1rem;
+  }
 }
 .input--date {
   width: 90%;
@@ -81,13 +88,6 @@
   &--date {
     position: relative;
     width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-    .react-datepicker {
-      transform: scale(1.5) translateY(0.7);
-    }
   }
 }
 .form__error {

@@ -72,7 +72,6 @@ export default function Profile({
     updateCompletedSections();
   };
   const noop = () => {};
-  console.log(errorMessage);
   return (
     <section className="create-section profile">
       <label htmlFor="profile__text-area" className="text-area__label"></label>

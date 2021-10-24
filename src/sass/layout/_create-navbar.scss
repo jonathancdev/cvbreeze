@@ -2,6 +2,7 @@
 .create-navbar {
   height: 12rem;
   width: 100%;
+
   @include a.respond(sevenhundred) {
     width: 70rem;
   }
@@ -45,6 +46,7 @@
     white-space: nowrap;
     overflow: scroll;
     scrollbar-width: none; //hide scrollbar firefox
+
     //hide scrollbar chrome
     &::-webkit-scrollbar {
       display: none;
@@ -93,9 +95,12 @@
     }
   }
   .btn--create-navlink {
+    @include a.respond(alltabs) {
+      font-size: 1.7rem;
+    }
     @include a.respond(sevenhundred) {
       width: 50%;
-      font-size: 2rem;
+      font-size: 1.8rem;
       text-align: center;
       padding: 0.5rem 0.5rem;
       margin: 0.5rem 0.5rem;

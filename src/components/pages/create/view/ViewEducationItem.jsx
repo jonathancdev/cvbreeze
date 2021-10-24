@@ -1,13 +1,13 @@
 import React from "react";
 
 export default function ViewEducationItem({ obj }) {
-  const { date, degree, description, id, institution } = obj;
+  const { month, year, degree, description, id, institution } = obj;
   return (
     <div className="view__item education__item">
       <div className="space-between">
         <h1 className="education__heading-primary">{degree.toUpperCase()}</h1>
         <div className="viewdate">
-          <h3 className="education__heading-tertiary">{date}</h3>
+          <h3 className="education__heading-tertiary">{month + " " + year}</h3>
         </div>
       </div>
 

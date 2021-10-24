@@ -9,6 +9,8 @@ import { useForm, Controller } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
+import MonthPicker from "../../../MonthPicker";
+import YearPicker from "../../../YearPicker";
 const { format } = require("date-fns");
 
 export default function WorkExperience({
@@ -41,6 +43,10 @@ export default function WorkExperience({
   });
   useLayoutUpdater(layoutData.current, updateLayoutData);
   //DATES FOR DATEPICKER INSTEAD OF REFS
+  const [monthStart, setMonthStart] = useState(null);
+  const [monthEnd, setMonthEnd] = useState(null);
+  const [yearStart, setYearStart] = useState(null);
+  const [yearEnd, setYearEnd] = useState(null);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   //WORK EXPERIENCE STATE
@@ -64,8 +70,10 @@ export default function WorkExperience({
     const obj = {
       title: title.current.value,
       company: company.current.value,
-      startDate: startDate,
-      endDate: endDate,
+      monthStart: monthStart,
+      monthEnd: monthEnd,
+      yearStart: yearStart,
+      yearEnd: yearEnd,
       dutyOne: dutyOne.current.value,
       dutyTwo: dutyTwo.current.value,
       dutyThree: dutyThree.current.value,
@@ -80,6 +88,7 @@ export default function WorkExperience({
     });
     setUpdated(true);
   };
+
   const handleDeletedItem = (obj) => {
     localStorage.setObject(userId + "_workExperienceData", obj);
     const storage = localStorage.getObject(userId + "_workExperienceData");
@@ -105,10 +114,23 @@ export default function WorkExperience({
       title: "",
       company: "",
     });
-    setStartDate(null);
-    setEndDate(null);
+    setMonthStart(null);
+    setMonthEnd(null);
+    setYearStart(null);
+    setYearEnd(null);
   };
-
+  const updateMonthStart = (str) => {
+    setMonthStart(str);
+  };
+  const updateMonthEnd = (str) => {
+    setMonthEnd(str);
+  };
+  const updateYearStart = (str) => {
+    setYearStart(str);
+  };
+  const updateYearEnd = (str) => {
+    setYearEnd(str);
+  };
   return (
     <section className="create-section workexperience">
       <CreateSectionForm
@@ -203,7 +225,7 @@ export default function WorkExperience({
             </p>
           </div>
           <div className="form__dates">
-            <div className="form__element">
+            {/* <div className="form__element">
               <Controller
                 defaultValue=""
                 control={control}
@@ -238,8 +260,129 @@ export default function WorkExperience({
                 &nbsp;
                 {errors.startdate ? errors.startdate.message : ""}
               </p>
+            </div> */}
+            <div className="form__element--date">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="monthstart"
+                render={({ field }) => (
+                  <MonthPicker
+                    id="monthstart"
+                    className="input--date monthstart"
+                    value={monthStart || ""}
+                    placeholder="month"
+                    updateParent={updateMonthStart}
+                    onSelect={(value) => {
+                      // setMonthStart(format(date, "yyyy-MM-dd"));
+                      field.onChange(value);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "month required",
+                }}
+              />
+              <label htmlFor="monthstart" className="visuallyhidden">
+                start month
+              </label>
+              <p className="form__error">
+                &nbsp;
+                {errors.monthstart ? errors.monthstart.message : ""}
+              </p>
             </div>
             <div className="form__element--date">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="yearstart"
+                render={({ field }) => (
+                  <YearPicker
+                    id="yearstart"
+                    className="input--date yearstart"
+                    value={yearStart || ""}
+                    placeholder="year"
+                    updateParent={updateYearStart}
+                    maxYears={50}
+                    onSelect={(value) => {
+                      field.onChange(value);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "year required",
+                }}
+              />
+              <label htmlFor="yearstart" className="visuallyhidden">
+                start year
+              </label>
+              <p className="form__error">
+                &nbsp;
+                {errors.yearstart ? errors.yearstart.message : ""}
+              </p>
+            </div>
+            <p className="text date-dash">&mdash;</p>
+            <div className="form__element--date">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="monthend"
+                render={({ field }) => (
+                  <MonthPicker
+                    id="monthend"
+                    className="input--date monthend"
+                    value={monthEnd || ""}
+                    placeholder="month"
+                    updateParent={updateMonthEnd}
+                    onSelect={(value) => {
+                      // setMonthStart(format(date, "yyyy-MM-dd"));
+                      field.onChange(value);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "month required",
+                }}
+              />
+              <label htmlFor="monthend" className="visuallyhidden">
+                end month
+              </label>
+              <p className="form__error">
+                &nbsp;
+                {errors.monthend ? errors.monthend.message : ""}
+              </p>
+            </div>
+            <div className="form__element--date">
+              <Controller
+                defaultValue=""
+                control={control}
+                name="yearend"
+                render={({ field }) => (
+                  <YearPicker
+                    id="yearend"
+                    className="input--date yearEnd"
+                    value={yearStart || ""}
+                    placeholder="year"
+                    updateParent={updateYearEnd}
+                    maxYears={50}
+                    onSelect={(value) => {
+                      field.onChange(value);
+                    }}
+                  />
+                )}
+                rules={{
+                  required: "year required",
+                }}
+              />
+              <label htmlFor="yearend" className="visuallyhidden">
+                end year
+              </label>
+              <p className="form__error">
+                &nbsp;
+                {errors.yearend ? errors.yearend.message : ""}
+              </p>
+            </div>
+            {/* <div className="form__element--date">
               <Controller
                 defaultValue=""
                 control={control}
@@ -272,7 +415,7 @@ export default function WorkExperience({
                 &nbsp;
                 {errors.enddate ? errors.enddate.message : ""}
               </p>
-            </div>
+            </div> */}
           </div>
           <div className="form__element">
             <Controller

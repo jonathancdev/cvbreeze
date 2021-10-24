@@ -19,14 +19,16 @@ export function importTestUser() {
       degree: "B.A. Fine Arts",
       description:
         "Graphic design concentration with focus on digital marketing and new media",
-      date: "2012-06-08",
+      month: "June",
+      year: "2012",
       id: "New England Institute of TechnologyB.A. Fine Arts2012-06-08",
     },
     {
       institution: "New England Institute of Technology",
       degree: "Modern Web Design Certification",
       description: "",
-      date: "2010-06-11",
+      month: "June",
+      year: "2010",
       id: "New England Institute of TechnologyModern Web Design Certification2010-06-11",
     },
   ]);
@@ -53,8 +55,10 @@ export function importTestUser() {
     {
       title: "Senior Graphic Designer",
       company: "Impulse Design",
-      startDate: "2016-08-08",
-      endDate: "2021-10-19",
+      monthStart: "August",
+      yearStart: "2016",
+      monthEnd: "October",
+      yearEnd: "2019",
       dutyOne:
         "Lead the design, development, and production of communication materials",
       dutyTwo:
@@ -66,8 +70,10 @@ export function importTestUser() {
     {
       title: "Lead Graphic Design Specialist",
       company: "Creative Agency",
-      startDate: "2012-12-06",
-      endDate: "2016-07-04",
+      monthStart: "December",
+      yearStart: "2012",
+      monthEnd: "July",
+      yearEnd: "2016",
       dutyOne:
         "Developed marketing campaign materials including logos, brochures, newsletters, and more",
       dutyTwo:

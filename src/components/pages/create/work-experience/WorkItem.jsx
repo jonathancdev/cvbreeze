@@ -45,8 +45,8 @@ export default function WorkItem({
         </p>
       </div>
       <div className="work__item--dates">
-        <p>from&nbsp;{obj.startDate}&nbsp;</p>
-        <p>to&nbsp;{obj.endDate}</p>
+        <p>{obj.monthStart + " " + obj.yearStart}&nbsp;</p>
+        <p>to&nbsp;{obj.monthEnd + " " + obj.yearEnd}</p>
       </div>
       <ul className="duties__list">
         <li className="duty">

@@ -9,7 +9,6 @@ export default function CreatePageFooter({ user, incomplete, viewing }) {
   );
   const [errorActive, setErrorActive] = useState(false);
   const handleIncompleteClick = () => {
-    console.log("sup");
     if (incomplete) {
       setErrorActive(true);
       setTimeout(() => {
