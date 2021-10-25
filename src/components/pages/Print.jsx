@@ -3,9 +3,12 @@ import { useEffect } from "react/cjs/react.development";
 import { View } from "./create/create-index";
 
 export default function Print({ user, openAlert }) {
-  // useEffect(() => {
-  //   setTimeout(window.print, 1000);
-  // }, []);
+  useEffect(() => {
+    printPage();
+  }, []);
+  const printPage = () => {
+    setTimeout(window.print, 1000);
+  };
   console.log(user);
   return (
     <>
