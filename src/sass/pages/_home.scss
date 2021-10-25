@@ -43,11 +43,11 @@
     }
     @include a.respond(laptop) {
       width: 75%;
-      font-size: 4rem;
+      font-size: 3rem;
     }
     @include a.respond(desktop) {
       width: 75%;
-      font-size: 4rem;
+      font-size: 3rem;
     }
   }
 }
