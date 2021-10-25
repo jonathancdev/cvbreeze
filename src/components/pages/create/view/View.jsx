@@ -47,9 +47,7 @@ export default function View({ user, updateViewing, mode, openAlert }) {
       <div>
         <Link
           className="view__print-link"
-          to={
-            mode === "preview" ? "/" + user.userId + "/print" : "/create/view"
-          }
+          to={mode === "preview" ? "/print" : "/create/view"}
         >
           {mode === "preview" ? "print CV" : "go back"}
         </Link>
