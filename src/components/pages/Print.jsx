@@ -4,10 +4,10 @@ import { View } from "./create/create-index";
 
 export default function Print({ user, openAlert }) {
   useEffect(() => {
-    printPage();
+    setTimeout(printPage, 1000);
   }, []);
   const printPage = () => {
-    setTimeout(window.print, 1000);
+    window.print();
   };
   console.log(user);
   return (
