@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { history, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import useOutsideClickHandler from "../../hooks/useOutsideClickHandler";
 
 export default function MobileNav({ sessionActive, uncheck }) {

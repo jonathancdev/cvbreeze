@@ -3,15 +3,11 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import WorkItem from "./WorkItem";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
 import { useForm, Controller } from "react-hook-form";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 import MonthPicker from "../../../MonthPicker";
 import YearPicker from "../../../YearPicker";
-const { format } = require("date-fns");
 
 export default function WorkExperience({
   user,
@@ -47,8 +43,6 @@ export default function WorkExperience({
   const [monthEnd, setMonthEnd] = useState(null);
   const [yearStart, setYearStart] = useState(null);
   const [yearEnd, setYearEnd] = useState(null);
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
   //WORK EXPERIENCE STATE
   const [tempWorkArray, setTempWorkArray] = useState(storage ? storage : []); //ARRAY TO COLLECT UP TO THREE WORK EXPERIENCE OBJECTS, PASSED TO SAVE SECTION FOR STORAGE AND TO UPDATE USERWORKEXPERIENCE
   const [userWorkExperience, setUserWorkExperience] = useState(
@@ -225,42 +219,6 @@ export default function WorkExperience({
             </p>
           </div>
           <div className="form__dates">
-            {/* <div className="form__element">
-              <Controller
-                defaultValue=""
-                control={control}
-                name="startdate"
-                render={({ field }) => (
-                  <DatePicker
-                    wrapperClassName="datePicker"
-                    dateFormatCalendar="MMMM"
-                    showYearDropdown
-                    yearDropdownItemNumber={30}
-                    scrollableYearDropdown
-                    maxDate={new Date()}
-                    id="startdate"
-                    className="input--date startdate"
-                    value={startDate || null}
-                    placeholderText="start date"
-                    onSelect={(date) => {
-                      setStartDate(format(date, "yyyy-MM-dd"));
-                      field.onChange(date);
-                    }}
-                  />
-                )}
-                rules={{
-                  required: "start date required",
-                }}
-              />
-              <label htmlFor="startdate" className="visuallyhidden">
-                start date
-              </label>
-
-              <p className="form__error">
-                &nbsp;
-                {errors.startdate ? errors.startdate.message : ""}
-              </p>
-            </div> */}
             <div className="form__element--date">
               <Controller
                 defaultValue=""
@@ -382,40 +340,6 @@ export default function WorkExperience({
                 {errors.yearend ? errors.yearend.message : ""}
               </p>
             </div>
-            {/* <div className="form__element--date">
-              <Controller
-                defaultValue=""
-                control={control}
-                name="enddate"
-                render={({ field }) => (
-                  <DatePicker
-                    dateFormatCalendar="MMMM"
-                    showYearDropdown
-                    yearDropdownItemNumber={30}
-                    scrollableYearDropdown
-                    maxDate={new Date()}
-                    id="enddate"
-                    className="input--date enddate"
-                    value={endDate || null}
-                    placeholderText="end date"
-                    onSelect={(date) => {
-                      setEndDate(format(date, "yyyy-MM-dd"));
-                      field.onChange(date);
-                    }}
-                  />
-                )}
-                rules={{
-                  required: "end date required",
-                }}
-              />
-              <label htmlFor="enddate" className="visuallyhidden">
-                end date
-              </label>
-              <p className="form__error">
-                &nbsp;
-                {errors.enddate ? errors.enddate.message : ""}
-              </p>
-            </div> */}
           </div>
           <div className="form__element">
             <Controller

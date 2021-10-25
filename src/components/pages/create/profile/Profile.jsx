@@ -1,7 +1,6 @@
 import React, { useLayoutEffect, useState, useRef } from "react";
 import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 export default function Profile({
   user,
@@ -46,7 +45,6 @@ export default function Profile({
   };
   const checkMinLength = (str) => {
     if (str.length < 150) {
-      const x = 150 - str.length;
       setErrorMessage(str.length + "/150 characters to minimum length");
     } else if (str.length >= 450) {
       setErrorMessage("450 characters maximium");

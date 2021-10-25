@@ -6,7 +6,6 @@ export default function MonthPicker({
   className,
   placeholder,
   updateParent,
-  showError,
   onSelect,
   value,
 }) {
@@ -24,7 +23,6 @@ export default function MonthPicker({
     "November",
     "December",
   ];
-  const [errorMessage, setErrorMessage] = useState("month required");
   const [listOpen, setListOpen] = useState(false);
   const handleClickList = () => {
     setListOpen(true);

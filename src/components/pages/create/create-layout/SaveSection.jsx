@@ -1,6 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
-
 export default function SaveSection({
   message,
   storageKey,

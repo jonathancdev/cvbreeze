@@ -3,7 +3,6 @@ import PhotoInput from "./PhotoInput";
 import SaveSection from "../create-layout/SaveSection";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt, faUserAltSlash } from "@fortawesome/free-solid-svg-icons";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import testUserPhoto from "../../../../img/AI_photo.jpg";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 

@@ -3,15 +3,11 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import EducationItem from "./EducationItem";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import sortByDate from "../../../../utilities/sortByDate";
 import { useForm, Controller } from "react-hook-form";
-import DatePicker from "react-datepicker";
 import MonthPicker from "../../../MonthPicker";
 import YearPicker from "../../../YearPicker";
-import "react-datepicker/dist/react-datepicker.css";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
-const { format } = require("date-fns");
 
 export default function Education({
   user,
@@ -119,8 +115,8 @@ export default function Education({
         data={{ item: "new item", save: "item" }}
         saveFunction={updateTempEducationArray}
         items={tempEducationArray}
-        limit={3}
-        limitMessage="up to 3 items can be added"
+        limit={2}
+        limitMessage="up to 2 items can be added"
         formId="education"
         formHidden={formHidden}
         updateFormHidden={updateFormHidden}

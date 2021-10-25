@@ -2,7 +2,7 @@ import React, { useLayoutEffect, useState } from "react";
 import testUserPhoto from "../../../../img/AI_photo.jpg";
 
 export default function ViewPhoto({ user, section }) {
-  const { userPhoto, filePath } = localStorage.getObject(user.userId + section);
+  const { userPhoto } = localStorage.getObject(user.userId + section);
   const [photo, setPhoto] = useState(null);
   useLayoutEffect(() => {
     if (userPhoto) {
@@ -14,12 +14,12 @@ export default function ViewPhoto({ user, section }) {
     } else {
       setPhoto(null);
     }
-  });
+  }, [userPhoto]);
   return (
     <section className="view__photo">
       <div className="view__photo--shape">
         {photo ? (
-          <img src={photo} alt="cv user photo" className="view__photo--file" />
+          <img src={photo} alt="user" className="view__photo--file" />
         ) : (
           <div className="view__initials">
             {user.firstName[0] + user.lastName[0]}

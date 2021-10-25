@@ -23,14 +23,19 @@
     top: 3rem;
     list-style: none;
     padding: 1.2rem 0;
-    background-color: a.$color-blue-t75;
-
+    background-color: a.$color-white;
+    border: solid;
+    border-top: none;
+    border-width: 1px;
+    border-color: a.$color-dark-grey-t50;
+    border-radius: 3px;
     max-height: 15rem;
     overflow: scroll;
+    z-index: 12;
   }
   &__li {
     font-size: 1.4rem;
-    color: a.$color-white;
+    color: a.$color-dark-grey-t75;
     font-weight: 400;
     letter-spacing: a.$letter-spacing-small;
     text-align: center;
@@ -43,8 +48,8 @@
       padding-left: 10px;
     }
     &:hover {
-      background-color: a.$color-white;
-      color: a.$color-blue-t75;
+      color: a.$color-white;
+      background-color: a.$color-blue-t75;
     }
     user-select: none;
   }

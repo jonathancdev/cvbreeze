@@ -10,7 +10,6 @@ export default function ViewWorkItem({ obj }) {
     monthEnd,
     yearStart,
     yearEnd,
-    id,
     title,
   } = obj;
   return (

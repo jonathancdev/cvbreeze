@@ -105,14 +105,3 @@ export default function View({ user, updateViewing, mode, openAlert }) {
     </section>
   );
 }
-
-{
-  /* <div className="view__main">
-          <ViewContact />
-          <ViewEducation />
-          <ViewPhoto />
-          <ViewProfile />
-          <ViewSkills />
-          <ViewWork />
-        </div> */
-}

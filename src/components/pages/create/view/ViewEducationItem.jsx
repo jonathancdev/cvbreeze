@@ -1,7 +1,7 @@
 import React from "react";
 
 export default function ViewEducationItem({ obj }) {
-  const { month, year, degree, description, id, institution } = obj;
+  const { month, year, degree, description, institution } = obj;
   return (
     <div className="view__item education__item">
       <div className="space-between">

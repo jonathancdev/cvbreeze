@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import Layout from "../layout/Layout";
@@ -15,7 +15,6 @@ export default function Signin({
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [authenticated, setAuthenticated] = useState(false);
   const email = useRef();
   const password = useRef();
 
@@ -40,10 +39,8 @@ export default function Signin({
       //check if password matches
       if (userSigningIn.password === password.current.value) {
         logUserIn(userSigningIn);
-        setAuthenticated(true);
         history.push("/create");
       } else {
-        //setAuthenticated(false);
         openAlert("incorrect password");
       }
     } else {

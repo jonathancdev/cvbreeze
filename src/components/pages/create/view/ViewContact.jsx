@@ -51,12 +51,3 @@ export default function ViewContact({ user, section }) {
     </section>
   );
 }
-
-{
-  /* <p className="contact__text">{telephone}</p>
-        <p className="contact__text">{email}</p>
-        <p className="contact__text">{city}</p>
-        <p className="contact__text">{state}</p>
-        <p className="contact__text">{country}</p>
-        <p className="contact__text">{website}</p> */
-}

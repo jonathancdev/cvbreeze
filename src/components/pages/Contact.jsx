@@ -71,7 +71,7 @@ export default function Contact({
               rules={{
                 required: " name required",
                 pattern: {
-                  value: /^[A-Za-z\ ']+$/,
+                  value: /^[A-Za-z ']+$/,
                   message: "enter a valid  name",
                 },
               }}

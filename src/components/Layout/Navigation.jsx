@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import MobileNav from "./MobileNav";
 
 export default function Navigation({ navigationType, sessionActive }) {

@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import ViewEducationItem from "./ViewEducationItem";
 export default function ViewEducation({
   user,
@@ -26,7 +26,7 @@ export default function ViewEducation({
     <section className={"view__education " + educationClass}>
       <h1 className="heading-primary">Education</h1>
       {educationArray.map((obj) => (
-        <ViewEducationItem obj={obj} />
+        <ViewEducationItem obj={obj} key={obj.id} />
       ))}
     </section>
   );

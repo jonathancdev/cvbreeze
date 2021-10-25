@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
 import ViewWorkItem from "./ViewWorkItem";
 export default function ViewWork({
   user,
@@ -30,7 +30,7 @@ export default function ViewWork({
     <section className={"view__work work " + workClass}>
       <h1 className="heading-primary">Work Experience</h1>
       {workArray.map((obj) => (
-        <ViewWorkItem obj={obj} />
+        <ViewWorkItem obj={obj} key={obj.id} />
       ))}
     </section>
   );

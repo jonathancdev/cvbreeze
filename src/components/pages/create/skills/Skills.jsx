@@ -3,7 +3,6 @@ import SaveSection from "../create-layout/SaveSection";
 import CreateSectionForm from "../CreateSectionForm";
 import CreateSectionPreview from "../CreateSectionPreview";
 import SkillItem from "./SkillItem";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import { useForm, Controller } from "react-hook-form";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 

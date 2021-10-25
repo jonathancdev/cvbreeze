@@ -1,7 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState, useRef } from "react";
-import AutoTextArea from "../../../AutoTextArea";
 import SaveSection from "../create-layout/SaveSection";
-import checkCompletedSections from "../../../../utilities/checkCompletedSections";
 import useLayoutUpdater from "../../../../hooks/useLayoutUpdater";
 
 export default function Contact({
@@ -84,7 +82,7 @@ export default function Contact({
           telephone: "telephone number must not exceed 20 characters",
         };
       });
-    } else if (value.match(/^([0-9\(\)\/\+ \-]*)$/)) {
+    } else if (value.match(/^([0-9]*)$/)) {
       setTempContactObject((prevState) => {
         return { ...prevState, telephone: value };
       });

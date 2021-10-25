@@ -1,5 +1,4 @@
-import React, { useState, useRef } from "react";
-import AlertModal from "../../AlertModal";
+import React, { useRef } from "react";
 import useOutsideClickHandler from "../../../hooks/useOutsideClickHandler";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
@@ -17,8 +16,6 @@ export default function CreateSectionForm({
 }) {
   const plusIcon = <FontAwesomeIcon icon={faPlus} className="plus__icon" />;
   const minusIcon = <FontAwesomeIcon icon={faMinus} className="plus__icon" />;
-
-  const [showModal, setShowModal] = useState(false);
 
   const handleAddClick = () => {
     if (items.length >= limit) {

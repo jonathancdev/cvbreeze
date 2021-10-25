@@ -22,7 +22,7 @@ export default function ViewSkills({
     <section className={"view__skills " + skillsClass}>
       <h1 className="heading-primary">Skills</h1>
       {skillsArray.map((obj) => (
-        <div className="skill__cont">
+        <div key={obj.id} className="skill__cont">
           <p className="skill__text">{obj.skill}</p>
           <p className="html__icon">&bull;</p>
         </div>
