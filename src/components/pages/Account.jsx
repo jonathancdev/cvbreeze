@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../temp/Layout";
+import Layout from "../layout/Layout";
 import InputEditable from "../InputEditable";
 import { useHistory } from "react-router-dom";
 
