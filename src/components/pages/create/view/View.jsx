@@ -51,7 +51,7 @@ export default function View({ user, updateViewing, mode, openAlert }) {
             mode === "preview" ? "/" + user.userId + "/print" : "/create/view"
           }
         >
-          {mode === "preview" ? "print cv" : "go back"}
+          {mode === "preview" ? "print CV" : "go back"}
         </Link>
         <button className="btn__print-help btn" onClick={printHelp}>
           print display problems?

@@ -26,12 +26,12 @@ export default function CreatePageFooter({ user, incomplete, viewing }) {
           {!viewing ? (
             <Link to={!incomplete ? "/create/view" : "#"}>
               <h2 onClick={handleIncompleteClick} className="heading-secondary">
-                view cv
+                view CV
               </h2>
             </Link>
           ) : (
             <Link to="/create">
-              <h2 className="heading-secondary">edit cv</h2>
+              <h2 className="heading-secondary">edit CV</h2>
             </Link>
           )}
         </div>

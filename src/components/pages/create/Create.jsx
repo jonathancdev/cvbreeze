@@ -112,10 +112,10 @@ export default function Create({
                       Hello, {user.firstName}!
                     </h1>
                     <p className="text-large margin-top-extra-small">
-                      Add your information to each cv section. Save all of the
+                      Add your information to each CV section. Save all of the
                       changes before you move on! When all sections have been
                       been completed you can preview the final document. Return
-                      as needed to edit or update your cv!
+                      as needed to edit or update your CV!
                     </p>
                   </>
                 )}
@@ -178,7 +178,7 @@ export default function Create({
         </section>
       ) : (
         <div className="empty-preview-warning">
-          sign up or sign in to create your cv
+          sign up or sign in to create your CV
         </div>
       )}
     </CreatePageLayout>
