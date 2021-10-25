@@ -42,10 +42,14 @@ export default function View({ user, updateViewing, mode, openAlert }) {
       "in your browser's printer settings, choose 'A4' as the paper size and select the 'background graphics' or 'print backgrounds' option for best results"
     );
   };
+  const handlePrint = () => {
+    setTimeout(window.print, 1500);
+  };
   return (
     <section className={"view-container " + mode}>
       <div>
         <Link
+          onClick={handlePrint}
           className="view__print-link"
           to={mode === "preview" ? "/print" : "/create/view"}
         >
