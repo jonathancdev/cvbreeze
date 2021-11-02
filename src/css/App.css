@@ -1113,6 +1113,7 @@ textarea {
   flex-direction: column;
   justify-content: flex-end;
   transition: opacity 0.3s ease-in;
+  background-color: yellow;
 }
 .create-footer .view__error p {
   text-align: center;
@@ -1120,6 +1121,8 @@ textarea {
   width: 100vw;
   background-color: rgba(208, 136, 150, 0.75);
   color: #fff;
+  display: flex;
+  align-items: center;
 }
 .create-footer .view__error.active {
   visibility: visible;
