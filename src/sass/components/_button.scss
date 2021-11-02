@@ -24,14 +24,14 @@
   }
   &--create-navlink {
     border: solid;
-    border-width: 2.5px;
+    border-width: 1.5px;
     border-color: a.$color-blue;
     border-radius: 3px;
     color: a.$color-blue;
     padding: 1rem 0.75rem;
     margin: 0 0.25rem;
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 300;
     &.active {
       background-color: a.$color-blue-t75;
       border: none;
