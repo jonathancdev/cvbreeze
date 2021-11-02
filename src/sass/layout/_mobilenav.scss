@@ -24,8 +24,9 @@
     letter-spacing: a.$letter-spacing-small;
 
     &.active-link {
-      font-weight: 700;
-      color: a.$color-blue;
+      letter-spacing: calc(a.$letter-spacing-small * 2);
+      font-size: 2.75rem;
+      color: a.$color-blue-t85;
     }
   }
 }

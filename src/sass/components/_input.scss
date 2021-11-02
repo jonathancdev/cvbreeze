@@ -14,6 +14,7 @@ textarea {
 }
 .input {
   &--standard {
+    border-radius: 3px;
     background-color: a.$color-white;
     height: a.$input-height;
     width: 95%;
@@ -21,10 +22,12 @@ textarea {
     border-color: a.$color-light-grey-t10;
     font-size: 1.6rem;
     font-weight: 300;
-    color: a.$color-light-grey;
+    color: a.$color-dark-grey;
     padding-left: 1rem;
   }
   &--date {
+    border-radius: 3px;
+
     background-color: a.$color-white;
     height: a.$input-height;
     width: inherit;
@@ -36,6 +39,8 @@ textarea {
     padding-left: 1rem;
   }
   &--optional {
+    border-radius: 3px;
+
     margin-bottom: 1.75rem;
   }
 }

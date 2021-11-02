@@ -2,6 +2,7 @@
 .view * {
   line-height: 1.2;
 }
+
 .view-container {
   position: relative;
   overflow: scroll;
@@ -79,7 +80,11 @@
     top: -115px;
     left: -99px;
   }
-
+  &__options {
+    display: flex;
+    align-items: center;
+    margin-left: 8vw;
+  }
   &__top,
   &__bottom {
     position: absolute;

@@ -91,7 +91,7 @@
       display: flex;
       justify-content: space-between;
       width: 100%;
-      padding-top: 0;
+      padding-top: 1rem;
     }
   }
   .btn--create-navlink {
@@ -102,8 +102,12 @@
       width: 50%;
       font-size: 1.8rem;
       text-align: center;
-      padding: 0.5rem 0.5rem;
-      margin: 0.5rem 0.5rem;
+      padding: 0.75rem 0.75rem;
+      margin: 0.5rem 0.2rem;
+      &.active {
+        padding-top: 1rem;
+        transform: scaleY(1.1);
+      }
     }
   }
 }

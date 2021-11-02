@@ -32,11 +32,9 @@
     margin: 0 0.25rem;
     font-size: 1.8rem;
     font-weight: 400;
-
     &.active {
-      padding: 1.5rem 0.75rem;
-      border: none;
       background-color: a.$color-blue-t75;
+      border: none;
       color: a.$color-white;
     }
   }

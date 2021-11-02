@@ -47,7 +47,7 @@ export default function View({ user, updateViewing, mode, openAlert }) {
   };
   return (
     <section className={"view-container " + mode}>
-      <div>
+      <div className="view__options">
         <Link
           onClick={handlePrint}
           className="view__print-link"
