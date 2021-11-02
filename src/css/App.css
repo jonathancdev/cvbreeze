@@ -468,7 +468,7 @@ textarea {
   font-weight: 200;
   color: #404756;
   padding: 0.5rem 1rem;
-  line-height: 2rem;
+  line-height: 2.5rem;
 }
 
 .input--standard {
@@ -2335,7 +2335,7 @@ main,
 @media (max-height: 46em) and (max-width: 33.75em) {
   .profile__textarea {
     width: 100%;
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   }
 }
 .profile .form__error {

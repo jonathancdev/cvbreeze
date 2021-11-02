@@ -8,7 +8,7 @@ export default function AutoTextArea({
   maxLength,
   errorMessage,
 }) {
-  const lineHeight = 18; //set a little below actual line height set in css to pad bottom a bit
+  const lineHeight = 16; //set a little below actual line height set in css to pad bottom a bit
   const textareaRef = useRef(null);
   const [rows, setRows] = useState(null);
 
