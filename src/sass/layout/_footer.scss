@@ -48,7 +48,7 @@
     visibility: hidden;
     opacity: 0;
     position: absolute;
-    height: cacl(100vh + #{a.$header-height});
+    height: calc(100vh + #{a.$header-height});
     width: 100vw;
     bottom: 0;
     font-size: 1.8rem;
