@@ -37,7 +37,7 @@ export default function CreatePageFooter({ user, incomplete, viewing }) {
         </div>
       ) : null}
       <div className={!errorActive ? "view__error" : "view__error active"}>
-        complete all sections!
+        <p>complete all sections!</p>
       </div>
     </footer>
   );

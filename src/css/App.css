@@ -1057,7 +1057,6 @@ textarea {
 }
 
 .footer {
-  position: relative;
   height: 8rem;
   display: flex;
   justify-content: space-between;
@@ -1105,18 +1104,22 @@ textarea {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  height: 3.5rem;
+  height: 100vh;
   width: 100vw;
   bottom: 0;
-  background-color: rgba(208, 136, 150, 0.75);
-  color: #fff;
   font-size: 1.8rem;
   letter-spacing: 0.25rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   transition: opacity 0.3s ease-in;
+}
+.create-footer .view__error p {
+  text-align: center;
+  height: 3.5rem;
+  width: 100vw;
+  background-color: rgba(208, 136, 150, 0.75);
+  color: #fff;
 }
 .create-footer .view__error.active {
   visibility: visible;
