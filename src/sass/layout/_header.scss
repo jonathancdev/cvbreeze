@@ -15,9 +15,37 @@
   }
 }
 
-.logo {
+// .logo {
+//   height: 4rem;
+//   width: auto;
+// }
+.logo__wrapper {
   height: 4rem;
   width: auto;
+  margin-top: 3px;
+}
+.logo-a {
+  color: a.$color-white;
+  font-size: 4.25rem;
+  font-weight: 800;
+  border-top: solid;
+  border-width: 4px;
+  line-height: 0.45;
+  font-family: muli;
+  margin-top: 0px;
+  margin-right: 2px;
+  letter-spacing: a.$letter-spacing-small;
+}
+.logo-b {
+  color: a.$color-white;
+  font-size: 4.5rem;
+  font-weight: 800;
+  border-bottom: solid;
+  border-width: 4px;
+  line-height: 0.9;
+  font-family: muli;
+  margin-top: -15px;
+  letter-spacing: a.$letter-spacing-small;
 }
 
 //CREATE PAGE LAYOUT HEADER {

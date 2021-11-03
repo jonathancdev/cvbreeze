@@ -296,6 +296,21 @@ body {
   src: url("../fonts/overpass/Overpass-Thin.ttf");
   font-weight: 100;
 }
+@font-face {
+  font-family: "muli";
+  src: url("../fonts/muli/Muli-Black.ttf");
+  font-weight: 800;
+}
+@font-face {
+  font-family: "muli";
+  src: url("../fonts/muli/Muli-Bold.ttf");
+  font-weight: 600;
+}
+@font-face {
+  font-family: "muli";
+  src: url("../fonts/muli/Muli-Regular.ttf");
+  font-weight: 400;
+}
 .btn, .btn:link, .btn:visited {
   cursor: pointer;
   text-decoration: none;
@@ -1026,9 +1041,35 @@ textarea {
   justify-content: center;
 }
 
-.logo {
+.logo__wrapper {
   height: 4rem;
   width: auto;
+  margin-top: 3px;
+}
+
+.logo-a {
+  color: #fff;
+  font-size: 4.25rem;
+  font-weight: 800;
+  border-top: solid;
+  border-width: 4px;
+  line-height: 0.45;
+  font-family: muli;
+  margin-top: 0px;
+  margin-right: 2px;
+  letter-spacing: 0.25rem;
+}
+
+.logo-b {
+  color: #fff;
+  font-size: 4.5rem;
+  font-weight: 800;
+  border-bottom: solid;
+  border-width: 4px;
+  line-height: 0.9;
+  font-family: muli;
+  margin-top: -15px;
+  letter-spacing: 0.25rem;
 }
 
 .create-header {
